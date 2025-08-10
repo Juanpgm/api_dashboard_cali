@@ -1,3 +1,13 @@
+"""
+SQLAlchemy ORM models for the API Dashboard.
+
+Notes:
+- PostgreSQL is the target database; types reflect production schema.
+- Geometries are kept as Text placeholders here (GeoJSON), not Geometry, to
+    decouple spatial storage from attribute tables and simplify deployments.
+- Relationships are minimized to avoid unnecessary joins until needed.
+"""
+
 from sqlalchemy import Column, Integer, String, Float, Date, Boolean, Text, DECIMAL, SmallInteger, ForeignKey, UniqueConstraint, TIMESTAMP, BigInteger
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship

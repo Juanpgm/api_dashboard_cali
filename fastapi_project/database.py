@@ -1,3 +1,12 @@
+"""
+Database configuration module.
+
+- Loads environment from .env
+- Configures SQLAlchemy engine (PostgreSQL) with a production-ready pool
+- Exposes SessionLocal and Base for ORM usage
+- Provides lightweight helpers for diagnostics
+"""
+
 from sqlalchemy import create_engine, event
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
@@ -80,7 +89,7 @@ def receive_first_connect(dbapi_connection, connection_record):
     logger.info("✅ Primera conexión a PostgreSQL establecida")
 
 def get_database_info():
-    """Obtiene información de la configuración de la base de datos"""
+    """Obtiene información de la configuración de la base de datos (no sensible)."""
     return {
         "database_type": "PostgreSQL",
         "server": POSTGRES_SERVER,
@@ -93,7 +102,7 @@ def get_database_info():
     }
 
 def test_connection():
-    """Prueba la conexión a la base de datos"""
+    """Prueba la conexión a la base de datos ejecutando SELECT version()."""
     try:
         from sqlalchemy import text
         with engine.connect() as connection:

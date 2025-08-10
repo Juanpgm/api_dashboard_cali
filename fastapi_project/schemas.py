@@ -1,3 +1,9 @@
+"""
+Pydantic schemas defining request/response contracts for FastAPI endpoints.
+
+Keep schemas aligned with models; avoid geometry fields in attribute tables.
+"""
+
 from pydantic import BaseModel
 from typing import Optional, List
 from datetime import date, datetime

@@ -1,3 +1,15 @@
+"""
+FastAPI application exposing budget and project endpoints, admin diagnostics,
+and units of project (infraestructura) management.
+
+- Database: PostgreSQL via SQLAlchemy SessionLocal and engine
+- Validation: Pydantic schemas in fastapi_project.schemas
+- Purpose: Route definitions, data loaders (bulk upsert), and admin tools
+
+Note: This file intentionally avoids complex business logic. Keep edits
+documentational where possible; changing behavior requires updating docs.
+"""
+
 from fastapi import FastAPI, Depends, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
@@ -82,7 +94,7 @@ logger.info(f"📊 Conectado a {app_info['database_type']} en {app_info['server'
 app = FastAPI(
     title="API Proyectos Alcaldía de Santiago de Cali",
     description="Un API que sirve como fuente única de verdad que es confiable y validada para el uso de la Secretaría de Gobierno",
-    version="1.1.1",  # Incrementar versión por las mejoras
+    version="2.0.0",  # Versión alineada con documentación del proyecto
     docs_url="/docs",
     redoc_url="/redoc"
 )
@@ -159,6 +171,10 @@ UNIDADES_PROYECTO_MAPPING = {
 
 # Dependency para obtener la sesión de la base de datos
 def get_db():
+    """Yield a database session bound to the global engine.
+
+    Scoped for one request; ensures proper close even on exceptions.
+    """
     db = SessionLocal()
     try:
         yield db
@@ -167,7 +183,11 @@ def get_db():
 
 @contextmanager
 def get_db_transaction():
-    """Context manager para manejar transacciones de base de datos"""
+    """Context manager para manejar transacciones de base de datos.
+
+    Commits on success and rolls back on any exception to preserve consistency.
+    Use inside request handlers for atomic multi-table operations.
+    """
     db = SessionLocal()
     try:
         yield db
@@ -179,7 +199,7 @@ def get_db_transaction():
         db.close()
 
 def load_json_file(filename: str) -> List[Dict[str, Any]]:
-    """Carga un archivo JSON y retorna los datos"""
+    """Carga un archivo JSON (ejecución presupuestal) y retorna los datos."""
     file_path = next((path for path in JSON_FILE_PATHS if os.path.basename(path) == filename), None)
     if not file_path:
         raise FileNotFoundError(f"Archivo {filename} no encontrado en la ruta especificada")
@@ -192,7 +212,7 @@ def load_json_file(filename: str) -> List[Dict[str, Any]]:
         raise ValueError(f"Error al decodificar el archivo JSON: {filename}")
 
 def load_unidades_proyecto_json_file(filename: str) -> List[Dict[str, Any]]:
-    """Carga un archivo JSON desde el directorio de unidades de proyecto y retorna los datos"""
+    """Carga un archivo JSON de unidades de proyecto y retorna los datos."""
     file_path = next((path for path in UNIDADES_PROYECTO_JSON_PATHS if os.path.basename(path) == filename), None)
     if not file_path:
         raise FileNotFoundError(f"Archivo {filename} no encontrado en {UNIDADES_PROYECTO_DIR}")
@@ -206,8 +226,8 @@ def load_unidades_proyecto_json_file(filename: str) -> List[Dict[str, Any]]:
 
 def bulk_upsert_data(db: Session, model_class, data: List[Dict[str, Any]], primary_key):
     """
-    Realiza una inserción/actualización masiva eficiente usando PostgreSQL UPSERT
-    Soporta tanto claves primarias simples como compuestas.
+    Realiza una inserción/actualización masiva eficiente usando PostgreSQL UPSERT.
+    Soporta tanto claves primarias simples como compuestas (ON CONFLICT).
     """
     if not data:
         return
@@ -256,7 +276,7 @@ def bulk_upsert_data(db: Session, model_class, data: List[Dict[str, Any]], prima
         raise
 
 def load_geojson_file(filename: str) -> dict:
-    """Cargar archivo GeoJSON de la carpeta de outputs"""
+    """Cargar archivo GeoJSON de la carpeta de outputs para servirlo vía API."""
     file_path = f"transformation_app/app_outputs/unidades_proyecto_outputs/{filename}"
     with open(file_path, 'r', encoding='utf-8') as f:
         return json.load(f)
@@ -264,8 +284,8 @@ def load_geojson_file(filename: str) -> dict:
 # Función auxiliar para cargar y validar datos
 def load_and_validate_data(filename: str, schema_class, db: Session, model_class, primary_key) -> List:
     """
-    Función genérica para cargar, validar y guardar datos en la base de datos
-    Soporta claves primarias simples y compuestas.
+    Función genérica para cargar, validar y guardar datos en la base de datos.
+    Soporta claves primarias simples y compuestas y aplica bulk upsert.
     """
     try:
         # Cargar datos del archivo JSON
@@ -294,8 +314,8 @@ def load_and_validate_data(filename: str, schema_class, db: Session, model_class
 
 def load_and_validate_unidades_proyecto_data(filename: str, schema_class, db: Session, model_class, primary_key) -> List:
     """
-    Función específica para cargar, validar y guardar datos de unidades de proyecto en la base de datos
-    Excluye las columnas geométricas de los archivos JSON
+    Función específica para cargar, validar y guardar datos de unidades de proyecto.
+    Excluye las columnas geométricas de los archivos JSON antes de validar.
     """
     try:
         # Cargar datos del archivo JSON desde el directorio de unidades de proyecto

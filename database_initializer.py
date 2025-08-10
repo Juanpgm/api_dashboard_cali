@@ -30,14 +30,23 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 class DatabaseInitializer:
-    """Clase para manejar la inicialización completa de la base de datos"""
+    """Inicializa y verifica la estructura de la base de datos para el API.
+
+    Responsabilidades:
+    - Verificar conexión
+    - Crear tablas e índices si faltan (tipos correctos)
+    - Corregir discrepancias de esquema típicas
+    - Validar que el esquema final cumpla las expectativas
+
+    Notas: No migra datos complejos; se centra en estructura e índices.
+    """
     
     def __init__(self):
         self.engine = engine
         self.inspector = inspect(self.engine)
         
     def check_database_connection(self) -> bool:
-        """Verifica la conexión a la base de datos"""
+        """Verifica la conexión a la base de datos mediante un SELECT 1."""
         try:
             with self.engine.connect() as connection:
                 connection.execute(text("SELECT 1"))
@@ -51,7 +60,7 @@ class DatabaseInitializer:
             return False
     
     def get_existing_tables(self) -> List[str]:
-        """Obtiene la lista de tablas existentes en la base de datos"""
+        """Obtiene la lista de tablas existentes en la base de datos."""
         try:
             tables = self.inspector.get_table_names()
             logger.info(f"📊 Tablas existentes encontradas: {len(tables)}")
@@ -61,7 +70,7 @@ class DatabaseInitializer:
             return []
     
     def backup_existing_data(self, tables: List[str]) -> Dict[str, int]:
-        """Hace backup de datos existentes importantes"""
+        """Cuenta registros por tabla importante para fines de backup rápido (metadatos)."""
         backup_counts = {}
         important_tables = [
             'centros_gestores', 'programas', 'areas_funcionales', 
@@ -84,7 +93,7 @@ class DatabaseInitializer:
         return backup_counts
     
     def create_tables_with_correct_schema(self):
-        """Crea todas las tablas con el esquema correcto"""
+        """Crea/verifica tablas e índices con el esquema esperado (idempotente)."""
         logger.info("🔧 Creando estructura de tablas...")
         
         table_definitions = {
@@ -247,7 +256,7 @@ class DatabaseInitializer:
             raise
     
     def fix_existing_schema_issues(self):
-        """Corrige problemas de esquema en tablas existentes"""
+        """Corrige problemas comunes de tipos de columnas en tablas existentes."""
         logger.info("🔄 Verificando y corrigiendo esquemas existentes...")
         
         schema_fixes = [
@@ -326,7 +335,7 @@ class DatabaseInitializer:
             logger.error(f"❌ Error durante corrección de esquemas: {e}")
     
     def verify_final_schema(self) -> bool:
-        """Verifica que el esquema final esté correcto"""
+        """Verifica que el esquema final esté correcto consultando information_schema."""
         logger.info("🔍 Verificando esquema final...")
         
         expected_tables = [
@@ -387,7 +396,7 @@ class DatabaseInitializer:
             return False
     
     def initialize_database(self) -> bool:
-        """Ejecuta la inicialización completa de la base de datos"""
+        """Orquesta el flujo completo de inicialización y verificación de la base de datos."""
         logger.info("🚀 Iniciando inicialización completa de la base de datos")
         logger.info("=" * 60)
         

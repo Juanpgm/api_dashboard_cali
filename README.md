@@ -126,6 +126,19 @@ python production_deployment.py --force --quiet
 - `GET /movimientos_presupuestales` - Obtener movimientos presupuestales
 - `GET /ejecucion_presupuestal` - Obtener ejecución presupuestal
 
+### Unidades de Proyecto - Infraestructura
+
+- `POST /unidades_proyecto/equipamientos` - Cargar equipamientos
+- `POST /unidades_proyecto/vial` - Cargar infraestructura vial
+- `GET /unidades_proyecto/equipamientos` - Consultar equipamientos (filtros: bpin, limit, offset)
+- `GET /unidades_proyecto/vial` - Consultar infraestructura vial (filtros: bpin, limit, offset)
+- `GET /unidades_proyecto/equipamientos/geojson` - GeoJSON de equipamientos (RFC 7946)
+- `GET /unidades_proyecto/vial/geojson` - GeoJSON de infraestructura vial (RFC 7946)
+- `GET /unidades_proyecto/equipamientos/count` - Conteo equipamientos
+- `GET /unidades_proyecto/vial/count` - Conteo infraestructura vial
+- `PUT /unidades_proyecto/equipamientos/{bpin}` - Actualizar registro por BPIN
+- `PUT /unidades_proyecto/vial/{bpin}` - Actualizar registro por BPIN
+
 ### Administración
 
 - `GET /health` - Verificar estado del sistema
