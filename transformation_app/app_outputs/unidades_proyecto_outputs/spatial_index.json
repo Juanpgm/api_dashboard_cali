@@ -1,0 +1,6101 @@
+{
+  "equipamientos": [
+    {
+      "id": 0,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 22 sedes (Empréstito)",
+      "longitude": 3.453093,
+      "latitude": -76.568429,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4530934,
+        "max_lon": 3.4530934,
+        "min_lat": -76.5684286,
+        "max_lat": -76.5684286
+      }
+    },
+    {
+      "id": 1,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 22 sedes (Empréstito)",
+      "longitude": 3.467732,
+      "latitude": -76.516806,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4677325,
+        "max_lon": 3.4677325,
+        "min_lat": -76.5168064,
+        "max_lat": -76.5168064
+      }
+    },
+    {
+      "id": 2,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 22 sedes (Empréstito)",
+      "longitude": 3.442482,
+      "latitude": -76.510507,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4424819,
+        "max_lon": 3.4424819,
+        "min_lat": -76.51050699999999,
+        "max_lat": -76.51050699999999
+      }
+    },
+    {
+      "id": 3,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 22 sedes (Empréstito)",
+      "longitude": 3.449273,
+      "latitude": -76.498834,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4492728,
+        "max_lon": 3.4492728,
+        "min_lat": -76.49883439999999,
+        "max_lat": -76.49883439999999
+      }
+    },
+    {
+      "id": 4,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 22 sedes (Empréstito)",
+      "longitude": 3.428794,
+      "latitude": -76.532268,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4287945,
+        "max_lon": 3.4287945,
+        "min_lat": -76.5322683,
+        "max_lat": -76.5322683
+      }
+    },
+    {
+      "id": 5,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 22 sedes (Empréstito)",
+      "longitude": 3.403565,
+      "latitude": -76.55282,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4035647313443262,
+        "max_lon": 3.4035647313443262,
+        "min_lat": -76.55282035588259,
+        "max_lat": -76.55282035588259
+      }
+    },
+    {
+      "id": 6,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 22 sedes (Empréstito)",
+      "longitude": 3.419074,
+      "latitude": -76.518448,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4190745,
+        "max_lon": 3.4190745,
+        "min_lat": -76.5184484,
+        "max_lat": -76.5184484
+      }
+    },
+    {
+      "id": 7,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 22 sedes (Empréstito)",
+      "longitude": 3.375434,
+      "latitude": -76.548347,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.3754343,
+        "max_lon": 3.3754343,
+        "min_lat": -76.5483473,
+        "max_lat": -76.5483473
+      }
+    },
+    {
+      "id": 8,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 22 sedes (Empréstito)",
+      "longitude": 3.417319,
+      "latitude": -76.485046,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4173192,
+        "max_lon": 3.4173192,
+        "min_lat": -76.4850458,
+        "max_lat": -76.4850458
+      }
+    },
+    {
+      "id": 9,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 22 sedes (Empréstito)",
+      "longitude": 3.453799,
+      "latitude": -76.554509,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4537993,
+        "max_lon": 3.4537993,
+        "min_lat": -76.5545089,
+        "max_lat": -76.5545089
+      }
+    },
+    {
+      "id": 10,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 22 sedes (Empréstito)",
+      "longitude": 3.432988,
+      "latitude": -76.538346,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4329876,
+        "max_lon": 3.4329876,
+        "min_lat": -76.5383463,
+        "max_lat": -76.5383463
+      }
+    },
+    {
+      "id": 11,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 22 sedes (Empréstito)",
+      "longitude": 3.410013,
+      "latitude": -76.545707,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4100128,
+        "max_lon": 3.4100128,
+        "min_lat": -76.5457074,
+        "max_lat": -76.5457074
+      }
+    },
+    {
+      "id": 12,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 22 sedes (Empréstito)",
+      "longitude": 3.47086,
+      "latitude": -76.49896,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4708596,
+        "max_lon": 3.4708596,
+        "min_lat": -76.4989603,
+        "max_lat": -76.4989603
+      }
+    },
+    {
+      "id": 13,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 22 sedes (Empréstito)",
+      "longitude": 3.419193,
+      "latitude": -76.50322,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4191935,
+        "max_lon": 3.4191935,
+        "min_lat": -76.5032197,
+        "max_lat": -76.5032197
+      }
+    },
+    {
+      "id": 14,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 22 sedes (Empréstito)",
+      "longitude": 3.471613,
+      "latitude": -76.502757,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4716131,
+        "max_lon": 3.4716131,
+        "min_lat": -76.502757,
+        "max_lat": -76.502757
+      }
+    },
+    {
+      "id": 15,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 22 sedes (Empréstito)",
+      "longitude": 3.427505,
+      "latitude": -76.462948,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4275049,
+        "max_lon": 3.4275049,
+        "min_lat": -76.462948,
+        "max_lat": -76.462948
+      }
+    },
+    {
+      "id": 16,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 22 sedes (Empréstito)",
+      "longitude": 3.468043,
+      "latitude": -76.629815,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4680434,
+        "max_lon": 3.4680434,
+        "min_lat": -76.6298154,
+        "max_lat": -76.6298154
+      }
+    },
+    {
+      "id": 17,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 22 sedes (Empréstito)",
+      "longitude": 3.416289,
+      "latitude": -76.565236,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4162891,
+        "max_lon": 3.4162891,
+        "min_lat": -76.5652356,
+        "max_lat": -76.5652356
+      }
+    },
+    {
+      "id": 18,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 22 sedes (Empréstito)",
+      "longitude": 3.451906,
+      "latitude": -76.506911,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.451906,
+        "max_lon": 3.451906,
+        "min_lat": -76.50691069999999,
+        "max_lat": -76.50691069999999
+      }
+    },
+    {
+      "id": 19,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 22 sedes (Empréstito)",
+      "longitude": 3.369565,
+      "latitude": -76.564695,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.3695647,
+        "max_lon": 3.3695647,
+        "min_lat": -76.5646951,
+        "max_lat": -76.5646951
+      }
+    },
+    {
+      "id": 20,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 22 sedes (Empréstito)",
+      "longitude": 3.41394,
+      "latitude": -76.495981,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.413940131710037,
+        "max_lon": 3.413940131710037,
+        "min_lat": -76.49598079045776,
+        "max_lat": -76.49598079045776
+      }
+    },
+    {
+      "id": 21,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 22 sedes (Empréstito)",
+      "longitude": 3.417703,
+      "latitude": -76.514843,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.417703,
+        "max_lon": 3.417703,
+        "min_lat": -76.514843,
+        "max_lat": -76.514843
+      }
+    },
+    {
+      "id": 22,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 49 sedes (De las 80 restantes de las 100) (Empréstito)",
+      "longitude": 3.445345,
+      "latitude": -76.487152,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4453454,
+        "max_lon": 3.4453454,
+        "min_lat": -76.4871525,
+        "max_lat": -76.4871525
+      }
+    },
+    {
+      "id": 23,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 49 sedes (De las 80 restantes de las 100) (Empréstito)",
+      "longitude": 3.441876,
+      "latitude": -76.527639,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4418763,
+        "max_lon": 3.4418763,
+        "min_lat": -76.5276388,
+        "max_lat": -76.5276388
+      }
+    },
+    {
+      "id": 24,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 49 sedes (De las 80 restantes de las 100) (Empréstito)",
+      "longitude": 3.493416,
+      "latitude": -76.502689,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4934158,
+        "max_lon": 3.4934158,
+        "min_lat": -76.5026894,
+        "max_lat": -76.5026894
+      }
+    },
+    {
+      "id": 25,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 49 sedes (De las 80 restantes de las 100) (Empréstito)",
+      "longitude": 3.463561,
+      "latitude": -76.504742,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4635612,
+        "max_lon": 3.4635612,
+        "min_lat": -76.50474249999999,
+        "max_lat": -76.50474249999999
+      }
+    },
+    {
+      "id": 26,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 49 sedes (De las 80 restantes de las 100) (Empréstito)",
+      "longitude": 3.382641,
+      "latitude": -76.563273,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.3826411,
+        "max_lon": 3.3826411,
+        "min_lat": -76.56327259999999,
+        "max_lat": -76.56327259999999
+      }
+    },
+    {
+      "id": 27,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 49 sedes (De las 80 restantes de las 100) (Empréstito)",
+      "longitude": 3.451764,
+      "latitude": -76.56381,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4517635,
+        "max_lon": 3.4517635,
+        "min_lat": -76.5638102,
+        "max_lat": -76.5638102
+      }
+    },
+    {
+      "id": 28,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 49 sedes (De las 80 restantes de las 100) (Empréstito)",
+      "longitude": 3.439643,
+      "latitude": -76.510599,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4396428,
+        "max_lon": 3.4396428,
+        "min_lat": -76.510599,
+        "max_lat": -76.510599
+      }
+    },
+    {
+      "id": 29,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 49 sedes (De las 80 restantes de las 100) (Empréstito)",
+      "longitude": 3.432912,
+      "latitude": -76.500148,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4329116,
+        "max_lon": 3.4329116,
+        "min_lat": -76.5001482,
+        "max_lat": -76.5001482
+      }
+    },
+    {
+      "id": 30,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 49 sedes (De las 80 restantes de las 100) (Empréstito)",
+      "longitude": 3.427602,
+      "latitude": -76.495459,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4276023,
+        "max_lon": 3.4276023,
+        "min_lat": -76.4954593,
+        "max_lat": -76.4954593
+      }
+    },
+    {
+      "id": 31,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 49 sedes (De las 80 restantes de las 100) (Empréstito)",
+      "longitude": 3.435088,
+      "latitude": -76.47819,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4350884,
+        "max_lon": 3.4350884,
+        "min_lat": -76.4781898,
+        "max_lat": -76.4781898
+      }
+    },
+    {
+      "id": 32,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 49 sedes (De las 80 restantes de las 100) (Empréstito)",
+      "longitude": 3.399243,
+      "latitude": -76.517157,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.3992432,
+        "max_lon": 3.3992432,
+        "min_lat": -76.5171575,
+        "max_lat": -76.5171575
+      }
+    },
+    {
+      "id": 33,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 49 sedes (De las 80 restantes de las 100) (Empréstito)",
+      "longitude": 3.401336,
+      "latitude": -76.521858,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4013355,
+        "max_lon": 3.4013355,
+        "min_lat": -76.5218579,
+        "max_lat": -76.5218579
+      }
+    },
+    {
+      "id": 34,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 49 sedes (De las 80 restantes de las 100) (Empréstito)",
+      "longitude": 3.48335,
+      "latitude": -76.61668,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.48335,
+        "max_lon": 3.48335,
+        "min_lat": -76.61668,
+        "max_lat": -76.61668
+      }
+    },
+    {
+      "id": 35,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 49 sedes (De las 80 restantes de las 100) (Empréstito)",
+      "longitude": 3.41675,
+      "latitude": -76.63333,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.41675,
+        "max_lon": 3.41675,
+        "min_lat": -76.63333,
+        "max_lat": -76.63333
+      }
+    },
+    {
+      "id": 36,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 49 sedes (De las 80 restantes de las 100) (Empréstito)",
+      "longitude": 3.413519,
+      "latitude": -76.547944,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4135186,
+        "max_lon": 3.4135186,
+        "min_lat": -76.5479436,
+        "max_lat": -76.5479436
+      }
+    },
+    {
+      "id": 37,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 49 sedes (De las 80 restantes de las 100) (Empréstito)",
+      "longitude": 3.359431,
+      "latitude": -76.532726,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.359431,
+        "max_lon": 3.359431,
+        "min_lat": -76.5327258,
+        "max_lat": -76.5327258
+      }
+    },
+    {
+      "id": 38,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 49 sedes (De las 80 restantes de las 100) (Empréstito)",
+      "longitude": 3.382745,
+      "latitude": -76.617991,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.3827446,
+        "max_lon": 3.3827446,
+        "min_lat": -76.6179909,
+        "max_lat": -76.6179909
+      }
+    },
+    {
+      "id": 39,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 49 sedes (De las 80 restantes de las 100) (Empréstito)",
+      "longitude": 3.378677,
+      "latitude": -76.616473,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.3786766262862282,
+        "max_lon": 3.3786766262862282,
+        "min_lat": -76.61647291600585,
+        "max_lat": -76.61647291600585
+      }
+    },
+    {
+      "id": 40,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 49 sedes (De las 80 restantes de las 100) (Empréstito)",
+      "longitude": 3.454088,
+      "latitude": -76.556824,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4540883,
+        "max_lon": 3.4540883,
+        "min_lat": -76.5568239,
+        "max_lat": -76.5568239
+      }
+    },
+    {
+      "id": 41,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 49 sedes (De las 80 restantes de las 100) (Empréstito)",
+      "longitude": 3.462892,
+      "latitude": -76.508972,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4628916,
+        "max_lon": 3.4628916,
+        "min_lat": -76.5089724,
+        "max_lat": -76.5089724
+      }
+    },
+    {
+      "id": 42,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 49 sedes (De las 80 restantes de las 100) (Empréstito)",
+      "longitude": 3.474169,
+      "latitude": -76.494482,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4741695,
+        "max_lon": 3.4741695,
+        "min_lat": -76.4944817,
+        "max_lat": -76.4944817
+      }
+    },
+    {
+      "id": 43,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 49 sedes (De las 80 restantes de las 100) (Empréstito)",
+      "longitude": 3.482148,
+      "latitude": -76.487809,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4821476,
+        "max_lon": 3.4821476,
+        "min_lat": -76.4878092,
+        "max_lat": -76.4878092
+      }
+    },
+    {
+      "id": 44,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 49 sedes (De las 80 restantes de las 100) (Empréstito)",
+      "longitude": 3.444433,
+      "latitude": -76.49596,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4444326,
+        "max_lon": 3.4444326,
+        "min_lat": -76.4959597,
+        "max_lat": -76.4959597
+      }
+    },
+    {
+      "id": 45,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 49 sedes (De las 80 restantes de las 100) (Empréstito)",
+      "longitude": 3.454729,
+      "latitude": -76.51237,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4547288,
+        "max_lon": 3.4547288,
+        "min_lat": -76.5123695,
+        "max_lat": -76.5123695
+      }
+    },
+    {
+      "id": 46,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 49 sedes (De las 80 restantes de las 100) (Empréstito)",
+      "longitude": 3.449279,
+      "latitude": -76.495346,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4492794,
+        "max_lon": 3.4492794,
+        "min_lat": -76.4953463,
+        "max_lat": -76.4953463
+      }
+    },
+    {
+      "id": 47,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 49 sedes (De las 80 restantes de las 100) (Empréstito)",
+      "longitude": 3.421132,
+      "latitude": -76.531272,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4211318,
+        "max_lon": 3.4211318,
+        "min_lat": -76.5312721,
+        "max_lat": -76.5312721
+      }
+    },
+    {
+      "id": 48,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 49 sedes (De las 80 restantes de las 100) (Empréstito)",
+      "longitude": 3.423061,
+      "latitude": -76.512716,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4230608,
+        "max_lon": 3.4230608,
+        "min_lat": -76.5127163,
+        "max_lat": -76.5127163
+      }
+    },
+    {
+      "id": 49,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 49 sedes (De las 80 restantes de las 100) (Empréstito)",
+      "longitude": 3.417164,
+      "latitude": -76.490561,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4171635,
+        "max_lon": 3.4171635,
+        "min_lat": -76.4905609,
+        "max_lat": -76.4905609
+      }
+    },
+    {
+      "id": 50,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 49 sedes (De las 80 restantes de las 100) (Empréstito)",
+      "longitude": 3.436873,
+      "latitude": -76.493262,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4368732,
+        "max_lon": 3.4368732,
+        "min_lat": -76.49326219999999,
+        "max_lat": -76.49326219999999
+      }
+    },
+    {
+      "id": 51,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 49 sedes (De las 80 restantes de las 100) (Empréstito)",
+      "longitude": 3.472825,
+      "latitude": -76.489245,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.472825,
+        "max_lon": 3.472825,
+        "min_lat": -76.4892453,
+        "max_lat": -76.4892453
+      }
+    },
+    {
+      "id": 52,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 49 sedes (De las 80 restantes de las 100) (Empréstito)",
+      "longitude": 3.416932,
+      "latitude": -76.533288,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4169324,
+        "max_lon": 3.4169324,
+        "min_lat": -76.5332882,
+        "max_lat": -76.5332882
+      }
+    },
+    {
+      "id": 53,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 49 sedes (De las 80 restantes de las 100) (Empréstito)",
+      "longitude": 3.417306,
+      "latitude": -76.500957,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4173062,
+        "max_lon": 3.4173062,
+        "min_lat": -76.50095689999999,
+        "max_lat": -76.50095689999999
+      }
+    },
+    {
+      "id": 54,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 49 sedes (De las 80 restantes de las 100) (Empréstito)",
+      "longitude": 3.449715,
+      "latitude": -76.516241,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4497151,
+        "max_lon": 3.4497151,
+        "min_lat": -76.5162411,
+        "max_lat": -76.5162411
+      }
+    },
+    {
+      "id": 55,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 49 sedes (De las 80 restantes de las 100) (Empréstito)",
+      "longitude": 3.439668,
+      "latitude": -76.491781,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4396682,
+        "max_lon": 3.4396682,
+        "min_lat": -76.4917814,
+        "max_lat": -76.4917814
+      }
+    },
+    {
+      "id": 56,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 49 sedes (15 sedes pendientes pptivo 2024) (Empréstito)",
+      "longitude": 3.490761,
+      "latitude": -76.533891,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4907613374234994,
+        "max_lon": 3.4907613374234994,
+        "min_lat": -76.53389111054575,
+        "max_lat": -76.53389111054575
+      }
+    },
+    {
+      "id": 57,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 49 sedes (15 sedes pendientes pptivo 2024) (Empréstito)",
+      "longitude": 3.472191,
+      "latitude": -76.514497,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.472190716075929,
+        "max_lon": 3.472190716075929,
+        "min_lat": -76.51449683880215,
+        "max_lat": -76.51449683880215
+      }
+    },
+    {
+      "id": 58,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 49 sedes (15 sedes pendientes pptivo 2024) (Empréstito)",
+      "longitude": 3.489876,
+      "latitude": -76.506623,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.489876318629691,
+        "max_lon": 3.489876318629691,
+        "min_lat": -76.50662287820059,
+        "max_lat": -76.50662287820059
+      }
+    },
+    {
+      "id": 59,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 49 sedes (15 sedes pendientes pptivo 2024) (Empréstito)",
+      "longitude": 3.469577,
+      "latitude": -76.513206,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.469576607470668,
+        "max_lon": 3.469576607470668,
+        "min_lat": -76.51320583278807,
+        "max_lat": -76.51320583278807
+      }
+    },
+    {
+      "id": 60,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 49 sedes (15 sedes pendientes pptivo 2024) (Empréstito)",
+      "longitude": 3.465446,
+      "latitude": -76.505954,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4654456546537147,
+        "max_lon": 3.4654456546537147,
+        "min_lat": -76.50595366162298,
+        "max_lat": -76.50595366162298
+      }
+    },
+    {
+      "id": 61,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 49 sedes (15 sedes pendientes pptivo 2024) (Empréstito)",
+      "longitude": 3.483608,
+      "latitude": -76.50213,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.483608224948309,
+        "max_lon": 3.483608224948309,
+        "min_lat": -76.50213012554902,
+        "max_lat": -76.50213012554902
+      }
+    },
+    {
+      "id": 62,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 49 sedes (15 sedes pendientes pptivo 2024) (Empréstito)",
+      "longitude": 3.498179,
+      "latitude": -76.495324,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.498178526501409,
+        "max_lon": 3.498178526501409,
+        "min_lat": -76.49532401929281,
+        "max_lat": -76.49532401929281
+      }
+    },
+    {
+      "id": 63,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 49 sedes (15 sedes pendientes pptivo 2024) (Empréstito)",
+      "longitude": 3.447862,
+      "latitude": -76.487025,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4478620399819215,
+        "max_lon": 3.4478620399819215,
+        "min_lat": -76.48702466443183,
+        "max_lat": -76.48702466443183
+      }
+    },
+    {
+      "id": 64,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 49 sedes (15 sedes pendientes pptivo 2024) (Empréstito)",
+      "longitude": 3.440435,
+      "latitude": -76.510548,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4404347774725474,
+        "max_lon": 3.4404347774725474,
+        "min_lat": -76.51054819599035,
+        "max_lat": -76.51054819599035
+      }
+    },
+    {
+      "id": 65,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 49 sedes (15 sedes pendientes pptivo 2024) (Empréstito)",
+      "longitude": 3.450866,
+      "latitude": -76.516166,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.450866140508233,
+        "max_lon": 3.450866140508233,
+        "min_lat": -76.51616634812761,
+        "max_lat": -76.51616634812761
+      }
+    },
+    {
+      "id": 66,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 49 sedes (15 sedes pendientes pptivo 2024) (Empréstito)",
+      "longitude": 3.397442,
+      "latitude": -76.514366,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.397442321557009,
+        "max_lon": 3.397442321557009,
+        "min_lat": -76.51436587282966,
+        "max_lat": -76.51436587282966
+      }
+    },
+    {
+      "id": 67,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 49 sedes (15 sedes pendientes pptivo 2024) (Empréstito)",
+      "longitude": 3.377498,
+      "latitude": -76.547038,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.3774982894210597,
+        "max_lon": 3.3774982894210597,
+        "min_lat": -76.54703815705517,
+        "max_lat": -76.54703815705517
+      }
+    },
+    {
+      "id": 68,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 49 sedes (15 sedes pendientes pptivo 2024) (Empréstito)",
+      "longitude": 3.456074,
+      "latitude": -76.535573,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4560736029885457,
+        "max_lon": 3.4560736029885457,
+        "min_lat": -76.5355729977661,
+        "max_lat": -76.5355729977661
+      }
+    },
+    {
+      "id": 69,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 49 sedes (15 sedes pendientes pptivo 2024) (Empréstito)",
+      "longitude": 3.487716,
+      "latitude": -76.550816,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.487715783218076,
+        "max_lon": 3.487715783218076,
+        "min_lat": -76.55081590554572,
+        "max_lat": -76.55081590554572
+      }
+    },
+    {
+      "id": 70,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - 49 sedes (15 sedes pendientes pptivo 2024) (Empréstito)",
+      "longitude": 3.484239,
+      "latitude": -76.54717,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4842391405804465,
+        "max_lon": 3.4842391405804465,
+        "min_lat": -76.54717015977874,
+        "max_lat": -76.54717015977874
+      }
+    },
+    {
+      "id": 71,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - De las 80 restantes de las 100 (Empréstito)",
+      "longitude": 3.420354,
+      "latitude": -76.483047,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4203537,
+        "max_lon": 3.4203537,
+        "min_lat": -76.4830466,
+        "max_lat": -76.4830466
+      }
+    },
+    {
+      "id": 72,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - De las 80 restantes de las 100 (Empréstito)",
+      "longitude": 3.410953,
+      "latitude": -76.492579,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4109526,
+        "max_lon": 3.4109526,
+        "min_lat": -76.4925793,
+        "max_lat": -76.4925793
+      }
+    },
+    {
+      "id": 73,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - De las 80 restantes de las 100 (Empréstito)",
+      "longitude": 3.440906,
+      "latitude": -76.53521,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.440906133751227,
+        "max_lon": 3.440906133751227,
+        "min_lat": -76.53521035395319,
+        "max_lat": -76.53521035395319
+      }
+    },
+    {
+      "id": 74,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - De las 80 restantes de las 100 (Empréstito)",
+      "longitude": 3.375434,
+      "latitude": -76.548347,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.3754343,
+        "max_lon": 3.3754343,
+        "min_lat": -76.5483473,
+        "max_lat": -76.5483473
+      }
+    },
+    {
+      "id": 75,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - De las 80 restantes de las 100 (Empréstito)",
+      "longitude": 3.385039,
+      "latitude": -76.553456,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.3850388,
+        "max_lon": 3.3850388,
+        "min_lat": -76.55345580000001,
+        "max_lat": -76.55345580000001
+      }
+    },
+    {
+      "id": 76,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - De las 80 restantes de las 100 (Empréstito)",
+      "longitude": 3.416834,
+      "latitude": -76.554497,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4168344,
+        "max_lon": 3.4168344,
+        "min_lat": -76.5544969,
+        "max_lat": -76.5544969
+      }
+    },
+    {
+      "id": 77,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - De las 80 restantes de las 100 (Empréstito)",
+      "longitude": 3.419586,
+      "latitude": -76.562434,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4195859,
+        "max_lon": 3.4195859,
+        "min_lat": -76.562434,
+        "max_lat": -76.562434
+      }
+    },
+    {
+      "id": 78,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - De las 80 restantes de las 100 (Empréstito)",
+      "longitude": 3.426202,
+      "latitude": -76.512916,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4262023,
+        "max_lon": 3.4262023,
+        "min_lat": -76.5129164,
+        "max_lat": -76.5129164
+      }
+    },
+    {
+      "id": 79,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - De las 80 restantes de las 100 (Empréstito)",
+      "longitude": 3.450798,
+      "latitude": -76.556259,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4507982,
+        "max_lon": 3.4507982,
+        "min_lat": -76.5562592,
+        "max_lat": -76.5562592
+      }
+    },
+    {
+      "id": 80,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - De las 80 restantes de las 100 (Empréstito)",
+      "longitude": 3.378087,
+      "latitude": -76.472516,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.3780866,
+        "max_lon": 3.3780866,
+        "min_lat": -76.4725162,
+        "max_lat": -76.4725162
+      }
+    },
+    {
+      "id": 81,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - De las 80 restantes de las 100 (Empréstito)",
+      "longitude": 3.365531,
+      "latitude": -76.480778,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.3655314,
+        "max_lon": 3.3655314,
+        "min_lat": -76.4807775,
+        "max_lat": -76.4807775
+      }
+    },
+    {
+      "id": 82,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - De las 80 restantes de las 100 (Empréstito)",
+      "longitude": 3.315062,
+      "latitude": -76.599976,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.3150617,
+        "max_lon": 3.3150617,
+        "min_lat": -76.59997609999999,
+        "max_lat": -76.59997609999999
+      }
+    },
+    {
+      "id": 83,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - De las 80 restantes de las 100 (Empréstito)",
+      "longitude": 3.332578,
+      "latitude": -76.611833,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.3325778,
+        "max_lon": 3.3325778,
+        "min_lat": -76.6118325,
+        "max_lat": -76.6118325
+      }
+    },
+    {
+      "id": 84,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - De las 80 restantes de las 100 (Empréstito)",
+      "longitude": 3.459971,
+      "latitude": -76.525833,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.459971,
+        "max_lon": 3.459971,
+        "min_lat": -76.5258332,
+        "max_lat": -76.5258332
+      }
+    },
+    {
+      "id": 85,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - De las 80 restantes de las 100 (Empréstito)",
+      "longitude": 3.424342,
+      "latitude": -76.556283,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4243419,
+        "max_lon": 3.4243419,
+        "min_lat": -76.5562829,
+        "max_lat": -76.5562829
+      }
+    },
+    {
+      "id": 86,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - De las 80 restantes de las 100 (Empréstito)",
+      "longitude": 3.448548,
+      "latitude": -76.481787,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4485476,
+        "max_lon": 3.4485476,
+        "min_lat": -76.481787,
+        "max_lat": -76.481787
+      }
+    },
+    {
+      "id": 87,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - De las 80 restantes de las 100 (Empréstito)",
+      "longitude": 3.445238,
+      "latitude": -76.487142,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4452382,
+        "max_lon": 3.4452382,
+        "min_lat": -76.48714249999999,
+        "max_lat": -76.48714249999999
+      }
+    },
+    {
+      "id": 88,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - De las 80 restantes de las 100 (Empréstito)",
+      "longitude": 3.393106,
+      "latitude": -76.534046,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.3931061,
+        "max_lon": 3.3931061,
+        "min_lat": -76.534046,
+        "max_lat": -76.534046
+      }
+    },
+    {
+      "id": 89,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - De las 80 restantes de las 100 (Empréstito)",
+      "longitude": 3.444248,
+      "latitude": -76.495803,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4442479,
+        "max_lon": 3.4442479,
+        "min_lat": -76.4958035,
+        "max_lat": -76.4958035
+      }
+    },
+    {
+      "id": 90,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - De las 80 restantes de las 100 (Empréstito)",
+      "longitude": 3.431824,
+      "latitude": -76.524997,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4318237,
+        "max_lon": 3.4318237,
+        "min_lat": -76.5249967,
+        "max_lat": -76.5249967
+      }
+    },
+    {
+      "id": 91,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - De las 80 restantes de las 100 (Empréstito)",
+      "longitude": 3.431729,
+      "latitude": -76.514861,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4317291,
+        "max_lon": 3.4317291,
+        "min_lat": -76.5148607,
+        "max_lat": -76.5148607
+      }
+    },
+    {
+      "id": 92,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - De las 80 restantes de las 100 (Empréstito)",
+      "longitude": 3.441761,
+      "latitude": -76.494587,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4417612,
+        "max_lon": 3.4417612,
+        "min_lat": -76.4945875,
+        "max_lat": -76.4945875
+      }
+    },
+    {
+      "id": 93,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - De las 80 restantes de las 100 (Empréstito)",
+      "longitude": 3.418269,
+      "latitude": -76.49791,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4182688,
+        "max_lon": 3.4182688,
+        "min_lat": -76.4979104,
+        "max_lat": -76.4979104
+      }
+    },
+    {
+      "id": 94,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - De las 80 restantes de las 100 (Empréstito)",
+      "longitude": 3.394416,
+      "latitude": -76.523593,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.3944159,
+        "max_lon": 3.3944159,
+        "min_lat": -76.5235926,
+        "max_lat": -76.5235926
+      }
+    },
+    {
+      "id": 95,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - De las 80 restantes de las 100 (Empréstito)",
+      "longitude": 3.425852,
+      "latitude": -76.491927,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4258521,
+        "max_lon": 3.4258521,
+        "min_lat": -76.4919271,
+        "max_lat": -76.4919271
+      }
+    },
+    {
+      "id": 96,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - De las 80 restantes de las 100 (Empréstito)",
+      "longitude": 3.407124,
+      "latitude": -76.513415,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4071241,
+        "max_lon": 3.4071241,
+        "min_lat": -76.51341529999999,
+        "max_lat": -76.51341529999999
+      }
+    },
+    {
+      "id": 97,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - De las 80 restantes de las 100 (Empréstito)",
+      "longitude": 3.412496,
+      "latitude": -76.511158,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4124956,
+        "max_lon": 3.4124956,
+        "min_lat": -76.5111584,
+        "max_lat": -76.5111584
+      }
+    },
+    {
+      "id": 98,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - De las 80 restantes de las 100 (Empréstito)",
+      "longitude": 3.402324,
+      "latitude": -76.524712,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4023236,
+        "max_lon": 3.4023236,
+        "min_lat": -76.5247121,
+        "max_lat": -76.5247121
+      }
+    },
+    {
+      "id": 99,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - De las 80 restantes de las 100 (Empréstito)",
+      "longitude": 3.382121,
+      "latitude": -76.558897,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.382121,
+        "max_lon": 3.382121,
+        "min_lat": -76.5588972,
+        "max_lat": -76.5588972
+      }
+    },
+    {
+      "id": 100,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - De las 80 restantes de las 100 (Empréstito)",
+      "longitude": 3.445136,
+      "latitude": -76.515751,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4451365,
+        "max_lon": 3.4451365,
+        "min_lat": -76.515751,
+        "max_lat": -76.515751
+      }
+    },
+    {
+      "id": 101,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - De las 80 restantes de las 100 (Empréstito)",
+      "longitude": 3.457407,
+      "latitude": -76.487216,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4574075,
+        "max_lon": 3.4574075,
+        "min_lat": -76.48721619999999,
+        "max_lat": -76.48721619999999
+      }
+    },
+    {
+      "id": 102,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - De las 80 restantes de las 100 (Empréstito)",
+      "longitude": 3.43461,
+      "latitude": -76.53918,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4346103,
+        "max_lon": 3.4346103,
+        "min_lat": -76.5391796,
+        "max_lat": -76.5391796
+      }
+    },
+    {
+      "id": 103,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - De las 80 restantes de las 100 (Empréstito)",
+      "longitude": 3.45005,
+      "latitude": -76.63333,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.45005,
+        "max_lon": 3.45005,
+        "min_lat": -76.63333,
+        "max_lat": -76.63333
+      }
+    },
+    {
+      "id": 104,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - De las 80 restantes de las 100 (Empréstito)",
+      "longitude": 3.521199,
+      "latitude": -76.598291,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.521199,
+        "max_lon": 3.521199,
+        "min_lat": -76.598291,
+        "max_lat": -76.598291
+      }
+    },
+    {
+      "id": 105,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - De las 80 restantes de las 100 (Empréstito)",
+      "longitude": 3.50047,
+      "latitude": -76.545933,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.5004699,
+        "max_lon": 3.5004699,
+        "min_lat": -76.5459331,
+        "max_lat": -76.5459331
+      }
+    },
+    {
+      "id": 106,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - De las 80 restantes de las 100 (Empréstito)",
+      "longitude": 3.448423,
+      "latitude": -76.494622,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4484233,
+        "max_lon": 3.4484233,
+        "min_lat": -76.4946217,
+        "max_lat": -76.4946217
+      }
+    },
+    {
+      "id": 107,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - De las 80 restantes de las 100 (Empréstito)",
+      "longitude": 3.449298,
+      "latitude": -76.508486,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.449298,
+        "max_lon": 3.449298,
+        "min_lat": -76.5084864,
+        "max_lat": -76.5084864
+      }
+    },
+    {
+      "id": 108,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - De las 80 restantes de las 100 (Empréstito)",
+      "longitude": 3.442478,
+      "latitude": -76.543357,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4424776576592326,
+        "max_lon": 3.4424776576592326,
+        "min_lat": -76.54335654628339,
+        "max_lat": -76.54335654628339
+      }
+    },
+    {
+      "id": 109,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - De las 80 restantes de las 100 (Empréstito)",
+      "longitude": 3.482466,
+      "latitude": -76.502261,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.482466346948115,
+        "max_lon": 3.482466346948115,
+        "min_lat": -76.50226119833546,
+        "max_lat": -76.50226119833546
+      }
+    },
+    {
+      "id": 110,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - De las 80 restantes de las 100 (Empréstito)",
+      "longitude": 3.450049,
+      "latitude": -76.487327,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.450049346570265,
+        "max_lon": 3.450049346570265,
+        "min_lat": -76.48732689384322,
+        "max_lat": -76.48732689384322
+      }
+    },
+    {
+      "id": 111,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - De las 80 restantes de las 100 (Empréstito)",
+      "longitude": 3.428496,
+      "latitude": -76.48133,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4284957958572146,
+        "max_lon": 3.4284957958572146,
+        "min_lat": -76.48132950181582,
+        "max_lat": -76.48132950181582
+      }
+    },
+    {
+      "id": 112,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - De las 80 restantes de las 100 (Empréstito)",
+      "longitude": 3.407569,
+      "latitude": -76.50122,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4075692038103864,
+        "max_lon": 3.4075692038103864,
+        "min_lat": -76.50121957511817,
+        "max_lat": -76.50121957511817
+      }
+    },
+    {
+      "id": 113,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - De las 80 restantes de las 100 (Empréstito)",
+      "longitude": 3.392891,
+      "latitude": -76.549546,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.3928908,
+        "max_lon": 3.3928908,
+        "min_lat": -76.5495457,
+        "max_lat": -76.5495457
+      }
+    },
+    {
+      "id": 114,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - De las 80 restantes de las 100 (Empréstito)",
+      "longitude": 3.462892,
+      "latitude": -76.508972,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4628916,
+        "max_lon": 3.4628916,
+        "min_lat": -76.5089724,
+        "max_lat": -76.5089724
+      }
+    },
+    {
+      "id": 115,
+      "bpin": 2023760010146,
+      "identificador": "Grupo de 100 - De las 80 restantes de las 100 (Empréstito)",
+      "longitude": 3.465381,
+      "latitude": -76.505889,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4653813993466986,
+        "max_lon": 3.4653813993466986,
+        "min_lat": -76.50588928861372,
+        "max_lat": -76.50588928861372
+      }
+    },
+    {
+      "id": 116,
+      "bpin": 2024760010598,
+      "identificador": "Grupo de 7 (Empréstito)",
+      "longitude": 3.451647,
+      "latitude": -76.531985,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4516467,
+        "max_lon": 3.4516467,
+        "min_lat": -76.5319854,
+        "max_lat": -76.5319854
+      }
+    },
+    {
+      "id": 117,
+      "bpin": 2024760010598,
+      "identificador": "Grupo de 7 (Empréstito)",
+      "longitude": 3.449279,
+      "latitude": -76.505512,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4492789,
+        "max_lon": 3.4492789,
+        "min_lat": -76.505512,
+        "max_lat": -76.505512
+      }
+    },
+    {
+      "id": 118,
+      "bpin": 2024760010598,
+      "identificador": "Grupo de 7 (Empréstito)",
+      "longitude": 3.449133,
+      "latitude": -76.520349,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.449132765547163,
+        "max_lon": 3.449132765547163,
+        "min_lat": -76.52034940366006,
+        "max_lat": -76.52034940366006
+      }
+    },
+    {
+      "id": 119,
+      "bpin": 2024760010598,
+      "identificador": "Grupo de 7 (Empréstito)",
+      "longitude": 3.442317,
+      "latitude": -76.53428,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4423173,
+        "max_lon": 3.4423173,
+        "min_lat": -76.5342802,
+        "max_lat": -76.5342802
+      }
+    },
+    {
+      "id": 120,
+      "bpin": 2024760010598,
+      "identificador": "Grupo de 7 (Empréstito)",
+      "longitude": 3.483512,
+      "latitude": -76.507129,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4835119,
+        "max_lon": 3.4835119,
+        "min_lat": -76.50712879999999,
+        "max_lat": -76.50712879999999
+      }
+    },
+    {
+      "id": 121,
+      "bpin": 2023760010146,
+      "identificador": "Convenio Cali - FFIE - MEN - Obra entregada 2024",
+      "longitude": 3.40758,
+      "latitude": -76.51883,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4075804094928683,
+        "max_lon": 3.4075804094928683,
+        "min_lat": -76.51882963277531,
+        "max_lat": -76.51882963277531
+      }
+    },
+    {
+      "id": 122,
+      "bpin": 2023760010146,
+      "identificador": "Convenio Cali - FFIE - MEN - Obra entregada 2024",
+      "longitude": 3.424106,
+      "latitude": -76.531178,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4241055906199347,
+        "max_lon": 3.4241055906199347,
+        "min_lat": -76.53117752629085,
+        "max_lat": -76.53117752629085
+      }
+    },
+    {
+      "id": 123,
+      "bpin": 2023760010146,
+      "identificador": "Convenio Cali - FFIE - MEN - Obra entregada 2024",
+      "longitude": 3.448123,
+      "latitude": -76.48695,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4481226174331474,
+        "max_lon": 3.4481226174331474,
+        "min_lat": -76.486950458166,
+        "max_lat": -76.486950458166
+      }
+    },
+    {
+      "id": 124,
+      "bpin": 2023760010146,
+      "identificador": "Convenio Cali - FFIE - MEN - Obra entregada 2025",
+      "longitude": 3.531094,
+      "latitude": -76.311247,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.531093786643656,
+        "max_lon": 3.531093786643656,
+        "min_lat": -76.3112466655506,
+        "max_lat": -76.3112466655506
+      }
+    },
+    {
+      "id": 125,
+      "bpin": 2023760010146,
+      "identificador": "Convenio Cali - FFIE - MEN - Obra entregada 2025",
+      "longitude": 3.450547,
+      "latitude": -76.484539,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4505467690220013,
+        "max_lon": 3.4505467690220013,
+        "min_lat": -76.48453902063049,
+        "max_lat": -76.48453902063049
+      }
+    },
+    {
+      "id": 126,
+      "bpin": 2024760010598,
+      "identificador": "Convenio Cali - FFIE - MEN (Empréstito)",
+      "longitude": 3.437298,
+      "latitude": -76.514878,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4372983645628543,
+        "max_lon": 3.4372983645628543,
+        "min_lat": -76.51487825819375,
+        "max_lat": -76.51487825819375
+      }
+    },
+    {
+      "id": 127,
+      "bpin": 2024760010598,
+      "identificador": "Convenio Cali - FFIE - MEN (Empréstito)",
+      "longitude": 3.421469,
+      "latitude": -76.518505,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.421469316461296,
+        "max_lon": 3.421469316461296,
+        "min_lat": -76.51850483804178,
+        "max_lat": -76.51850483804178
+      }
+    },
+    {
+      "id": 128,
+      "bpin": 2024760010598,
+      "identificador": "Convenio Cali - FFIE - MEN (Empréstito)",
+      "longitude": 3.403303,
+      "latitude": -76.516055,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4033026,
+        "max_lon": 3.4033026,
+        "min_lat": -76.5160554,
+        "max_lat": -76.5160554
+      }
+    },
+    {
+      "id": 129,
+      "bpin": 2024760010598,
+      "identificador": "Convenio Cali - FFIE - MEN (Empréstito)",
+      "longitude": 3.410426,
+      "latitude": -76.510224,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4104262,
+        "max_lon": 3.4104262,
+        "min_lat": -76.510224,
+        "max_lat": -76.510224
+      }
+    },
+    {
+      "id": 130,
+      "bpin": 2024760010598,
+      "identificador": "Convenio Cali - FFIE - MEN (Empréstito)",
+      "longitude": 3.416526,
+      "latitude": -76.507981,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4165265,
+        "max_lon": 3.4165265,
+        "min_lat": -76.5079805,
+        "max_lat": -76.5079805
+      }
+    },
+    {
+      "id": 131,
+      "bpin": 2024760010598,
+      "identificador": "Convenio Cali - FFIE - MEN (Empréstito)",
+      "longitude": 3.419827,
+      "latitude": -76.501807,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.419827,
+        "max_lon": 3.419827,
+        "min_lat": -76.501807,
+        "max_lat": -76.501807
+      }
+    },
+    {
+      "id": 132,
+      "bpin": 2024760010598,
+      "identificador": "Convenio Cali - FFIE - MEN (Empréstito)",
+      "longitude": 3.425546,
+      "latitude": -76.552839,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4255463072402073,
+        "max_lon": 3.4255463072402073,
+        "min_lat": -76.55283852690316,
+        "max_lat": -76.55283852690316
+      }
+    },
+    {
+      "id": 133,
+      "bpin": 2023760010035,
+      "identificador": "Frente de obra ejecutada 2024 - P. Participativo 2024",
+      "longitude": 3.448241,
+      "latitude": -76.53951,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.44824083377647,
+        "max_lon": 3.44824083377647,
+        "min_lat": -76.53950958714795,
+        "max_lat": -76.53950958714795
+      }
+    },
+    {
+      "id": 134,
+      "bpin": 2023760010036,
+      "identificador": "Frente de obra ejecutada 2024 - P. Participativo 2024",
+      "longitude": 3.487479,
+      "latitude": -76.505759,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4874792617217816,
+        "max_lon": 3.4874792617217816,
+        "min_lat": -76.50575934385297,
+        "max_lat": -76.50575934385297
+      }
+    },
+    {
+      "id": 135,
+      "bpin": 2023760010035,
+      "identificador": "Frente de obra ejecutada 2024 - P. Participativo 2024",
+      "longitude": 3.442542,
+      "latitude": -76.543432,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4425419145165397,
+        "max_lon": 3.4425419145165397,
+        "min_lat": -76.54343164812754,
+        "max_lat": -76.54343164812754
+      }
+    },
+    {
+      "id": 136,
+      "bpin": 2023760010039,
+      "identificador": "Frente de obra ejecutada 2024 - P. Participativo 2024",
+      "longitude": 3.411666,
+      "latitude": -76.560733,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4116662,
+        "max_lon": 3.4116662,
+        "min_lat": -76.5607327,
+        "max_lat": -76.5607327
+      }
+    },
+    {
+      "id": 137,
+      "bpin": 2023760010032,
+      "identificador": "Frente de obra ejecutada 2024 - P. Participativo 2024",
+      "longitude": 3.418206,
+      "latitude": -76.553195,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4182058997814817,
+        "max_lon": 3.4182058997814817,
+        "min_lat": -76.55319524073819,
+        "max_lat": -76.55319524073819
+      }
+    },
+    {
+      "id": 138,
+      "bpin": 2023760010039,
+      "identificador": "Frente de obra ejecutada 2024 - P. Participativo 2024",
+      "longitude": 3.422962,
+      "latitude": -76.538572,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4229623,
+        "max_lon": 3.4229623,
+        "min_lat": -76.5385721,
+        "max_lat": -76.5385721
+      }
+    },
+    {
+      "id": 139,
+      "bpin": 2023760010031,
+      "identificador": "Frente de obra ejecutada 2024 - P. Participativo 2024",
+      "longitude": 3.36915,
+      "latitude": -76.564717,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.3691497,
+        "max_lon": 3.3691497,
+        "min_lat": -76.56471739999999,
+        "max_lat": -76.56471739999999
+      }
+    },
+    {
+      "id": 140,
+      "bpin": 2023760010031,
+      "identificador": "Frente de obra ejecutada 2024 - P. Participativo 2024",
+      "longitude": 3.39561,
+      "latitude": -76.549098,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.395609656601745,
+        "max_lon": 3.395609656601745,
+        "min_lat": -76.54909754443923,
+        "max_lat": -76.54909754443923
+      }
+    },
+    {
+      "id": 141,
+      "bpin": 2023760010031,
+      "identificador": "Frente de obra ejecutada 2024 - P. Participativo 2024",
+      "longitude": 3.394164,
+      "latitude": -76.552886,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.3941644,
+        "max_lon": 3.3941644,
+        "min_lat": -76.5528859,
+        "max_lat": -76.5528859
+      }
+    },
+    {
+      "id": 142,
+      "bpin": 2023760010043,
+      "identificador": "Frente de obra ejecutada 2024 - P. Participativo 2024",
+      "longitude": 3.393881,
+      "latitude": -76.551002,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.3938809,
+        "max_lon": 3.3938809,
+        "min_lat": -76.551002,
+        "max_lat": -76.551002
+      }
+    },
+    {
+      "id": 143,
+      "bpin": 2023760010043,
+      "identificador": "Frente de obra ejecutada 2024 - P. Participativo 2024",
+      "longitude": 3.415655,
+      "latitude": -76.488193,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4156551,
+        "max_lon": 3.4156551,
+        "min_lat": -76.48819259999999,
+        "max_lat": -76.48819259999999
+      }
+    },
+    {
+      "id": 144,
+      "bpin": 2023760010036,
+      "identificador": "Frente de obra ejecutada 2024 - P. Participativo 2024",
+      "longitude": 3.476633,
+      "latitude": -76.541598,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4766332653561904,
+        "max_lon": 3.4766332653561904,
+        "min_lat": -76.54159780838502,
+        "max_lat": -76.54159780838502
+      }
+    },
+    {
+      "id": 145,
+      "bpin": 2023760010032,
+      "identificador": "Frente de obra ejecutada 2024 - P. Participativo 2024",
+      "longitude": 3.422778,
+      "latitude": -76.553166,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.422778380832756,
+        "max_lon": 3.422778380832756,
+        "min_lat": -76.55316551929265,
+        "max_lat": -76.55316551929265
+      }
+    },
+    {
+      "id": 146,
+      "bpin": 2023760010034,
+      "identificador": "Frente de obra ejecutada 2024 - P. Participativo 2024",
+      "longitude": 3.345659,
+      "latitude": -76.479205,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.3456594,
+        "max_lon": 3.3456594,
+        "min_lat": -76.47920529999999,
+        "max_lat": -76.47920529999999
+      }
+    },
+    {
+      "id": 147,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra ejecutada 2024 - Recursos Propios",
+      "longitude": 3.396261,
+      "latitude": -76.545791,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.3962609819994256,
+        "max_lon": 3.3962609819994256,
+        "min_lat": -76.54579062180197,
+        "max_lat": -76.54579062180197
+      }
+    },
+    {
+      "id": 148,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra ejecutada 2024 - Recursos Propios",
+      "longitude": 3.424281,
+      "latitude": -76.521427,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4242807998781863,
+        "max_lon": 3.4242807998781863,
+        "min_lat": -76.5214273039531,
+        "max_lat": -76.5214273039531
+      }
+    },
+    {
+      "id": 149,
+      "bpin": 2023760010035,
+      "identificador": "Frente de obra ejecutada 2024 - P. Participativo 2024",
+      "longitude": 3.444636,
+      "latitude": -76.543496,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.444635975494221,
+        "max_lon": 3.444635975494221,
+        "min_lat": -76.54349621743577,
+        "max_lat": -76.54349621743577
+      }
+    },
+    {
+      "id": 150,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra ejecutada 2024 - Recursos Propios",
+      "longitude": 3.44724,
+      "latitude": -76.486105,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4472403,
+        "max_lon": 3.4472403,
+        "min_lat": -76.486105,
+        "max_lat": -76.486105
+      }
+    },
+    {
+      "id": 151,
+      "bpin": 202400000006271,
+      "identificador": "Presupuesto Participativo 2025",
+      "longitude": 3.488735,
+      "latitude": -76.508619,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4887350359630123,
+        "max_lon": 3.4887350359630123,
+        "min_lat": -76.50861868918075,
+        "max_lat": -76.50861868918075
+      }
+    },
+    {
+      "id": 152,
+      "bpin": 202400000006271,
+      "identificador": "Presupuesto Participativo 2025",
+      "longitude": 3.491682,
+      "latitude": -76.504685,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4916815570593993,
+        "max_lon": 3.4916815570593993,
+        "min_lat": -76.50468457511829,
+        "max_lat": -76.50468457511829
+      }
+    },
+    {
+      "id": 153,
+      "bpin": 202400000006271,
+      "identificador": "Presupuesto Participativo 2025",
+      "longitude": 3.464598,
+      "latitude": -76.537791,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.464597743199688,
+        "max_lon": 3.464597743199688,
+        "min_lat": -76.53779097354132,
+        "max_lat": -76.53779097354132
+      }
+    },
+    {
+      "id": 154,
+      "bpin": 2024760010244,
+      "identificador": "Presupuesto Participativo 2025",
+      "longitude": 3.454736,
+      "latitude": -76.525074,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4547359433611793,
+        "max_lon": 3.4547359433611793,
+        "min_lat": -76.52507378821068,
+        "max_lat": -76.52507378821068
+      }
+    },
+    {
+      "id": 155,
+      "bpin": 2024760010244,
+      "identificador": "Presupuesto Participativo 2025",
+      "longitude": 3.442574,
+      "latitude": -76.543399,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4425740429435843,
+        "max_lon": 3.4425740429435843,
+        "min_lat": -76.54339946162291,
+        "max_lat": -76.54339946162291
+      }
+    },
+    {
+      "id": 156,
+      "bpin": 2024760010237,
+      "identificador": "Presupuesto Participativo 2025",
+      "longitude": 3.463346,
+      "latitude": -76.508321,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.463346281367783,
+        "max_lon": 3.463346281367783,
+        "min_lat": -76.50832088861365,
+        "max_lat": -76.50832088861365
+      }
+    },
+    {
+      "id": 157,
+      "bpin": 2024760010237,
+      "identificador": "Presupuesto Participativo 2025",
+      "longitude": 3.471143,
+      "latitude": -76.513637,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.471143270438764,
+        "max_lon": 3.471143270438764,
+        "min_lat": -76.51363746162289,
+        "max_lat": -76.51363746162289
+      }
+    },
+    {
+      "id": 158,
+      "bpin": 2024760010249,
+      "identificador": "Presupuesto Participativo 2025",
+      "longitude": 3.478423,
+      "latitude": -76.493196,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.478423159789119,
+        "max_lon": 3.478423159789119,
+        "min_lat": -76.4931957327881,
+        "max_lat": -76.4931957327881
+      }
+    },
+    {
+      "id": 159,
+      "bpin": 2024760010241,
+      "identificador": "Presupuesto Participativo 2025",
+      "longitude": 3.476079,
+      "latitude": -76.481493,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.476079011616332,
+        "max_lon": 3.476079011616332,
+        "min_lat": -76.48149323785672,
+        "max_lat": -76.48149323785672
+      }
+    },
+    {
+      "id": 160,
+      "bpin": 2024760010240,
+      "identificador": "Presupuesto Participativo 2025",
+      "longitude": 3.433067,
+      "latitude": -76.499714,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.433067069049301,
+        "max_lon": 3.433067069049301,
+        "min_lat": -76.49971426162293,
+        "max_lat": -76.49971426162293
+      }
+    },
+    {
+      "id": 161,
+      "bpin": 2024760010248,
+      "identificador": "Presupuesto Participativo 2025",
+      "longitude": 3.422488,
+      "latitude": -76.488248,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4224876391148586,
+        "max_lon": 3.4224876391148586,
+        "min_lat": -76.48824776162294,
+        "max_lat": -76.48824776162294
+      }
+    },
+    {
+      "id": 162,
+      "bpin": 2024760010248,
+      "identificador": "Presupuesto Participativo 2025",
+      "longitude": 3.427798,
+      "latitude": -76.495423,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.427797972453392,
+        "max_lon": 3.427797972453392,
+        "min_lat": -76.4954234208437,
+        "max_lat": -76.4954234208437
+      }
+    },
+    {
+      "id": 163,
+      "bpin": 2024760010243,
+      "identificador": "Presupuesto Participativo 2025",
+      "longitude": 3.407444,
+      "latitude": -76.510753,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.407444449130922,
+        "max_lon": 3.407444449130922,
+        "min_lat": -76.51075334811485,
+        "max_lat": -76.51075334811485
+      }
+    },
+    {
+      "id": 164,
+      "bpin": 2024760010243,
+      "identificador": "Presupuesto Participativo 2025",
+      "longitude": 3.408904,
+      "latitude": -76.514426,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.408904299960882,
+        "max_lon": 3.408904299960882,
+        "min_lat": -76.51442590714059,
+        "max_lat": -76.51442590714059
+      }
+    },
+    {
+      "id": 165,
+      "bpin": 2024760010251,
+      "identificador": "Presupuesto Participativo 2025",
+      "longitude": 3.423824,
+      "latitude": -76.564357,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4238241900737614,
+        "max_lon": 3.4238241900737614,
+        "min_lat": -76.56435651215546,
+        "max_lat": -76.56435651215546
+      }
+    },
+    {
+      "id": 166,
+      "bpin": 2024760010251,
+      "identificador": "Presupuesto Participativo 2025",
+      "longitude": 3.41812,
+      "latitude": -76.553281,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4181202217894033,
+        "max_lon": 3.4181202217894033,
+        "min_lat": -76.55328107141726,
+        "max_lat": -76.55328107141726
+      }
+    },
+    {
+      "id": 167,
+      "bpin": 2024760010264,
+      "identificador": "Presupuesto Participativo 2025",
+      "longitude": 3.499302,
+      "latitude": -76.551215,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.49930215258767,
+        "max_lon": 3.49930215258767,
+        "min_lat": -76.55121498026413,
+        "max_lat": -76.55121498026413
+      }
+    },
+    {
+      "id": 168,
+      "bpin": 2024760010263,
+      "identificador": "Presupuesto Participativo 2025",
+      "longitude": 3.501573,
+      "latitude": -76.582588,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.5015728431087174,
+        "max_lon": 3.5015728431087174,
+        "min_lat": -76.58258846162298,
+        "max_lat": -76.58258846162298
+      }
+    },
+    {
+      "id": 169,
+      "bpin": 2024760010265,
+      "identificador": "Presupuesto Participativo 2025",
+      "longitude": 3.518504,
+      "latitude": -76.600306,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.5185040329678974,
+        "max_lon": 3.5185040329678974,
+        "min_lat": -76.60030600950938,
+        "max_lat": -76.60030600950938
+      }
+    },
+    {
+      "id": 170,
+      "bpin": 2024760010262,
+      "identificador": "Presupuesto Participativo 2025",
+      "longitude": 3.451121,
+      "latitude": -76.633159,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.451120689966623,
+        "max_lon": 3.451120689966623,
+        "min_lat": -76.63315873741693,
+        "max_lat": -76.63315873741693
+      }
+    },
+    {
+      "id": 171,
+      "bpin": 2024760010266,
+      "identificador": "Presupuesto Participativo 2025",
+      "longitude": 3.472239,
+      "latitude": -76.555218,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.472239297630517,
+        "max_lon": 3.472239297630517,
+        "min_lat": -76.55521783278806,
+        "max_lat": -76.55521783278806
+      }
+    },
+    {
+      "id": 172,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2024",
+      "longitude": 3.457576,
+      "latitude": -76.558938,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4575763,
+        "max_lon": 3.4575763,
+        "min_lat": -76.55893789999999,
+        "max_lat": -76.55893789999999
+      }
+    },
+    {
+      "id": 173,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2024",
+      "longitude": 3.450798,
+      "latitude": -76.556259,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4507982,
+        "max_lon": 3.4507982,
+        "min_lat": -76.5562592,
+        "max_lat": -76.5562592
+      }
+    },
+    {
+      "id": 174,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2024",
+      "longitude": 3.388144,
+      "latitude": -76.559786,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.388144,
+        "max_lon": 3.388144,
+        "min_lat": -76.5597858,
+        "max_lat": -76.5597858
+      }
+    },
+    {
+      "id": 175,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2024",
+      "longitude": 3.434565,
+      "latitude": -76.513931,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4345654,
+        "max_lon": 3.4345654,
+        "min_lat": -76.51393139999999,
+        "max_lat": -76.51393139999999
+      }
+    },
+    {
+      "id": 176,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2024",
+      "longitude": 3.411739,
+      "latitude": -76.533316,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4117388,
+        "max_lon": 3.4117388,
+        "min_lat": -76.5333162,
+        "max_lat": -76.5333162
+      }
+    },
+    {
+      "id": 177,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2024",
+      "longitude": 3.423348,
+      "latitude": -76.504902,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4233485,
+        "max_lon": 3.4233485,
+        "min_lat": -76.5049016,
+        "max_lat": -76.5049016
+      }
+    },
+    {
+      "id": 178,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2024",
+      "longitude": 3.457959,
+      "latitude": -76.480702,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4579585,
+        "max_lon": 3.4579585,
+        "min_lat": -76.4807018,
+        "max_lat": -76.4807018
+      }
+    },
+    {
+      "id": 179,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2024",
+      "longitude": 3.426007,
+      "latitude": -76.519481,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4260075,
+        "max_lon": 3.4260075,
+        "min_lat": -76.5194806,
+        "max_lat": -76.5194806
+      }
+    },
+    {
+      "id": 180,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2024",
+      "longitude": 3.450017,
+      "latitude": -76.515877,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4500173,
+        "max_lon": 3.4500173,
+        "min_lat": -76.515877,
+        "max_lat": -76.515877
+      }
+    },
+    {
+      "id": 181,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2024",
+      "longitude": 3.439527,
+      "latitude": -76.510761,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4395272,
+        "max_lon": 3.4395272,
+        "min_lat": -76.51076119999999,
+        "max_lat": -76.51076119999999
+      }
+    },
+    {
+      "id": 182,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2024",
+      "longitude": 3.413001,
+      "latitude": -76.494624,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.413001,
+        "max_lon": 3.413001,
+        "min_lat": -76.4946235,
+        "max_lat": -76.4946235
+      }
+    },
+    {
+      "id": 183,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2024",
+      "longitude": 3.382948,
+      "latitude": -76.617959,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.3829480892837385,
+        "max_lon": 3.3829480892837385,
+        "min_lat": -76.61795871744857,
+        "max_lat": -76.61795871744857
+      }
+    },
+    {
+      "id": 184,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2024",
+      "longitude": 3.42061,
+      "latitude": -76.518187,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.420609962528993,
+        "max_lon": 3.420609962528993,
+        "min_lat": -76.51818711638768,
+        "max_lat": -76.51818711638768
+      }
+    },
+    {
+      "id": 185,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2024",
+      "longitude": 3.443787,
+      "latitude": -76.485496,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.443787,
+        "max_lon": 3.443787,
+        "min_lat": -76.4854963,
+        "max_lat": -76.4854963
+      }
+    },
+    {
+      "id": 186,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2024",
+      "longitude": 3.449279,
+      "latitude": -76.505512,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4492789,
+        "max_lon": 3.4492789,
+        "min_lat": -76.505512,
+        "max_lat": -76.505512
+      }
+    },
+    {
+      "id": 187,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2024",
+      "longitude": 3.450798,
+      "latitude": -76.556259,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4507982,
+        "max_lon": 3.4507982,
+        "min_lat": -76.5562592,
+        "max_lat": -76.5562592
+      }
+    },
+    {
+      "id": 188,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2024",
+      "longitude": 3.457741,
+      "latitude": -76.55434,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4577412,
+        "max_lon": 3.4577412,
+        "min_lat": -76.5543404,
+        "max_lat": -76.5543404
+      }
+    },
+    {
+      "id": 189,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2024",
+      "longitude": 3.442317,
+      "latitude": -76.53428,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4423173,
+        "max_lon": 3.4423173,
+        "min_lat": -76.5342802,
+        "max_lat": -76.5342802
+      }
+    },
+    {
+      "id": 190,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2024",
+      "longitude": 3.474381,
+      "latitude": -76.511598,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4743805,
+        "max_lon": 3.4743805,
+        "min_lat": -76.5115977,
+        "max_lat": -76.5115977
+      }
+    },
+    {
+      "id": 191,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2024",
+      "longitude": 3.45005,
+      "latitude": -76.14994,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.45005,
+        "max_lon": 3.45005,
+        "min_lat": -76.14994,
+        "max_lat": -76.14994
+      }
+    },
+    {
+      "id": 192,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2024",
+      "longitude": 3.423348,
+      "latitude": -76.504902,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4233485,
+        "max_lon": 3.4233485,
+        "min_lat": -76.5049016,
+        "max_lat": -76.5049016
+      }
+    },
+    {
+      "id": 193,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2024",
+      "longitude": 3.436201,
+      "latitude": -76.524652,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.436201457598456,
+        "max_lon": 3.436201457598456,
+        "min_lat": -76.52465232570476,
+        "max_lat": -76.52465232570476
+      }
+    },
+    {
+      "id": 194,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2024",
+      "longitude": 3.424427,
+      "latitude": -76.504747,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4244265,
+        "max_lon": 3.4244265,
+        "min_lat": -76.5047474,
+        "max_lat": -76.5047474
+      }
+    },
+    {
+      "id": 195,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2024",
+      "longitude": 3.447591,
+      "latitude": -76.506188,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4475908,
+        "max_lon": 3.4475908,
+        "min_lat": -76.50618800000001,
+        "max_lat": -76.50618800000001
+      }
+    },
+    {
+      "id": 196,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2024",
+      "longitude": 3.447591,
+      "latitude": -76.506188,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4475908,
+        "max_lon": 3.4475908,
+        "min_lat": -76.50618800000001,
+        "max_lat": -76.50618800000001
+      }
+    },
+    {
+      "id": 197,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2024",
+      "longitude": 3.479386,
+      "latitude": -76.508548,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4793858,
+        "max_lon": 3.4793858,
+        "min_lat": -76.50854799999999,
+        "max_lat": -76.50854799999999
+      }
+    },
+    {
+      "id": 198,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2024",
+      "longitude": 3.42196,
+      "latitude": -76.530525,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.421960030112111,
+        "max_lon": 3.421960030112111,
+        "min_lat": -76.53052504657649,
+        "max_lat": -76.53052504657649
+      }
+    },
+    {
+      "id": 199,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2024",
+      "longitude": 3.50047,
+      "latitude": -76.545933,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.5004699,
+        "max_lon": 3.5004699,
+        "min_lat": -76.5459331,
+        "max_lat": -76.5459331
+      }
+    },
+    {
+      "id": 200,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2024",
+      "longitude": 3.426713,
+      "latitude": -76.51415,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4267134,
+        "max_lon": 3.4267134,
+        "min_lat": -76.5141504,
+        "max_lat": -76.5141504
+      }
+    },
+    {
+      "id": 201,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2024",
+      "longitude": 3.450798,
+      "latitude": -76.556259,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4507982,
+        "max_lon": 3.4507982,
+        "min_lat": -76.5562592,
+        "max_lat": -76.5562592
+      }
+    },
+    {
+      "id": 202,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2024",
+      "longitude": 3.422409,
+      "latitude": -76.555049,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4224092,
+        "max_lon": 3.4224092,
+        "min_lat": -76.5550489,
+        "max_lat": -76.5550489
+      }
+    },
+    {
+      "id": 203,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2024",
+      "longitude": 3.427625,
+      "latitude": -76.495334,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4276254,
+        "max_lon": 3.4276254,
+        "min_lat": -76.4953337,
+        "max_lat": -76.4953337
+      }
+    },
+    {
+      "id": 204,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2024",
+      "longitude": 3.427685,
+      "latitude": -76.476265,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4276848,
+        "max_lon": 3.4276848,
+        "min_lat": -76.4762652,
+        "max_lat": -76.4762652
+      }
+    },
+    {
+      "id": 205,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2024",
+      "longitude": 3.457741,
+      "latitude": -76.55434,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4577412,
+        "max_lon": 3.4577412,
+        "min_lat": -76.5543404,
+        "max_lat": -76.5543404
+      }
+    },
+    {
+      "id": 206,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2024",
+      "longitude": 3.420261,
+      "latitude": -76.476949,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4202611,
+        "max_lon": 3.4202611,
+        "min_lat": -76.4769487,
+        "max_lat": -76.4769487
+      }
+    },
+    {
+      "id": 207,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2024",
+      "longitude": 3.424427,
+      "latitude": -76.561736,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4244273217698233,
+        "max_lon": 3.4244273217698233,
+        "min_lat": -76.56173577351352,
+        "max_lat": -76.56173577351352
+      }
+    },
+    {
+      "id": 208,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2024",
+      "longitude": 3.413805,
+      "latitude": -76.495775,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4138047,
+        "max_lon": 3.4138047,
+        "min_lat": -76.4957754,
+        "max_lat": -76.4957754
+      }
+    },
+    {
+      "id": 209,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2024",
+      "longitude": 3.442629,
+      "latitude": -76.536838,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.442629085480985,
+        "max_lon": 3.442629085480985,
+        "min_lat": -76.53683810726297,
+        "max_lat": -76.53683810726297
+      }
+    },
+    {
+      "id": 210,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2024",
+      "longitude": 3.423061,
+      "latitude": -76.512716,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4230608,
+        "max_lon": 3.4230608,
+        "min_lat": -76.5127163,
+        "max_lat": -76.5127163
+      }
+    },
+    {
+      "id": 211,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2024",
+      "longitude": 3.411739,
+      "latitude": -76.533316,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4117388,
+        "max_lon": 3.4117388,
+        "min_lat": -76.5333162,
+        "max_lat": -76.5333162
+      }
+    },
+    {
+      "id": 212,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2024",
+      "longitude": 3.477172,
+      "latitude": -76.492731,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4771722,
+        "max_lon": 3.4771722,
+        "min_lat": -76.4927309,
+        "max_lat": -76.4927309
+      }
+    },
+    {
+      "id": 213,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2024",
+      "longitude": 3.38836,
+      "latitude": -76.554964,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.3883598,
+        "max_lon": 3.3883598,
+        "min_lat": -76.5549643,
+        "max_lat": -76.5549643
+      }
+    },
+    {
+      "id": 214,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2024",
+      "longitude": 3.466352,
+      "latitude": -76.491612,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4663522,
+        "max_lon": 3.4663522,
+        "min_lat": -76.4916124,
+        "max_lat": -76.4916124
+      }
+    },
+    {
+      "id": 215,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2024",
+      "longitude": 3.473146,
+      "latitude": -76.48934,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4731462,
+        "max_lon": 3.4731462,
+        "min_lat": -76.4893397,
+        "max_lat": -76.4893397
+      }
+    },
+    {
+      "id": 216,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2024",
+      "longitude": 3.417521,
+      "latitude": -76.633158,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.417520997801064,
+        "max_lon": 3.417520997801064,
+        "min_lat": -76.63315839853463,
+        "max_lat": -76.63315839853463
+      }
+    },
+    {
+      "id": 217,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2024",
+      "longitude": 3.410432,
+      "latitude": -76.494631,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4104318,
+        "max_lon": 3.4104318,
+        "min_lat": -76.4946311,
+        "max_lat": -76.4946311
+      }
+    },
+    {
+      "id": 218,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2024",
+      "longitude": 3.426007,
+      "latitude": -76.519481,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4260075,
+        "max_lon": 3.4260075,
+        "min_lat": -76.5194806,
+        "max_lat": -76.5194806
+      }
+    },
+    {
+      "id": 219,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2024",
+      "longitude": 3.419337,
+      "latitude": -76.518472,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4193374824429488,
+        "max_lon": 3.4193374824429488,
+        "min_lat": -76.51847168297743,
+        "max_lat": -76.51847168297743
+      }
+    },
+    {
+      "id": 220,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2024",
+      "longitude": 3.441876,
+      "latitude": -76.527639,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4418763,
+        "max_lon": 3.4418763,
+        "min_lat": -76.5276388,
+        "max_lat": -76.5276388
+      }
+    },
+    {
+      "id": 221,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2024",
+      "longitude": 3.42197,
+      "latitude": -76.502091,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4219695731824693,
+        "max_lon": 3.4219695731824693,
+        "min_lat": -76.50209086073318,
+        "max_lat": -76.50209086073318
+      }
+    },
+    {
+      "id": 222,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2024",
+      "longitude": 3.408426,
+      "latitude": -76.575072,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4084262723693586,
+        "max_lon": 3.4084262723693586,
+        "min_lat": -76.57507183977273,
+        "max_lat": -76.57507183977273
+      }
+    },
+    {
+      "id": 223,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2024",
+      "longitude": 3.451071,
+      "latitude": -76.48244,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.451071084844795,
+        "max_lon": 3.451071084844795,
+        "min_lat": -76.48244001201807,
+        "max_lat": -76.48244001201807
+      }
+    },
+    {
+      "id": 224,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2024",
+      "longitude": 3.478469,
+      "latitude": -76.493241,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4784685727557867,
+        "max_lon": 3.4784685727557867,
+        "min_lat": -76.49324065483265,
+        "max_lat": -76.49324065483265
+      }
+    },
+    {
+      "id": 225,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2024",
+      "longitude": 3.50047,
+      "latitude": -76.545933,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.5004699,
+        "max_lon": 3.5004699,
+        "min_lat": -76.5459331,
+        "max_lat": -76.5459331
+      }
+    },
+    {
+      "id": 226,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2024",
+      "longitude": 3.405377,
+      "latitude": -76.532191,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.405377,
+        "max_lon": 3.405377,
+        "min_lat": -76.5321913,
+        "max_lat": -76.5321913
+      }
+    },
+    {
+      "id": 227,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2024",
+      "longitude": 3.38836,
+      "latitude": -76.554964,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.3883598,
+        "max_lon": 3.3883598,
+        "min_lat": -76.5549643,
+        "max_lat": -76.5549643
+      }
+    },
+    {
+      "id": 228,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2025",
+      "longitude": 3.411338,
+      "latitude": -76.491969,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.411337679653262,
+        "max_lon": 3.411337679653262,
+        "min_lat": -76.49196947947819,
+        "max_lat": -76.49196947947819
+      }
+    },
+    {
+      "id": 229,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2025",
+      "longitude": 3.421052,
+      "latitude": -76.559096,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4210516061757836,
+        "max_lon": 3.4210516061757836,
+        "min_lat": -76.55909619229584,
+        "max_lat": -76.55909619229584
+      }
+    },
+    {
+      "id": 230,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2025",
+      "longitude": 3.42739,
+      "latitude": -76.530257,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.427389968901962,
+        "max_lon": 3.427389968901962,
+        "min_lat": -76.53025712522282,
+        "max_lat": -76.53025712522282
+      }
+    },
+    {
+      "id": 231,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2025",
+      "longitude": 3.452117,
+      "latitude": -76.555904,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.452117401341067,
+        "max_lon": 3.452117401341067,
+        "min_lat": -76.55590375623662,
+        "max_lat": -76.55590375623662
+      }
+    },
+    {
+      "id": 232,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2025",
+      "longitude": 3.415863,
+      "latitude": -76.534224,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.415862923653514,
+        "max_lon": 3.415862923653514,
+        "min_lat": -76.53422384811482,
+        "max_lat": -76.53422384811482
+      }
+    },
+    {
+      "id": 233,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2025",
+      "longitude": 3.412178,
+      "latitude": -76.518131,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.412177820296526,
+        "max_lon": 3.412177820296526,
+        "min_lat": -76.5181314855203,
+        "max_lat": -76.5181314855203
+      }
+    },
+    {
+      "id": 234,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2025",
+      "longitude": 3.426555,
+      "latitude": -76.513905,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.4265551255218822,
+        "max_lon": 3.4265551255218822,
+        "min_lat": -76.51390489045782,
+        "max_lat": -76.51390489045782
+      }
+    },
+    {
+      "id": 235,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2025",
+      "longitude": 3.441013,
+      "latitude": -76.510697,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.441012992110863,
+        "max_lon": 3.441012992110863,
+        "min_lat": -76.51069702485339,
+        "max_lat": -76.51069702485339
+      }
+    },
+    {
+      "id": 236,
+      "bpin": 2023760010146,
+      "identificador": "Frente de obra contratada en 2025",
+      "longitude": 3.351577,
+      "latitude": -76.516754,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.351577237525627,
+        "max_lon": 3.351577237525627,
+        "min_lat": -76.51675416168365,
+        "max_lat": -76.51675416168365
+      }
+    },
+    {
+      "id": 237,
+      "bpin": 0.0,
+      "identificador": "1",
+      "longitude": 3.0,
+      "latitude": 449839.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 449839,
+        "max_lat": 449839
+      }
+    },
+    {
+      "id": 238,
+      "bpin": 0.0,
+      "identificador": "2",
+      "longitude": 3.0,
+      "latitude": 454057.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 454057,
+        "max_lat": 454057
+      }
+    },
+    {
+      "id": 239,
+      "bpin": 0.0,
+      "identificador": "3",
+      "longitude": 3.0,
+      "latitude": 484472.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 484472,
+        "max_lat": 484472
+      }
+    },
+    {
+      "id": 240,
+      "bpin": 0.0,
+      "identificador": "4",
+      "longitude": 3.0,
+      "latitude": 474537.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 474537,
+        "max_lat": 474537
+      }
+    },
+    {
+      "id": 241,
+      "bpin": 0.0,
+      "identificador": "5",
+      "longitude": 3.0,
+      "latitude": 480315.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 480315,
+        "max_lat": 480315
+      }
+    },
+    {
+      "id": 242,
+      "bpin": 0.0,
+      "identificador": "6",
+      "longitude": 3.0,
+      "latitude": 478215.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 478215,
+        "max_lat": 478215
+      }
+    },
+    {
+      "id": 243,
+      "bpin": 0.0,
+      "identificador": "7",
+      "longitude": 3.0,
+      "latitude": 492958.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 492958,
+        "max_lat": 492958
+      }
+    },
+    {
+      "id": 244,
+      "bpin": 0.0,
+      "identificador": "8",
+      "longitude": 3.0,
+      "latitude": 480315.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 480315,
+        "max_lat": 480315
+      }
+    },
+    {
+      "id": 245,
+      "bpin": 0.0,
+      "identificador": "9",
+      "longitude": 3.0,
+      "latitude": 485516.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 485516,
+        "max_lat": 485516
+      }
+    },
+    {
+      "id": 246,
+      "bpin": 0.0,
+      "identificador": "10",
+      "longitude": 3.0,
+      "latitude": 463246.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 463246,
+        "max_lat": 463246
+      }
+    },
+    {
+      "id": 247,
+      "bpin": 0.0,
+      "identificador": "11",
+      "longitude": 3.0,
+      "latitude": 458716.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 458716,
+        "max_lat": 458716
+      }
+    },
+    {
+      "id": 248,
+      "bpin": 0.0,
+      "identificador": "12",
+      "longitude": 3.0,
+      "latitude": 472667.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 472667,
+        "max_lat": 472667
+      }
+    },
+    {
+      "id": 249,
+      "bpin": 0.0,
+      "identificador": "13",
+      "longitude": 3.0,
+      "latitude": 470132.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 470132,
+        "max_lat": 470132
+      }
+    },
+    {
+      "id": 250,
+      "bpin": 0.0,
+      "identificador": "14",
+      "longitude": 3.0,
+      "latitude": 466358.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 466358,
+        "max_lat": 466358
+      }
+    },
+    {
+      "id": 251,
+      "bpin": 0.0,
+      "identificador": "15",
+      "longitude": 3.0,
+      "latitude": 477754.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 477754,
+        "max_lat": 477754
+      }
+    },
+    {
+      "id": 252,
+      "bpin": 0.0,
+      "identificador": "16",
+      "longitude": 3.0,
+      "latitude": 48984.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 48984,
+        "max_lat": 48984
+      }
+    },
+    {
+      "id": 253,
+      "bpin": 0.0,
+      "identificador": "17",
+      "longitude": 3.0,
+      "latitude": 501355.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 501355,
+        "max_lat": 501355
+      }
+    },
+    {
+      "id": 254,
+      "bpin": 0.0,
+      "identificador": "19",
+      "longitude": 3.0,
+      "latitude": 482028.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 482028,
+        "max_lat": 482028
+      }
+    },
+    {
+      "id": 255,
+      "bpin": 0.0,
+      "identificador": "20",
+      "longitude": 3.0,
+      "latitude": 491748.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 491748,
+        "max_lat": 491748
+      }
+    },
+    {
+      "id": 256,
+      "bpin": 0.0,
+      "identificador": "21",
+      "longitude": 3.0,
+      "latitude": 495201.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 495201,
+        "max_lat": 495201
+      }
+    },
+    {
+      "id": 257,
+      "bpin": 0.0,
+      "identificador": "22",
+      "longitude": 3.0,
+      "latitude": 48154.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 48154,
+        "max_lat": 48154
+      }
+    },
+    {
+      "id": 258,
+      "bpin": 0.0,
+      "identificador": "23",
+      "longitude": 3.0,
+      "latitude": 474258.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 474258,
+        "max_lat": 474258
+      }
+    },
+    {
+      "id": 259,
+      "bpin": 0.0,
+      "identificador": "18",
+      "longitude": 3.447198,
+      "latitude": -76.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.447198,
+        "max_lon": 3.447198,
+        "min_lat": -76,
+        "max_lat": -76
+      }
+    },
+    {
+      "id": 260,
+      "bpin": 0.0,
+      "identificador": "24",
+      "longitude": 3.0,
+      "latitude": 463162.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 463162,
+        "max_lat": 463162
+      }
+    },
+    {
+      "id": 261,
+      "bpin": 0.0,
+      "identificador": "25",
+      "longitude": 3.0,
+      "latitude": 463162.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 463162,
+        "max_lat": 463162
+      }
+    },
+    {
+      "id": 262,
+      "bpin": 0.0,
+      "identificador": "26",
+      "longitude": 3.0,
+      "latitude": 458557.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 458557,
+        "max_lat": 458557
+      }
+    },
+    {
+      "id": 263,
+      "bpin": 0.0,
+      "identificador": "27",
+      "longitude": 3.0,
+      "latitude": 450516.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 450516,
+        "max_lat": 450516
+      }
+    },
+    {
+      "id": 264,
+      "bpin": 0.0,
+      "identificador": "28",
+      "longitude": 3.0,
+      "latitude": 446034.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 446034,
+        "max_lat": 446034
+      }
+    },
+    {
+      "id": 265,
+      "bpin": 0.0,
+      "identificador": "29",
+      "longitude": 3.0,
+      "latitude": 447701.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 447701,
+        "max_lat": 447701
+      }
+    },
+    {
+      "id": 266,
+      "bpin": 0.0,
+      "identificador": "30",
+      "longitude": 3.0,
+      "latitude": 451003.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 451003,
+        "max_lat": 451003
+      }
+    },
+    {
+      "id": 267,
+      "bpin": 0.0,
+      "identificador": "31",
+      "longitude": 3.0,
+      "latitude": 431849.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 431849,
+        "max_lat": 431849
+      }
+    },
+    {
+      "id": 268,
+      "bpin": 0.0,
+      "identificador": "32",
+      "longitude": 3.0,
+      "latitude": 418114.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 418114,
+        "max_lat": 418114
+      }
+    },
+    {
+      "id": 269,
+      "bpin": 0.0,
+      "identificador": "33",
+      "longitude": 3.0,
+      "latitude": 428059.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 428059,
+        "max_lat": 428059
+      }
+    },
+    {
+      "id": 270,
+      "bpin": 0.0,
+      "identificador": "34",
+      "longitude": 3.0,
+      "latitude": 430391.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 430391,
+        "max_lat": 430391
+      }
+    },
+    {
+      "id": 271,
+      "bpin": 0.0,
+      "identificador": "35",
+      "longitude": 3.0,
+      "latitude": 416508.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 416508,
+        "max_lat": 416508
+      }
+    },
+    {
+      "id": 272,
+      "bpin": 0.0,
+      "identificador": "36",
+      "longitude": 3.0,
+      "latitude": 426096.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 426096,
+        "max_lat": 426096
+      }
+    },
+    {
+      "id": 273,
+      "bpin": 0.0,
+      "identificador": "37",
+      "longitude": 3.0,
+      "latitude": 424834.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 424834,
+        "max_lat": 424834
+      }
+    },
+    {
+      "id": 274,
+      "bpin": 0.0,
+      "identificador": "38",
+      "longitude": 3.0,
+      "latitude": 420383.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 420383,
+        "max_lat": 420383
+      }
+    },
+    {
+      "id": 275,
+      "bpin": 0.0,
+      "identificador": "39",
+      "longitude": 3.0,
+      "latitude": 438935.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 438935,
+        "max_lat": 438935
+      }
+    },
+    {
+      "id": 276,
+      "bpin": 0.0,
+      "identificador": "40",
+      "longitude": 3.0,
+      "latitude": 438532.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 438532,
+        "max_lat": 438532
+      }
+    },
+    {
+      "id": 277,
+      "bpin": 0.0,
+      "identificador": "41",
+      "longitude": 3.0,
+      "latitude": 427918.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 427918,
+        "max_lat": 427918
+      }
+    },
+    {
+      "id": 278,
+      "bpin": 0.0,
+      "identificador": "42",
+      "longitude": 3.0,
+      "latitude": 438532.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 438532,
+        "max_lat": 438532
+      }
+    },
+    {
+      "id": 279,
+      "bpin": 0.0,
+      "identificador": "43",
+      "longitude": 3.0,
+      "latitude": 419207.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 419207,
+        "max_lat": 419207
+      }
+    },
+    {
+      "id": 280,
+      "bpin": 0.0,
+      "identificador": "44",
+      "longitude": 3.0,
+      "latitude": 441783.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 441783,
+        "max_lat": 441783
+      }
+    },
+    {
+      "id": 281,
+      "bpin": 0.0,
+      "identificador": "45",
+      "longitude": 3.0,
+      "latitude": 424204.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 424204,
+        "max_lat": 424204
+      }
+    },
+    {
+      "id": 282,
+      "bpin": 0.0,
+      "identificador": "46",
+      "longitude": 3.0,
+      "latitude": 42585527530662.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 42585527530662,
+        "max_lat": 42585527530662
+      }
+    },
+    {
+      "id": 283,
+      "bpin": 0.0,
+      "identificador": "47",
+      "longitude": 3.0,
+      "latitude": 436147.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 436147,
+        "max_lat": 436147
+      }
+    },
+    {
+      "id": 284,
+      "bpin": 0.0,
+      "identificador": "48",
+      "longitude": 3.0,
+      "latitude": 420695.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 420695,
+        "max_lat": 420695
+      }
+    },
+    {
+      "id": 285,
+      "bpin": 0.0,
+      "identificador": "49",
+      "longitude": 3.0,
+      "latitude": 425034.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 425034,
+        "max_lat": 425034
+      }
+    },
+    {
+      "id": 286,
+      "bpin": 0.0,
+      "identificador": "50",
+      "longitude": 3.0,
+      "latitude": 420934.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 420934,
+        "max_lat": 420934
+      }
+    },
+    {
+      "id": 287,
+      "bpin": 0.0,
+      "identificador": "51",
+      "longitude": 3.0,
+      "latitude": 421824.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 421824,
+        "max_lat": 421824
+      }
+    },
+    {
+      "id": 288,
+      "bpin": 0.0,
+      "identificador": "52",
+      "longitude": 3.0,
+      "latitude": 417899.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 417899,
+        "max_lat": 417899
+      }
+    },
+    {
+      "id": 289,
+      "bpin": 0.0,
+      "identificador": "53",
+      "longitude": 3.0,
+      "latitude": 425621.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 425621,
+        "max_lat": 425621
+      }
+    },
+    {
+      "id": 290,
+      "bpin": 0.0,
+      "identificador": "54",
+      "longitude": 3.0,
+      "latitude": 416652.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 416652,
+        "max_lat": 416652
+      }
+    },
+    {
+      "id": 291,
+      "bpin": 0.0,
+      "identificador": "55",
+      "longitude": 3.0,
+      "latitude": 417448.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 417448,
+        "max_lat": 417448
+      }
+    },
+    {
+      "id": 292,
+      "bpin": 0.0,
+      "identificador": "56",
+      "longitude": 3.0,
+      "latitude": 405154.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 405154,
+        "max_lat": 405154
+      }
+    },
+    {
+      "id": 293,
+      "bpin": 0.0,
+      "identificador": "57",
+      "longitude": 3.0,
+      "latitude": 397424.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 397424,
+        "max_lat": 397424
+      }
+    },
+    {
+      "id": 294,
+      "bpin": 0.0,
+      "identificador": "58",
+      "longitude": 3.0,
+      "latitude": 407161.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 407161,
+        "max_lat": 407161
+      }
+    },
+    {
+      "id": 295,
+      "bpin": 0.0,
+      "identificador": "59",
+      "longitude": 3.0,
+      "latitude": 39847.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 39847,
+        "max_lat": 39847
+      }
+    },
+    {
+      "id": 296,
+      "bpin": 0.0,
+      "identificador": "60",
+      "longitude": 3.0,
+      "latitude": 398767.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 398767,
+        "max_lat": 398767
+      }
+    },
+    {
+      "id": 297,
+      "bpin": 0.0,
+      "identificador": "61",
+      "longitude": 3.0,
+      "latitude": 403532.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 403532,
+        "max_lat": 403532
+      }
+    },
+    {
+      "id": 298,
+      "bpin": 0.0,
+      "identificador": "62",
+      "longitude": 3.0,
+      "latitude": 417448.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 417448,
+        "max_lat": 417448
+      }
+    },
+    {
+      "id": 299,
+      "bpin": 0.0,
+      "identificador": "63",
+      "longitude": 3.0,
+      "latitude": 406907.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 406907,
+        "max_lat": 406907
+      }
+    },
+    {
+      "id": 300,
+      "bpin": 0.0,
+      "identificador": "64",
+      "longitude": 3.0,
+      "latitude": 409213.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 409213,
+        "max_lat": 409213
+      }
+    },
+    {
+      "id": 301,
+      "bpin": 0.0,
+      "identificador": "65",
+      "longitude": 3.0,
+      "latitude": 395749.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 395749,
+        "max_lat": 395749
+      }
+    },
+    {
+      "id": 302,
+      "bpin": 0.0,
+      "identificador": "66",
+      "longitude": 3.0,
+      "latitude": 406006.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 406006,
+        "max_lat": 406006
+      }
+    },
+    {
+      "id": 303,
+      "bpin": 0.0,
+      "identificador": "67",
+      "longitude": 3.0,
+      "latitude": 412985.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 412985,
+        "max_lat": 412985
+      }
+    },
+    {
+      "id": 304,
+      "bpin": 0.0,
+      "identificador": "68",
+      "longitude": 3.0,
+      "latitude": 388861.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 388861,
+        "max_lat": 388861
+      }
+    },
+    {
+      "id": 305,
+      "bpin": 0.0,
+      "identificador": "69",
+      "longitude": 3.0,
+      "latitude": 408438.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 408438,
+        "max_lat": 408438
+      }
+    },
+    {
+      "id": 306,
+      "bpin": 0.0,
+      "identificador": "70",
+      "longitude": 3.0,
+      "latitude": 375894.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 375894,
+        "max_lat": 375894
+      }
+    },
+    {
+      "id": 307,
+      "bpin": 0.0,
+      "identificador": "71",
+      "longitude": 3.0,
+      "latitude": 380584.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 380584,
+        "max_lat": 380584
+      }
+    },
+    {
+      "id": 308,
+      "bpin": 0.0,
+      "identificador": "72",
+      "longitude": 3.0,
+      "latitude": 403168.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 403168,
+        "max_lat": 403168
+      }
+    },
+    {
+      "id": 309,
+      "bpin": 0.0,
+      "identificador": "73",
+      "longitude": 3.0,
+      "latitude": 392875.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 392875,
+        "max_lat": 392875
+      }
+    },
+    {
+      "id": 310,
+      "bpin": 0.0,
+      "identificador": "74",
+      "longitude": 3.0,
+      "latitude": 392729.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 392729,
+        "max_lat": 392729
+      }
+    },
+    {
+      "id": 311,
+      "bpin": 0.0,
+      "identificador": "75",
+      "longitude": 3.0,
+      "latitude": 388133.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 388133,
+        "max_lat": 388133
+      }
+    },
+    {
+      "id": 312,
+      "bpin": 0.0,
+      "identificador": "76",
+      "longitude": 3.392246,
+      "latitude": -76.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.392246,
+        "max_lon": 3.392246,
+        "min_lat": -76,
+        "max_lat": -76
+      }
+    },
+    {
+      "id": 313,
+      "bpin": 0.0,
+      "identificador": "77",
+      "longitude": 3.0,
+      "latitude": 386596.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 386596,
+        "max_lat": 386596
+      }
+    },
+    {
+      "id": 314,
+      "bpin": 0.0,
+      "identificador": "78",
+      "longitude": 3.0,
+      "latitude": 408824.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 408824,
+        "max_lat": 408824
+      }
+    },
+    {
+      "id": 315,
+      "bpin": 0.0,
+      "identificador": "79",
+      "longitude": 3.0,
+      "latitude": 402535.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 402535,
+        "max_lat": 402535
+      }
+    },
+    {
+      "id": 316,
+      "bpin": 0.0,
+      "identificador": "80",
+      "longitude": 3.0,
+      "latitude": 402991.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 402991,
+        "max_lat": 402991
+      }
+    },
+    {
+      "id": 317,
+      "bpin": 0.0,
+      "identificador": "81",
+      "longitude": 3.41249,
+      "latitude": -76.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3.41249,
+        "max_lon": 3.41249,
+        "min_lat": -76,
+        "max_lat": -76
+      }
+    },
+    {
+      "id": 318,
+      "bpin": 0.0,
+      "identificador": "82",
+      "longitude": 3.0,
+      "latitude": 424771.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 424771,
+        "max_lat": 424771
+      }
+    },
+    {
+      "id": 319,
+      "bpin": 0.0,
+      "identificador": "83",
+      "longitude": 3.0,
+      "latitude": 432305.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 432305,
+        "max_lat": 432305
+      }
+    },
+    {
+      "id": 320,
+      "bpin": 0.0,
+      "identificador": "84",
+      "longitude": 3.0,
+      "latitude": 41734.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 41734,
+        "max_lat": 41734
+      }
+    },
+    {
+      "id": 321,
+      "bpin": 0.0,
+      "identificador": "85",
+      "longitude": 3.0,
+      "latitude": 410877.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 410877,
+        "max_lat": 410877
+      }
+    },
+    {
+      "id": 322,
+      "bpin": 0.0,
+      "identificador": "86",
+      "longitude": 3.0,
+      "latitude": 409364.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 409364,
+        "max_lat": 409364
+      }
+    },
+    {
+      "id": 323,
+      "bpin": 0.0,
+      "identificador": "87",
+      "longitude": 3.0,
+      "latitude": 400757.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 400757,
+        "max_lat": 400757
+      }
+    },
+    {
+      "id": 324,
+      "bpin": 0.0,
+      "identificador": "88",
+      "longitude": 3.0,
+      "latitude": 435714.0,
+      "geometry_type": "Point",
+      "bounds": {
+        "min_lon": 3,
+        "max_lon": 3,
+        "min_lat": 435714,
+        "max_lat": 435714
+      }
+    }
+  ],
+  "infraestructura_vial": [
+    {
+      "id": 0,
+      "bpin": 2024760010333,
+      "identificador": "FID 2",
+      "id_via": "FID 2",
+      "longitude": -76.607316,
+      "latitude": 3.512727,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.607474,
+        "max_lon": -76.607217,
+        "min_lat": 3.512493,
+        "max_lat": 3.513051
+      }
+    },
+    {
+      "id": 1,
+      "bpin": 2024760010333,
+      "identificador": "FID 4",
+      "id_via": "FID 4",
+      "longitude": -76.606575,
+      "latitude": 3.496058,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.606684,
+        "max_lon": -76.606466,
+        "min_lat": 3.495618,
+        "max_lat": 3.496498
+      }
+    },
+    {
+      "id": 2,
+      "bpin": 2024760010333,
+      "identificador": "FID 6",
+      "id_via": "FID 6",
+      "longitude": -76.578013,
+      "latitude": 3.395337,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.578495,
+        "max_lon": -76.577585,
+        "min_lat": 3.394452,
+        "max_lat": 3.395784
+      }
+    },
+    {
+      "id": 3,
+      "bpin": 2024760010333,
+      "identificador": "FID 8",
+      "id_via": "FID 8",
+      "longitude": -76.563226,
+      "latitude": 3.420946,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.563422,
+        "max_lon": -76.563136,
+        "min_lat": 3.420417,
+        "max_lat": 3.421505
+      }
+    },
+    {
+      "id": 4,
+      "bpin": 2024760010333,
+      "identificador": "FID 9",
+      "id_via": "FID 9",
+      "longitude": -76.540569,
+      "latitude": 3.40781,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.540847,
+        "max_lon": -76.540298,
+        "min_lat": 3.406934,
+        "max_lat": 3.408663
+      }
+    },
+    {
+      "id": 5,
+      "bpin": 2024760010333,
+      "identificador": "FID 10",
+      "id_via": "FID 10",
+      "longitude": -76.540355,
+      "latitude": 3.418058,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.540684,
+        "max_lon": -76.540025,
+        "min_lat": 3.416986,
+        "max_lat": 3.419131
+      }
+    },
+    {
+      "id": 6,
+      "bpin": 2024760010333,
+      "identificador": "FID 11",
+      "id_via": "FID 11",
+      "longitude": -76.548757,
+      "latitude": 3.393463,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.548836,
+        "max_lon": -76.5486,
+        "min_lat": 3.392501,
+        "max_lat": 3.393951
+      }
+    },
+    {
+      "id": 7,
+      "bpin": 2024760010333,
+      "identificador": "FID 13",
+      "id_via": "FID 13",
+      "longitude": -76.543604,
+      "latitude": 3.393045,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.543614,
+        "max_lon": -76.5435932,
+        "min_lat": 3.392661,
+        "max_lat": 3.3934292
+      }
+    },
+    {
+      "id": 8,
+      "bpin": 2024760010333,
+      "identificador": "FID 14",
+      "id_via": "FID 14",
+      "longitude": -76.54073,
+      "latitude": 3.398877,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.541389,
+        "max_lon": -76.540132,
+        "min_lat": 3.398872,
+        "max_lat": 3.39888
+      }
+    },
+    {
+      "id": 9,
+      "bpin": 2024760010333,
+      "identificador": "FID 15",
+      "id_via": "FID 15",
+      "longitude": -76.501873,
+      "latitude": 3.408778,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.5032452,
+        "max_lon": -76.501075,
+        "min_lat": 3.4075294,
+        "max_lat": 3.4095
+      }
+    },
+    {
+      "id": 10,
+      "bpin": 2024760010333,
+      "identificador": "FID 16",
+      "id_via": "FID 16",
+      "longitude": -76.500208,
+      "latitude": 3.408159,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.500424,
+        "max_lon": -76.499993,
+        "min_lat": 3.407961,
+        "max_lat": 3.408357
+      }
+    },
+    {
+      "id": 11,
+      "bpin": 2024760010333,
+      "identificador": "FID 17",
+      "id_via": "FID 17",
+      "longitude": -76.500665,
+      "latitude": 3.406785,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.501754,
+        "max_lon": -76.499487,
+        "min_lat": 3.405782,
+        "max_lat": 3.407881
+      }
+    },
+    {
+      "id": 12,
+      "bpin": 2024760010333,
+      "identificador": "FID 19",
+      "id_via": "FID 19",
+      "longitude": -76.477282,
+      "latitude": 3.417199,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.478532,
+        "max_lon": -76.474854,
+        "min_lat": 3.415786,
+        "max_lat": 3.417986
+      }
+    },
+    {
+      "id": 13,
+      "bpin": 2024760010333,
+      "identificador": "FID 20",
+      "id_via": "FID 20",
+      "longitude": -76.498132,
+      "latitude": 3.416548,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.4992908,
+        "max_lon": -76.496919,
+        "min_lat": 3.415211,
+        "max_lat": 3.4178613
+      }
+    },
+    {
+      "id": 14,
+      "bpin": 2024760010333,
+      "identificador": "FID 21",
+      "id_via": "FID 21",
+      "longitude": -76.50471,
+      "latitude": 3.431608,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.505457,
+        "max_lon": -76.503377,
+        "min_lat": 3.430343,
+        "max_lat": 3.433483
+      }
+    },
+    {
+      "id": 15,
+      "bpin": 2024760010333,
+      "identificador": "FID 22",
+      "id_via": "FID 22",
+      "longitude": -76.530575,
+      "latitude": 3.414261,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.532318,
+        "max_lon": -76.528761,
+        "min_lat": 3.413653,
+        "max_lat": 3.414837
+      }
+    },
+    {
+      "id": 16,
+      "bpin": 2024760010333,
+      "identificador": "FID 23",
+      "id_via": "FID 23",
+      "longitude": -76.523466,
+      "latitude": 3.446535,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.524151,
+        "max_lon": -76.522596,
+        "min_lat": 3.443637,
+        "max_lat": 3.448793
+      }
+    },
+    {
+      "id": 17,
+      "bpin": 2024760010333,
+      "identificador": "FID 24",
+      "id_via": "FID 24",
+      "longitude": -76.482397,
+      "latitude": 3.449265,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.482935,
+        "max_lon": -76.481865,
+        "min_lat": 3.449138,
+        "max_lat": 3.449404
+      }
+    },
+    {
+      "id": 18,
+      "bpin": 2024760010333,
+      "identificador": "FID 25",
+      "id_via": "FID 25",
+      "longitude": -76.481846,
+      "latitude": 3.449154,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.481942,
+        "max_lon": -76.48175,
+        "min_lat": 3.448721,
+        "max_lat": 3.449588
+      }
+    },
+    {
+      "id": 19,
+      "bpin": 2024760010333,
+      "identificador": "FID 26",
+      "id_via": "FID 26",
+      "longitude": -76.521027,
+      "latitude": 3.469309,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.521456,
+        "max_lon": -76.520597,
+        "min_lat": 3.468773,
+        "max_lat": 3.469845
+      }
+    },
+    {
+      "id": 20,
+      "bpin": 2024760010333,
+      "identificador": "FID 27",
+      "id_via": "FID 27",
+      "longitude": -76.525451,
+      "latitude": 3.420768,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.527319,
+        "max_lon": -76.523307,
+        "min_lat": 3.420676,
+        "max_lat": 3.420886
+      }
+    },
+    {
+      "id": 21,
+      "bpin": 2024760010333,
+      "identificador": "FID 28",
+      "id_via": "FID 28",
+      "longitude": -76.501755,
+      "latitude": 3.431415,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.502385,
+        "max_lon": -76.501124,
+        "min_lat": 3.431093,
+        "max_lat": 3.431738
+      }
+    },
+    {
+      "id": 22,
+      "bpin": 2024760010333,
+      "identificador": "FID 30",
+      "id_via": "FID 30",
+      "longitude": -76.498929,
+      "latitude": 3.409806,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.500302,
+        "max_lon": -76.497195,
+        "min_lat": 3.40795,
+        "max_lat": 3.411299
+      }
+    },
+    {
+      "id": 23,
+      "bpin": 2024760010333,
+      "identificador": "FID 31",
+      "id_via": "FID 31",
+      "longitude": -76.492702,
+      "latitude": 3.410075,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.493163,
+        "max_lon": -76.492227,
+        "min_lat": 3.409566,
+        "max_lat": 3.410573
+      }
+    },
+    {
+      "id": 24,
+      "bpin": 2024760010333,
+      "identificador": "FID 32",
+      "id_via": "FID 32",
+      "longitude": -76.496994,
+      "latitude": 3.420068,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.497615,
+        "max_lon": -76.496456,
+        "min_lat": 3.419471,
+        "max_lat": 3.420592
+      }
+    },
+    {
+      "id": 25,
+      "bpin": 2024760010333,
+      "identificador": "FID 33",
+      "id_via": "FID 33",
+      "longitude": -76.548306,
+      "latitude": 3.393282,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.548399,
+        "max_lon": -76.548203,
+        "min_lat": 3.392548,
+        "max_lat": 3.39399
+      }
+    },
+    {
+      "id": 26,
+      "bpin": 2024760010333,
+      "identificador": "FID 34",
+      "id_via": "FID 34",
+      "longitude": -76.548175,
+      "latitude": 3.392552,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.548596,
+        "max_lon": -76.547729,
+        "min_lat": 3.392502,
+        "max_lat": 3.392607
+      }
+    },
+    {
+      "id": 27,
+      "bpin": 2024760010333,
+      "identificador": "FID 35",
+      "id_via": "FID 35",
+      "longitude": -76.544923,
+      "latitude": 3.375691,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.547124,
+        "max_lon": -76.542813,
+        "min_lat": 3.374803,
+        "max_lat": 3.376585
+      }
+    },
+    {
+      "id": 28,
+      "bpin": 2024760010333,
+      "identificador": "FID 36",
+      "id_via": "FID 36",
+      "longitude": -76.562397,
+      "latitude": 3.415143,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.562984,
+        "max_lon": -76.561859,
+        "min_lat": 3.414932,
+        "max_lat": 3.415265
+      }
+    },
+    {
+      "id": 29,
+      "bpin": 2024760010333,
+      "identificador": "FID 37",
+      "id_via": "FID 37",
+      "longitude": -76.467647,
+      "latitude": 3.415309,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.469176,
+        "max_lon": -76.466427,
+        "min_lat": 3.412661,
+        "max_lat": 3.4174
+      }
+    },
+    {
+      "id": 30,
+      "bpin": 2024760010333,
+      "identificador": "FID 38",
+      "id_via": "FID 38",
+      "longitude": -76.467771,
+      "latitude": 3.427353,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.468208,
+        "max_lon": -76.466365,
+        "min_lat": 3.42707,
+        "max_lat": 3.42834
+      }
+    },
+    {
+      "id": 31,
+      "bpin": 2024760010333,
+      "identificador": "FID 39",
+      "id_via": "FID 39",
+      "longitude": -76.659818,
+      "latitude": 3.452261,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.660304,
+        "max_lon": -76.659496,
+        "min_lat": 3.452241,
+        "max_lat": 3.452274
+      }
+    },
+    {
+      "id": 32,
+      "bpin": 2024760010333,
+      "identificador": "FID 41",
+      "id_via": "FID 41",
+      "longitude": -76.615103,
+      "latitude": 3.43819,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.615321,
+        "max_lon": -76.614874,
+        "min_lat": 3.438076,
+        "max_lat": 3.438252
+      }
+    },
+    {
+      "id": 33,
+      "bpin": 2024760010333,
+      "identificador": "FID 42",
+      "id_via": "FID 42",
+      "longitude": -76.609964,
+      "latitude": 3.515829,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.610276,
+        "max_lon": -76.609294,
+        "min_lat": 3.51488,
+        "max_lat": 3.516268
+      }
+    },
+    {
+      "id": 34,
+      "bpin": 2024760010333,
+      "identificador": "FID 45",
+      "id_via": "FID 45",
+      "longitude": -76.546126,
+      "latitude": 3.345594,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.547601,
+        "max_lon": -76.544654,
+        "min_lat": 3.342398,
+        "max_lat": 3.349013
+      }
+    },
+    {
+      "id": 35,
+      "bpin": 2024760010333,
+      "identificador": "FID 46",
+      "id_via": "FID 46",
+      "longitude": -76.544598,
+      "latitude": 3.349401,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.547627,
+        "max_lon": -76.538838,
+        "min_lat": 3.349012,
+        "max_lat": 3.35007
+      }
+    },
+    {
+      "id": 36,
+      "bpin": 2024760010333,
+      "identificador": "FID 47",
+      "id_via": "FID 47",
+      "longitude": -76.559083,
+      "latitude": 3.421659,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.559959,
+        "max_lon": -76.558513,
+        "min_lat": 3.421398,
+        "max_lat": 3.421855
+      }
+    },
+    {
+      "id": 37,
+      "bpin": 2024760010333,
+      "identificador": "FID 48",
+      "id_via": "FID 48",
+      "longitude": -76.540673,
+      "latitude": 3.401931,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.541346,
+        "max_lon": -76.539495,
+        "min_lat": 3.401525,
+        "max_lat": 3.402206
+      }
+    },
+    {
+      "id": 38,
+      "bpin": 2024760010333,
+      "identificador": "FID 49",
+      "id_via": "FID 49",
+      "longitude": -76.517082,
+      "latitude": 3.402438,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.517792,
+        "max_lon": -76.516371,
+        "min_lat": 3.401687,
+        "max_lat": 3.403188
+      }
+    },
+    {
+      "id": 39,
+      "bpin": 2024760010333,
+      "identificador": "FID 51",
+      "id_via": "FID 51",
+      "longitude": -76.517482,
+      "latitude": 3.406768,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.517822,
+        "max_lon": -76.517143,
+        "min_lat": 3.406459,
+        "max_lat": 3.407077
+      }
+    },
+    {
+      "id": 40,
+      "bpin": 2024760010333,
+      "identificador": "FID 53",
+      "id_via": "FID 53",
+      "longitude": -76.473717,
+      "latitude": 3.432202,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.474438,
+        "max_lon": -76.472794,
+        "min_lat": 3.431636,
+        "max_lat": 3.432909
+      }
+    },
+    {
+      "id": 41,
+      "bpin": 2024760010333,
+      "identificador": "FID 54",
+      "id_via": "FID 54",
+      "longitude": -76.474167,
+      "latitude": 3.427782,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.474734,
+        "max_lon": -76.4736,
+        "min_lat": 3.427068,
+        "max_lat": 3.4284938
+      }
+    },
+    {
+      "id": 42,
+      "bpin": 2024760010333,
+      "identificador": "FID 55",
+      "id_via": "FID 55",
+      "longitude": -76.501411,
+      "latitude": 3.441307,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.501667,
+        "max_lon": -76.501155,
+        "min_lat": 3.440585,
+        "max_lat": 3.44203
+      }
+    },
+    {
+      "id": 43,
+      "bpin": 2024760010333,
+      "identificador": "FID 56",
+      "id_via": "FID 56",
+      "longitude": -76.497847,
+      "latitude": 3.474985,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.49978,
+        "max_lon": -76.493922,
+        "min_lat": 3.474421,
+        "max_lat": 3.476173
+      }
+    },
+    {
+      "id": 44,
+      "bpin": 2024760010333,
+      "identificador": "FID 57",
+      "id_via": "FID 57",
+      "longitude": -76.503743,
+      "latitude": 3.466298,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.50402,
+        "max_lon": -76.503378,
+        "min_lat": 3.464874,
+        "max_lat": 3.467387
+      }
+    },
+    {
+      "id": 45,
+      "bpin": 2024760010333,
+      "identificador": "FID 58",
+      "id_via": "FID 58",
+      "longitude": -76.520171,
+      "latitude": 3.468784,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.521915,
+        "max_lon": -76.518665,
+        "min_lat": 3.467872,
+        "max_lat": 3.470005
+      }
+    },
+    {
+      "id": 46,
+      "bpin": 2024760010333,
+      "identificador": "FID 59",
+      "id_via": "FID 59",
+      "longitude": -76.514954,
+      "latitude": 3.477112,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.515518,
+        "max_lon": -76.514286,
+        "min_lat": 3.476561,
+        "max_lat": 3.477936
+      }
+    },
+    {
+      "id": 47,
+      "bpin": 2024760010333,
+      "identificador": "FID 60",
+      "id_via": "FID 60",
+      "longitude": -76.514394,
+      "latitude": 3.476926,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.514759,
+        "max_lon": -76.514029,
+        "min_lat": 3.476349,
+        "max_lat": 3.477503
+      }
+    },
+    {
+      "id": 48,
+      "bpin": 2024760010333,
+      "identificador": "FID 61",
+      "id_via": "FID 61",
+      "longitude": -76.515882,
+      "latitude": 3.483515,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.516013,
+        "max_lon": -76.515751,
+        "min_lat": 3.483292,
+        "max_lat": 3.483737
+      }
+    },
+    {
+      "id": 49,
+      "bpin": 2024760010333,
+      "identificador": "FID 62",
+      "id_via": "FID 62",
+      "longitude": -76.515916,
+      "latitude": 3.483825,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.516701,
+        "max_lon": -76.515156,
+        "min_lat": 3.483358,
+        "max_lat": 3.484295
+      }
+    },
+    {
+      "id": 50,
+      "bpin": 2024760010333,
+      "identificador": "FID 63",
+      "id_via": "FID 63",
+      "longitude": -76.517135,
+      "latitude": 3.483618,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.517263,
+        "max_lon": -76.517008,
+        "min_lat": 3.483358,
+        "max_lat": 3.483878
+      }
+    },
+    {
+      "id": 51,
+      "bpin": 2024760010333,
+      "identificador": "FID 64",
+      "id_via": "FID 64",
+      "longitude": -76.537286,
+      "latitude": 3.390183,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.538493,
+        "max_lon": -76.535558,
+        "min_lat": 3.390071,
+        "max_lat": 3.390261
+      }
+    },
+    {
+      "id": 52,
+      "bpin": 2024760010333,
+      "identificador": "FID 65",
+      "id_via": "FID 65",
+      "longitude": -76.551224,
+      "latitude": 3.458424,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.555604,
+        "max_lon": -76.547911,
+        "min_lat": 3.454961,
+        "max_lat": 3.460355
+      }
+    },
+    {
+      "id": 53,
+      "bpin": 2024760010333,
+      "identificador": "FID 57B",
+      "id_via": "FID 57B",
+      "longitude": -76.513711,
+      "latitude": 3.462326,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.5140303,
+        "max_lon": -76.5133919,
+        "min_lat": 3.4613759,
+        "max_lat": 3.4632768
+      }
+    },
+    {
+      "id": 54,
+      "bpin": 2024760010469,
+      "identificador": "FID 0",
+      "id_via": "FID 0",
+      "longitude": -76.559361,
+      "latitude": 3.503664,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.559786,
+        "max_lon": -76.559005,
+        "min_lat": 3.5035,
+        "max_lat": 3.50377
+      }
+    },
+    {
+      "id": 55,
+      "bpin": 2024760010475,
+      "identificador": "FID 1",
+      "id_via": "FID 1",
+      "longitude": -76.558236,
+      "latitude": 3.502145,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.558364,
+        "max_lon": -76.558053,
+        "min_lat": 3.501578,
+        "max_lat": 3.502511
+      }
+    },
+    {
+      "id": 56,
+      "bpin": 2024760010475,
+      "identificador": "FID 2",
+      "id_via": "FID 2",
+      "longitude": -76.558236,
+      "latitude": 3.502145,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.558364,
+        "max_lon": -76.558053,
+        "min_lat": 3.501578,
+        "max_lat": 3.502511
+      }
+    },
+    {
+      "id": 57,
+      "bpin": 2024760010482,
+      "identificador": "FID 3",
+      "id_via": "FID 3",
+      "longitude": -76.561784,
+      "latitude": 3.473332,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.561849,
+        "max_lon": -76.561666,
+        "min_lat": 3.47277,
+        "max_lat": 3.473727
+      }
+    },
+    {
+      "id": 58,
+      "bpin": 2024760010475,
+      "identificador": "FID 4",
+      "id_via": "FID 4",
+      "longitude": -76.549161,
+      "latitude": 3.498835,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.549206,
+        "max_lon": -76.549131,
+        "min_lat": 3.498637,
+        "max_lat": 3.499038
+      }
+    },
+    {
+      "id": 59,
+      "bpin": 2024760010478,
+      "identificador": "FID 5",
+      "id_via": "FID 5",
+      "longitude": -76.618527,
+      "latitude": 3.432163,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.620072,
+        "max_lon": -76.616399,
+        "min_lat": 3.431842,
+        "max_lat": 3.432702
+      }
+    },
+    {
+      "id": 60,
+      "bpin": 2024760010479,
+      "identificador": "FID 6",
+      "id_via": "FID 6",
+      "longitude": -76.616656,
+      "latitude": 3.429116,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.617442,
+        "max_lon": -76.615533,
+        "min_lat": 3.424939,
+        "max_lat": 3.431524
+      }
+    },
+    {
+      "id": 61,
+      "bpin": 2024760010472,
+      "identificador": "FID 7",
+      "id_via": "FID 7",
+      "longitude": -76.631539,
+      "latitude": 3.457566,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.632408,
+        "max_lon": -76.630584,
+        "min_lat": 3.457308,
+        "max_lat": 3.457654
+      }
+    },
+    {
+      "id": 62,
+      "bpin": 2024760010483,
+      "identificador": "FID 8",
+      "id_via": "FID 8",
+      "longitude": -76.639098,
+      "latitude": 3.47535,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.639808,
+        "max_lon": -76.638372,
+        "min_lat": 3.47518,
+        "max_lat": 3.475745
+      }
+    },
+    {
+      "id": 63,
+      "bpin": 2024760010483,
+      "identificador": "FID 9",
+      "id_via": "FID 9",
+      "longitude": -76.622692,
+      "latitude": 3.468891,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.623247,
+        "max_lon": -76.622097,
+        "min_lat": 3.468603,
+        "max_lat": 3.46924
+      }
+    },
+    {
+      "id": 64,
+      "bpin": 2024760010474,
+      "identificador": "FID 10",
+      "id_via": "FID 10",
+      "longitude": -76.649181,
+      "latitude": 3.465022,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.649188,
+        "max_lon": -76.649173,
+        "min_lat": 3.464927,
+        "max_lat": 3.4651
+      }
+    },
+    {
+      "id": 65,
+      "bpin": 2024760010471,
+      "identificador": "FID 11",
+      "id_via": "FID 11",
+      "longitude": -76.639339,
+      "latitude": 3.328427,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.644014,
+        "max_lon": -76.63482,
+        "min_lat": 3.327564,
+        "max_lat": 3.328768
+      }
+    },
+    {
+      "id": 66,
+      "bpin": 2024760010481,
+      "identificador": "FID 12",
+      "id_via": "FID 12",
+      "longitude": -76.614687,
+      "latitude": 3.379884,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.614961,
+        "max_lon": -76.614405,
+        "min_lat": 3.379863,
+        "max_lat": 3.379916
+      }
+    },
+    {
+      "id": 67,
+      "bpin": 2024760010481,
+      "identificador": "FID 13",
+      "id_via": "FID 13",
+      "longitude": -76.592056,
+      "latitude": 3.394708,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.592087,
+        "max_lon": -76.592031,
+        "min_lat": 3.394609,
+        "max_lat": 3.39483
+      }
+    },
+    {
+      "id": 68,
+      "bpin": 2024760010484,
+      "identificador": "FID 15",
+      "id_via": "FID 15",
+      "longitude": -76.612551,
+      "latitude": 3.519642,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.613061,
+        "max_lon": -76.612056,
+        "min_lat": 3.519485,
+        "max_lat": 3.519845
+      }
+    },
+    {
+      "id": 69,
+      "bpin": 2024760010481,
+      "identificador": "FID 16",
+      "id_via": "FID 16",
+      "longitude": -76.621711,
+      "latitude": 3.381988,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.621844,
+        "max_lon": -76.621475,
+        "min_lat": 3.381573,
+        "max_lat": 3.382238
+      }
+    },
+    {
+      "id": 70,
+      "bpin": 2024760010477,
+      "identificador": "FID 17",
+      "id_via": "FID 17",
+      "longitude": -76.579351,
+      "latitude": 3.522041,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.583968,
+        "max_lon": -76.576836,
+        "min_lat": 3.519788,
+        "max_lat": 3.523601
+      }
+    },
+    {
+      "id": 71,
+      "bpin": 2024760010469,
+      "identificador": "FID 18",
+      "id_via": "FID 18",
+      "longitude": -76.577002,
+      "latitude": 3.520527,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.577631,
+        "max_lon": -76.576836,
+        "min_lat": 3.519788,
+        "max_lat": 3.521398
+      }
+    },
+    {
+      "id": 72,
+      "bpin": 2024760010471,
+      "identificador": "FID 19",
+      "id_via": "FID 19",
+      "longitude": -76.582987,
+      "latitude": 3.321673,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.587942,
+        "max_lon": -76.578603,
+        "min_lat": 3.312419,
+        "max_lat": 3.32873
+      }
+    },
+    {
+      "id": 73,
+      "bpin": 2024760010473,
+      "identificador": "FID 20",
+      "id_via": "FID 20",
+      "longitude": -76.614687,
+      "latitude": 3.379884,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.614961,
+        "max_lon": -76.614405,
+        "min_lat": 3.379863,
+        "max_lat": 3.379916
+      }
+    },
+    {
+      "id": 74,
+      "bpin": 2024760010479,
+      "identificador": "FID 21",
+      "id_via": "FID 21",
+      "longitude": -76.57817,
+      "latitude": 3.422418,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.578207,
+        "max_lon": -76.578069,
+        "min_lat": 3.421737,
+        "max_lat": 3.423038
+      }
+    },
+    {
+      "id": 75,
+      "bpin": 2024760010470,
+      "identificador": "FID 22",
+      "id_via": "FID 22",
+      "longitude": -76.568078,
+      "latitude": 3.499809,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.568101,
+        "max_lon": -76.568055,
+        "min_lat": 3.499803,
+        "max_lat": 3.499815
+      }
+    },
+    {
+      "id": 76,
+      "bpin": 2024760010475,
+      "identificador": "FID 23",
+      "id_via": "FID 23",
+      "longitude": -76.558236,
+      "latitude": 3.502145,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.558364,
+        "max_lon": -76.558053,
+        "min_lat": 3.501578,
+        "max_lat": 3.502511
+      }
+    },
+    {
+      "id": 77,
+      "bpin": 2024760010475,
+      "identificador": "FID 24",
+      "id_via": "FID 24",
+      "longitude": -76.549014,
+      "latitude": 3.502248,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.549046,
+        "max_lon": -76.548982,
+        "min_lat": 3.502209,
+        "max_lat": 3.502286
+      }
+    },
+    {
+      "id": 78,
+      "bpin": 2024760010488,
+      "identificador": "PART1",
+      "id_via": "PART1",
+      "longitude": -76.481705,
+      "latitude": 3.450088,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.482158,
+        "max_lon": -76.481409,
+        "min_lat": 3.450025,
+        "max_lat": 3.45018
+      }
+    },
+    {
+      "id": 79,
+      "bpin": 2024760010488,
+      "identificador": "PART2",
+      "id_via": "PART2",
+      "longitude": -76.481231,
+      "latitude": 3.449648,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.4814,
+        "max_lon": -76.481059,
+        "min_lat": 3.449235,
+        "max_lat": 3.450054
+      }
+    },
+    {
+      "id": 80,
+      "bpin": 2024760010492,
+      "identificador": "PART3",
+      "id_via": "PART3",
+      "longitude": -76.518022,
+      "latitude": 3.442207,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.518093,
+        "max_lon": -76.517968,
+        "min_lat": 3.441425,
+        "max_lat": 3.442719
+      }
+    },
+    {
+      "id": 81,
+      "bpin": 2024760010492,
+      "identificador": "PART4",
+      "id_via": "PART4",
+      "longitude": -76.517748,
+      "latitude": 3.441369,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.518079,
+        "max_lon": -76.517415,
+        "min_lat": 3.441341,
+        "max_lat": 3.441399
+      }
+    },
+    {
+      "id": 82,
+      "bpin": 2024760010492,
+      "identificador": "PART5",
+      "id_via": "PART5",
+      "longitude": -76.498227,
+      "latitude": 3.448623,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.498259,
+        "max_lon": -76.498187,
+        "min_lat": 3.448307,
+        "max_lat": 3.449064
+      }
+    },
+    {
+      "id": 83,
+      "bpin": 2024760010492,
+      "identificador": "PART6",
+      "id_via": "PART6",
+      "longitude": -76.501128,
+      "latitude": 3.446359,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.502243,
+        "max_lon": -76.500069,
+        "min_lat": 3.446238,
+        "max_lat": 3.446492
+      }
+    },
+    {
+      "id": 84,
+      "bpin": 2024760010492,
+      "identificador": "PART7",
+      "id_via": "PART7",
+      "longitude": -76.502924,
+      "latitude": 3.442232,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.503543,
+        "max_lon": -76.502474,
+        "min_lat": 3.442,
+        "max_lat": 3.4424
+      }
+    },
+    {
+      "id": 85,
+      "bpin": 2024760010492,
+      "identificador": "PART8",
+      "id_via": "PART8",
+      "longitude": -76.505552,
+      "latitude": 3.440726,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.505742,
+        "max_lon": -76.505363,
+        "min_lat": 3.440196,
+        "max_lat": 3.441256
+      }
+    },
+    {
+      "id": 86,
+      "bpin": 2024760010492,
+      "identificador": "PART9",
+      "id_via": "PART9",
+      "longitude": -76.513246,
+      "latitude": 3.447459,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.513776,
+        "max_lon": -76.512804,
+        "min_lat": 3.447389,
+        "max_lat": 3.447537
+      }
+    },
+    {
+      "id": 87,
+      "bpin": 2024760010492,
+      "identificador": "PART10",
+      "id_via": "PART10",
+      "longitude": -76.510654,
+      "latitude": 3.447186,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.510694,
+        "max_lon": -76.510586,
+        "min_lat": 3.446855,
+        "max_lat": 3.447467
+      }
+    },
+    {
+      "id": 88,
+      "bpin": 2024760010492,
+      "identificador": "PART11",
+      "id_via": "PART11",
+      "longitude": -76.515466,
+      "latitude": 3.447541,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.515571,
+        "max_lon": -76.51539,
+        "min_lat": 3.446791,
+        "max_lat": 3.448342
+      }
+    },
+    {
+      "id": 89,
+      "bpin": 2024760010492,
+      "identificador": "PART12",
+      "id_via": "PART12",
+      "longitude": -76.517429,
+      "latitude": 3.447571,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.517478,
+        "max_lon": -76.517381,
+        "min_lat": 3.447224,
+        "max_lat": 3.447918
+      }
+    },
+    {
+      "id": 90,
+      "bpin": 2024760010489,
+      "identificador": "PART13",
+      "id_via": "PART13",
+      "longitude": -76.52024,
+      "latitude": 3.409025,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.52032,
+        "max_lon": -76.520164,
+        "min_lat": 3.408336,
+        "max_lat": 3.409703
+      }
+    },
+    {
+      "id": 91,
+      "bpin": 2024760010489,
+      "identificador": "PART14",
+      "id_via": "PART14",
+      "longitude": -76.509187,
+      "latitude": 3.426706,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.509555,
+        "max_lon": -76.508842,
+        "min_lat": 3.426677,
+        "max_lat": 3.426744
+      }
+    },
+    {
+      "id": 92,
+      "bpin": 2024760010489,
+      "identificador": "PART15",
+      "id_via": "PART15",
+      "longitude": -76.508953,
+      "latitude": 3.422195,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.509381,
+        "max_lon": -76.508486,
+        "min_lat": 3.422144,
+        "max_lat": 3.422241
+      }
+    },
+    {
+      "id": 93,
+      "bpin": 2024760010489,
+      "identificador": "PART16",
+      "id_via": "PART16",
+      "longitude": -76.517782,
+      "latitude": 3.4185,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.518078,
+        "max_lon": -76.517505,
+        "min_lat": 3.418493,
+        "max_lat": 3.418507
+      }
+    },
+    {
+      "id": 94,
+      "bpin": 2024760010491,
+      "identificador": "PART17",
+      "id_via": "PART17",
+      "longitude": -76.539151,
+      "latitude": 3.400444,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.541806,
+        "max_lon": -76.5372,
+        "min_lat": 3.399986,
+        "max_lat": 3.400788
+      }
+    },
+    {
+      "id": 95,
+      "bpin": 2024760010491,
+      "identificador": "PART18",
+      "id_via": "PART18",
+      "longitude": -76.542079,
+      "latitude": 3.382077,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.54374,
+        "max_lon": -76.540286,
+        "min_lat": 3.381917,
+        "max_lat": 3.3822
+      }
+    },
+    {
+      "id": 96,
+      "bpin": 2024760010490,
+      "identificador": "PART19",
+      "id_via": "PART19",
+      "longitude": -76.546119,
+      "latitude": 3.377097,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.546932,
+        "max_lon": -76.545572,
+        "min_lat": 3.376964,
+        "max_lat": 3.377277
+      }
+    },
+    {
+      "id": 97,
+      "bpin": 2024760010490,
+      "identificador": "PART20",
+      "id_via": "PART20",
+      "longitude": -76.557247,
+      "latitude": 3.390143,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.557452,
+        "max_lon": -76.557152,
+        "min_lat": 3.388585,
+        "max_lat": 3.391149
+      }
+    },
+    {
+      "id": 98,
+      "bpin": 2024760010490,
+      "identificador": "PART21",
+      "id_via": "PART21",
+      "longitude": -76.549501,
+      "latitude": 3.391525,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.550235,
+        "max_lon": -76.549121,
+        "min_lat": 3.391434,
+        "max_lat": 3.391575
+      }
+    },
+    {
+      "id": 99,
+      "bpin": 2024760010490,
+      "identificador": "PART22",
+      "id_via": "PART22",
+      "longitude": -76.547032,
+      "latitude": 3.386104,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.547037,
+        "max_lon": -76.547025,
+        "min_lat": 3.385807,
+        "max_lat": 3.386391
+      }
+    },
+    {
+      "id": 100,
+      "bpin": 2024760010490,
+      "identificador": "PART23",
+      "id_via": "PART23",
+      "longitude": -76.557881,
+      "latitude": 3.390398,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.558265,
+        "max_lon": -76.557488,
+        "min_lat": 3.388209,
+        "max_lat": 3.392452
+      }
+    },
+    {
+      "id": 101,
+      "bpin": 2024760010476,
+      "identificador": "PART24",
+      "id_via": "PART24",
+      "longitude": -76.552239,
+      "latitude": 3.372976,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.552263,
+        "max_lon": -76.552214,
+        "min_lat": 3.372822,
+        "max_lat": 3.37313
+      }
+    },
+    {
+      "id": 102,
+      "bpin": 2024760010471,
+      "identificador": "FID 14",
+      "id_via": "FID 14",
+      "longitude": -76.627433,
+      "latitude": 3.324571,
+      "geometry_type": "LineString",
+      "bounds": {
+        "min_lon": -76.6317406,
+        "max_lon": -76.6222786,
+        "min_lat": 3.322979,
+        "max_lat": 3.327253
+      }
+    }
+  ]
+}

@@ -66,7 +66,8 @@ class DatabaseInitializer:
         important_tables = [
             'centros_gestores', 'programas', 'areas_funcionales', 
             'propositos', 'retos', 'movimientos_presupuestales', 
-            'ejecucion_presupuestal'
+            'ejecucion_presupuestal', 'unidades_proyecto_infraestructura_equipamientos',
+            'unidades_proyecto_infraestructura_vial'
         ]
         
         try:
@@ -140,6 +141,66 @@ class DatabaseInitializer:
                     total_acumulado_rpc DOUBLE PRECISION NOT NULL,
                     PRIMARY KEY (bpin, periodo_corte)
                 )
+            """,
+            'unidades_proyecto_infraestructura_equipamientos': """
+                CREATE TABLE IF NOT EXISTS unidades_proyecto_infraestructura_equipamientos (
+                    bpin BIGINT PRIMARY KEY,
+                    identificador VARCHAR(255) NOT NULL,
+                    cod_fuente_financiamiento VARCHAR(50),
+                    usuarios_beneficiarios DOUBLE PRECISION,
+                    dataframe TEXT,
+                    nickname VARCHAR(100),
+                    nickname_detalle VARCHAR(255),
+                    comuna_corregimiento VARCHAR(100),
+                    barrio_vereda VARCHAR(100),
+                    direccion VARCHAR(255),
+                    clase_obra VARCHAR(100),
+                    subclase_obra VARCHAR(100),
+                    tipo_intervencion VARCHAR(100),
+                    descripcion_intervencion TEXT,
+                    estado_unidad_proyecto VARCHAR(50),
+                    fecha_inicio_planeado DATE,
+                    fecha_fin_planeado DATE,
+                    fecha_inicio_real DATE,
+                    fecha_fin_real DATE,
+                    es_centro_gravedad BOOLEAN,
+                    ppto_base DOUBLE PRECISION,
+                    pagos_realizados DOUBLE PRECISION,
+                    avance_fisico_obra DOUBLE PRECISION,
+                    ejecucion_financiera_obra DOUBLE PRECISION
+                )
+            """,
+            'unidades_proyecto_infraestructura_vial': """
+                CREATE TABLE IF NOT EXISTS unidades_proyecto_infraestructura_vial (
+                    bpin BIGINT PRIMARY KEY,
+                    identificador VARCHAR(255) NOT NULL,
+                    id_via VARCHAR(50),
+                    cod_fuente_financiamiento VARCHAR(50),
+                    usuarios_beneficiarios DOUBLE PRECISION,
+                    dataframe TEXT,
+                    nickname VARCHAR(100),
+                    nickname_detalle VARCHAR(255),
+                    comuna_corregimiento VARCHAR(100),
+                    barrio_vereda VARCHAR(100),
+                    direccion VARCHAR(255),
+                    clase_obra VARCHAR(100),
+                    subclase_obra VARCHAR(100),
+                    tipo_intervencion VARCHAR(100),
+                    descripcion_intervencion TEXT,
+                    estado_unidad_proyecto VARCHAR(50),
+                    unidad_medicion VARCHAR(50),
+                    fecha_inicio_planeado DATE,
+                    fecha_fin_planeado DATE,
+                    fecha_inicio_real DATE,
+                    fecha_fin_real DATE,
+                    es_centro_gravedad BOOLEAN,
+                    longitud_proyectada DOUBLE PRECISION,
+                    longitud_ejecutada DOUBLE PRECISION,
+                    ppto_base DOUBLE PRECISION,
+                    pagos_realizados DOUBLE PRECISION,
+                    avance_fisico_obra DOUBLE PRECISION,
+                    ejecucion_financiera_obra DOUBLE PRECISION
+                )
             """
         }
         
@@ -151,6 +212,16 @@ class DatabaseInitializer:
             'ejecucion_presupuestal': [
                 "CREATE INDEX IF NOT EXISTS idx_ejecucion_bpin ON ejecucion_presupuestal(bpin)",
                 "CREATE INDEX IF NOT EXISTS idx_ejecucion_periodo ON ejecucion_presupuestal(periodo_corte)"
+            ],
+            'unidades_proyecto_infraestructura_equipamientos': [
+                "CREATE INDEX IF NOT EXISTS idx_equipamientos_identificador ON unidades_proyecto_infraestructura_equipamientos(identificador)",
+                "CREATE INDEX IF NOT EXISTS idx_equipamientos_comuna ON unidades_proyecto_infraestructura_equipamientos(comuna_corregimiento)",
+                "CREATE INDEX IF NOT EXISTS idx_equipamientos_estado ON unidades_proyecto_infraestructura_equipamientos(estado_unidad_proyecto)"
+            ],
+            'unidades_proyecto_infraestructura_vial': [
+                "CREATE INDEX IF NOT EXISTS idx_vial_identificador ON unidades_proyecto_infraestructura_vial(identificador)",
+                "CREATE INDEX IF NOT EXISTS idx_vial_comuna ON unidades_proyecto_infraestructura_vial(comuna_corregimiento)",
+                "CREATE INDEX IF NOT EXISTS idx_vial_estado ON unidades_proyecto_infraestructura_vial(estado_unidad_proyecto)"
             ]
         }
         
@@ -226,6 +297,12 @@ class DatabaseInitializer:
                 'table': 'ejecucion_presupuestal',
                 'column': 'periodo_corte',
                 'fix': "ALTER TABLE ejecucion_presupuestal ALTER COLUMN periodo_corte TYPE VARCHAR(50) USING periodo_corte::VARCHAR(50)"
+            },
+            # Corregir tipos para unidades de proyecto vial
+            {
+                'table': 'unidades_proyecto_infraestructura_vial',
+                'column': 'identificador',
+                'fix': "ALTER TABLE unidades_proyecto_infraestructura_vial ALTER COLUMN identificador TYPE VARCHAR(255) USING identificador::VARCHAR(255)"
             }
         ]
         
@@ -255,7 +332,8 @@ class DatabaseInitializer:
         expected_tables = [
             'centros_gestores', 'programas', 'areas_funcionales',
             'propositos', 'retos', 'movimientos_presupuestales', 
-            'ejecucion_presupuestal'
+            'ejecucion_presupuestal', 'unidades_proyecto_infraestructura_equipamientos',
+            'unidades_proyecto_infraestructura_vial'
         ]
         
         try:
@@ -273,8 +351,10 @@ class DatabaseInitializer:
                     SELECT table_name, column_name, data_type, character_maximum_length
                     FROM information_schema.columns 
                     WHERE table_schema = 'public' 
-                    AND table_name IN ('movimientos_presupuestales', 'ejecucion_presupuestal')
-                    AND column_name IN ('bpin', 'periodo_corte')
+                    AND table_name IN ('movimientos_presupuestales', 'ejecucion_presupuestal', 
+                                     'unidades_proyecto_infraestructura_equipamientos',
+                                     'unidades_proyecto_infraestructura_vial')
+                    AND column_name IN ('bpin', 'periodo_corte', 'identificador')
                     ORDER BY table_name, column_name;
                 """)
                 
@@ -290,6 +370,9 @@ class DatabaseInitializer:
                         schema_ok = False
                     elif column_name == 'periodo_corte' and data_type != 'character varying':
                         logger.error(f"❌ {table_name}.periodo_corte debería ser varchar, es {data_type}")
+                        schema_ok = False
+                    elif column_name == 'identificador' and data_type != 'character varying':
+                        logger.error(f"❌ {table_name}.identificador debería ser varchar, es {data_type}")
                         schema_ok = False
                 
                 if schema_ok:

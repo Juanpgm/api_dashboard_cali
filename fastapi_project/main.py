@@ -1,4 +1,5 @@
 from fastapi import FastAPI, Depends, HTTPException, Query
+from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from sqlalchemy import text
 import pandas as pd
@@ -81,14 +82,27 @@ logger.info(f"📊 Conectado a {app_info['database_type']} en {app_info['server'
 app = FastAPI(
     title="API Proyectos Alcaldía de Santiago de Cali",
     description="Un API que sirve como fuente única de verdad que es confiable y validada para el uso de la Secretaría de Gobierno",
-    version="2.0.0",  # Incrementar versión por las mejoras
+    version="1.1.1",  # Incrementar versión por las mejoras
     docs_url="/docs",
     redoc_url="/redoc"
+)
+
+# Habilitar CORS para permitir consumir la API desde apps web (Leaflet, etc.)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # Obtener las rutas de todos los archivos dentro de la carpeta especificada
 OUTPUTS_DIR = "transformation_app/app_outputs/ejecucion_presupuestal_outputs"
 JSON_FILE_PATHS = glob.glob(os.path.join(OUTPUTS_DIR, "*.json"))
+
+# Rutas para unidades de proyecto
+UNIDADES_PROYECTO_DIR = "transformation_app/app_outputs/unidades_proyecto_outputs"
+UNIDADES_PROYECTO_JSON_PATHS = glob.glob(os.path.join(UNIDADES_PROYECTO_DIR, "*.json"))
 
 # Mapeo de archivos JSON a modelos y esquemas
 DATA_MAPPING = {
@@ -129,6 +143,20 @@ DATA_MAPPING = {
     }
 }
 
+# Mapeo para unidades de proyecto
+UNIDADES_PROYECTO_MAPPING = {
+    "unidad_proyecto_infraestructura_equipamientos.json": {
+        "model": models.UnidadProyectoInfraestructuraEquipamientos,
+        "schema": schemas.UnidadProyectoInfraestructuraEquipamientos,
+        "primary_key": "bpin"
+    },
+    "unidad_proyecto_infraestructura_vial.json": {
+        "model": models.UnidadProyectoInfraestructuraVial,
+        "schema": schemas.UnidadProyectoInfraestructuraVial,
+        "primary_key": "bpin"
+    }
+}
+
 # Dependency para obtener la sesión de la base de datos
 def get_db():
     db = SessionLocal()
@@ -155,6 +183,19 @@ def load_json_file(filename: str) -> List[Dict[str, Any]]:
     file_path = next((path for path in JSON_FILE_PATHS if os.path.basename(path) == filename), None)
     if not file_path:
         raise FileNotFoundError(f"Archivo {filename} no encontrado en la ruta especificada")
+    
+    try:
+        with open(file_path, 'r', encoding='utf-8') as file:
+            data = json.load(file)
+        return data
+    except json.JSONDecodeError:
+        raise ValueError(f"Error al decodificar el archivo JSON: {filename}")
+
+def load_unidades_proyecto_json_file(filename: str) -> List[Dict[str, Any]]:
+    """Carga un archivo JSON desde el directorio de unidades de proyecto y retorna los datos"""
+    file_path = next((path for path in UNIDADES_PROYECTO_JSON_PATHS if os.path.basename(path) == filename), None)
+    if not file_path:
+        raise FileNotFoundError(f"Archivo {filename} no encontrado en {UNIDADES_PROYECTO_DIR}")
     
     try:
         with open(file_path, 'r', encoding='utf-8') as file:
@@ -214,6 +255,13 @@ def bulk_upsert_data(db: Session, model_class, data: List[Dict[str, Any]], prima
         logger.error(f"Error during bulk upsert for {model_class.__name__}: {str(e)}")
         raise
 
+def load_geojson_file(filename: str) -> dict:
+    """Cargar archivo GeoJSON de la carpeta de outputs"""
+    file_path = f"transformation_app/app_outputs/unidades_proyecto_outputs/{filename}"
+    with open(file_path, 'r', encoding='utf-8') as f:
+        return json.load(f)
+
+# Función auxiliar para cargar y validar datos
 def load_and_validate_data(filename: str, schema_class, db: Session, model_class, primary_key) -> List:
     """
     Función genérica para cargar, validar y guardar datos en la base de datos
@@ -234,6 +282,50 @@ def load_and_validate_data(filename: str, schema_class, db: Session, model_class
         
         return validated_data
         
+    except FileNotFoundError:
+        raise HTTPException(status_code=404, detail=f"Archivo {filename} no encontrado")
+    except json.JSONDecodeError:
+        raise HTTPException(status_code=400, detail=f"Error al decodificar el archivo JSON: {filename}")
+    except ValueError as e:
+        raise HTTPException(status_code=422, detail=f"Error de validación en {filename}: {str(e)}")
+    except Exception as e:
+        logger.error(f"Error inesperado en {filename}: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Error inesperado: {str(e)}")
+
+def load_and_validate_unidades_proyecto_data(filename: str, schema_class, db: Session, model_class, primary_key) -> List:
+    """
+    Función específica para cargar, validar y guardar datos de unidades de proyecto en la base de datos
+    Excluye las columnas geométricas de los archivos JSON
+    """
+    try:
+        # Cargar datos del archivo JSON desde el directorio de unidades de proyecto
+        raw_data = load_unidades_proyecto_json_file(filename)
+
+        # Preprocesar datos: Convertir valores numéricos en 'barrio_vereda' y 'identificador' a cadenas
+        for item in raw_data:
+            if isinstance(item.get('barrio_vereda'), int):
+                item['barrio_vereda'] = str(item['barrio_vereda'])
+            if isinstance(item.get('identificador'), int):
+                item['identificador'] = str(item['identificador'])
+
+        # Filtrar datos removiendo columnas geométricas para archivos JSON
+        filtered_data = []
+        for item in raw_data:
+            # Crear una copia sin las columnas geométricas
+            filtered_item = {k: v for k, v in item.items() if k not in ['geom', 'geometry', 'longitude', 'latitude', 'geometry_bounds', 'geometry_type']}
+            filtered_data.append(filtered_item)
+
+        # Validar datos usando el esquema de Pydantic
+        validated_data = [schema_class(**item) for item in filtered_data]
+
+        # Convertir a diccionarios para la inserción en BD
+        data_dicts = [item.dict() for item in validated_data]
+
+        # Realizar bulk upsert en la base de datos
+        bulk_upsert_data(db, model_class, data_dicts, primary_key)
+
+        return validated_data
+
     except FileNotFoundError:
         raise HTTPException(status_code=404, detail=f"Archivo {filename} no encontrado")
     except json.JSONDecodeError:
@@ -390,12 +482,44 @@ def load_all_data(db: Session = Depends(get_db)):
             detail=f"Error durante la carga masiva: {str(e)}"
         )
 
+# ================================================================================================================
+# MÉTODOS POST - UNIDADES DE PROYECTO
+# ================================================================================================================
+
+@app.post('/unidades_proyecto/equipamientos', tags=["PROYECTO: UNIDADES DE PROYECTO - INFRAESTRUCTURA"], response_model=List[schemas.UnidadProyectoInfraestructuraEquipamientos])
+def load_unidades_proyecto_equipamientos(db: Session = Depends(get_db)):
+    """Carga unidades de proyecto de infraestructura de equipamientos desde JSON a PostgreSQL"""
+    mapping = UNIDADES_PROYECTO_MAPPING["unidad_proyecto_infraestructura_equipamientos.json"]
+    
+    with get_db_transaction() as db_trans:
+        return load_and_validate_unidades_proyecto_data(
+            "unidad_proyecto_infraestructura_equipamientos.json",
+            mapping["schema"],
+            db_trans,
+            mapping["model"],
+            mapping["primary_key"]
+        )
+
+@app.post('/unidades_proyecto/vial', tags=["PROYECTO: UNIDADES DE PROYECTO - INFRAESTRUCTURA"], response_model=List[schemas.UnidadProyectoInfraestructuraVial])
+def load_unidades_proyecto_vial(db: Session = Depends(get_db)):
+    """Carga unidades de proyecto de infraestructura vial desde JSON a PostgreSQL"""
+    mapping = UNIDADES_PROYECTO_MAPPING["unidad_proyecto_infraestructura_vial.json"]
+    
+    with get_db_transaction() as db_trans:
+        return load_and_validate_unidades_proyecto_data(
+            "unidad_proyecto_infraestructura_vial.json",
+            mapping["schema"],
+            db_trans,
+            mapping["model"],
+            mapping["primary_key"]
+        )
+
 
 # ================================================================================================================
 # MÉTODOS GET - ENDPOINTS PARA CONSULTAR DATOS DESDE POSTGRESQL
 # ================================================================================================================
 
-@app.get('/centros_gestores', tags=["CONSULTA"], response_model=List[schemas.CentroGestor])
+@app.get('/centros_gestores', tags=["PROYECTO"], response_model=List[schemas.CentroGestor])
 def get_centros_gestores(db: Session = Depends(get_db)):
     """Obtiene todos los centros gestores desde PostgreSQL"""
     try:
@@ -405,7 +529,7 @@ def get_centros_gestores(db: Session = Depends(get_db)):
         logger.error(f"Error al consultar centros gestores: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Error al consultar datos: {str(e)}")
 
-@app.get('/programas', tags=["CONSULTA"], response_model=List[schemas.Programa])
+@app.get('/programas', tags=["PROYECTO"], response_model=List[schemas.Programa])
 def get_programas(db: Session = Depends(get_db)):
     """Obtiene todos los programas desde PostgreSQL"""
     try:
@@ -415,7 +539,7 @@ def get_programas(db: Session = Depends(get_db)):
         logger.error(f"Error al consultar programas: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Error al consultar datos: {str(e)}")
 
-@app.get('/areas_funcionales', tags=["CONSULTA"], response_model=List[schemas.AreaFuncional])
+@app.get('/areas_funcionales', tags=["PROYECTO"], response_model=List[schemas.AreaFuncional])
 def get_areas_funcionales(db: Session = Depends(get_db)):
     """Obtiene todas las áreas funcionales desde PostgreSQL"""
     try:
@@ -425,7 +549,7 @@ def get_areas_funcionales(db: Session = Depends(get_db)):
         logger.error(f"Error al consultar áreas funcionales: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Error al consultar datos: {str(e)}")
 
-@app.get('/propositos', tags=["CONSULTA"], response_model=List[schemas.Proposito])
+@app.get('/propositos', tags=["PROYECTO"], response_model=List[schemas.Proposito])
 def get_propositos(db: Session = Depends(get_db)):
     """Obtiene todos los propósitos desde PostgreSQL"""
     try:
@@ -435,7 +559,7 @@ def get_propositos(db: Session = Depends(get_db)):
         logger.error(f"Error al consultar propósitos: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Error al consultar datos: {str(e)}")
 
-@app.get('/retos', tags=["CONSULTA"], response_model=List[schemas.Reto])
+@app.get('/retos', tags=["PROYECTO"], response_model=List[schemas.Reto])
 def get_retos(db: Session = Depends(get_db)):
     """Obtiene todos los retos desde PostgreSQL"""
     try:
@@ -445,7 +569,7 @@ def get_retos(db: Session = Depends(get_db)):
         logger.error(f"Error al consultar retos: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Error al consultar datos: {str(e)}")
 
-@app.get('/movimientos_presupuestales', tags=["CONSULTA"], response_model=List[schemas.MovimientoPresupuestal])
+@app.get('/movimientos_presupuestales', tags=["PROYECTO"], response_model=List[schemas.MovimientoPresupuestal])
 def get_movimientos_presupuestales(
     bpin: Optional[str] = Query(None, description="Filtrar por BPIN específico"),
     periodo_corte: Optional[str] = Query(None, description="Filtrar por período de corte (ej: '2024-01' o '2024')"),
@@ -489,7 +613,7 @@ def get_movimientos_presupuestales(
         logger.error(f"Error al consultar movimientos presupuestales: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Error al consultar datos: {str(e)}")
 
-@app.get('/ejecucion_presupuestal', tags=["CONSULTA"], response_model=List[schemas.EjecucionPresupuestal])
+@app.get('/ejecucion_presupuestal', tags=["PROYECTO"], response_model=List[schemas.EjecucionPresupuestal])
 def get_ejecucion_presupuestal(
     bpin: Optional[str] = Query(None, description="Filtrar por BPIN específico"),
     periodo_corte: Optional[str] = Query(None, description="Filtrar por período de corte (ej: '2024-01' o '2024')"),
@@ -533,7 +657,7 @@ def get_ejecucion_presupuestal(
         logger.error(f"Error al consultar ejecución presupuestal: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Error al consultar datos: {str(e)}")
 
-@app.get('/movimientos_presupuestales/count', tags=["CONSULTA"])
+@app.get('/movimientos_presupuestales/count', tags=["PROYECTO"])
 def get_movimientos_count(
     bpin: Optional[str] = Query(None, description="Filtrar por BPIN específico"),
     periodo_corte: Optional[str] = Query(None, description="Filtrar por período de corte"),
@@ -559,7 +683,7 @@ def get_movimientos_count(
         logger.error(f"Error al contar movimientos presupuestales: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Error al consultar datos: {str(e)}")
 
-@app.get('/ejecucion_presupuestal/count', tags=["CONSULTA"])
+@app.get('/ejecucion_presupuestal/count', tags=["PROYECTO"])
 def get_ejecucion_count(
     bpin: Optional[str] = Query(None, description="Filtrar por BPIN específico"),
     periodo_corte: Optional[str] = Query(None, description="Filtrar por período de corte"),
@@ -586,6 +710,281 @@ def get_ejecucion_count(
         raise HTTPException(status_code=500, detail=f"Error al consultar datos: {str(e)}")
 
 # ================================================================================================================
+# MÉTODOS GET - UNIDADES DE PROYECTO
+# ================================================================================================================
+
+@app.get('/unidades_proyecto/equipamientos', tags=["PROYECTO: UNIDADES DE PROYECTO - INFRAESTRUCTURA"], response_model=List[schemas.UnidadProyectoInfraestructuraEquipamientos])
+def get_unidades_proyecto_equipamientos(
+    bpin: Optional[int] = Query(None, description="Filtrar por BPIN específico"),
+    limit: int = Query(100, ge=1, le=10000, description="Límite de registros a devolver"),
+    offset: int = Query(0, ge=0, description="Número de registros a omitir"),
+    db: Session = Depends(get_db)
+):
+    """
+    Obtiene unidades de proyecto de infraestructura de equipamientos desde PostgreSQL con filtros
+    
+    - **bpin**: Filtrar por BPIN específico
+    - **limit**: Máximo número de registros a devolver (default: 100, max: 10000)
+    - **offset**: Número de registros a omitir para paginación (default: 0)
+    """
+    try:
+        # Construir la query base
+        query = db.query(models.UnidadProyectoInfraestructuraEquipamientos)
+        
+        # Aplicar filtro por BPIN si se proporciona
+        if bpin:
+            query = query.filter(models.UnidadProyectoInfraestructuraEquipamientos.bpin == bpin)
+        
+        # Aplicar paginación y ordenamiento
+        equipamientos = query.order_by(models.UnidadProyectoInfraestructuraEquipamientos.bpin)\
+                           .offset(offset)\
+                           .limit(limit)\
+                           .all()
+        
+        logger.info(f"Consulta de equipamientos: {len(equipamientos)} registros devueltos")
+        return equipamientos
+        
+    except Exception as e:
+        logger.error(f"Error al consultar equipamientos: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Error al consultar datos: {str(e)}")
+
+@app.get('/unidades_proyecto/vial', tags=["PROYECTO: UNIDADES DE PROYECTO - INFRAESTRUCTURA"], response_model=List[schemas.UnidadProyectoInfraestructuraVial])
+def get_unidades_proyecto_vial(
+    bpin: Optional[int] = Query(None, description="Filtrar por BPIN específico"),
+    limit: int = Query(100, ge=1, le=10000, description="Límite de registros a devolver"),
+    offset: int = Query(0, ge=0, description="Número de registros a omitir"),
+    db: Session = Depends(get_db)
+):
+    """
+    Obtiene unidades de proyecto de infraestructura vial desde PostgreSQL con filtros
+    
+    - **bpin**: Filtrar por BPIN específico
+    - **limit**: Máximo número de registros a devolver (default: 100, max: 10000)
+    - **offset**: Número de registros a omitir para paginación (default: 0)
+    """
+    try:
+        # Construir la query base
+        query = db.query(models.UnidadProyectoInfraestructuraVial)
+        
+        # Aplicar filtro por BPIN si se proporciona
+        if bpin:
+            query = query.filter(models.UnidadProyectoInfraestructuraVial.bpin == bpin)
+        
+        # Aplicar paginación y ordenamiento
+        vial = query.order_by(models.UnidadProyectoInfraestructuraVial.bpin)\
+                   .offset(offset)\
+                   .limit(limit)\
+                   .all()
+        
+        logger.info(f"Consulta de infraestructura vial: {len(vial)} registros devueltos")
+        return vial
+        
+    except Exception as e:
+        logger.error(f"Error al consultar infraestructura vial: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Error al consultar datos: {str(e)}")
+
+@app.get('/unidades_proyecto/vial/geojson', tags=["PROYECTO: UNIDADES DE PROYECTO - INFRAESTRUCTURA"])
+def get_infraestructura_vial_geojson(
+    bpin: Optional[int] = Query(None, description="Filtrar por BPIN específico")
+):
+    """
+    Obtiene datos de infraestructura vial en formato GeoJSON según RFC 7946 para uso en mapas
+    
+    - **bpin**: Filtrar por BPIN específico
+    """
+    try:
+        # Cargar el archivo GeoJSON directamente
+        geojson_data = load_geojson_file("infraestructura_vial.geojson")
+        
+        # Validar que cumple con el estándar RFC 7946
+        if geojson_data.get("type") != "FeatureCollection":
+            raise HTTPException(status_code=400, detail="GeoJSON debe ser un FeatureCollection")
+        
+        features = geojson_data.get("features", [])
+        
+        # Filtrar por BPIN si se proporciona
+        if bpin:
+            filtered_features = []
+            for feature in features:
+                properties = feature.get("properties", {})
+                if properties.get("bpin") == bpin:
+                    filtered_features.append(feature)
+            features = filtered_features
+        
+        # Crear respuesta RFC 7946 compliant (sin 'crs' por estándar RFC 7946)
+        response_geojson = {
+            "type": "FeatureCollection",
+            "features": features
+        }
+        
+        logger.info(f"GeoJSON de infraestructura vial: {len(features)} features devueltas")
+        return response_geojson
+        
+    except FileNotFoundError:
+        raise HTTPException(status_code=404, detail="Archivo infraestructura_vial.geojson no encontrado")
+    except Exception as e:
+        logger.error(f"Error al obtener GeoJSON de infraestructura vial: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Error al consultar datos: {str(e)}")
+
+@app.get('/unidades_proyecto/equipamientos/geojson', tags=["PROYECTO: UNIDADES DE PROYECTO - INFRAESTRUCTURA"])
+def get_equipamientos_geojson(
+    bpin: Optional[int] = Query(None, description="Filtrar por BPIN específico")
+):
+    """
+    Obtiene datos de equipamientos en formato GeoJSON según RFC 7946 para uso en mapas
+    
+    - **bpin**: Filtrar por BPIN específico
+    """
+    try:
+        # Cargar el archivo GeoJSON directamente
+        geojson_data = load_geojson_file("equipamientos.geojson")
+        
+        # Validar que cumple con el estándar RFC 7946
+        if geojson_data.get("type") != "FeatureCollection":
+            raise HTTPException(status_code=400, detail="GeoJSON debe ser un FeatureCollection")
+        
+        features = geojson_data.get("features", [])
+        
+        # Filtrar por BPIN si se proporciona
+        if bpin:
+            features = [f for f in features if f.get("properties", {}).get("bpin") == bpin]
+        
+        # Respuesta RFC 7946 (sin 'crs')
+        response_geojson = {
+            "type": "FeatureCollection",
+            "features": features
+        }
+        
+        logger.info(f"GeoJSON de equipamientos: {len(features)} features devueltas")
+        return response_geojson
+        
+    except FileNotFoundError:
+        raise HTTPException(status_code=404, detail="Archivo equipamientos.geojson no encontrado")
+    except Exception as e:
+        logger.error(f"Error al obtener GeoJSON de equipamientos: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Error al consultar datos: {str(e)}")
+
+@app.get('/unidades_proyecto/equipamientos/count', tags=["PROYECTO: UNIDADES DE PROYECTO - INFRAESTRUCTURA"])
+def get_equipamientos_count(
+    bpin: Optional[int] = Query(None, description="Filtrar por BPIN específico"),
+    db: Session = Depends(get_db)
+):
+    """Obtiene el conteo de unidades de proyecto de equipamientos con filtros opcionales"""
+    try:
+        query = db.query(models.UnidadProyectoInfraestructuraEquipamientos)
+        
+        if bpin:
+            query = query.filter(models.UnidadProyectoInfraestructuraEquipamientos.bpin == bpin)
+        
+        count = query.count()
+        return {"total_registros": count, "filtros": {"bpin": bpin}}
+        
+    except Exception as e:
+        logger.error(f"Error al contar equipamientos: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Error al consultar datos: {str(e)}")
+
+@app.get('/unidades_proyecto/vial/count', tags=["PROYECTO: UNIDADES DE PROYECTO - INFRAESTRUCTURA"])
+def get_vial_count(
+    bpin: Optional[int] = Query(None, description="Filtrar por BPIN específico"),
+    db: Session = Depends(get_db)
+):
+    """Obtiene el conteo de unidades de proyecto de infraestructura vial con filtros opcionales"""
+    try:
+        query = db.query(models.UnidadProyectoInfraestructuraVial)
+        
+        if bpin:
+            query = query.filter(models.UnidadProyectoInfraestructuraVial.bpin == bpin)
+        
+        count = query.count()
+        return {"total_registros": count, "filtros": {"bpin": bpin}}
+        
+    except Exception as e:
+        logger.error(f"Error al contar infraestructura vial: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Error al consultar datos: {str(e)}")
+
+# ================================================================================================================
+# MÉTODOS PUT - UNIDADES DE PROYECTO
+# ================================================================================================================
+
+@app.put('/unidades_proyecto/equipamientos/{bpin}', tags=["PROYECTO: UNIDADES DE PROYECTO - INFRAESTRUCTURA"], response_model=schemas.UnidadProyectoInfraestructuraEquipamientos)
+def update_unidad_proyecto_equipamientos(
+    bpin: int,
+    equipamiento_data: schemas.UnidadProyectoInfraestructuraEquipamientos,
+    db: Session = Depends(get_db)
+):
+    """
+    Actualiza un registro de unidad de proyecto de equipamientos por BPIN
+    
+    - **bpin**: BPIN del registro a actualizar
+    - **equipamiento_data**: Datos actualizados del equipamiento
+    """
+    try:
+        # Buscar el registro existente
+        existing_record = db.query(models.UnidadProyectoInfraestructuraEquipamientos).filter(
+            models.UnidadProyectoInfraestructuraEquipamientos.bpin == bpin
+        ).first()
+        
+        if not existing_record:
+            raise HTTPException(status_code=404, detail=f"No se encontró registro con BPIN {bpin}")
+        
+        # Actualizar todos los campos
+        update_data = equipamiento_data.dict(exclude_unset=True)
+        for field, value in update_data.items():
+            setattr(existing_record, field, value)
+        
+        db.commit()
+        db.refresh(existing_record)
+        
+        logger.info(f"Actualizado equipamiento con BPIN {bpin}")
+        return existing_record
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        db.rollback()
+        logger.error(f"Error al actualizar equipamiento BPIN {bpin}: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Error al actualizar registro: {str(e)}")
+
+@app.put('/unidades_proyecto/vial/{bpin}', tags=["PROYECTO: UNIDADES DE PROYECTO - INFRAESTRUCTURA"], response_model=schemas.UnidadProyectoInfraestructuraVial)
+def update_unidad_proyecto_vial(
+    bpin: int,
+    vial_data: schemas.UnidadProyectoInfraestructuraVial,
+    db: Session = Depends(get_db)
+):
+    """
+    Actualiza un registro de unidad de proyecto de infraestructura vial por BPIN
+    
+    - **bpin**: BPIN del registro a actualizar
+    - **vial_data**: Datos actualizados de infraestructura vial
+    """
+    try:
+        # Buscar el registro existente
+        existing_record = db.query(models.UnidadProyectoInfraestructuraVial).filter(
+            models.UnidadProyectoInfraestructuraVial.bpin == bpin
+        ).first()
+        
+        if not existing_record:
+            raise HTTPException(status_code=404, detail=f"No se encontró registro con BPIN {bpin}")
+        
+        # Actualizar todos los campos
+        update_data = vial_data.dict(exclude_unset=True)
+        for field, value in update_data.items():
+            setattr(existing_record, field, value)
+        
+        db.commit()
+        db.refresh(existing_record)
+        
+        logger.info(f"Actualizado infraestructura vial con BPIN {bpin}")
+        return existing_record
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        db.rollback()
+        logger.error(f"Error al actualizar infraestructura vial BPIN {bpin}: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Error al actualizar registro: {str(e)}")
+
+# ================================================================================================================
 # ENDPOINTS DE ADMINISTRACIÓN Y DIAGNÓSTICO
 # ================================================================================================================
 
@@ -606,36 +1005,44 @@ def health_check(db: Session = Depends(get_db)):
 
 @app.get('/database_status', tags=["ADMIN"])
 def database_status(db: Session = Depends(get_db)):
-    """Obtener estadísticas de la base de datos"""
+    """Obtener estadísticas de todas las tablas de la base de datos"""
     try:
         stats = {}
-        
-        for filename, mapping in DATA_MAPPING.items():
-            table_name = mapping["model"].__tablename__
+
+        # Obtener todas las tablas dinámicamente desde information_schema
+        query = text("""
+            SELECT table_name
+            FROM information_schema.tables
+            WHERE table_schema = 'public'
+        """)
+        result = db.execute(query)
+        table_names = [row[0] for row in result]
+
+        # Contar registros en cada tabla
+        for table_name in table_names:
             count_result = db.execute(text(f"SELECT COUNT(*) FROM {table_name}"))
             count = count_result.scalar()
             stats[table_name] = {
-                "records_count": count,
-                "model": mapping["model"].__name__
+                "records_count": count
             }
-        
+
         return {
             "status": "success",
             "database_stats": stats,
             "timestamp": time.time()
         }
-        
+
     except Exception as e:
         logger.error(f"Error al obtener estadísticas de BD: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Error al consultar estadísticas: {str(e)}")
 
 @app.get('/tables_info', tags=["ADMIN"])
 def tables_info(db: Session = Depends(get_db)):
-    """Obtener información detallada de las tablas"""
+    """Obtener información detallada de todas las tablas agrupadas por tabla y con su estado"""
     try:
         tables_info = {}
-        
-        # Consultar información de las tablas desde el catálogo de PostgreSQL
+
+        # Consultar información de todas las tablas desde information_schema
         query = text("""
             SELECT 
                 table_name,
@@ -644,33 +1051,33 @@ def tables_info(db: Session = Depends(get_db)):
                 is_nullable,
                 column_default
             FROM information_schema.columns 
-            WHERE table_schema = 'public' 
-            AND table_name IN ('centros_gestores', 'programas', 'areas_funcionales', 
-                             'propositos', 'retos', 'movimientos_presupuestales', 
-                             'ejecucion_presupuestal')
+            WHERE table_schema = 'public'
             ORDER BY table_name, ordinal_position
         """)
-        
+
         result = db.execute(query)
-        
+
         for row in result:
             table_name = row[0]
             if table_name not in tables_info:
-                tables_info[table_name] = {"columns": []}
-            
+                tables_info[table_name] = {
+                    "columns": [],
+                    "status": "active"  # Assuming all tables are active unless specified otherwise
+                }
+
             tables_info[table_name]["columns"].append({
                 "column_name": row[1],
                 "data_type": row[2],
                 "is_nullable": row[3],
                 "column_default": row[4]
             })
-        
+
         return {
             "status": "success",
             "tables_info": tables_info,
             "timestamp": time.time()
         }
-        
+
     except Exception as e:
         logger.error(f"Error al obtener información de tablas: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Error al consultar información de tablas: {str(e)}")
@@ -678,35 +1085,34 @@ def tables_info(db: Session = Depends(get_db)):
 @app.delete('/clear_all_data', tags=["ADMIN"])
 def clear_all_data(db: Session = Depends(get_db)):
     """
-    CUIDADO: Elimina todos los datos de las tablas principales.
-    Usar solo para limpieza completa antes de una nueva carga.
+    CUIDADO: Elimina todos los datos de todas las tablas de la base de datos.
     """
     try:
         with get_db_transaction() as db_trans:
-            # Eliminar datos en orden para evitar problemas de FK
-            tables_to_clear = [
-                "ejecucion_presupuestal",
-                "movimientos_presupuestales", 
-                "retos",
-                "propositos",
-                "areas_funcionales",
-                "programas",
-                "centros_gestores"
-            ]
-            
+            # Obtener todas las tablas dinámicamente desde information_schema
+            query = text("""
+                SELECT table_name
+                FROM information_schema.tables
+                WHERE table_schema = 'public'
+            """)
+            result = db_trans.execute(query)
+            table_names = [row[0] for row in result]
+
             deleted_counts = {}
-            for table_name in tables_to_clear:
+
+            # Eliminar datos en cada tabla
+            for table_name in table_names:
                 count_before = db_trans.execute(text(f"SELECT COUNT(*) FROM {table_name}")).scalar()
                 db_trans.execute(text(f"DELETE FROM {table_name}"))
                 deleted_counts[table_name] = count_before
-            
+
         return {
             "status": "success",
             "message": "Todos los datos eliminados exitosamente",
             "deleted_records": deleted_counts,
             "timestamp": time.time()
         }
-        
+
     except Exception as e:
         logger.error(f"Error al limpiar datos: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Error al limpiar datos: {str(e)}")

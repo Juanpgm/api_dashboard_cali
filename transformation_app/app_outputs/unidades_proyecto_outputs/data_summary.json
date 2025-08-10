@@ -1,0 +1,22 @@
+{
+  "generated_at": "2025-08-10T02:03:49.941572",
+  "equipamientos": {
+    "total_records": 325,
+    "valid_geometries": 325,
+    "geometry_types": {
+      "Point": 325
+    },
+    "total_budget": 316029477836.9,
+    "communes": 37
+  },
+  "infraestructura_vial": {
+    "total_records": 103,
+    "valid_geometries": 103,
+    "geometry_types": {
+      "LineString": 103
+    },
+    "total_budget": 39306741037.0,
+    "total_length": 26584.239999999998,
+    "communes": 34
+  }
+}

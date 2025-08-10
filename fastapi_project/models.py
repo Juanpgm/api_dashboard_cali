@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, String, Float, Date, Boolean, Text, DECIMAL, SmallInteger, ForeignKey, UniqueConstraint, TIMESTAMP, BigInteger
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
-from geoalchemy2 import Geometry
+# from geoalchemy2 import Geometry  # Comentado temporalmente, usando Text para geometrías
 from fastapi_project.database import Base
 
 # =============================================================================
@@ -206,7 +206,7 @@ class UnidadProyecto(Base):
     es_centro_gravedad = Column(Boolean)
     ppto_base = Column(DECIMAL(18, 2))
     pagos_realizados = Column(DECIMAL(18, 2))
-    geom = Column(Geometry('POINT', srid=4326))
+    geom = Column(Text)  # Geometry('POINT', srid=4326) - Cambiado temporalmente a Text
     
     # Relaciones (comentadas temporalmente)
     # proyecto = relationship("Proyecto", back_populates="unidades_proyecto")
@@ -214,9 +214,10 @@ class UnidadProyecto(Base):
 class UnidadProyectoInfraestructuraEquipamientos(Base):
     __tablename__ = "unidades_proyecto_infraestructura_equipamientos"
     
-    identificador = Column(Integer, primary_key=True, autoincrement=True)
+    bpin = Column(BigInteger, primary_key=True, index=True)
+    identificador = Column(String(255), nullable=False)
     cod_fuente_financiamiento = Column(String(50))
-    usuarios_beneficiarios = Column(Integer)
+    usuarios_beneficiarios = Column(Float)
     dataframe = Column(Text)
     nickname = Column(String(100))
     nickname_detalle = Column(String(255))
@@ -233,19 +234,20 @@ class UnidadProyectoInfraestructuraEquipamientos(Base):
     fecha_inicio_real = Column(Date)
     fecha_fin_real = Column(Date)
     es_centro_gravedad = Column(Boolean)
-    ppto_base = Column(DECIMAL(18, 2))
-    pagos_realizados = Column(DECIMAL(18, 2))
-    avance_fisico_obra = Column(DECIMAL(5, 2))
-    ejecucion_financiera_obra = Column(DECIMAL(18, 2))
-    geom = Column(Geometry('POINT', srid=4326))
+    ppto_base = Column(Float)
+    pagos_realizados = Column(Float)
+    avance_fisico_obra = Column(Float)
+    ejecucion_financiera_obra = Column(Float)
+    # Removido: geom - No se almacena en la tabla de atributos
 
 class UnidadProyectoInfraestructuraVial(Base):
     __tablename__ = "unidades_proyecto_infraestructura_vial"
     
-    identificador = Column(Integer, primary_key=True, autoincrement=True)
+    bpin = Column(BigInteger, primary_key=True, index=True)
+    identificador = Column(String(255), nullable=False)
     id_via = Column(String(50))
     cod_fuente_financiamiento = Column(String(50))
-    usuarios_beneficiarios = Column(Integer)
+    usuarios_beneficiarios = Column(Float)
     dataframe = Column(Text)
     nickname = Column(String(100))
     nickname_detalle = Column(String(255))
@@ -263,13 +265,13 @@ class UnidadProyectoInfraestructuraVial(Base):
     fecha_inicio_real = Column(Date)
     fecha_fin_real = Column(Date)
     es_centro_gravedad = Column(Boolean)
-    longitud_proyectada = Column(DECIMAL(10, 2))
-    longitud_ejecutada = Column(DECIMAL(10, 2))
-    ppto_base = Column(DECIMAL(18, 2))
-    pagos_realizados = Column(DECIMAL(18, 2))
-    avance_fisico_obra = Column(DECIMAL(5, 2))
-    ejecucion_financiera_obra = Column(DECIMAL(18, 2))
-    geom = Column(Geometry('MULTILINESTRING', srid=4326))
+    longitud_proyectada = Column(Float)
+    longitud_ejecutada = Column(Float)
+    ppto_base = Column(Float)
+    pagos_realizados = Column(Float)
+    avance_fisico_obra = Column(Float)
+    ejecucion_financiera_obra = Column(Float)
+    # Removido: geom - No se almacena en la tabla de atributos
 
 # =============================================================================
 # Clase: CONTRATO
@@ -375,21 +377,21 @@ class Corregimiento(Base):
     
     id_corregimiento = Column(String(50), primary_key=True)
     nombre_corregimiento = Column(String(100), nullable=False)
-    geom = Column(Geometry('MULTIPOLYGON', srid=4326))
+    geom = Column(Text)  # Geometry('MULTIPOLYGON', srid=4326) - Cambiado temporalmente a Text
 
 class Comuna(Base):
     __tablename__ = "comunas"
     
     id_comuna = Column(String(50), primary_key=True)
     nombre_comuna = Column(String(100), nullable=False)
-    geom = Column(Geometry('MULTIPOLYGON', srid=4326))
+    geom = Column(Text)  # Geometry('MULTIPOLYGON', srid=4326) - Cambiado temporalmente a Text
 
 class Vereda(Base):
     __tablename__ = "veredas"
     
     id_vereda = Column(String(50), primary_key=True)
     nombre_vereda = Column(String(100), nullable=False)
-    geom = Column(Geometry('MULTIPOLYGON', srid=4326))
+    geom = Column(Text)  # Geometry('MULTIPOLYGON', srid=4326) - Cambiado temporalmente a Text
 
 class Barrio(Base):
     __tablename__ = "barrios"
@@ -397,7 +399,7 @@ class Barrio(Base):
     id_barrio = Column(String(50), primary_key=True)
     nombre_barrio = Column(String(100), nullable=False)
     estrato_barrio = Column(SmallInteger)
-    geom = Column(Geometry('MULTIPOLYGON', srid=4326))
+    geom = Column(Text)  # Geometry('MULTIPOLYGON', srid=4326) - Cambiado temporalmente a Text
 
 class Equipamiento(Base):
     __tablename__ = "equipamientos"
@@ -406,7 +408,7 @@ class Equipamiento(Base):
     nombre_equipamiento = Column(String(255), nullable=False)
     servicio_equipamiento = Column(String(100))
     escala_equipamiento = Column(String(100))
-    geom = Column(Geometry('POINT', srid=4326))
+    geom = Column(Text)  # Geometry('POINT', srid=4326) - Cambiado temporalmente a Text
 
 class Via(Base):
     __tablename__ = "vias"
@@ -414,7 +416,7 @@ class Via(Base):
     id_via = Column(String(50), primary_key=True)
     nombre_via = Column(String(255))
     longitud_via = Column(DECIMAL(10, 2))
-    geom = Column(Geometry('MULTILINESTRING', srid=4326))
+    geom = Column(Text)  # Geometry('MULTILINESTRING', srid=4326) - Cambiado temporalmente a Text
 
 # =============================================================================
 # Mantener el modelo original para compatibilidad hacia atrás
