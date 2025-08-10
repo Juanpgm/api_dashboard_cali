@@ -1,0 +1,1 @@
+transformation_app/app_outputs/ejecucion_presupuestal_outputs/df_consolidado.json filter=lfs diff=lfs merge=lfs -text
