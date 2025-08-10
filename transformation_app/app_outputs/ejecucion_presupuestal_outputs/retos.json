@@ -1,0 +1,26 @@
+[
+  {
+    "cod_reto":6301,
+    "nombre_reto":"Gobierno abierto y transparente"
+  },
+  {
+    "cod_reto":6302,
+    "nombre_reto":"Gestión pública para los ciudadanos"
+  },
+  {
+    "cod_reto":6201,
+    "nombre_reto":"Territorio Planificado y Conectado"
+  },
+  {
+    "cod_reto":6102,
+    "nombre_reto":"Oportunidades para la Integración Social y Económica"
+  },
+  {
+    "cod_reto":6202,
+    "nombre_reto":"Territorio Resiliente y Biodiverso"
+  },
+  {
+    "cod_reto":6101,
+    "nombre_reto":"Seguridad, Convivencia y Justicia"
+  }
+]

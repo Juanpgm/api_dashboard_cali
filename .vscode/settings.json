@@ -1,0 +1,22 @@
+{
+  "sqltools.connections": [
+    {
+      "name": "PostgreSQL Alcaldía",
+      "driver": "PostgreSQL",
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 5432,
+      "database": "proyectos_alcaldia_db",
+      "username": "jpgm",
+      "askForPassword": true,
+      "pg": {
+        "showRecords": "table",
+        "enableSslNegotiation": false
+      }
+    }
+  ],
+  "sqltools.useNodeRuntime": true,
+  "sqltools.format": {
+    "language": "sql"
+  }
+}

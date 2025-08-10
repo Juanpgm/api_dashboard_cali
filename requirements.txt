@@ -1,0 +1,32 @@
+# Dependencias principales de producción para API Dashboard Alcaldía de Cali
+# Versiones fijadas para garantizar estabilidad en producción
+
+# Framework web
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+
+# Base de datos
+sqlalchemy==2.0.23
+psycopg2-binary==2.9.9
+geoalchemy2==0.14.2
+
+# Validación y serialización
+pydantic==2.5.0
+pydantic-settings==2.0.3
+
+# Configuración
+python-dotenv==1.0.0
+
+# Utilidades
+requests==2.31.0
+pandas==2.1.3
+
+# Desarrollo y testing (opcional)
+pytest==7.4.3
+httpx==0.25.2
+
+# Logging y monitoreo
+python-multipart==0.0.6
+
+# Seguridad
+cryptography==41.0.8

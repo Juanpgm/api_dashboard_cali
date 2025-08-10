@@ -1,56 +1,51 @@
 from pydantic import BaseModel
-from typing import Optional
-from datetime import date
+from typing import Optional, List
+from datetime import date, datetime
+from decimal import Decimal
 
-class ProjectExecutionBase(BaseModel):
-    bpin: Optional[str] = None
-    adiciones: Optional[float] = None
-    anio: Optional[int] = None
-    aplazamiento: Optional[float] = None
-    area_funcional: Optional[str] = None
-    bp: Optional[str] = None
-    centro_gestor: Optional[str] = None
-    clasificacion_fondo: Optional[str] = None
-    comuna: Optional[str] = None
-    contracreditos: Optional[float] = None
-    creditos: Optional[float] = None
-    dataframe_origen: Optional[str] = None
-    desaplazamiento: Optional[float] = None
-    dimension: Optional[str] = None
-    ejecucion: Optional[float] = None
-    fondo: Optional[str] = None
-    linea_estrategica: Optional[str] = None
-    nombre_actividad: Optional[str] = None
-    nombre_area_funcional: Optional[str] = None
-    nombre_centro_gestor: Optional[str] = None
-    nombre_dimension: Optional[str] = None
-    nombre_fondo: Optional[str] = None
-    nombre_linea_estrategica: Optional[str] = None
-    nombre_pospre: Optional[str] = None
-    nombre_programa: Optional[str] = None
-    nombre_proyecto: Optional[str] = None
-    organismo: Optional[str] = None
-    origen: Optional[str] = None
-    pagos: Optional[float] = None
-    periodo: Optional[date] = None
-    pospre: Optional[str] = None
-    ppto_disponible: Optional[float] = None
-    ppto_inicial: Optional[float] = None
-    ppto_modificado: Optional[float] = None
-    programa_presupuestal: Optional[str] = None
-    reducciones: Optional[float] = None
-    saldos_cdp: Optional[float] = None
-    tipo_gasto: Optional[str] = None
-    total_acumul_obligac: Optional[float] = None
-    total_acumulado_cdp: Optional[float] = None
-    total_acumulado_rpc: Optional[float] = None
-    vigencia: Optional[int] = None
+# =============================================================================
+# Esquemas para Tablas de Dimensiones (Catálogos)
+# =============================================================================
 
-class ProjectExecutionCreate(ProjectExecutionBase):
-    pass
+class CentroGestor(BaseModel):
+    cod_centro_gestor: int
+    nombre_centro_gestor: str
+    
+class Programa(BaseModel):
+    cod_programa: int
+    nombre_programa: str
+    
+class AreaFuncional(BaseModel):
+    cod_area_funcional: int
+    nombre_area_funcional: str
+    
+class Proposito(BaseModel):
+    cod_proposito: int
+    nombre_proposito: str
+    
+class Reto(BaseModel):
+    cod_reto: int
+    nombre_reto: str
+    
+class MovimientoPresupuestal(BaseModel):
+    bpin:int
+    ppto_inicial:float
+    adiciones:float
+    reducciones:float
+    ppto_modificado:float
+    periodo_corte:str
+    
+class EjecucionPresupuestal(BaseModel):
+    bpin:int
+    ejecucion:float
+    pagos:float
+    saldos_cdp:float
+    total_acumul_obligac:float
+    total_acumulado_cdp:float
+    total_acumulado_rpc:float
+    periodo_corte:str
 
-class ProjectExecution(ProjectExecutionBase):
-    id: int
+# =============================================================================
+# Esquemas para Clase: PROYECTO
+# =============================================================================
 
-    class Config:
-        from_attributes = True

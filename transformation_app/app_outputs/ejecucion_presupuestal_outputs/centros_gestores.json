@@ -1,0 +1,110 @@
+[
+  {
+    "cod_centro_gestor":4112,
+    "nombre_centro_gestor":"Secretaría de Gobierno"
+  },
+  {
+    "cod_centro_gestor":4121,
+    "nombre_centro_gestor":"Departamento Administrativo de Gestión Jurídica Pública"
+  },
+  {
+    "cod_centro_gestor":4123,
+    "nombre_centro_gestor":"Departamento Administrativo de Control Interno"
+  },
+  {
+    "cod_centro_gestor":4124,
+    "nombre_centro_gestor":"Departamento Administrativo de Control Disciplinario Interno"
+  },
+  {
+    "cod_centro_gestor":4131,
+    "nombre_centro_gestor":"Departamento Administrativo de Hacienda"
+  },
+  {
+    "cod_centro_gestor":4132,
+    "nombre_centro_gestor":"Departamento Administrativo de Planeación Municipal"
+  },
+  {
+    "cod_centro_gestor":4133,
+    "nombre_centro_gestor":"Departamento Administrativo de Gestión del Medio Ambiente "
+  },
+  {
+    "cod_centro_gestor":4134,
+    "nombre_centro_gestor":"Departamento Administrativo de Tecnologías de la Información y las Comunicaciones"
+  },
+  {
+    "cod_centro_gestor":4135,
+    "nombre_centro_gestor":"Departamento Administrativo de Contratación Pública"
+  },
+  {
+    "cod_centro_gestor":4137,
+    "nombre_centro_gestor":"Departamento Administrativo de Desarrollo e Innovación Institucional"
+  },
+  {
+    "cod_centro_gestor":4143,
+    "nombre_centro_gestor":"Secretaría de Educación"
+  },
+  {
+    "cod_centro_gestor":4145,
+    "nombre_centro_gestor":"Secretaría de Salud Pública"
+  },
+  {
+    "cod_centro_gestor":4146,
+    "nombre_centro_gestor":"Secretaría de Bienestar Social"
+  },
+  {
+    "cod_centro_gestor":4147,
+    "nombre_centro_gestor":"Secretaría de Vivienda Social y Hábitat"
+  },
+  {
+    "cod_centro_gestor":4148,
+    "nombre_centro_gestor":"Secretaría de Cultura"
+  },
+  {
+    "cod_centro_gestor":4151,
+    "nombre_centro_gestor":"Secretaría de Infraestructura"
+  },
+  {
+    "cod_centro_gestor":4152,
+    "nombre_centro_gestor":"Secretaría de Movilidad"
+  },
+  {
+    "cod_centro_gestor":4161,
+    "nombre_centro_gestor":"Secretaría de Seguridad y Justicia"
+  },
+  {
+    "cod_centro_gestor":4162,
+    "nombre_centro_gestor":"Secretaría del Deporte y la Recreación"
+  },
+  {
+    "cod_centro_gestor":4163,
+    "nombre_centro_gestor":"Secretaría de Gestión del Riesgo de Emergencias y Desastres"
+  },
+  {
+    "cod_centro_gestor":4164,
+    "nombre_centro_gestor":"Secretaría de Paz y Cultura Ciudadana"
+  },
+  {
+    "cod_centro_gestor":4171,
+    "nombre_centro_gestor":"Secretaría de Desarrollo Económico"
+  },
+  {
+    "cod_centro_gestor":4172,
+    "nombre_centro_gestor":"Secretaría de Turismo"
+  },
+  {
+    "cod_centro_gestor":4173,
+    "nombre_centro_gestor":"Secretaría de Desarrollo Territorial y Participación Ciudadana"
+  },
+  {
+    "cod_centro_gestor":4181,
+    "nombre_centro_gestor":"Unidad Administrativa Especial de Gestión de Bienes y Servicios"
+  },
+  {
+    "cod_centro_gestor":4182,
+    "nombre_centro_gestor":"Unidad Administrativa Especial de Servicios Públicos"
+  },
+  {
+    "cod_centro_gestor":4183,
+    "nombre_centro_gestor":"Unidad Administrativa Especial de Protección Animal"
+  }
+]
