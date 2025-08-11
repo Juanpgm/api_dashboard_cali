@@ -1,2 +1,24 @@
 sources/*.csv
 sources/*.xlsx
+sources/*.json
+.env/
+# Ignore logs and temporary files
+logs/
+*.log
+*.tmp
+
+# Ignore compiled Python files
+*.pyc
+__pycache__/
+
+# Ignore IDE and editor settings
+.vscode/
+.idea/
+*.swp
+
+# Ignore node_modules for JavaScript/Node.js projects
+node_modules/
+
+# Ignore build artifacts
+dist/
+build/

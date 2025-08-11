@@ -6,6 +6,7 @@ Sistema de API robusto y eficiente para la gestión de datos presupuestales y pr
 
 - **Framework:** FastAPI con optimizaciones para producción
 - **Base de Datos:** PostgreSQL con pool de conexiones optimizado
+- **Transformación de Datos:** Sistema automatizado de procesamiento de archivos Excel
 - **Rendimiento:** Bulk insert/upsert para cargas masivas eficientes
 - **Monitoreo:** Sistema completo de health checks y métricas
 - **Mantenimiento:** Scripts automatizados para producción
@@ -16,6 +17,7 @@ Sistema de API robusto y eficiente para la gestión de datos presupuestales y pr
 - PostgreSQL 12+
 - 2GB RAM mínimo
 - 10GB espacio en disco
+- Microsoft Excel o LibreOffice para archivos .xlsx
 
 ## ⚡ Instalación Rápida para Producción
 
@@ -63,6 +65,99 @@ El sistema maneja automáticamente la creación y migración de las siguientes t
 - **retos** - Catálogo de retos
 - **movimientos_presupuestales** - Datos de movimientos presupuestales (clave compuesta: bpin + periodo_corte)
 - **ejecucion_presupuestal** - Datos de ejecución presupuestal (clave compuesta: bpin + periodo_corte)
+- **seguimiento_actividades_pa** - Actividades de seguimiento del plan de acción
+- **seguimiento_productos_pa** - Productos de seguimiento del plan de acción
+- **seguimiento_pa** - Resumen de seguimiento del plan de acción
+
+## 📊 Sistema de Transformación de Datos
+
+### Scripts de Transformación (`transformation_app/`)
+
+El sistema incluye módulos especializados para el procesamiento y transformación de datos:
+
+#### **Ejecución Presupuestal**
+
+```bash
+python transformation_app/data_transformation_ejecucion_presupuestal.py
+```
+
+**Funcionalidad:**
+
+- Procesa archivos Excel desde `app_inputs/ejecucion_presupuestal_input/`
+- Genera datos estandarizados de ejecución presupuestal
+- Salida: JSON estructurado en `app_outputs/ejecucion_presupuestal_outputs/`
+
+#### **Seguimiento Plan de Acción**
+
+```bash
+python transformation_app/data_transformation_seguimiento_pa.py
+```
+
+**Funcionalidad:**
+
+- ✨ **NUEVO:** Procesamiento automatizado de seguimiento PA
+- Entrada: Archivos Excel (.xlsx) en `app_inputs/seguimiento_pa_input/`
+- Detección automática de tipos de archivo (detallados vs resumen)
+- Limpieza avanzada de datos numéricos y monetarios
+- Genera 3 datasets JSON:
+  - `seguimiento_actividades_pa.json` - Actividades con datos presupuestales
+  - `seguimiento_productos_pa.json` - Productos con métricas de avance
+  - `seguimiento_pa.json` - Resumen consolidado por proyecto
+
+**Características técnicas:**
+
+- 🔧 Preserva valores numéricos originales eliminando solo símbolos de formato
+- 🔧 Manejo inteligente de separadores de miles y decimales
+- 🔧 Conversión automática de tipos: BPIN → entero, fechas → ISO, valores → decimal(2)
+- 🔧 Soporte para archivos con múltiples hojas y formatos
+- 📊 Procesa 10,000+ registros eficientemente
+
+#### **Unidades de Proyecto**
+
+```bash
+python transformation_app/data_transformation_unidades_proyecto.py
+```
+
+**Funcionalidad:**
+
+- Procesa datos de infraestructura y equipamientos
+- Entrada: `app_inputs/unidades_proyecto_input/`
+- Salida: `app_outputs/unidades_proyecto_outputs/`
+
+### Estructura de Directorios de Transformación
+
+```
+transformation_app/
+├── data_transformation_ejecucion_presupuestal.py
+├── data_transformation_seguimiento_pa.py          # ✨ NUEVO
+├── data_transformation_unidades_proyecto.py
+├── app_inputs/
+│   ├── ejecucion_presupuestal_input/
+│   ├── seguimiento_pa_input/                       # ✨ NUEVO
+│   └── unidades_proyecto_input/
+└── app_outputs/
+    ├── ejecucion_presupuestal_outputs/
+    ├── seguimiento_pa_outputs/                     # ✨ NUEVO
+    └── unidades_proyecto_outputs/
+```
+
+### Calidad de Datos Garantizada
+
+**Tipos de Datos Estandarizados:**
+
+- `bpin` y códigos: **BIGINT** (enteros sin decimales)
+- Fechas: **DATE** formato ISO (YYYY-MM-DD)
+- Valores monetarios: **DECIMAL(15,2)** (presupuestos, pagos, obligaciones)
+- Porcentajes y avances: **DECIMAL(5,2)** (conserva precisión original)
+- Nombres y descripciones: **TEXT** (sin límites de caracteres)
+- Períodos: **VARCHAR(7)** formato YYYY-MM
+
+**Limpieza Automática:**
+
+- ✅ Eliminación de símbolos monetarios ($, separadores de miles)
+- ✅ Normalización de separadores decimales (coma/punto)
+- ✅ Preservación de valores numéricos originales
+- ✅ Manejo de celdas vacías y valores nulos
 
 ## 🏗️ Scripts de Administración
 
@@ -114,6 +209,9 @@ python production_deployment.py --force --quiet
 - `POST /retos` - Cargar retos
 - `POST /movimientos_presupuestales` - Cargar movimientos presupuestales
 - `POST /ejecucion_presupuestal` - Cargar ejecución presupuestal
+- `POST /seguimiento_actividades_pa` - Cargar actividades de seguimiento PA
+- `POST /seguimiento_productos_pa` - Cargar productos de seguimiento PA
+- `POST /seguimiento_pa` - Cargar resumen de seguimiento PA
 - `POST /load_all_data` - **Carga masiva optimizada** (recomendado)
 
 ### Consulta de Datos (GET)
@@ -125,6 +223,9 @@ python production_deployment.py --force --quiet
 - `GET /retos` - Obtener retos
 - `GET /movimientos_presupuestales` - Obtener movimientos presupuestales
 - `GET /ejecucion_presupuestal` - Obtener ejecución presupuestal
+- `GET /seguimiento_actividades_pa` - Obtener actividades de seguimiento PA
+- `GET /seguimiento_productos_pa` - Obtener productos de seguimiento PA
+- `GET /seguimiento_pa` - Obtener resumen de seguimiento PA
 
 ### Unidades de Proyecto - Infraestructura
 
@@ -146,7 +247,38 @@ python production_deployment.py --force --quiet
 - `GET /tables_info` - Información detallada de tablas
 - `DELETE /clear_all_data` - ⚠️ Limpiar todos los datos
 
-## 🚀 Ejecución en Producción
+## � Flujo de Trabajo de Datos
+
+### 1. Transformación de Datos
+
+```bash
+# Procesar datos de seguimiento PA
+python transformation_app/data_transformation_seguimiento_pa.py
+
+# Procesar datos de ejecución presupuestal
+python transformation_app/data_transformation_ejecucion_presupuestal.py
+
+# Procesar unidades de proyecto
+python transformation_app/data_transformation_unidades_proyecto.py
+```
+
+### 2. Carga a Base de Datos
+
+```bash
+# Usar los endpoints POST del API para cargar los JSON generados
+curl -X POST "http://localhost:8000/seguimiento_actividades_pa" \
+     -H "Content-Type: application/json" \
+     -d @transformation_app/app_outputs/seguimiento_pa_outputs/seguimiento_actividades_pa.json
+```
+
+### 3. Consulta de Datos
+
+```bash
+# Consultar datos a través del API
+curl "http://localhost:8000/seguimiento_actividades_pa?bpin=2021760010222"
+```
+
+## �🚀 Ejecución en Producción
 
 ### Modo Desarrollo
 
@@ -197,6 +329,7 @@ gunicorn fastapi_project.main:app -w 4 -k uvicorn.workers.UvicornWorker --bind 0
 - `database_init.log` - Inicialización de base de datos
 - `maintenance_YYYYMMDD.log` - Mantenimiento diario
 - `deployment_YYYYMMDD_HHMMSS.log` - Logs de despliegue
+- `transformation_app/transformation_*.log` - Logs de transformación de datos
 
 ### Métricas Monitoreadas
 
@@ -205,6 +338,7 @@ gunicorn fastapi_project.main:app -w 4 -k uvicorn.workers.UvicornWorker --bind 0
 - Conteo de registros por tabla
 - Espacio usado por la base de datos
 - Conexiones activas
+- **NUEVO:** Métricas de procesamiento de transformación de datos
 
 ## 🛡️ Seguridad
 
@@ -245,11 +379,29 @@ El sistema está diseñado para:
    - Ejecutar VACUUM: `python production_maintenance.py --optimize`
 
 4. **Datos inconsistentes**
+
    ```bash
    # Backup y recarga
    python production_maintenance.py --backup
    DELETE /clear_all_data
    POST /load_all_data
+   ```
+
+5. **Errores en transformación de datos**
+
+   ```bash
+   # Verificar formato de archivos Excel
+   # Revisar logs de transformación
+   # Validar estructura de directorios app_inputs/
+   ```
+
+6. **Problemas con valores numéricos**
+   ```bash
+   # Los scripts automáticamente limpian:
+   # - Símbolos monetarios ($)
+   # - Separadores de miles (. ,)
+   # - Espacios y caracteres especiales
+   # - Mantienen precisión decimal original
    ```
 
 ## 📞 Soporte
@@ -263,6 +415,7 @@ Para soporte técnico, revisar:
 
 ---
 
-**Versión:** 2.0.0  
-**Última actualización:** Agosto 2025  
-**Desarrollado para:** Alcaldía de Santiago de Cali
+**Versión:** 2.1.0  
+**Última actualización:** Agosto 11, 2025  
+**Desarrollado para:** Alcaldía de Santiago de Cali  
+**Nuevas funcionalidades:** Sistema de transformación de seguimiento PA
