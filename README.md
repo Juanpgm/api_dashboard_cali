@@ -65,9 +65,9 @@ El sistema maneja automáticamente la creación y migración de las siguientes t
 - **retos** - Catálogo de retos
 - **movimientos_presupuestales** - Datos de movimientos presupuestales (clave compuesta: bpin + periodo_corte)
 - **ejecucion_presupuestal** - Datos de ejecución presupuestal (clave compuesta: bpin + periodo_corte)
-- **seguimiento_actividades_pa** - Actividades de seguimiento del plan de acción
-- **seguimiento_productos_pa** - Productos de seguimiento del plan de acción
-- **seguimiento_pa** - Resumen de seguimiento del plan de acción
+- **seguimiento_pa** - Resumen de seguimiento del plan de acción (PK: id_seguimiento_pa auto-increment)
+- **seguimiento_productos_pa** - Productos de seguimiento PA (clave compuesta: cod_pd_lvl_1 + cod_pd_lvl_2)
+- **seguimiento_actividades_pa** - Actividades de seguimiento PA (clave compuesta: cod_pd_lvl_1 + cod_pd_lvl_2 + cod_pd_lvl_3)
 
 ## 📊 Sistema de Transformación de Datos
 
@@ -209,10 +209,14 @@ python production_deployment.py --force --quiet
 - `POST /retos` - Cargar retos
 - `POST /movimientos_presupuestales` - Cargar movimientos presupuestales
 - `POST /ejecucion_presupuestal` - Cargar ejecución presupuestal
-- `POST /seguimiento_actividades_pa` - Cargar actividades de seguimiento PA
-- `POST /seguimiento_productos_pa` - Cargar productos de seguimiento PA
-- `POST /seguimiento_pa` - Cargar resumen de seguimiento PA
 - `POST /load_all_data` - **Carga masiva optimizada** (recomendado)
+
+### ✨ Seguimiento al Plan de Acción (NUEVO)
+
+- `POST /seguimiento_pa` - Cargar resumen de seguimiento PA
+- `POST /seguimiento_productos_pa` - Cargar productos de seguimiento PA
+- `POST /seguimiento_actividades_pa` - Cargar actividades de seguimiento PA
+- `POST /load_all_seguimiento_pa` - **Carga masiva optimizada PA** (recomendado)
 
 ### Consulta de Datos (GET)
 
@@ -223,9 +227,12 @@ python production_deployment.py --force --quiet
 - `GET /retos` - Obtener retos
 - `GET /movimientos_presupuestales` - Obtener movimientos presupuestales
 - `GET /ejecucion_presupuestal` - Obtener ejecución presupuestal
-- `GET /seguimiento_actividades_pa` - Obtener actividades de seguimiento PA
-- `GET /seguimiento_productos_pa` - Obtener productos de seguimiento PA
-- `GET /seguimiento_pa` - Obtener resumen de seguimiento PA
+
+### ✨ Consulta Seguimiento PA (NUEVO)
+
+- `GET /seguimiento_pa` - Obtener resumen de seguimiento PA (filtros: id, periodo, subdireccion)
+- `GET /seguimiento_productos_pa` - Obtener productos PA (filtros: códigos, comuna, estado)
+- `GET /seguimiento_actividades_pa` - Obtener actividades PA (filtros: códigos, bpin)
 
 ### Unidades de Proyecto - Infraestructura
 
@@ -265,7 +272,10 @@ python transformation_app/data_transformation_unidades_proyecto.py
 ### 2. Carga a Base de Datos
 
 ```bash
-# Usar los endpoints POST del API para cargar los JSON generados
+# Cargar todos los datos de seguimiento PA de una vez (recomendado)
+curl -X POST "http://localhost:8000/load_all_seguimiento_pa"
+
+# O cargar individualmente usando los endpoints POST
 curl -X POST "http://localhost:8000/seguimiento_actividades_pa" \
      -H "Content-Type: application/json" \
      -d @transformation_app/app_outputs/seguimiento_pa_outputs/seguimiento_actividades_pa.json
@@ -274,8 +284,14 @@ curl -X POST "http://localhost:8000/seguimiento_actividades_pa" \
 ### 3. Consulta de Datos
 
 ```bash
-# Consultar datos a través del API
+# Consultar datos de seguimiento PA a través del API
 curl "http://localhost:8000/seguimiento_actividades_pa?bpin=2021760010222"
+
+# Consultar productos PA por comuna
+curl "http://localhost:8000/seguimiento_productos_pa?comuna=Comuna%201&limit=10"
+
+# Consultar resumen PA por periodo
+curl "http://localhost:8000/seguimiento_pa?periodo_corte=2024-12"
 ```
 
 ## �🚀 Ejecución en Producción
@@ -339,6 +355,8 @@ gunicorn fastapi_project.main:app -w 4 -k uvicorn.workers.UvicornWorker --bind 0
 - Espacio usado por la base de datos
 - Conexiones activas
 - **NUEVO:** Métricas de procesamiento de transformación de datos
+- **NUEVO:** Métricas de seguimiento PA (3 tablas: resumen, productos, actividades)
+- **NUEVO:** Tiempos de carga masiva para datasets grandes (10,000+ registros)
 
 ## 🛡️ Seguridad
 
@@ -415,7 +433,7 @@ Para soporte técnico, revisar:
 
 ---
 
-**Versión:** 2.1.0  
+**Versión:** 2.2.0  
 **Última actualización:** Agosto 11, 2025  
 **Desarrollado para:** Alcaldía de Santiago de Cali  
-**Nuevas funcionalidades:** Sistema de transformación de seguimiento PA
+**Nuevas funcionalidades:** Sistema completo de seguimiento al Plan de Acción integrado

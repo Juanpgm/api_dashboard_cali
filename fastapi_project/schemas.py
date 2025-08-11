@@ -52,6 +52,69 @@ class EjecucionPresupuestal(BaseModel):
     periodo_corte:str
 
 # =============================================================================
+# PROYECTO: SEGUIMIENTO AL PLAN DE ACCIÓN - Esquemas Pydantic
+# =============================================================================
+
+class SeguimientoActividadPA(BaseModel):
+    bpin: int
+    cod_actividad: Optional[int] = None
+    cod_centro_gestor: Optional[int] = None
+    nombre_actividad: Optional[str] = None
+    descripcion_actividad: Optional[str] = None
+    periodo_corte: Optional[str] = None
+    fecha_inicio_actividad: Optional[date] = None
+    fecha_fin_actividad: Optional[date] = None
+    ppto_inicial_actividad: Optional[float] = None
+    ppto_modificado_actividad: Optional[float] = None
+    ejecucion_actividad: Optional[float] = None
+    obligado_actividad: Optional[float] = None
+    pagos_actividad: Optional[float] = None
+    avance_actividad: Optional[float] = None
+    avance_real_actividad: Optional[float] = None
+    avance_actividad_acumulado: Optional[float] = None
+    ponderacion_actividad: Optional[float] = None
+    archivo_origen: Optional[str] = None
+    
+    class Config:
+        from_attributes = True
+
+class SeguimientoProductoPA(BaseModel):
+    bpin: int
+    cod_producto: Optional[int] = None
+    cod_producto_mga: Optional[int] = None
+    nombre_producto: Optional[str] = None
+    tipo_meta_producto: Optional[str] = None
+    descripcion_avance_producto: Optional[str] = None
+    periodo_corte: Optional[str] = None
+    cantidad_programada_producto: Optional[float] = None
+    ponderacion_producto: Optional[float] = None
+    avance_producto: Optional[float] = None
+    ejecucion_fisica_producto: Optional[float] = None
+    avance_real_producto: Optional[float] = None
+    avance_producto_acumulado: Optional[float] = None
+    ejecucion_ppto_producto: Optional[float] = None
+    archivo_origen: Optional[str] = None
+    
+    class Config:
+        from_attributes = True
+
+class SeguimientoPA(BaseModel):
+    bpin: int
+    cod_pd_lvl_1: Optional[int] = None
+    cod_pd_lvl_2: Optional[int] = None
+    cod_pd_lvl_3: Optional[int] = None
+    cod_actividad: Optional[int] = None
+    cod_producto: Optional[int] = None
+    subdireccion_subsecretaria: Optional[str] = None
+    periodo_corte: Optional[str] = None
+    avance_proyecto_pa: Optional[float] = None
+    ejecucion_ppto_proyecto_pa: Optional[float] = None
+    archivo_origen: Optional[str] = None
+    
+    class Config:
+        from_attributes = True
+
+# =============================================================================
 # Esquemas para Clase: PROYECTO
 # =============================================================================
 

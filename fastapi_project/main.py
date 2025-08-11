@@ -155,6 +155,25 @@ DATA_MAPPING = {
     }
 }
 
+# PROYECTO: SEGUIMIENTO AL PLAN DE ACCIÓN - Mapeo para seguimiento PA
+SEGUIMIENTO_PA_MAPPING = {
+    "seguimiento_actividades_pa.json": {
+        "model": models.SeguimientoActividadPA,
+        "schema": schemas.SeguimientoActividadPA,
+        "primary_key": ["bpin", "cod_actividad", "periodo_corte"]  # Clave compuesta
+    },
+    "seguimiento_productos_pa.json": {
+        "model": models.SeguimientoProductoPA,
+        "schema": schemas.SeguimientoProductoPA,
+        "primary_key": ["bpin", "cod_producto", "periodo_corte"]  # Clave compuesta
+    },
+    "seguimiento_pa.json": {
+        "model": models.SeguimientoPA,
+        "schema": schemas.SeguimientoPA,
+        "primary_key": "id_seguimiento_pa"  # Clave primaria simple auto-increment
+    }
+}
+
 # Mapeo para unidades de proyecto
 UNIDADES_PROYECTO_MAPPING = {
     "unidad_proyecto_infraestructura_equipamientos.json": {
@@ -224,17 +243,90 @@ def load_unidades_proyecto_json_file(filename: str) -> List[Dict[str, Any]]:
     except json.JSONDecodeError:
         raise ValueError(f"Error al decodificar el archivo JSON: {filename}")
 
+# PROYECTO: SEGUIMIENTO AL PLAN DE ACCIÓN - Funciones de carga de datos
+def load_seguimiento_pa_json_file(filename: str):
+    """Cargar archivo JSON desde el directorio de seguimiento PA"""
+    file_path = f"transformation_app/app_outputs/seguimiento_pa_outputs/{filename}"
+    with open(file_path, 'r', encoding='utf-8') as f:
+        return json.load(f)
+
+def load_and_validate_seguimiento_pa_data(filename: str, schema_class, db: Session, model_class, primary_key) -> List:
+    """
+    Función específica para cargar, validar y guardar datos de seguimiento PA.
+    Solo procesa registros nuevos o diferentes (upsert inteligente).
+    """
+    try:
+        # Verificar si el archivo existe
+        file_path = f"transformation_app/app_outputs/seguimiento_pa_outputs/{filename}"
+        if not os.path.exists(file_path):
+            logger.warning(f"Archivo {filename} no encontrado en {file_path}")
+            raise FileNotFoundError(f"Archivo {filename} no encontrado")
+        
+        # Cargar datos del archivo JSON desde el directorio de seguimiento PA
+        raw_data = load_seguimiento_pa_json_file(filename)
+        
+        if not raw_data:
+            logger.warning(f"Archivo {filename} está vacío o no contiene datos válidos")
+            return []
+        
+        # Validar datos usando el esquema de Pydantic
+        validated_data = []
+        validation_errors = []
+        
+        for i, item in enumerate(raw_data):
+            try:
+                validated_item = schema_class(**item)
+                validated_data.append(validated_item)
+            except Exception as ve:
+                validation_errors.append(f"Registro {i}: {str(ve)}")
+        
+        if validation_errors:
+            logger.warning(f"Se encontraron {len(validation_errors)} errores de validación en {filename}")
+            for error in validation_errors[:5]:  # Mostrar solo los primeros 5 errores
+                logger.warning(f"  {error}")
+            if len(validation_errors) > 5:
+                logger.warning(f"  ... y {len(validation_errors) - 5} errores más")
+        
+        if not validated_data:
+            logger.warning(f"No se pudieron validar datos en {filename}")
+            return []
+        
+        # Convertir a diccionarios para la inserción en BD
+        data_dicts = [item.dict() for item in validated_data]
+        
+        # Realizar bulk upsert en la base de datos (solo registros nuevos/diferentes)
+        bulk_upsert_data(db, model_class, data_dicts, primary_key)
+        
+        logger.info(f"Procesados {len(validated_data)} registros válidos de {len(raw_data)} totales en {filename}")
+        return validated_data
+        
+    except FileNotFoundError:
+        raise HTTPException(status_code=404, detail=f"Archivo {filename} no encontrado")
+    except json.JSONDecodeError as je:
+        raise HTTPException(status_code=400, detail=f"Error al decodificar el archivo JSON {filename}: {str(je)}")
+    except ValueError as e:
+        raise HTTPException(status_code=422, detail=f"Error de validación en {filename}: {str(e)}")
+    except Exception as e:
+        logger.error(f"Error inesperado en {filename}: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Error inesperado: {str(e)}")
+
 def bulk_upsert_data(db: Session, model_class, data: List[Dict[str, Any]], primary_key):
     """
     Realiza una inserción/actualización masiva eficiente usando PostgreSQL UPSERT.
     Soporta tanto claves primarias simples como compuestas (ON CONFLICT).
+    Solo procesa registros nuevos o diferentes para optimizar el rendimiento.
     """
     if not data:
+        logger.info(f"No hay datos para procesar en {model_class.__tablename__}")
         return
     
     try:
         # Preparar los datos para inserción
         table = model_class.__table__
+        table_name = table.name
+        
+        # Obtener conteo antes de la operación
+        count_before = db.execute(text(f"SELECT COUNT(*) FROM {table_name}")).scalar()
         
         # Crear la consulta de UPSERT usando ON CONFLICT
         columns = list(data[0].keys())
@@ -254,7 +346,7 @@ def bulk_upsert_data(db: Session, model_class, data: List[Dict[str, Any]], prima
         if update_columns:
             update_clause = ", ".join([f"{col} = EXCLUDED.{col}" for col in update_columns])
             insert_stmt = f"""
-            INSERT INTO {table.name} ({', '.join(columns)})
+            INSERT INTO {table_name} ({', '.join(columns)})
             VALUES ({values_placeholder})
             ON CONFLICT ({conflict_columns}) DO UPDATE SET
             {update_clause}
@@ -262,17 +354,24 @@ def bulk_upsert_data(db: Session, model_class, data: List[Dict[str, Any]], prima
         else:
             # Si no hay columnas para actualizar, solo hacer INSERT ... ON CONFLICT DO NOTHING
             insert_stmt = f"""
-            INSERT INTO {table.name} ({', '.join(columns)})
+            INSERT INTO {table_name} ({', '.join(columns)})
             VALUES ({values_placeholder})
             ON CONFLICT ({conflict_columns}) DO NOTHING
             """
         
         # Ejecutar la inserción masiva
-        db.execute(text(insert_stmt), data)
-        logger.info(f"Upserted {len(data)} records in {table.name}")
+        result = db.execute(text(insert_stmt), data)
+        
+        # Obtener conteo después de la operación
+        count_after = db.execute(text(f"SELECT COUNT(*) FROM {table_name}")).scalar()
+        
+        records_added = count_after - count_before
+        
+        logger.info(f"Operación UPSERT en {table_name}: {len(data)} registros procesados, {records_added} nuevos registros añadidos")
+        logger.info(f"Estado de la tabla {table_name}: {count_before} → {count_after} registros")
         
     except Exception as e:
-        logger.error(f"Error during bulk upsert for {model_class.__name__}: {str(e)}")
+        logger.error(f"Error durante bulk upsert para {model_class.__name__}: {str(e)}")
         raise
 
 def load_geojson_file(filename: str) -> dict:
@@ -286,26 +385,57 @@ def load_and_validate_data(filename: str, schema_class, db: Session, model_class
     """
     Función genérica para cargar, validar y guardar datos en la base de datos.
     Soporta claves primarias simples y compuestas y aplica bulk upsert.
+    Solo procesa registros nuevos o diferentes (upsert inteligente).
     """
     try:
+        # Verificar si el archivo existe
+        file_path = f"transformation_app/app_outputs/ejecucion_presupuestal_outputs/{filename}"
+        if not os.path.exists(file_path):
+            logger.warning(f"Archivo {filename} no encontrado en {file_path}")
+            raise FileNotFoundError(f"Archivo {filename} no encontrado")
+        
         # Cargar datos del archivo JSON
         raw_data = load_json_file(filename)
         
+        if not raw_data:
+            logger.warning(f"Archivo {filename} está vacío o no contiene datos válidos")
+            return []
+        
         # Validar datos usando el esquema de Pydantic
-        validated_data = [schema_class(**item) for item in raw_data]
+        validated_data = []
+        validation_errors = []
+        
+        for i, item in enumerate(raw_data):
+            try:
+                validated_item = schema_class(**item)
+                validated_data.append(validated_item)
+            except Exception as ve:
+                validation_errors.append(f"Registro {i}: {str(ve)}")
+        
+        if validation_errors:
+            logger.warning(f"Se encontraron {len(validation_errors)} errores de validación en {filename}")
+            for error in validation_errors[:5]:  # Mostrar solo los primeros 5 errores
+                logger.warning(f"  {error}")
+            if len(validation_errors) > 5:
+                logger.warning(f"  ... y {len(validation_errors) - 5} errores más")
+        
+        if not validated_data:
+            logger.warning(f"No se pudieron validar datos en {filename}")
+            return []
         
         # Convertir a diccionarios para la inserción en BD
         data_dicts = [item.dict() for item in validated_data]
         
-        # Realizar bulk upsert en la base de datos
+        # Realizar bulk upsert en la base de datos (solo registros nuevos/diferentes)
         bulk_upsert_data(db, model_class, data_dicts, primary_key)
         
+        logger.info(f"Procesados {len(validated_data)} registros válidos de {len(raw_data)} totales en {filename}")
         return validated_data
         
     except FileNotFoundError:
         raise HTTPException(status_code=404, detail=f"Archivo {filename} no encontrado")
-    except json.JSONDecodeError:
-        raise HTTPException(status_code=400, detail=f"Error al decodificar el archivo JSON: {filename}")
+    except json.JSONDecodeError as je:
+        raise HTTPException(status_code=400, detail=f"Error al decodificar el archivo JSON {filename}: {str(je)}")
     except ValueError as e:
         raise HTTPException(status_code=422, detail=f"Error de validación en {filename}: {str(e)}")
     except Exception as e:
@@ -360,7 +490,7 @@ def load_and_validate_unidades_proyecto_data(filename: str, schema_class, db: Se
 # MÉTODOS POST - REFACTORIZADOS PARA EFICIENCIA Y CONEXIÓN A POSTGRESQL
 # ================================================================================================================
 
-@app.post('/centros_gestores', tags=["PROYECTO"], response_model=List[schemas.CentroGestor])
+@app.post('/centros_gestores', tags=["PROYECTO: ATRIBUTOS"], response_model=List[schemas.CentroGestor])
 def load_centros_gestores(db: Session = Depends(get_db)):
     """Carga centros gestores desde JSON a PostgreSQL con validación y upsert eficiente"""
     mapping = DATA_MAPPING["centros_gestores.json"]
@@ -374,7 +504,7 @@ def load_centros_gestores(db: Session = Depends(get_db)):
             mapping["primary_key"]
         )
 
-@app.post('/programas', tags=["PROYECTO"], response_model=List[schemas.Programa])
+@app.post('/programas', tags=["PROYECTO: ATRIBUTOS"], response_model=List[schemas.Programa])
 def load_programas(db: Session = Depends(get_db)):
     """Carga programas desde JSON a PostgreSQL con validación y upsert eficiente"""
     mapping = DATA_MAPPING["programas.json"]
@@ -388,7 +518,7 @@ def load_programas(db: Session = Depends(get_db)):
             mapping["primary_key"]
         )
 
-@app.post('/areas_funcionales', tags=["PROYECTO"], response_model=List[schemas.AreaFuncional])
+@app.post('/areas_funcionales', tags=["PROYECTO: ATRIBUTOS"], response_model=List[schemas.AreaFuncional])
 def load_areas_funcionales(db: Session = Depends(get_db)):
     """Carga áreas funcionales desde JSON a PostgreSQL con validación y upsert eficiente"""
     mapping = DATA_MAPPING["areas_funcionales.json"]
@@ -402,7 +532,7 @@ def load_areas_funcionales(db: Session = Depends(get_db)):
             mapping["primary_key"]
         )
 
-@app.post('/propositos', tags=["PROYECTO"], response_model=List[schemas.Proposito])
+@app.post('/propositos', tags=["PROYECTO: ATRIBUTOS"], response_model=List[schemas.Proposito])
 def load_propositos(db: Session = Depends(get_db)):
     """Carga propósitos desde JSON a PostgreSQL con validación y upsert eficiente"""
     mapping = DATA_MAPPING["propositos.json"]
@@ -416,7 +546,7 @@ def load_propositos(db: Session = Depends(get_db)):
             mapping["primary_key"]
         )
 
-@app.post('/retos', tags=["PROYECTO"], response_model=List[schemas.Reto])
+@app.post('/retos', tags=["PROYECTO: ATRIBUTOS"], response_model=List[schemas.Reto])
 def load_retos(db: Session = Depends(get_db)):
     """Carga retos desde JSON a PostgreSQL con validación y upsert eficiente"""
     mapping = DATA_MAPPING["retos.json"]
@@ -430,7 +560,7 @@ def load_retos(db: Session = Depends(get_db)):
             mapping["primary_key"]
         )
 
-@app.post('/movimientos_presupuestales', tags=["PROYECTO"], response_model=List[schemas.MovimientoPresupuestal])
+@app.post('/movimientos_presupuestales', tags=["PROYECTO: EJECUCIÓN PRESUPUESTAL"], response_model=List[schemas.MovimientoPresupuestal])
 def load_movimientos_presupuestales(db: Session = Depends(get_db)):
     """Carga movimientos presupuestales desde JSON a PostgreSQL con validación y upsert eficiente"""
     mapping = DATA_MAPPING["movimientos_presupuestales.json"]
@@ -444,7 +574,7 @@ def load_movimientos_presupuestales(db: Session = Depends(get_db)):
             mapping["primary_key"]
         )
 
-@app.post('/ejecucion_presupuestal', tags=["PROYECTO"], response_model=List[schemas.EjecucionPresupuestal])
+@app.post('/ejecucion_presupuestal', tags=["PROYECTO: EJECUCIÓN PRESUPUESTAL"], response_model=List[schemas.EjecucionPresupuestal])
 def load_ejecucion_presupuestal(db: Session = Depends(get_db)):
     """Carga ejecución presupuestal desde JSON a PostgreSQL con validación y upsert eficiente"""
     mapping = DATA_MAPPING["ejecucion_presupuestal.json"]
@@ -458,49 +588,295 @@ def load_ejecucion_presupuestal(db: Session = Depends(get_db)):
             mapping["primary_key"]
         )
 
-# Endpoint para cargar todos los datos de una vez (más eficiente)
-@app.post('/load_all_data', tags=["PROYECTO"])
-def load_all_data(db: Session = Depends(get_db)):
+# ================================================================================================================
+# PROYECTO: SEGUIMIENTO AL PLAN DE ACCIÓN - MÉTODOS POST
+# ================================================================================================================
+
+@app.post('/seguimiento_actividades_pa', tags=["PROYECTO: SEGUIMIENTO AL PLAN DE ACCIÓN"], response_model=List[schemas.SeguimientoActividadPA])
+def load_seguimiento_actividades_pa(db: Session = Depends(get_db)):
+    """Carga actividades de seguimiento PA desde JSON a PostgreSQL con validación y upsert eficiente"""
+    mapping = SEGUIMIENTO_PA_MAPPING["seguimiento_actividades_pa.json"]
+    
+    with get_db_transaction() as db_trans:
+        return load_and_validate_seguimiento_pa_data(
+            "seguimiento_actividades_pa.json",
+            mapping["schema"],
+            db_trans,
+            mapping["model"],
+            mapping["primary_key"]
+        )
+
+@app.post('/seguimiento_productos_pa', tags=["PROYECTO: SEGUIMIENTO AL PLAN DE ACCIÓN"], response_model=List[schemas.SeguimientoProductoPA])
+def load_seguimiento_productos_pa(db: Session = Depends(get_db)):
+    """Carga productos de seguimiento PA desde JSON a PostgreSQL con validación y upsert eficiente"""
+    mapping = SEGUIMIENTO_PA_MAPPING["seguimiento_productos_pa.json"]
+    
+    with get_db_transaction() as db_trans:
+        return load_and_validate_seguimiento_pa_data(
+            "seguimiento_productos_pa.json",
+            mapping["schema"],
+            db_trans,
+            mapping["model"],
+            mapping["primary_key"]
+        )
+
+@app.post('/seguimiento_pa', tags=["PROYECTO: SEGUIMIENTO AL PLAN DE ACCIÓN"], response_model=List[schemas.SeguimientoPA])
+def load_seguimiento_pa(db: Session = Depends(get_db)):
+    """Carga resumen de seguimiento PA desde JSON a PostgreSQL con validación y upsert eficiente"""
+    mapping = SEGUIMIENTO_PA_MAPPING["seguimiento_pa.json"]
+    
+    with get_db_transaction() as db_trans:
+        return load_and_validate_seguimiento_pa_data(
+            "seguimiento_pa.json",
+            mapping["schema"],
+            db_trans,
+            mapping["model"],
+            mapping["primary_key"]
+        )
+
+@app.post('/load_all_seguimiento_pa', tags=["PROYECTO: SEGUIMIENTO AL PLAN DE ACCIÓN"])
+def load_all_seguimiento_pa(db: Session = Depends(get_db)):
     """
-    Carga todos los datos de una vez de manera transaccional y eficiente.
-    Recomendado para cargas iniciales o actualizaciones completas.
+    Carga todos los datos de seguimiento PA de manera robusta y tolerante a fallos.
+    - Si no encuentra archivos, simplemente los omite
+    - Solo carga datos nuevos o diferentes (upsert inteligente)
+    - Continúa con otros archivos aunque algunos fallen
     """
     results = {}
+    successful_loads = 0
+    failed_loads = 0
+    
+    try:
+        with get_db_transaction() as db_trans:
+            for filename, mapping in SEGUIMIENTO_PA_MAPPING.items():
+                try:
+                    logger.info(f"Intentando cargar {filename}...")
+                    start_time = time.time()
+                    
+                    # Verificar si el archivo existe antes de intentar cargarlo
+                    file_path = f"transformation_app/app_outputs/seguimiento_pa_outputs/{filename}"
+                    if not os.path.exists(file_path):
+                        logger.warning(f"Archivo {filename} no encontrado en {file_path}, omitiendo...")
+                        results[filename] = {
+                            "status": "skipped",
+                            "reason": "file_not_found",
+                            "message": f"Archivo {filename} no encontrado"
+                        }
+                        continue
+                    
+                    # Intentar cargar los datos
+                    validated_data = load_and_validate_seguimiento_pa_data(
+                        filename,
+                        mapping["schema"],
+                        db_trans,
+                        mapping["model"],
+                        mapping["primary_key"]
+                    )
+                    
+                    end_time = time.time()
+                    load_time = end_time - start_time
+                    
+                    results[filename] = {
+                        "status": "success",
+                        "records_processed": len(validated_data),
+                        "load_time_seconds": round(load_time, 2)
+                    }
+                    successful_loads += 1
+                    logger.info(f"✓ {filename}: {len(validated_data)} registros procesados en {load_time:.2f}s")
+                    
+                except FileNotFoundError:
+                    logger.warning(f"Archivo {filename} no encontrado, omitiendo...")
+                    results[filename] = {
+                        "status": "skipped",
+                        "reason": "file_not_found",
+                        "message": f"Archivo {filename} no encontrado"
+                    }
+                except json.JSONDecodeError as je:
+                    logger.error(f"Error JSON en {filename}: {str(je)}")
+                    results[filename] = {
+                        "status": "error",
+                        "reason": "json_decode_error",
+                        "message": f"Error al decodificar JSON: {str(je)}"
+                    }
+                    failed_loads += 1
+                except Exception as e:
+                    logger.error(f"Error procesando {filename}: {str(e)}")
+                    results[filename] = {
+                        "status": "error",
+                        "reason": "processing_error", 
+                        "message": str(e)
+                    }
+                    failed_loads += 1
+        
+        # Preparar respuesta final
+        total_files = len(SEGUIMIENTO_PA_MAPPING)
+        
+        if successful_loads == 0 and failed_loads > 0:
+            return {
+                "status": "error",
+                "message": "No se pudieron cargar datos de seguimiento PA de ningún archivo",
+                "summary": {
+                    "total_files": total_files,
+                    "successful": successful_loads,
+                    "failed": failed_loads,
+                    "skipped": total_files - successful_loads - failed_loads
+                },
+                "details": results
+            }
+        elif failed_loads > 0:
+            return {
+                "status": "partial_success",
+                "message": f"Se cargaron {successful_loads} de {total_files} archivos de seguimiento PA exitosamente",
+                "summary": {
+                    "total_files": total_files,
+                    "successful": successful_loads,
+                    "failed": failed_loads,
+                    "skipped": total_files - successful_loads - failed_loads
+                },
+                "details": results
+            }
+        else:
+            return {
+                "status": "success",
+                "message": f"Todos los archivos disponibles de seguimiento PA ({successful_loads}) fueron procesados exitosamente",
+                "summary": {
+                    "total_files": total_files,
+                    "successful": successful_loads,
+                    "failed": failed_loads,
+                    "skipped": total_files - successful_loads - failed_loads
+                },
+                "details": results,
+                "total_time": sum(r.get("load_time_seconds", 0) for r in results.values() if r.get("status") == "success")
+            }
+        
+    except Exception as e:
+        logger.error(f"Error crítico durante la carga masiva de seguimiento PA: {str(e)}")
+        return {
+            "status": "critical_error",
+            "message": f"Error crítico durante la carga de seguimiento PA: {str(e)}",
+            "details": results
+        }
+
+# Endpoint para cargar todos los datos de ejecución presupuestal de una vez (más eficiente)
+@app.post('/load_all_ejecucion_presupuestal_data', tags=["PROYECTO: EJECUCIÓN PRESUPUESTAL"])
+def load_all_data(db: Session = Depends(get_db)):
+    """
+    Carga todos los datos de una vez de manera robusta y tolerante a fallos.
+    - Si no encuentra archivos, simplemente los omite
+    - Solo carga datos nuevos o diferentes (upsert inteligente)
+    - Continúa con otros archivos aunque algunos fallen
+    """
+    results = {}
+    successful_loads = 0
+    failed_loads = 0
     
     try:
         with get_db_transaction() as db_trans:
             for filename, mapping in DATA_MAPPING.items():
-                logger.info(f"Cargando {filename}...")
-                start_time = time.time()
-                
-                data = load_and_validate_data(
-                    filename,
-                    mapping["schema"],
-                    db_trans,
-                    mapping["model"],
-                    mapping["primary_key"]
-                )
-                
-                load_time = time.time() - start_time
-                results[filename] = {
-                    "status": "success",
-                    "records_loaded": len(data),
-                    "load_time_seconds": round(load_time, 2)
-                }
-                logger.info(f"Completado {filename}: {len(data)} registros en {load_time:.2f}s")
+                try:
+                    logger.info(f"Intentando cargar {filename}...")
+                    start_time = time.time()
+                    
+                    # Verificar si el archivo existe antes de intentar cargarlo
+                    file_path = f"transformation_app/app_outputs/ejecucion_presupuestal_outputs/{filename}"
+                    if not os.path.exists(file_path):
+                        logger.warning(f"Archivo {filename} no encontrado en {file_path}, omitiendo...")
+                        results[filename] = {
+                            "status": "skipped",
+                            "reason": "file_not_found",
+                            "message": f"Archivo {filename} no encontrado"
+                        }
+                        continue
+                    
+                    # Intentar cargar los datos
+                    data = load_and_validate_data(
+                        filename,
+                        mapping["schema"],
+                        db_trans,
+                        mapping["model"],
+                        mapping["primary_key"]
+                    )
+                    
+                    load_time = time.time() - start_time
+                    results[filename] = {
+                        "status": "success",
+                        "records_processed": len(data),
+                        "load_time_seconds": round(load_time, 2)
+                    }
+                    successful_loads += 1
+                    logger.info(f"✓ {filename}: {len(data)} registros procesados en {load_time:.2f}s")
+                    
+                except FileNotFoundError:
+                    logger.warning(f"Archivo {filename} no encontrado, omitiendo...")
+                    results[filename] = {
+                        "status": "skipped",
+                        "reason": "file_not_found",
+                        "message": f"Archivo {filename} no encontrado"
+                    }
+                except json.JSONDecodeError as je:
+                    logger.error(f"Error JSON en {filename}: {str(je)}")
+                    results[filename] = {
+                        "status": "error",
+                        "reason": "json_decode_error",
+                        "message": f"Error al decodificar JSON: {str(je)}"
+                    }
+                    failed_loads += 1
+                except Exception as e:
+                    logger.error(f"Error procesando {filename}: {str(e)}")
+                    results[filename] = {
+                        "status": "error", 
+                        "reason": "processing_error",
+                        "message": str(e)
+                    }
+                    failed_loads += 1
         
-        return {
-            "status": "success",
-            "message": "Todos los datos cargados exitosamente",
-            "details": results
-        }
+        # Preparar respuesta final
+        total_files = len(DATA_MAPPING)
+        
+        if successful_loads == 0 and failed_loads > 0:
+            return {
+                "status": "error",
+                "message": "No se pudieron cargar datos de ningún archivo",
+                "summary": {
+                    "total_files": total_files,
+                    "successful": successful_loads,
+                    "failed": failed_loads,
+                    "skipped": total_files - successful_loads - failed_loads
+                },
+                "details": results
+            }
+        elif failed_loads > 0:
+            return {
+                "status": "partial_success",
+                "message": f"Se cargaron {successful_loads} de {total_files} archivos exitosamente",
+                "summary": {
+                    "total_files": total_files,
+                    "successful": successful_loads,
+                    "failed": failed_loads,
+                    "skipped": total_files - successful_loads - failed_loads
+                },
+                "details": results
+            }
+        else:
+            return {
+                "status": "success",
+                "message": f"Todos los archivos disponibles ({successful_loads}) fueron procesados exitosamente",
+                "summary": {
+                    "total_files": total_files,
+                    "successful": successful_loads,
+                    "failed": failed_loads,
+                    "skipped": total_files - successful_loads - failed_loads
+                },
+                "details": results
+            }
         
     except Exception as e:
-        logger.error(f"Error durante la carga masiva de datos: {str(e)}")
-        raise HTTPException(
-            status_code=500, 
-            detail=f"Error durante la carga masiva: {str(e)}"
-        )
+        logger.error(f"Error crítico durante la carga masiva: {str(e)}")
+        return {
+            "status": "critical_error",
+            "message": f"Error crítico durante la carga: {str(e)}",
+            "details": results
+        }
 
 # ================================================================================================================
 # MÉTODOS POST - UNIDADES DE PROYECTO
@@ -539,7 +915,7 @@ def load_unidades_proyecto_vial(db: Session = Depends(get_db)):
 # MÉTODOS GET - ENDPOINTS PARA CONSULTAR DATOS DESDE POSTGRESQL
 # ================================================================================================================
 
-@app.get('/centros_gestores', tags=["PROYECTO"], response_model=List[schemas.CentroGestor])
+@app.get('/centros_gestores', tags=["PROYECTO: ATRIBUTOS"], response_model=List[schemas.CentroGestor])
 def get_centros_gestores(db: Session = Depends(get_db)):
     """Obtiene todos los centros gestores desde PostgreSQL"""
     try:
@@ -549,7 +925,7 @@ def get_centros_gestores(db: Session = Depends(get_db)):
         logger.error(f"Error al consultar centros gestores: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Error al consultar datos: {str(e)}")
 
-@app.get('/programas', tags=["PROYECTO"], response_model=List[schemas.Programa])
+@app.get('/programas', tags=["PROYECTO: ATRIBUTOS"], response_model=List[schemas.Programa])
 def get_programas(db: Session = Depends(get_db)):
     """Obtiene todos los programas desde PostgreSQL"""
     try:
@@ -559,7 +935,7 @@ def get_programas(db: Session = Depends(get_db)):
         logger.error(f"Error al consultar programas: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Error al consultar datos: {str(e)}")
 
-@app.get('/areas_funcionales', tags=["PROYECTO"], response_model=List[schemas.AreaFuncional])
+@app.get('/areas_funcionales', tags=["PROYECTO: ATRIBUTOS"], response_model=List[schemas.AreaFuncional])
 def get_areas_funcionales(db: Session = Depends(get_db)):
     """Obtiene todas las áreas funcionales desde PostgreSQL"""
     try:
@@ -569,7 +945,7 @@ def get_areas_funcionales(db: Session = Depends(get_db)):
         logger.error(f"Error al consultar áreas funcionales: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Error al consultar datos: {str(e)}")
 
-@app.get('/propositos', tags=["PROYECTO"], response_model=List[schemas.Proposito])
+@app.get('/propositos', tags=["PROYECTO: ATRIBUTOS"], response_model=List[schemas.Proposito])
 def get_propositos(db: Session = Depends(get_db)):
     """Obtiene todos los propósitos desde PostgreSQL"""
     try:
@@ -579,7 +955,7 @@ def get_propositos(db: Session = Depends(get_db)):
         logger.error(f"Error al consultar propósitos: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Error al consultar datos: {str(e)}")
 
-@app.get('/retos', tags=["PROYECTO"], response_model=List[schemas.Reto])
+@app.get('/retos', tags=["PROYECTO: ATRIBUTOS"], response_model=List[schemas.Reto])
 def get_retos(db: Session = Depends(get_db)):
     """Obtiene todos los retos desde PostgreSQL"""
     try:
@@ -589,7 +965,7 @@ def get_retos(db: Session = Depends(get_db)):
         logger.error(f"Error al consultar retos: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Error al consultar datos: {str(e)}")
 
-@app.get('/movimientos_presupuestales', tags=["PROYECTO"], response_model=List[schemas.MovimientoPresupuestal])
+@app.get('/movimientos_presupuestales', tags=["PROYECTO: EJECUCIÓN PRESUPUESTAL"], response_model=List[schemas.MovimientoPresupuestal])
 def get_movimientos_presupuestales(
     bpin: Optional[str] = Query(None, description="Filtrar por BPIN específico"),
     periodo_corte: Optional[str] = Query(None, description="Filtrar por período de corte (ej: '2024-01' o '2024')"),
@@ -633,7 +1009,7 @@ def get_movimientos_presupuestales(
         logger.error(f"Error al consultar movimientos presupuestales: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Error al consultar datos: {str(e)}")
 
-@app.get('/ejecucion_presupuestal', tags=["PROYECTO"], response_model=List[schemas.EjecucionPresupuestal])
+@app.get('/ejecucion_presupuestal', tags=["PROYECTO: EJECUCIÓN PRESUPUESTAL"], response_model=List[schemas.EjecucionPresupuestal])
 def get_ejecucion_presupuestal(
     bpin: Optional[str] = Query(None, description="Filtrar por BPIN específico"),
     periodo_corte: Optional[str] = Query(None, description="Filtrar por período de corte (ej: '2024-01' o '2024')"),
@@ -676,6 +1052,265 @@ def get_ejecucion_presupuestal(
     except Exception as e:
         logger.error(f"Error al consultar ejecución presupuestal: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Error al consultar datos: {str(e)}")
+
+# ================================================================================================================
+# PROYECTO: SEGUIMIENTO AL PLAN DE ACCIÓN - MÉTODOS GET
+# ================================================================================================================
+
+@app.get('/seguimiento_actividades_pa', tags=["PROYECTO: SEGUIMIENTO AL PLAN DE ACCIÓN"], response_model=List[schemas.SeguimientoActividadPA])
+def get_seguimiento_actividades_pa(
+    bpin: Optional[int] = Query(None, description="Filtrar por BPIN específico"),
+    cod_actividad: Optional[int] = Query(None, description="Filtrar por código de actividad"),
+    periodo_corte: Optional[str] = Query(None, description="Filtrar por período de corte (ej: '2024-12' o '2024')"),
+    limit: int = Query(100, ge=1, le=10000, description="Límite de registros a devolver"),
+    offset: int = Query(0, ge=0, description="Número de registros a omitir"),
+    db: Session = Depends(get_db)
+):
+    """
+    Obtiene actividades de seguimiento PA desde PostgreSQL con filtros y paginación optimizada
+    
+    - **bpin**: Filtrar por BPIN específico
+    - **cod_actividad**: Filtrar por código de actividad específico
+    - **periodo_corte**: Filtrar por período de corte (puede ser año '2024' o año-mes '2024-12')
+    - **limit**: Máximo número de registros a devolver (default: 100, max: 10000)
+    - **offset**: Número de registros a omitir para paginación (default: 0)
+    """
+    try:
+        # Construir la query base
+        query = db.query(models.SeguimientoActividadPA)
+        
+        # Aplicar filtros si se proporcionan
+        if bpin:
+            query = query.filter(models.SeguimientoActividadPA.bpin == bpin)
+        
+        if cod_actividad:
+            query = query.filter(models.SeguimientoActividadPA.cod_actividad == cod_actividad)
+        
+        if periodo_corte:
+            # Si contiene guión, buscar exacto, si no, buscar que comience con el año
+            if '-' in periodo_corte:
+                query = query.filter(models.SeguimientoActividadPA.periodo_corte == periodo_corte)
+            else:
+                query = query.filter(models.SeguimientoActividadPA.periodo_corte.like(f"{periodo_corte}%"))
+        
+        # Aplicar paginación y ordenamiento para consistencia
+        actividades = query.order_by(models.SeguimientoActividadPA.bpin, models.SeguimientoActividadPA.periodo_corte)\
+                          .offset(offset)\
+                          .limit(limit)\
+                          .all()
+        
+        logger.info(f"Consulta de actividades seguimiento PA: {len(actividades)} registros devueltos")
+        return actividades
+        
+    except Exception as e:
+        logger.error(f"Error al consultar actividades seguimiento PA: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Error al consultar datos: {str(e)}")
+
+@app.get('/seguimiento_productos_pa', tags=["PROYECTO: SEGUIMIENTO AL PLAN DE ACCIÓN"], response_model=List[schemas.SeguimientoProductoPA])
+def get_seguimiento_productos_pa(
+    bpin: Optional[int] = Query(None, description="Filtrar por BPIN específico"),
+    cod_producto: Optional[int] = Query(None, description="Filtrar por código de producto"),
+    periodo_corte: Optional[str] = Query(None, description="Filtrar por período de corte (ej: '2024-12' o '2024')"),
+    limit: int = Query(100, ge=1, le=10000, description="Límite de registros a devolver"),
+    offset: int = Query(0, ge=0, description="Número de registros a omitir"),
+    db: Session = Depends(get_db)
+):
+    """
+    Obtiene productos de seguimiento PA desde PostgreSQL con filtros y paginación optimizada
+    
+    - **bpin**: Filtrar por BPIN específico
+    - **cod_producto**: Filtrar por código de producto específico
+    - **periodo_corte**: Filtrar por período de corte (puede ser año '2024' o año-mes '2024-12')
+    - **limit**: Máximo número de registros a devolver (default: 100, max: 10000)
+    - **offset**: Número de registros a omitir para paginación (default: 0)
+    """
+    try:
+        # Construir la query base
+        query = db.query(models.SeguimientoProductoPA)
+        
+        # Aplicar filtros si se proporcionan
+        if bpin:
+            query = query.filter(models.SeguimientoProductoPA.bpin == bpin)
+        
+        if cod_producto:
+            query = query.filter(models.SeguimientoProductoPA.cod_producto == cod_producto)
+        
+        if periodo_corte:
+            # Si contiene guión, buscar exacto, si no, buscar que comience con el año
+            if '-' in periodo_corte:
+                query = query.filter(models.SeguimientoProductoPA.periodo_corte == periodo_corte)
+            else:
+                query = query.filter(models.SeguimientoProductoPA.periodo_corte.like(f"{periodo_corte}%"))
+        
+        # Aplicar paginación y ordenamiento para consistencia
+        productos = query.order_by(models.SeguimientoProductoPA.bpin, models.SeguimientoProductoPA.periodo_corte)\
+                        .offset(offset)\
+                        .limit(limit)\
+                        .all()
+        
+        logger.info(f"Consulta de productos seguimiento PA: {len(productos)} registros devueltos")
+        return productos
+        
+    except Exception as e:
+        logger.error(f"Error al consultar productos seguimiento PA: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Error al consultar datos: {str(e)}")
+
+@app.get('/seguimiento_pa', tags=["PROYECTO: SEGUIMIENTO AL PLAN DE ACCIÓN"], response_model=List[schemas.SeguimientoPA])
+def get_seguimiento_pa(
+    bpin: Optional[int] = Query(None, description="Filtrar por BPIN específico"),
+    cod_actividad: Optional[int] = Query(None, description="Filtrar por código de actividad"),
+    cod_producto: Optional[int] = Query(None, description="Filtrar por código de producto"),
+    periodo_corte: Optional[str] = Query(None, description="Filtrar por período de corte (ej: '2024-12' o '2024')"),
+    subdireccion_subsecretaria: Optional[str] = Query(None, description="Filtrar por subdirección/subsecretaría"),
+    limit: int = Query(100, ge=1, le=10000, description="Límite de registros a devolver"),
+    offset: int = Query(0, ge=0, description="Número de registros a omitir"),
+    db: Session = Depends(get_db)
+):
+    """
+    Obtiene resumen de seguimiento PA desde PostgreSQL con filtros y paginación optimizada
+    
+    - **bpin**: Filtrar por BPIN específico
+    - **cod_actividad**: Filtrar por código de actividad específico
+    - **cod_producto**: Filtrar por código de producto específico
+    - **periodo_corte**: Filtrar por período de corte (puede ser año '2024' o año-mes '2024-12')
+    - **subdireccion_subsecretaria**: Filtrar por subdirección/subsecretaría
+    - **limit**: Máximo número de registros a devolver (default: 100, max: 10000)
+    - **offset**: Número de registros a omitir para paginación (default: 0)
+    """
+    try:
+        # Construir la query base
+        query = db.query(models.SeguimientoPA)
+        
+        # Aplicar filtros si se proporcionan
+        if bpin:
+            query = query.filter(models.SeguimientoPA.bpin == bpin)
+        
+        if cod_actividad:
+            query = query.filter(models.SeguimientoPA.cod_actividad == cod_actividad)
+        
+        if cod_producto:
+            query = query.filter(models.SeguimientoPA.cod_producto == cod_producto)
+        
+        if subdireccion_subsecretaria:
+            query = query.filter(models.SeguimientoPA.subdireccion_subsecretaria.ilike(f"%{subdireccion_subsecretaria}%"))
+        
+        if periodo_corte:
+            # Si contiene guión, buscar exacto, si no, buscar que comience con el año
+            if '-' in periodo_corte:
+                query = query.filter(models.SeguimientoPA.periodo_corte == periodo_corte)
+            else:
+                query = query.filter(models.SeguimientoPA.periodo_corte.like(f"{periodo_corte}%"))
+        
+        # Aplicar paginación y ordenamiento para consistencia
+        seguimiento = query.order_by(models.SeguimientoPA.bpin, models.SeguimientoPA.periodo_corte)\
+                          .offset(offset)\
+                          .limit(limit)\
+                          .all()
+        
+        logger.info(f"Consulta de resumen seguimiento PA: {len(seguimiento)} registros devueltos")
+        return seguimiento
+        
+    except Exception as e:
+        logger.error(f"Error al consultar resumen seguimiento PA: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Error al consultar datos: {str(e)}")
+
+@app.get('/seguimiento_actividades_pa/count', tags=["PROYECTO: SEGUIMIENTO AL PLAN DE ACCIÓN"])
+def get_seguimiento_actividades_pa_count(
+    bpin: Optional[int] = Query(None, description="Filtrar por BPIN específico"),
+    cod_actividad: Optional[int] = Query(None, description="Filtrar por código de actividad"),
+    periodo_corte: Optional[str] = Query(None, description="Filtrar por período de corte"),
+    db: Session = Depends(get_db)
+):
+    """Obtiene el conteo de actividades de seguimiento PA con filtros opcionales"""
+    try:
+        query = db.query(models.SeguimientoActividadPA)
+        
+        if bpin:
+            query = query.filter(models.SeguimientoActividadPA.bpin == bpin)
+        
+        if cod_actividad:
+            query = query.filter(models.SeguimientoActividadPA.cod_actividad == cod_actividad)
+        
+        if periodo_corte:
+            if '-' in periodo_corte:
+                query = query.filter(models.SeguimientoActividadPA.periodo_corte == periodo_corte)
+            else:
+                query = query.filter(models.SeguimientoActividadPA.periodo_corte.like(f"{periodo_corte}%"))
+        
+        count = query.count()
+        return {"count": count}
+        
+    except Exception as e:
+        logger.error(f"Error al contar actividades seguimiento PA: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Error al consultar conteo: {str(e)}")
+
+@app.get('/seguimiento_productos_pa/count', tags=["PROYECTO: SEGUIMIENTO AL PLAN DE ACCIÓN"])
+def get_seguimiento_productos_pa_count(
+    bpin: Optional[int] = Query(None, description="Filtrar por BPIN específico"),
+    cod_producto: Optional[int] = Query(None, description="Filtrar por código de producto"),
+    periodo_corte: Optional[str] = Query(None, description="Filtrar por período de corte"),
+    db: Session = Depends(get_db)
+):
+    """Obtiene el conteo de productos de seguimiento PA con filtros opcionales"""
+    try:
+        query = db.query(models.SeguimientoProductoPA)
+        
+        if bpin:
+            query = query.filter(models.SeguimientoProductoPA.bpin == bpin)
+        
+        if cod_producto:
+            query = query.filter(models.SeguimientoProductoPA.cod_producto == cod_producto)
+        
+        if periodo_corte:
+            if '-' in periodo_corte:
+                query = query.filter(models.SeguimientoProductoPA.periodo_corte == periodo_corte)
+            else:
+                query = query.filter(models.SeguimientoProductoPA.periodo_corte.like(f"{periodo_corte}%"))
+        
+        count = query.count()
+        return {"count": count}
+        
+    except Exception as e:
+        logger.error(f"Error al contar productos seguimiento PA: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Error al consultar conteo: {str(e)}")
+
+@app.get('/seguimiento_pa/count', tags=["PROYECTO: SEGUIMIENTO AL PLAN DE ACCIÓN"])
+def get_seguimiento_pa_count(
+    bpin: Optional[int] = Query(None, description="Filtrar por BPIN específico"),
+    cod_actividad: Optional[int] = Query(None, description="Filtrar por código de actividad"),
+    cod_producto: Optional[int] = Query(None, description="Filtrar por código de producto"),
+    periodo_corte: Optional[str] = Query(None, description="Filtrar por período de corte"),
+    subdireccion_subsecretaria: Optional[str] = Query(None, description="Filtrar por subdirección/subsecretaría"),
+    db: Session = Depends(get_db)
+):
+    """Obtiene el conteo de resumen de seguimiento PA con filtros opcionales"""
+    try:
+        query = db.query(models.SeguimientoPA)
+        
+        if bpin:
+            query = query.filter(models.SeguimientoPA.bpin == bpin)
+        
+        if cod_actividad:
+            query = query.filter(models.SeguimientoPA.cod_actividad == cod_actividad)
+        
+        if cod_producto:
+            query = query.filter(models.SeguimientoPA.cod_producto == cod_producto)
+        
+        if subdireccion_subsecretaria:
+            query = query.filter(models.SeguimientoPA.subdireccion_subsecretaria.ilike(f"%{subdireccion_subsecretaria}%"))
+        
+        if periodo_corte:
+            if '-' in periodo_corte:
+                query = query.filter(models.SeguimientoPA.periodo_corte == periodo_corte)
+            else:
+                query = query.filter(models.SeguimientoPA.periodo_corte.like(f"{periodo_corte}%"))
+        
+        count = query.count()
+        return {"count": count}
+        
+    except Exception as e:
+        logger.error(f"Error al contar resumen seguimiento PA: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Error al consultar conteo: {str(e)}")
 
 @app.get('/movimientos_presupuestales/count', tags=["PROYECTO"])
 def get_movimientos_count(

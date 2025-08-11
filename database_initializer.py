@@ -76,7 +76,8 @@ class DatabaseInitializer:
             'centros_gestores', 'programas', 'areas_funcionales', 
             'propositos', 'retos', 'movimientos_presupuestales', 
             'ejecucion_presupuestal', 'unidades_proyecto_infraestructura_equipamientos',
-            'unidades_proyecto_infraestructura_vial'
+            'unidades_proyecto_infraestructura_vial', 'seguimiento_pa',
+            'seguimiento_productos_pa', 'seguimiento_actividades_pa'
         ]
         
         try:
@@ -93,167 +94,81 @@ class DatabaseInitializer:
         return backup_counts
     
     def create_tables_with_correct_schema(self):
-        """Crea/verifica tablas e índices con el esquema esperado (idempotente)."""
-        logger.info("🔧 Creando estructura de tablas...")
-        
-        table_definitions = {
-            'centros_gestores': """
-                CREATE TABLE IF NOT EXISTS centros_gestores (
-                    cod_centro_gestor INTEGER PRIMARY KEY,
-                    nombre_centro_gestor TEXT NOT NULL
-                )
-            """,
-            'programas': """
-                CREATE TABLE IF NOT EXISTS programas (
-                    cod_programa INTEGER PRIMARY KEY,
-                    nombre_programa TEXT NOT NULL
-                )
-            """,
-            'areas_funcionales': """
-                CREATE TABLE IF NOT EXISTS areas_funcionales (
-                    cod_area_funcional INTEGER PRIMARY KEY,
-                    nombre_area_funcional TEXT NOT NULL
-                )
-            """,
-            'propositos': """
-                CREATE TABLE IF NOT EXISTS propositos (
-                    cod_proposito INTEGER PRIMARY KEY,
-                    nombre_proposito TEXT NOT NULL
-                )
-            """,
-            'retos': """
-                CREATE TABLE IF NOT EXISTS retos (
-                    cod_reto INTEGER PRIMARY KEY,
-                    nombre_reto TEXT NOT NULL
-                )
-            """,
-            'movimientos_presupuestales': """
-                CREATE TABLE IF NOT EXISTS movimientos_presupuestales (
-                    bpin BIGINT NOT NULL,
-                    periodo_corte VARCHAR(50) NOT NULL,
-                    ppto_inicial DOUBLE PRECISION NOT NULL,
-                    adiciones DOUBLE PRECISION NOT NULL,
-                    reducciones DOUBLE PRECISION NOT NULL,
-                    ppto_modificado DOUBLE PRECISION NOT NULL,
-                    PRIMARY KEY (bpin, periodo_corte)
-                )
-            """,
-            'ejecucion_presupuestal': """
-                CREATE TABLE IF NOT EXISTS ejecucion_presupuestal (
-                    bpin BIGINT NOT NULL,
-                    periodo_corte VARCHAR(50) NOT NULL,
-                    ejecucion DOUBLE PRECISION NOT NULL,
-                    pagos DOUBLE PRECISION NOT NULL,
-                    saldos_cdp DOUBLE PRECISION NOT NULL,
-                    total_acumul_obligac DOUBLE PRECISION NOT NULL,
-                    total_acumulado_cdp DOUBLE PRECISION NOT NULL,
-                    total_acumulado_rpc DOUBLE PRECISION NOT NULL,
-                    PRIMARY KEY (bpin, periodo_corte)
-                )
-            """,
-            'unidades_proyecto_infraestructura_equipamientos': """
-                CREATE TABLE IF NOT EXISTS unidades_proyecto_infraestructura_equipamientos (
-                    bpin BIGINT PRIMARY KEY,
-                    identificador VARCHAR(255) NOT NULL,
-                    cod_fuente_financiamiento VARCHAR(50),
-                    usuarios_beneficiarios DOUBLE PRECISION,
-                    dataframe TEXT,
-                    nickname VARCHAR(100),
-                    nickname_detalle VARCHAR(255),
-                    comuna_corregimiento VARCHAR(100),
-                    barrio_vereda VARCHAR(100),
-                    direccion VARCHAR(255),
-                    clase_obra VARCHAR(100),
-                    subclase_obra VARCHAR(100),
-                    tipo_intervencion VARCHAR(100),
-                    descripcion_intervencion TEXT,
-                    estado_unidad_proyecto VARCHAR(50),
-                    fecha_inicio_planeado DATE,
-                    fecha_fin_planeado DATE,
-                    fecha_inicio_real DATE,
-                    fecha_fin_real DATE,
-                    es_centro_gravedad BOOLEAN,
-                    ppto_base DOUBLE PRECISION,
-                    pagos_realizados DOUBLE PRECISION,
-                    avance_fisico_obra DOUBLE PRECISION,
-                    ejecucion_financiera_obra DOUBLE PRECISION
-                )
-            """,
-            'unidades_proyecto_infraestructura_vial': """
-                CREATE TABLE IF NOT EXISTS unidades_proyecto_infraestructura_vial (
-                    bpin BIGINT PRIMARY KEY,
-                    identificador VARCHAR(255) NOT NULL,
-                    id_via VARCHAR(50),
-                    cod_fuente_financiamiento VARCHAR(50),
-                    usuarios_beneficiarios DOUBLE PRECISION,
-                    dataframe TEXT,
-                    nickname VARCHAR(100),
-                    nickname_detalle VARCHAR(255),
-                    comuna_corregimiento VARCHAR(100),
-                    barrio_vereda VARCHAR(100),
-                    direccion VARCHAR(255),
-                    clase_obra VARCHAR(100),
-                    subclase_obra VARCHAR(100),
-                    tipo_intervencion VARCHAR(100),
-                    descripcion_intervencion TEXT,
-                    estado_unidad_proyecto VARCHAR(50),
-                    unidad_medicion VARCHAR(50),
-                    fecha_inicio_planeado DATE,
-                    fecha_fin_planeado DATE,
-                    fecha_inicio_real DATE,
-                    fecha_fin_real DATE,
-                    es_centro_gravedad BOOLEAN,
-                    longitud_proyectada DOUBLE PRECISION,
-                    longitud_ejecutada DOUBLE PRECISION,
-                    ppto_base DOUBLE PRECISION,
-                    pagos_realizados DOUBLE PRECISION,
-                    avance_fisico_obra DOUBLE PRECISION,
-                    ejecucion_financiera_obra DOUBLE PRECISION
-                )
-            """
-        }
-        
-        indices = {
-            'movimientos_presupuestales': [
-                "CREATE INDEX IF NOT EXISTS idx_movimientos_bpin ON movimientos_presupuestales(bpin)",
-                "CREATE INDEX IF NOT EXISTS idx_movimientos_periodo ON movimientos_presupuestales(periodo_corte)"
-            ],
-            'ejecucion_presupuestal': [
-                "CREATE INDEX IF NOT EXISTS idx_ejecucion_bpin ON ejecucion_presupuestal(bpin)",
-                "CREATE INDEX IF NOT EXISTS idx_ejecucion_periodo ON ejecucion_presupuestal(periodo_corte)"
-            ],
-            'unidades_proyecto_infraestructura_equipamientos': [
-                "CREATE INDEX IF NOT EXISTS idx_equipamientos_identificador ON unidades_proyecto_infraestructura_equipamientos(identificador)",
-                "CREATE INDEX IF NOT EXISTS idx_equipamientos_comuna ON unidades_proyecto_infraestructura_equipamientos(comuna_corregimiento)",
-                "CREATE INDEX IF NOT EXISTS idx_equipamientos_estado ON unidades_proyecto_infraestructura_equipamientos(estado_unidad_proyecto)"
-            ],
-            'unidades_proyecto_infraestructura_vial': [
-                "CREATE INDEX IF NOT EXISTS idx_vial_identificador ON unidades_proyecto_infraestructura_vial(identificador)",
-                "CREATE INDEX IF NOT EXISTS idx_vial_comuna ON unidades_proyecto_infraestructura_vial(comuna_corregimiento)",
-                "CREATE INDEX IF NOT EXISTS idx_vial_estado ON unidades_proyecto_infraestructura_vial(estado_unidad_proyecto)"
-            ]
-        }
+        """Crea/verifica tablas usando SQLAlchemy modelos (incluye todas las tablas definidas)."""
+        logger.info("🔧 Creando estructura de tablas desde modelos SQLAlchemy...")
         
         try:
-            with self.engine.connect() as connection:
-                with connection.begin():
-                    # Crear tablas
-                    for table_name, sql in table_definitions.items():
-                        logger.info(f"🔧 Creando tabla: {table_name}")
-                        connection.execute(text(sql))
-                        logger.info(f"✅ Tabla {table_name} creada/verificada")
-                    
-                    # Crear índices
-                    for table_name, index_sqls in indices.items():
-                        for index_sql in index_sqls:
-                            logger.info(f"🔧 Creando índice en {table_name}")
-                            connection.execute(text(index_sql))
-                    
-                    logger.info("✅ Todos los índices creados/verificados")
+            # Usar SQLAlchemy para crear todas las tablas definidas en models.py
+            models.Base.metadata.create_all(bind=self.engine)
+            logger.info("✅ Todas las tablas creadas/verificadas desde modelos SQLAlchemy")
+            
+            # Listar las tablas creadas
+            created_tables = self.get_existing_tables()
+            logger.info(f"📊 Tablas disponibles ({len(created_tables)}):")
+            for table in sorted(created_tables):
+                logger.info(f"   • {table}")
+                
+        except Exception as e:
+            logger.error(f"❌ Error al crear tablas desde modelos: {e}")
+            raise
+            
+            # Crear índices importantes para rendimiento
+            self.create_performance_indexes()
                     
         except Exception as e:
             logger.error(f"❌ Error al crear tablas: {e}")
             raise
+    
+    def create_performance_indexes(self):
+        """Crea índices importantes para mejorar el rendimiento de consultas."""
+        logger.info("🔧 Creando índices de rendimiento...")
+        
+        indices = [
+            # Índices para movimientos presupuestales
+            "CREATE INDEX IF NOT EXISTS idx_movimientos_bpin ON movimientos_presupuestales(bpin)",
+            "CREATE INDEX IF NOT EXISTS idx_movimientos_periodo ON movimientos_presupuestales(periodo_corte)",
+            
+            # Índices para ejecución presupuestal
+            "CREATE INDEX IF NOT EXISTS idx_ejecucion_bpin ON ejecucion_presupuestal(bpin)",
+            "CREATE INDEX IF NOT EXISTS idx_ejecucion_periodo ON ejecucion_presupuestal(periodo_corte)",
+            
+            # Índices para equipamientos
+            "CREATE INDEX IF NOT EXISTS idx_equipamientos_identificador ON unidades_proyecto_infraestructura_equipamientos(identificador)",
+            "CREATE INDEX IF NOT EXISTS idx_equipamientos_comuna ON unidades_proyecto_infraestructura_equipamientos(comuna_corregimiento)",
+            "CREATE INDEX IF NOT EXISTS idx_equipamientos_estado ON unidades_proyecto_infraestructura_equipamientos(estado_unidad_proyecto)",
+            
+            # Índices para infraestructura vial
+            "CREATE INDEX IF NOT EXISTS idx_vial_identificador ON unidades_proyecto_infraestructura_vial(identificador)",
+            "CREATE INDEX IF NOT EXISTS idx_vial_comuna ON unidades_proyecto_infraestructura_vial(comuna_corregimiento)",
+            "CREATE INDEX IF NOT EXISTS idx_vial_estado ON unidades_proyecto_infraestructura_vial(estado_unidad_proyecto)",
+            
+            # Índices para seguimiento PA
+            "CREATE INDEX IF NOT EXISTS idx_seguimiento_pa_periodo ON seguimiento_pa(periodo_corte)",
+            "CREATE INDEX IF NOT EXISTS idx_seguimiento_pa_subdireccion ON seguimiento_pa(subdireccion_subsecretaria)",
+            "CREATE INDEX IF NOT EXISTS idx_seguimiento_productos_pa_cod1 ON seguimiento_productos_pa(cod_pd_lvl_1)",
+            "CREATE INDEX IF NOT EXISTS idx_seguimiento_productos_pa_cod2 ON seguimiento_productos_pa(cod_pd_lvl_2)",
+            "CREATE INDEX IF NOT EXISTS idx_seguimiento_actividades_pa_cod1 ON seguimiento_actividades_pa(cod_pd_lvl_1)",
+            "CREATE INDEX IF NOT EXISTS idx_seguimiento_actividades_pa_cod2 ON seguimiento_actividades_pa(cod_pd_lvl_2)",
+            "CREATE INDEX IF NOT EXISTS idx_seguimiento_actividades_pa_cod3 ON seguimiento_actividades_pa(cod_pd_lvl_3)"
+        ]
+        
+        try:
+            with self.engine.connect() as connection:
+                with connection.begin():
+                    for index_sql in indices:
+                        try:
+                            connection.execute(text(index_sql))
+                            logger.info(f"✅ Índice creado: {index_sql.split('idx_')[1].split(' ')[0]}")
+                        except Exception as e:
+                            if "already exists" in str(e):
+                                logger.info(f"⚠️ Índice ya existe: {index_sql.split('idx_')[1].split(' ')[0]}")
+                            else:
+                                logger.warning(f"⚠️ Error creando índice: {e}")
+                    
+                    logger.info("✅ Todos los índices procesados")
+                    
+        except Exception as e:
+            logger.warning(f"⚠️ Error durante creación de índices: {e}")
     
     def fix_existing_schema_issues(self):
         """Corrige problemas comunes de tipos de columnas en tablas existentes."""
@@ -342,7 +257,8 @@ class DatabaseInitializer:
             'centros_gestores', 'programas', 'areas_funcionales',
             'propositos', 'retos', 'movimientos_presupuestales', 
             'ejecucion_presupuestal', 'unidades_proyecto_infraestructura_equipamientos',
-            'unidades_proyecto_infraestructura_vial'
+            'unidades_proyecto_infraestructura_vial', 'seguimiento_pa',
+            'seguimiento_productos_pa', 'seguimiento_actividades_pa'
         ]
         
         try:
@@ -362,8 +278,11 @@ class DatabaseInitializer:
                     WHERE table_schema = 'public' 
                     AND table_name IN ('movimientos_presupuestales', 'ejecucion_presupuestal', 
                                      'unidades_proyecto_infraestructura_equipamientos',
-                                     'unidades_proyecto_infraestructura_vial')
-                    AND column_name IN ('bpin', 'periodo_corte', 'identificador')
+                                     'unidades_proyecto_infraestructura_vial',
+                                     'seguimiento_pa', 'seguimiento_productos_pa', 
+                                     'seguimiento_actividades_pa')
+                    AND column_name IN ('bpin', 'periodo_corte', 'identificador', 'id_seguimiento_pa',
+                                      'cod_pd_lvl_1', 'cod_pd_lvl_2', 'cod_pd_lvl_3')
                     ORDER BY table_name, column_name;
                 """)
                 

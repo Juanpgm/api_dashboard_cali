@@ -1,6 +1,45 @@
 # Cambios y Mejoras (Agosto 2025)
 
-Versión actual: 2.1.0
+Versión actual: 2.2.0
+
+## Versión 2.2.0 - Agosto 11, 2025
+
+### 🏛️ SISTEMA COMPLETO DE SEGUIMIENTO AL PLAN DE ACCIÓN
+
+**Nuevas Tablas de Base de Datos**
+
+- ➕ `seguimiento_pa` - Tabla resumen con auto-increment PK `id_seguimiento_pa`
+- ➕ `seguimiento_productos_pa` - Productos con clave compuesta (cod_pd_lvl_1, cod_pd_lvl_2)
+- ➕ `seguimiento_actividades_pa` - Actividades con clave compuesta (cod_pd_lvl_1, cod_pd_lvl_2, cod_pd_lvl_3)
+
+**Nuevos Endpoints API (Tag: PROYECTO: SEGUIMIENTO AL PLAN DE ACCIÓN)**
+
+- ➕ `POST /seguimiento_pa` - Cargar datos de resumen PA
+- ➕ `POST /seguimiento_productos_pa` - Cargar productos PA
+- ➕ `POST /seguimiento_actividades_pa` - Cargar actividades PA
+- ➕ `POST /load_all_seguimiento_pa` - Carga masiva optimizada (recomendado)
+- ➕ `GET /seguimiento_pa` - Consultar resumen con filtros
+- ➕ `GET /seguimiento_productos_pa` - Consultar productos con filtros
+- ➕ `GET /seguimiento_actividades_pa` - Consultar actividades con filtros
+
+**Modelos SQLAlchemy Actualizados**
+
+- 🔧 `SeguimientoPA` - Auto-increment PK, campos nullable optimizados
+- 🔧 `SeguimientoProductoPA` - Clave compuesta, DECIMAL(15,2) para valores monetarios
+- 🔧 `SeguimientoActividadPA` - Clave compuesta, DECIMAL(8,4) para porcentajes
+
+**Inicializador de Base de Datos Mejorado**
+
+- 🔧 `database_initializer.py` ahora usa SQLAlchemy models automáticamente
+- 🔧 Creación automática de todas las tablas definidas en `models.py`
+- 🔧 Índices de rendimiento para tablas de seguimiento PA
+- 🔧 Verificación de esquema incluye nuevas tablas
+
+### 📊 Datos Procesados Exitosamente
+
+- ✅ 1,396 registros en `seguimiento_pa` (resumen por subdir/subsecr)
+- ✅ 1,990 registros en `seguimiento_productos_pa` (productos del plan)
+- ✅ 10,737 registros en `seguimiento_actividades_pa` (actividades detalladas)
 
 ## Versión 2.1.0 - Agosto 11, 2025
 

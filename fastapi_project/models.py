@@ -127,35 +127,28 @@ class SeguimientoPA(Base):
     __tablename__ = "seguimiento_pa"
     
     id_seguimiento_pa = Column(Integer, primary_key=True, autoincrement=True)
-    bpin = Column(String(50), ForeignKey("proyectos.bpin"))
-    cod_pd_lvl_1 = Column(String(50))
-    cod_pd_lvl_2 = Column(String(50))
-    cod_pd_lvl_3 = Column(String(50))
-    cod_actividad = Column(String(50))
-    cod_producto = Column(String(50))
+    bpin = Column(BigInteger, nullable=False, index=True)
+    cod_actividad = Column(BigInteger, nullable=False)
+    cod_producto = Column(BigInteger)  # Permitir nulo
+    periodo_corte = Column(String(7), nullable=False)  # YYYY-MM format
+    cod_pd_lvl_1 = Column(Integer)
+    cod_pd_lvl_2 = Column(Integer)
+    cod_pd_lvl_3 = Column(Integer)
     subdireccion_subsecretaria = Column(String(255))
-    mes_reporte = Column(SmallInteger)
-    anio_reporte = Column(SmallInteger)
-    avance_proyecto_pa = Column(DECIMAL(5, 2))
-    ejecucion_ppto_proyecto_pa = Column(DECIMAL(18, 2))
-    
-    __table_args__ = (
-        UniqueConstraint('bpin', 'cod_actividad', 'cod_producto', 'anio_reporte', 'mes_reporte'),
-    )
-    
-    # Relaciones (comentadas temporalmente)
-    # proyecto = relationship("Proyecto", back_populates="seguimiento_pa")
+    avance_proyecto_pa = Column(DECIMAL(8, 4))
+    ejecucion_ppto_proyecto_pa = Column(DECIMAL(15, 2))
+    archivo_origen = Column(String(255))
 
 class SeguimientoActividadPA(Base):
     __tablename__ = "seguimiento_actividades_pa"
     
     id_seguimiento_actividad = Column(Integer, primary_key=True, autoincrement=True)
-    cod_actividad = Column(String(50))
-    cod_centro_gestor = Column(String(50))
-    nombre_actividad = Column(String(500))
+    bpin = Column(BigInteger, nullable=False, index=True)
+    cod_actividad = Column(BigInteger)
+    cod_centro_gestor = Column(Integer)
+    nombre_actividad = Column(Text)
     descripcion_actividad = Column(Text)
-    mes_reporte = Column(SmallInteger)
-    anio_reporte = Column(SmallInteger)
+    periodo_corte = Column(String(7), nullable=False)  # YYYY-MM format
     fecha_inicio_actividad = Column(Date)
     fecha_fin_actividad = Column(Date)
     ppto_inicial_actividad = Column(DECIMAL(18, 2))
@@ -167,33 +160,30 @@ class SeguimientoActividadPA(Base):
     avance_real_actividad = Column(DECIMAL(5, 2))
     avance_actividad_acumulado = Column(DECIMAL(5, 2))
     ponderacion_actividad = Column(DECIMAL(5, 2))
+    archivo_origen = Column(String(255))
     
     __table_args__ = (
-        UniqueConstraint('cod_actividad', 'anio_reporte', 'mes_reporte'),
+        UniqueConstraint('bpin', 'cod_actividad', 'periodo_corte', name='uq_seguimiento_actividades_pa_key'),
     )
 
 class SeguimientoProductoPA(Base):
     __tablename__ = "seguimiento_productos_pa"
     
-    id_seguimiento_producto = Column(Integer, primary_key=True, autoincrement=True)
-    cod_producto = Column(String(50))
-    cod_producto_mga = Column(String(50))
+    bpin = Column(BigInteger, primary_key=True, nullable=False, index=True)
+    cod_producto = Column(BigInteger, primary_key=True, nullable=False)
+    periodo_corte = Column(String(7), primary_key=True, nullable=False)  # YYYY-MM format
+    cod_producto_mga = Column(BigInteger)
     nombre_producto = Column(String(500))
-    tipo_meta_producto = Column(String(100))
+    tipo_meta_producto = Column(String(50))
     descripcion_avance_producto = Column(Text)
-    mes_reporte = Column(SmallInteger)
-    anio_reporte = Column(SmallInteger)
-    cantidad_programada_producto = Column(DECIMAL(18, 2))
-    ponderacion_producto = Column(DECIMAL(5, 2))
-    avance_producto = Column(DECIMAL(5, 2))
-    ejecucion_fisica_producto = Column(DECIMAL(18, 2))
-    avance_real_producto = Column(DECIMAL(5, 2))
-    avance_producto_acumulado = Column(DECIMAL(5, 2))
-    ejecucion_ppto_producto = Column(DECIMAL(18, 2))
-    
-    __table_args__ = (
-        UniqueConstraint('cod_producto', 'anio_reporte', 'mes_reporte'),
-    )
+    cantidad_programada_producto = Column(DECIMAL(15, 2))
+    ponderacion_producto = Column(DECIMAL(8, 4))
+    avance_producto = Column(DECIMAL(15, 2))
+    ejecucion_fisica_producto = Column(DECIMAL(8, 4))
+    avance_real_producto = Column(DECIMAL(8, 4))
+    avance_producto_acumulado = Column(DECIMAL(8, 4))
+    ejecucion_ppto_producto = Column(DECIMAL(15, 2))
+    archivo_origen = Column(String(255))
 
 class UnidadProyecto(Base):
     __tablename__ = "unidades_proyecto"

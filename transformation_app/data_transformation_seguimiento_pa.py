@@ -531,27 +531,33 @@ def process_detailed_file(df: pd.DataFrame, periodo_corte: str, filename: str) -
                 'ejecucion_ppto_producto': ejecucion_ppto_producto
             })
         
-        # Create summary record
-        avance_proyecto_pa = 0.0
-        ejecucion_ppto_proyecto_pa = 0.0
-        
-        for col in df.columns:
-            if 'pct_avance_proyecto' in col:
-                avance_proyecto_pa = clean_numeric_value(row[col])
-            elif col == 'ejecucion':
-                ejecucion_ppto_proyecto_pa = clean_numeric_value(row[col])
+        # Create summary record combining activity and product data
+        # Get activity data
+        cant_prog_actividad = cantidad_programada_actividad
+        porcentaje_avance_actividad = porcentaje_avance_actividad_val
+        avance_actividad = avance_actividad_val
+        ejecucion_fisica_actividad = 0.0  # Not available in this format
+        porcentaje_avance_fisico_acum = avance_real_actividad
+        avance_actividad_acumulado = avance_actividad_acumulado_val
         
         summary_data.append({
             'bpin': bpin_val,
-            'cod_pd_lvl_1': cod_pd_lvl_1,
-            'cod_pd_lvl_2': cod_pd_lvl_2,
-            'cod_pd_lvl_3': cod_pd_lvl_3,
             'cod_actividad': cod_actividad,
             'cod_producto': cod_producto,
-            'subdireccion_subsecretaria': subdireccion,
             'periodo_corte': periodo_corte,
-            'avance_proyecto_pa': avance_proyecto_pa,
-            'ejecucion_ppto_proyecto_pa': ejecucion_ppto_proyecto_pa
+            'cant_prog_actividad': cant_prog_actividad,
+            'porcentaje_avance_actividad': porcentaje_avance_actividad,
+            'avance_actividad': avance_actividad,
+            'ejecucion_fisica_actividad': ejecucion_fisica_actividad,
+            'porcentaje_avance_fisico_acum': porcentaje_avance_fisico_acum,
+            'avance_actividad_acumulado': avance_actividad_acumulado,
+            'cantidad_programada_producto': cantidad_programada_producto,
+            'ponderacion_producto': ponderacion_producto,
+            'avance_producto': avance_producto,
+            'ejecucion_fisica_producto': ejecucion_fisica_producto,
+            'avance_real_producto': avance_real_producto,
+            'avance_producto_acumulado': avance_producto_acumulado,
+            'ejecucion_ppto_producto': ejecucion_ppto_producto
         })
     
     # Convert to DataFrames
