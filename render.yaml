@@ -1,0 +1,43 @@
+services:
+  # Base de datos PostgreSQL
+  - type: pserv
+    name: api-dashboard-postgres
+    runtime: docker
+    plan: free
+    databaseName: api_dashboard_cali
+    databaseUser: api_user
+
+  # API FastAPI
+  - type: web
+    name: api-dashboard-fastapi
+    runtime: python3
+    plan: free
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "uvicorn fastapi_project.main:app --host 0.0.0.0 --port $PORT"
+    envVars:
+      - key: POSTGRES_USER
+        fromDatabase:
+          name: api-dashboard-postgres
+          property: user
+      - key: POSTGRES_PASSWORD
+        fromDatabase:
+          name: api-dashboard-postgres
+          property: password
+      - key: POSTGRES_SERVER
+        fromDatabase:
+          name: api-dashboard-postgres
+          property: host
+      - key: POSTGRES_PORT
+        fromDatabase:
+          name: api-dashboard-postgres
+          property: port
+      - key: POSTGRES_DB
+        fromDatabase:
+          name: api-dashboard-postgres
+          property: database
+      - key: DATABASE_URL
+        fromDatabase:
+          name: api-dashboard-postgres
+          property: connectionString
+      - key: PYTHONPATH
+        value: /opt/render/project/src
