@@ -3,6 +3,7 @@ sources/*.xlsx
 sources/*.json
 .env/
 env/
+context/
 # Ignore logs and temporary files
 logs/
 *.log
