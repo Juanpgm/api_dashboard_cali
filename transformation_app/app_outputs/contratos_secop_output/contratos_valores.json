@@ -1,0 +1,3767 @@
+[
+  {
+    "bpin": 2020760010010,
+    "cod_contrato": "124412",
+    "valor_contrato": 170032597
+  },
+  {
+    "bpin": 2020760010746,
+    "cod_contrato": "125743",
+    "valor_contrato": 603791350
+  },
+  {
+    "bpin": 2023760010185,
+    "cod_contrato": "125743",
+    "valor_contrato": 603791350
+  },
+  {
+    "bpin": 2020760010117,
+    "cod_contrato": "126309",
+    "valor_contrato": 142398875
+  },
+  {
+    "bpin": 2022760010202,
+    "cod_contrato": "126557",
+    "valor_contrato": 2947528261
+  },
+  {
+    "bpin": 2022760010010,
+    "cod_contrato": "126557",
+    "valor_contrato": 2947528261
+  },
+  {
+    "bpin": 2021760010400,
+    "cod_contrato": "126557",
+    "valor_contrato": 2947528261
+  },
+  {
+    "bpin": 2021760010403,
+    "cod_contrato": "126557",
+    "valor_contrato": 2947528261
+  },
+  {
+    "bpin": 2020760010500,
+    "cod_contrato": "126557",
+    "valor_contrato": 2947528261
+  },
+  {
+    "bpin": 2020760010013,
+    "cod_contrato": "127422",
+    "valor_contrato": 355896039
+  },
+  {
+    "bpin": 2020760010152,
+    "cod_contrato": "127430",
+    "valor_contrato": 619236542
+  },
+  {
+    "bpin": 2021760010412,
+    "cod_contrato": "127430",
+    "valor_contrato": 619236542
+  },
+  {
+    "bpin": 2023760010171,
+    "cod_contrato": "127430",
+    "valor_contrato": 619236542
+  },
+  {
+    "bpin": 2020760010452,
+    "cod_contrato": "127578",
+    "valor_contrato": 130001000
+  },
+  {
+    "bpin": 2020760010210,
+    "cod_contrato": "127578",
+    "valor_contrato": 130001000
+  },
+  {
+    "bpin": 2020760010545,
+    "cod_contrato": "128112",
+    "valor_contrato": 1002471211
+  },
+  {
+    "bpin": 2020760010829,
+    "cod_contrato": "128666",
+    "valor_contrato": 690124127
+  },
+  {
+    "bpin": 2024760010009,
+    "cod_contrato": "129601",
+    "valor_contrato": 45695495
+  },
+  {
+    "bpin": 2023760010004,
+    "cod_contrato": "130055",
+    "valor_contrato": 1909207
+  },
+  {
+    "bpin": 2020760010009,
+    "cod_contrato": "130512",
+    "valor_contrato": 1388264634
+  },
+  {
+    "bpin": 2020760010445,
+    "cod_contrato": "130515",
+    "valor_contrato": 3994085051
+  },
+  {
+    "bpin": 2020760010774,
+    "cod_contrato": "130888",
+    "valor_contrato": 535809030
+  },
+  {
+    "bpin": 2020760010759,
+    "cod_contrato": "130888",
+    "valor_contrato": 535809030
+  },
+  {
+    "bpin": 2020760010651,
+    "cod_contrato": "130888",
+    "valor_contrato": 535809030
+  },
+  {
+    "bpin": 2020760010757,
+    "cod_contrato": "130888",
+    "valor_contrato": 535809030
+  },
+  {
+    "bpin": 2020760010776,
+    "cod_contrato": "130888",
+    "valor_contrato": 535809030
+  },
+  {
+    "bpin": 2020760010756,
+    "cod_contrato": "130888",
+    "valor_contrato": 535809030
+  },
+  {
+    "bpin": 2021760010218,
+    "cod_contrato": "130888",
+    "valor_contrato": 535809030
+  },
+  {
+    "bpin": 2022760010201,
+    "cod_contrato": "131200",
+    "valor_contrato": 1048417679
+  },
+  {
+    "bpin": 2020760010030,
+    "cod_contrato": "133044",
+    "valor_contrato": 92596077
+  },
+  {
+    "bpin": 2024760010017,
+    "cod_contrato": "133882",
+    "valor_contrato": 119931765
+  },
+  {
+    "bpin": 2024760010013,
+    "cod_contrato": "134164",
+    "valor_contrato": 2287418
+  },
+  {
+    "bpin": 2020760010721,
+    "cod_contrato": "134425",
+    "valor_contrato": 16338240280
+  },
+  {
+    "bpin": 2021760010037,
+    "cod_contrato": "134425",
+    "valor_contrato": 16338240280
+  },
+  {
+    "bpin": 2023760010150,
+    "cod_contrato": "134455",
+    "valor_contrato": 92586046
+  },
+  {
+    "bpin": 2023760010149,
+    "cod_contrato": "134455",
+    "valor_contrato": 92586046
+  },
+  {
+    "bpin": 2023760010152,
+    "cod_contrato": "134455",
+    "valor_contrato": 92586046
+  },
+  {
+    "bpin": 2023760010151,
+    "cod_contrato": "134458",
+    "valor_contrato": 272636769
+  },
+  {
+    "bpin": 2023760010156,
+    "cod_contrato": "134458",
+    "valor_contrato": 272636769
+  },
+  {
+    "bpin": 2023760010155,
+    "cod_contrato": "134458",
+    "valor_contrato": 272636769
+  },
+  {
+    "bpin": 2024760010160,
+    "cod_contrato": "134460",
+    "valor_contrato": 280066342
+  },
+  {
+    "bpin": 2024760010156,
+    "cod_contrato": "134508",
+    "valor_contrato": 17097000
+  },
+  {
+    "bpin": 2024760010221,
+    "cod_contrato": "134960",
+    "valor_contrato": 84000000
+  },
+  {
+    "bpin": 2024760010008,
+    "cod_contrato": "134989",
+    "valor_contrato": 650000000
+  },
+  {
+    "bpin": 2024760010213,
+    "cod_contrato": "135334",
+    "valor_contrato": 126980000
+  },
+  {
+    "bpin": 2024760010052,
+    "cod_contrato": "135809",
+    "valor_contrato": 1405228
+  },
+  {
+    "bpin": 2024760010224,
+    "cod_contrato": "136220",
+    "valor_contrato": 355114839
+  },
+  {
+    "bpin": 2023760010040,
+    "cod_contrato": "136884",
+    "valor_contrato": 157173030
+  },
+  {
+    "bpin": 2021760010437,
+    "cod_contrato": "136894",
+    "valor_contrato": 4095490
+  },
+  {
+    "bpin": 2022760010144,
+    "cod_contrato": "137119",
+    "valor_contrato": 281887915
+  },
+  {
+    "bpin": 2024760010055,
+    "cod_contrato": "137133",
+    "valor_contrato": 1199000
+  },
+  {
+    "bpin": 2024760010216,
+    "cod_contrato": "137710",
+    "valor_contrato": 124811800
+  },
+  {
+    "bpin": 2024760010236,
+    "cod_contrato": "137821",
+    "valor_contrato": 171000000
+  },
+  {
+    "bpin": 2024760010057,
+    "cod_contrato": "137841",
+    "valor_contrato": 789451
+  },
+  {
+    "bpin": 2024760010051,
+    "cod_contrato": "138288",
+    "valor_contrato": 361567089
+  },
+  {
+    "bpin": 2024760010045,
+    "cod_contrato": "138977",
+    "valor_contrato": 3902086507
+  },
+  {
+    "bpin": 2021760010045,
+    "cod_contrato": "CO1.PCCNTR.5733850",
+    "valor_contrato": 28916000
+  },
+  {
+    "bpin": 2020760010851,
+    "cod_contrato": "CO1.PCCNTR.5738820",
+    "valor_contrato": 12028000
+  },
+  {
+    "bpin": 2020760010012,
+    "cod_contrato": "CO1.PCCNTR.5746964",
+    "valor_contrato": 23080000
+  },
+  {
+    "bpin": 2020760010849,
+    "cod_contrato": "CO1.PCCNTR.5747821",
+    "valor_contrato": 17752000
+  },
+  {
+    "bpin": 2021760010470,
+    "cod_contrato": "CO1.PCCNTR.5750232",
+    "valor_contrato": 20924000
+  },
+  {
+    "bpin": 2020760010850,
+    "cod_contrato": "CO1.PCCNTR.5751364",
+    "valor_contrato": 20924000
+  },
+  {
+    "bpin": 2020760010847,
+    "cod_contrato": "CO1.PCCNTR.5751515",
+    "valor_contrato": 12028000
+  },
+  {
+    "bpin": 2020760010827,
+    "cod_contrato": "CO1.PCCNTR.5752083",
+    "valor_contrato": 8876000
+  },
+  {
+    "bpin": 2020760010848,
+    "cod_contrato": "CO1.PCCNTR.5752191",
+    "valor_contrato": 12028000
+  },
+  {
+    "bpin": 2020760010184,
+    "cod_contrato": "CO1.PCCNTR.5754599",
+    "valor_contrato": 28916000
+  },
+  {
+    "bpin": 2020760010171,
+    "cod_contrato": "CO1.PCCNTR.5754683",
+    "valor_contrato": 25996000
+  },
+  {
+    "bpin": 2023760010187,
+    "cod_contrato": "CO1.PCCNTR.5754683",
+    "valor_contrato": 25996000
+  },
+  {
+    "bpin": 2021760010198,
+    "cod_contrato": "CO1.PCCNTR.5756104",
+    "valor_contrato": 28916000
+  },
+  {
+    "bpin": 2020760010157,
+    "cod_contrato": "CO1.PCCNTR.5758468",
+    "valor_contrato": 17752000
+  },
+  {
+    "bpin": 2020760010647,
+    "cod_contrato": "CO1.PCCNTR.5758647",
+    "valor_contrato": 20924000
+  },
+  {
+    "bpin": 2020760010082,
+    "cod_contrato": "CO1.PCCNTR.5758985",
+    "valor_contrato": 13120000
+  },
+  {
+    "bpin": 2020760010104,
+    "cod_contrato": "CO1.PCCNTR.5759363",
+    "valor_contrato": 20924000
+  },
+  {
+    "bpin": 2023760010157,
+    "cod_contrato": "CO1.PCCNTR.5760645",
+    "valor_contrato": 25996000
+  },
+  {
+    "bpin": 2022760010165,
+    "cod_contrato": "CO1.PCCNTR.5761958",
+    "valor_contrato": 20924000
+  },
+  {
+    "bpin": 2020760010182,
+    "cod_contrato": "CO1.PCCNTR.5762335",
+    "valor_contrato": 22746500
+  },
+  {
+    "bpin": 2020760010174,
+    "cod_contrato": "CO1.PCCNTR.5762340",
+    "valor_contrato": 22746500
+  },
+  {
+    "bpin": 2020760010723,
+    "cod_contrato": "CO1.PCCNTR.5763210",
+    "valor_contrato": 28916000
+  },
+  {
+    "bpin": 2020760010430,
+    "cod_contrato": "CO1.PCCNTR.5763956",
+    "valor_contrato": 17752000
+  },
+  {
+    "bpin": 2020760010179,
+    "cod_contrato": "CO1.PCCNTR.5764627",
+    "valor_contrato": 23080000
+  },
+  {
+    "bpin": 2020760010070,
+    "cod_contrato": "CO1.PCCNTR.5765239",
+    "valor_contrato": 17752000
+  },
+  {
+    "bpin": 2021760010169,
+    "cod_contrato": "CO1.PCCNTR.5765956",
+    "valor_contrato": 25996000
+  },
+  {
+    "bpin": 2023760010158,
+    "cod_contrato": "CO1.PCCNTR.5766572",
+    "valor_contrato": 28916000
+  },
+  {
+    "bpin": 2022760010220,
+    "cod_contrato": "CO1.PCCNTR.5766786",
+    "valor_contrato": 13120000
+  },
+  {
+    "bpin": 2020760010761,
+    "cod_contrato": "CO1.PCCNTR.5767048",
+    "valor_contrato": 28916000
+  },
+  {
+    "bpin": 2020760010310,
+    "cod_contrato": "CO1.PCCNTR.5767214",
+    "valor_contrato": 20924000
+  },
+  {
+    "bpin": 2023760010159,
+    "cod_contrato": "CO1.PCCNTR.5768380",
+    "valor_contrato": 13120000
+  },
+  {
+    "bpin": 2020760010836,
+    "cod_contrato": "CO1.PCCNTR.5769182",
+    "valor_contrato": 28916000
+  },
+  {
+    "bpin": 2020760010609,
+    "cod_contrato": "CO1.PCCNTR.5770309",
+    "valor_contrato": 10316000
+  },
+  {
+    "bpin": 2021760010476,
+    "cod_contrato": "CO1.PCCNTR.5771599",
+    "valor_contrato": 13120000
+  },
+  {
+    "bpin": 2021760010439,
+    "cod_contrato": "CO1.PCCNTR.5771996",
+    "valor_contrato": 17752000
+  },
+  {
+    "bpin": 2020760010732,
+    "cod_contrato": "CO1.PCCNTR.5772406",
+    "valor_contrato": 20924000
+  },
+  {
+    "bpin": 2020760010154,
+    "cod_contrato": "CO1.PCCNTR.5773504",
+    "valor_contrato": 28916000
+  },
+  {
+    "bpin": 2020760010213,
+    "cod_contrato": "CO1.PCCNTR.5773729",
+    "valor_contrato": 10316000
+  },
+  {
+    "bpin": 2020760010637,
+    "cod_contrato": "CO1.PCCNTR.5773885",
+    "valor_contrato": 13120000
+  },
+  {
+    "bpin": 2021760010406,
+    "cod_contrato": "CO1.PCCNTR.5774015",
+    "valor_contrato": 28916000
+  },
+  {
+    "bpin": 2021760010001,
+    "cod_contrato": "CO1.PCCNTR.5774528",
+    "valor_contrato": 13120000
+  },
+  {
+    "bpin": 2020760010129,
+    "cod_contrato": "CO1.PCCNTR.5775215",
+    "valor_contrato": 10316000
+  },
+  {
+    "bpin": 2020760010136,
+    "cod_contrato": "CO1.PCCNTR.5776676",
+    "valor_contrato": 20924000
+  },
+  {
+    "bpin": 2020760010149,
+    "cod_contrato": "CO1.PCCNTR.5776960",
+    "valor_contrato": 13120000
+  },
+  {
+    "bpin": 2020760010150,
+    "cod_contrato": "CO1.PCCNTR.5776977",
+    "valor_contrato": 10316000
+  },
+  {
+    "bpin": 2021760010490,
+    "cod_contrato": "CO1.PCCNTR.5777128",
+    "valor_contrato": 20924000
+  },
+  {
+    "bpin": 2021760010492,
+    "cod_contrato": "CO1.PCCNTR.5777141",
+    "valor_contrato": 20924000
+  },
+  {
+    "bpin": 2020760010119,
+    "cod_contrato": "CO1.PCCNTR.5777686",
+    "valor_contrato": 20924000
+  },
+  {
+    "bpin": 2022760010156,
+    "cod_contrato": "CO1.PCCNTR.5777701",
+    "valor_contrato": 28916000
+  },
+  {
+    "bpin": 2022760010124,
+    "cod_contrato": "CO1.PCCNTR.5778739",
+    "valor_contrato": 13120000
+  },
+  {
+    "bpin": 2020760010596,
+    "cod_contrato": "CO1.PCCNTR.5779143",
+    "valor_contrato": 20924000
+  },
+  {
+    "bpin": 2020760010069,
+    "cod_contrato": "CO1.PCCNTR.5780829",
+    "valor_contrato": 20924000
+  },
+  {
+    "bpin": 2021760010204,
+    "cod_contrato": "CO1.PCCNTR.5781274",
+    "valor_contrato": 20924000
+  },
+  {
+    "bpin": 2020760010036,
+    "cod_contrato": "CO1.PCCNTR.5781297",
+    "valor_contrato": 20924000
+  },
+  {
+    "bpin": 2022760010157,
+    "cod_contrato": "CO1.PCCNTR.5782151",
+    "valor_contrato": 14584000
+  },
+  {
+    "bpin": 2021760010479,
+    "cod_contrato": "CO1.PCCNTR.5782761",
+    "valor_contrato": 20924000
+  },
+  {
+    "bpin": 2020760010499,
+    "cod_contrato": "CO1.PCCNTR.5783099",
+    "valor_contrato": 8392000
+  },
+  {
+    "bpin": 2023760010188,
+    "cod_contrato": "CO1.PCCNTR.5784068",
+    "valor_contrato": 22746500
+  },
+  {
+    "bpin": 2020760010189,
+    "cod_contrato": "CO1.PCCNTR.5785121",
+    "valor_contrato": 28916000
+  },
+  {
+    "bpin": 2020760010464,
+    "cod_contrato": "CO1.PCCNTR.5785644",
+    "valor_contrato": 17752000
+  },
+  {
+    "bpin": 2020760010424,
+    "cod_contrato": "CO1.PCCNTR.5785736",
+    "valor_contrato": 17752000
+  },
+  {
+    "bpin": 2020760010510,
+    "cod_contrato": "CO1.PCCNTR.5786004",
+    "valor_contrato": 17752000
+  },
+  {
+    "bpin": 2020760010550,
+    "cod_contrato": "CO1.PCCNTR.5786540",
+    "valor_contrato": 10316000
+  },
+  {
+    "bpin": 2023760010003,
+    "cod_contrato": "CO1.PCCNTR.5786542",
+    "valor_contrato": 28916000
+  },
+  {
+    "bpin": 2020760010301,
+    "cod_contrato": "CO1.PCCNTR.5786764",
+    "valor_contrato": 17752000
+  },
+  {
+    "bpin": 2020760010598,
+    "cod_contrato": "CO1.PCCNTR.5786944",
+    "valor_contrato": 28916000
+  },
+  {
+    "bpin": 2020760010098,
+    "cod_contrato": "CO1.PCCNTR.5786972",
+    "valor_contrato": 20924000
+  },
+  {
+    "bpin": 2020760010513,
+    "cod_contrato": "CO1.PCCNTR.5786988",
+    "valor_contrato": 17752000
+  },
+  {
+    "bpin": 2020760010462,
+    "cod_contrato": "CO1.PCCNTR.5787316",
+    "valor_contrato": 10732000
+  },
+  {
+    "bpin": 2021760010214,
+    "cod_contrato": "CO1.PCCNTR.5788307",
+    "valor_contrato": 14584000
+  },
+  {
+    "bpin": 2020760010764,
+    "cod_contrato": "CO1.PCCNTR.5788459",
+    "valor_contrato": 10316000
+  },
+  {
+    "bpin": 2020760010758,
+    "cod_contrato": "CO1.PCCNTR.5789485",
+    "valor_contrato": 20924000
+  },
+  {
+    "bpin": 2021760010474,
+    "cod_contrato": "CO1.PCCNTR.5789836",
+    "valor_contrato": 20924000
+  },
+  {
+    "bpin": 2020760010766,
+    "cod_contrato": "CO1.PCCNTR.5790185",
+    "valor_contrato": 13120000
+  },
+  {
+    "bpin": 2021760010004,
+    "cod_contrato": "CO1.PCCNTR.5790236",
+    "valor_contrato": 28916000
+  },
+  {
+    "bpin": 2020760010643,
+    "cod_contrato": "CO1.PCCNTR.5790343",
+    "valor_contrato": 10316000
+  },
+  {
+    "bpin": 2022760010074,
+    "cod_contrato": "CO1.PCCNTR.5790391",
+    "valor_contrato": 23080000
+  },
+  {
+    "bpin": 2023760010026,
+    "cod_contrato": "CO1.PCCNTR.5790472",
+    "valor_contrato": 20924000
+  },
+  {
+    "bpin": 2021760010274,
+    "cod_contrato": "CO1.PCCNTR.5790479",
+    "valor_contrato": 14584000
+  },
+  {
+    "bpin": 2023760010027,
+    "cod_contrato": "CO1.PCCNTR.5790492",
+    "valor_contrato": 20924000
+  },
+  {
+    "bpin": 2021760010275,
+    "cod_contrato": "CO1.PCCNTR.5790709",
+    "valor_contrato": 13120000
+  },
+  {
+    "bpin": 2023760010025,
+    "cod_contrato": "CO1.PCCNTR.5790734",
+    "valor_contrato": 20924000
+  },
+  {
+    "bpin": 2021760010044,
+    "cod_contrato": "CO1.PCCNTR.5790935",
+    "valor_contrato": 25996000
+  },
+  {
+    "bpin": 2020760010506,
+    "cod_contrato": "CO1.PCCNTR.5791063",
+    "valor_contrato": 25996000
+  },
+  {
+    "bpin": 2020760010636,
+    "cod_contrato": "CO1.PCCNTR.5791223",
+    "valor_contrato": 17752000
+  },
+  {
+    "bpin": 2023760010142,
+    "cod_contrato": "CO1.PCCNTR.5791499",
+    "valor_contrato": 23080000
+  },
+  {
+    "bpin": 2020760010682,
+    "cod_contrato": "CO1.PCCNTR.5791517",
+    "valor_contrato": 17752000
+  },
+  {
+    "bpin": 2020760010302,
+    "cod_contrato": "CO1.PCCNTR.5791659",
+    "valor_contrato": 23080000
+  },
+  {
+    "bpin": 2020760010583,
+    "cod_contrato": "CO1.PCCNTR.5791903",
+    "valor_contrato": 8392000
+  },
+  {
+    "bpin": 2021760010482,
+    "cod_contrato": "CO1.PCCNTR.5792331",
+    "valor_contrato": 20924000
+  },
+  {
+    "bpin": 2020760010745,
+    "cod_contrato": "CO1.PCCNTR.5792461",
+    "valor_contrato": 13120000
+  },
+  {
+    "bpin": 2021760010478,
+    "cod_contrato": "CO1.PCCNTR.5792680",
+    "valor_contrato": 28916000
+  },
+  {
+    "bpin": 2020760010569,
+    "cod_contrato": "CO1.PCCNTR.5793066",
+    "valor_contrato": 10316000
+  },
+  {
+    "bpin": 2020760010303,
+    "cod_contrato": "CO1.PCCNTR.5793114",
+    "valor_contrato": 13120000
+  },
+  {
+    "bpin": 2020760010142,
+    "cod_contrato": "CO1.PCCNTR.5793379",
+    "valor_contrato": 23080000
+  },
+  {
+    "bpin": 2020760010371,
+    "cod_contrato": "CO1.PCCNTR.5793588",
+    "valor_contrato": 25996000
+  },
+  {
+    "bpin": 2020760010041,
+    "cod_contrato": "CO1.PCCNTR.5793787",
+    "valor_contrato": 28916000
+  },
+  {
+    "bpin": 2021760010146,
+    "cod_contrato": "CO1.PCCNTR.5793855",
+    "valor_contrato": 28916000
+  },
+  {
+    "bpin": 2021760010489,
+    "cod_contrato": "CO1.PCCNTR.5794351",
+    "valor_contrato": 20924000
+  },
+  {
+    "bpin": 2023760010011,
+    "cod_contrato": "CO1.PCCNTR.5795334",
+    "valor_contrato": 17752000
+  },
+  {
+    "bpin": 2020760010201,
+    "cod_contrato": "CO1.PCCNTR.5796057",
+    "valor_contrato": 15533000
+  },
+  {
+    "bpin": 2020760010423,
+    "cod_contrato": "CO1.PCCNTR.5796325",
+    "valor_contrato": 20924000
+  },
+  {
+    "bpin": 2021760010380,
+    "cod_contrato": "CO1.PCCNTR.5796953",
+    "valor_contrato": 23080000
+  },
+  {
+    "bpin": 2023760010184,
+    "cod_contrato": "CO1.PCCNTR.5797462",
+    "valor_contrato": 17752000
+  },
+  {
+    "bpin": 2021760010475,
+    "cod_contrato": "CO1.PCCNTR.5797545",
+    "valor_contrato": 20924000
+  },
+  {
+    "bpin": 2020760010754,
+    "cod_contrato": "CO1.PCCNTR.5797678",
+    "valor_contrato": 28916000
+  },
+  {
+    "bpin": 2021760010324,
+    "cod_contrato": "CO1.PCCNTR.5797904",
+    "valor_contrato": 23080000
+  },
+  {
+    "bpin": 2020760010042,
+    "cod_contrato": "CO1.PCCNTR.5798035",
+    "valor_contrato": 10316000
+  },
+  {
+    "bpin": 2020760010124,
+    "cod_contrato": "CO1.PCCNTR.5798208",
+    "valor_contrato": 28916000
+  },
+  {
+    "bpin": 2020760010772,
+    "cod_contrato": "CO1.PCCNTR.5798873",
+    "valor_contrato": 20924000
+  },
+  {
+    "bpin": 2020760010223,
+    "cod_contrato": "CO1.PCCNTR.5799209",
+    "valor_contrato": 13004067
+  },
+  {
+    "bpin": 2023760010195,
+    "cod_contrato": "CO1.PCCNTR.5799210",
+    "valor_contrato": 18657233
+  },
+  {
+    "bpin": 2020760010469,
+    "cod_contrato": "CO1.PCCNTR.5799224",
+    "valor_contrato": 17752000
+  },
+  {
+    "bpin": 2020760010600,
+    "cod_contrato": "CO1.PCCNTR.5799444",
+    "valor_contrato": 28916000
+  },
+  {
+    "bpin": 2023760010016,
+    "cod_contrato": "CO1.PCCNTR.5799652",
+    "valor_contrato": 13120000
+  },
+  {
+    "bpin": 2021760010003,
+    "cod_contrato": "CO1.PCCNTR.5800667",
+    "valor_contrato": 20924000
+  },
+  {
+    "bpin": 2021760010148,
+    "cod_contrato": "CO1.PCCNTR.5801047",
+    "valor_contrato": 14584000
+  },
+  {
+    "bpin": 2020760010190,
+    "cod_contrato": "CO1.PCCNTR.5802759",
+    "valor_contrato": 17752000
+  },
+  {
+    "bpin": 2021760010424,
+    "cod_contrato": "CO1.PCCNTR.5803210",
+    "valor_contrato": 18308500
+  },
+  {
+    "bpin": 2020760010642,
+    "cod_contrato": "CO1.PCCNTR.5806482",
+    "valor_contrato": 20924000
+  },
+  {
+    "bpin": 2020760010071,
+    "cod_contrato": "CO1.PCCNTR.5807394",
+    "valor_contrato": 13120000
+  },
+  {
+    "bpin": 2020760010298,
+    "cod_contrato": "CO1.PCCNTR.5807446",
+    "valor_contrato": 20924000
+  },
+  {
+    "bpin": 2020760010228,
+    "cod_contrato": "CO1.PCCNTR.5807569",
+    "valor_contrato": 25996000
+  },
+  {
+    "bpin": 2020760010633,
+    "cod_contrato": "CO1.PCCNTR.5807779",
+    "valor_contrato": 20924000
+  },
+  {
+    "bpin": 2020760010114,
+    "cod_contrato": "CO1.PCCNTR.5807979",
+    "valor_contrato": 17752000
+  },
+  {
+    "bpin": 2020760010115,
+    "cod_contrato": "CO1.PCCNTR.5807998",
+    "valor_contrato": 20924000
+  },
+  {
+    "bpin": 2020760010125,
+    "cod_contrato": "CO1.PCCNTR.5808078",
+    "valor_contrato": 25996000
+  },
+  {
+    "bpin": 2020760010113,
+    "cod_contrato": "CO1.PCCNTR.5808351",
+    "valor_contrato": 17752000
+  },
+  {
+    "bpin": 2020760010081,
+    "cod_contrato": "CO1.PCCNTR.5808459",
+    "valor_contrato": 18308500
+  },
+  {
+    "bpin": 2020760010599,
+    "cod_contrato": "CO1.PCCNTR.5808553",
+    "valor_contrato": 14584000
+  },
+  {
+    "bpin": 2020760010373,
+    "cod_contrato": "CO1.PCCNTR.5810223",
+    "valor_contrato": 23080000
+  },
+  {
+    "bpin": 2020760010546,
+    "cod_contrato": "CO1.PCCNTR.5810610",
+    "valor_contrato": 25996000
+  },
+  {
+    "bpin": 2023760010002,
+    "cod_contrato": "CO1.PCCNTR.5811035",
+    "valor_contrato": 20924000
+  },
+  {
+    "bpin": 2020760010408,
+    "cod_contrato": "CO1.PCCNTR.5811153",
+    "valor_contrato": 10316000
+  },
+  {
+    "bpin": 2020760010299,
+    "cod_contrato": "CO1.PCCNTR.5811213",
+    "valor_contrato": 25996000
+  },
+  {
+    "bpin": 2020760010084,
+    "cod_contrato": "CO1.PCCNTR.5811265",
+    "valor_contrato": 10316000
+  },
+  {
+    "bpin": 2020760010088,
+    "cod_contrato": "CO1.PCCNTR.5811300",
+    "valor_contrato": 20924000
+  },
+  {
+    "bpin": 2023760010160,
+    "cod_contrato": "CO1.PCCNTR.5811407",
+    "valor_contrato": 28916000
+  },
+  {
+    "bpin": 2020760010686,
+    "cod_contrato": "CO1.PCCNTR.5811619",
+    "valor_contrato": 23080000
+  },
+  {
+    "bpin": 2021760010496,
+    "cod_contrato": "CO1.PCCNTR.5811777",
+    "valor_contrato": 13120000
+  },
+  {
+    "bpin": 2020760010615,
+    "cod_contrato": "CO1.PCCNTR.5811803",
+    "valor_contrato": 10316000
+  },
+  {
+    "bpin": 2020760010775,
+    "cod_contrato": "CO1.PCCNTR.5812454",
+    "valor_contrato": 13120000
+  },
+  {
+    "bpin": 2021760010494,
+    "cod_contrato": "CO1.PCCNTR.5812700",
+    "valor_contrato": 25996000
+  },
+  {
+    "bpin": 2020760010059,
+    "cod_contrato": "CO1.PCCNTR.5812786",
+    "valor_contrato": 13120000
+  },
+  {
+    "bpin": 2023760010167,
+    "cod_contrato": "CO1.PCCNTR.5812903",
+    "valor_contrato": 10316000
+  },
+  {
+    "bpin": 2021760010497,
+    "cod_contrato": "CO1.PCCNTR.5812997",
+    "valor_contrato": 17752000
+  },
+  {
+    "bpin": 2020760010824,
+    "cod_contrato": "CO1.PCCNTR.5813468",
+    "valor_contrato": 23067766095
+  },
+  {
+    "bpin": 2020760010771,
+    "cod_contrato": "CO1.PCCNTR.5813493",
+    "valor_contrato": 20924000
+  },
+  {
+    "bpin": 2023760010176,
+    "cod_contrato": "CO1.PCCNTR.5813641",
+    "valor_contrato": 25996000
+  },
+  {
+    "bpin": 2020760010653,
+    "cod_contrato": "CO1.PCCNTR.5813701",
+    "valor_contrato": 28916000
+  },
+  {
+    "bpin": 2020760010204,
+    "cod_contrato": "CO1.PCCNTR.5813782",
+    "valor_contrato": 17752000
+  },
+  {
+    "bpin": 2020760010828,
+    "cod_contrato": "CO1.PCCNTR.5813837",
+    "valor_contrato": 13120000
+  },
+  {
+    "bpin": 2023760010168,
+    "cod_contrato": "CO1.PCCNTR.5813878",
+    "valor_contrato": 20924000
+  },
+  {
+    "bpin": 2020760010610,
+    "cod_contrato": "CO1.PCCNTR.5814607",
+    "valor_contrato": 13120000
+  },
+  {
+    "bpin": 2020760010353,
+    "cod_contrato": "CO1.PCCNTR.5814754",
+    "valor_contrato": 25996000
+  },
+  {
+    "bpin": 2020760010425,
+    "cod_contrato": "CO1.PCCNTR.5815316",
+    "valor_contrato": 17752000
+  },
+  {
+    "bpin": 2020760010404,
+    "cod_contrato": "CO1.PCCNTR.5816863",
+    "valor_contrato": 17752000
+  },
+  {
+    "bpin": 2020760010553,
+    "cod_contrato": "CO1.PCCNTR.5817076",
+    "valor_contrato": 25996000
+  },
+  {
+    "bpin": 2020760010364,
+    "cod_contrato": "CO1.PCCNTR.5817472",
+    "valor_contrato": 17752000
+  },
+  {
+    "bpin": 2023760010162,
+    "cod_contrato": "CO1.PCCNTR.5817474",
+    "valor_contrato": 25996000
+  },
+  {
+    "bpin": 2021760010215,
+    "cod_contrato": "CO1.PCCNTR.5817741",
+    "valor_contrato": 28916000
+  },
+  {
+    "bpin": 2020760010374,
+    "cod_contrato": "CO1.PCCNTR.5818158",
+    "valor_contrato": 28916000
+  },
+  {
+    "bpin": 2021760010408,
+    "cod_contrato": "CO1.PCCNTR.5818206",
+    "valor_contrato": 28916000
+  },
+  {
+    "bpin": 2020760010382,
+    "cod_contrato": "CO1.PCCNTR.5818308",
+    "valor_contrato": 28916000
+  },
+  {
+    "bpin": 2021760010486,
+    "cod_contrato": "CO1.PCCNTR.5821587",
+    "valor_contrato": 20924000
+  },
+  {
+    "bpin": 2021760010487,
+    "cod_contrato": "CO1.PCCNTR.5821751",
+    "valor_contrato": 10732000
+  },
+  {
+    "bpin": 2020760010648,
+    "cod_contrato": "CO1.PCCNTR.5822056",
+    "valor_contrato": 13120000
+  },
+  {
+    "bpin": 2023760010173,
+    "cod_contrato": "CO1.PCCNTR.5825272",
+    "valor_contrato": 28916000
+  },
+  {
+    "bpin": 2020760010397,
+    "cod_contrato": "CO1.PCCNTR.5827137",
+    "valor_contrato": 17752000
+  },
+  {
+    "bpin": 2020760010063,
+    "cod_contrato": "CO1.PCCNTR.5827222",
+    "valor_contrato": 28916000
+  },
+  {
+    "bpin": 2023760010001,
+    "cod_contrato": "CO1.PCCNTR.5827559",
+    "valor_contrato": 11480000
+  },
+  {
+    "bpin": 2020760010795,
+    "cod_contrato": "CO1.PCCNTR.5827847",
+    "valor_contrato": 22746500
+  },
+  {
+    "bpin": 2023760010169,
+    "cod_contrato": "CO1.PCCNTR.5827869",
+    "valor_contrato": 20924000
+  },
+  {
+    "bpin": 2020760010857,
+    "cod_contrato": "CO1.PCCNTR.5828356",
+    "valor_contrato": 11480000
+  },
+  {
+    "bpin": 2020760010584,
+    "cod_contrato": "CO1.PCCNTR.5828521",
+    "valor_contrato": 11480000
+  },
+  {
+    "bpin": 2020760010681,
+    "cod_contrato": "CO1.PCCNTR.5828534",
+    "valor_contrato": 25996000
+  },
+  {
+    "bpin": 2020760010656,
+    "cod_contrato": "CO1.PCCNTR.5828546",
+    "valor_contrato": 20924000
+  },
+  {
+    "bpin": 2020760010442,
+    "cod_contrato": "CO1.PCCNTR.5828572",
+    "valor_contrato": 12028000
+  },
+  {
+    "bpin": 2020760010443,
+    "cod_contrato": "CO1.PCCNTR.5828587",
+    "valor_contrato": 10316000
+  },
+  {
+    "bpin": 2021760010338,
+    "cod_contrato": "CO1.PCCNTR.5828780",
+    "valor_contrato": 10316000
+  },
+  {
+    "bpin": 2020760010363,
+    "cod_contrato": "CO1.PCCNTR.5828832",
+    "valor_contrato": 10316000
+  },
+  {
+    "bpin": 2020760010650,
+    "cod_contrato": "CO1.PCCNTR.5828865",
+    "valor_contrato": 10316000
+  },
+  {
+    "bpin": 2020760010755,
+    "cod_contrato": "CO1.PCCNTR.5829943",
+    "valor_contrato": 11480000
+  },
+  {
+    "bpin": 2021760010414,
+    "cod_contrato": "CO1.PCCNTR.5830794",
+    "valor_contrato": 20924000
+  },
+  {
+    "bpin": 2020760010645,
+    "cod_contrato": "CO1.PCCNTR.5835078",
+    "valor_contrato": 20924000
+  },
+  {
+    "bpin": 2023760010175,
+    "cod_contrato": "CO1.PCCNTR.5835120",
+    "valor_contrato": 25996000
+  },
+  {
+    "bpin": 2023760010179,
+    "cod_contrato": "CO1.PCCNTR.5835436",
+    "valor_contrato": 13120000
+  },
+  {
+    "bpin": 2021760010193,
+    "cod_contrato": "CO1.PCCNTR.5837733",
+    "valor_contrato": 25996000
+  },
+  {
+    "bpin": 2020760010062,
+    "cod_contrato": "CO1.PCCNTR.5838188",
+    "valor_contrato": 20924000
+  },
+  {
+    "bpin": 2021760010415,
+    "cod_contrato": "CO1.PCCNTR.5842966",
+    "valor_contrato": 11480000
+  },
+  {
+    "bpin": 2020760010178,
+    "cod_contrato": "CO1.PCCNTR.5846290",
+    "valor_contrato": 18308500
+  },
+  {
+    "bpin": 2022760010182,
+    "cod_contrato": "CO1.PCCNTR.5847318",
+    "valor_contrato": 20924000
+  },
+  {
+    "bpin": 2020760010398,
+    "cod_contrato": "CO1.PCCNTR.5847842",
+    "valor_contrato": 13120000
+  },
+  {
+    "bpin": 2020760010161,
+    "cod_contrato": "CO1.PCCNTR.5847859",
+    "valor_contrato": 18308500
+  },
+  {
+    "bpin": 2023760010144,
+    "cod_contrato": "CO1.PCCNTR.5848613",
+    "valor_contrato": 23080000
+  },
+  {
+    "bpin": 2021760010337,
+    "cod_contrato": "CO1.PCCNTR.5858404",
+    "valor_contrato": 14584000
+  },
+  {
+    "bpin": 2021760010387,
+    "cod_contrato": "CO1.PCCNTR.5859270",
+    "valor_contrato": 10316000
+  },
+  {
+    "bpin": 2020760010378,
+    "cod_contrato": "CO1.PCCNTR.5860144",
+    "valor_contrato": 17752000
+  },
+  {
+    "bpin": 2020760010515,
+    "cod_contrato": "CO1.PCCNTR.5861580",
+    "valor_contrato": 59964846
+  },
+  {
+    "bpin": 2021760010383,
+    "cod_contrato": "CO1.PCCNTR.5863953",
+    "valor_contrato": 14584000
+  },
+  {
+    "bpin": 2020760010572,
+    "cod_contrato": "CO1.PCCNTR.5868125",
+    "valor_contrato": 17752000
+  },
+  {
+    "bpin": 2020760010079,
+    "cod_contrato": "CO1.PCCNTR.5873469",
+    "valor_contrato": 18308500
+  },
+  {
+    "bpin": 2020760010826,
+    "cod_contrato": "CO1.PCCNTR.5874082",
+    "valor_contrato": 1312274604
+  },
+  {
+    "bpin": 2020760010290,
+    "cod_contrato": "CO1.PCCNTR.5875832",
+    "valor_contrato": 21687000
+  },
+  {
+    "bpin": 2020760010002,
+    "cod_contrato": "CO1.PCCNTR.5908400",
+    "valor_contrato": 66997125
+  },
+  {
+    "bpin": 2023760010178,
+    "cod_contrato": "CO1.PCCNTR.5932099",
+    "valor_contrato": 21687000
+  },
+  {
+    "bpin": 2022760010033,
+    "cod_contrato": "CO1.PCCNTR.5932381",
+    "valor_contrato": 9840000
+  },
+  {
+    "bpin": 2020760010820,
+    "cod_contrato": "CO1.PCCNTR.5941674",
+    "valor_contrato": 113389000
+  },
+  {
+    "bpin": 2020760010652,
+    "cod_contrato": "CO1.PCCNTR.5948078",
+    "valor_contrato": 13314000
+  },
+  {
+    "bpin": 2020760010216,
+    "cod_contrato": "CO1.PCCNTR.5948182",
+    "valor_contrato": 15693000
+  },
+  {
+    "bpin": 2023760010161,
+    "cod_contrato": "CO1.PCCNTR.5948388",
+    "valor_contrato": 15693000
+  },
+  {
+    "bpin": 2020760010767,
+    "cod_contrato": "CO1.PCCNTR.5948823",
+    "valor_contrato": 7737000
+  },
+  {
+    "bpin": 2020760010501,
+    "cod_contrato": "CO1.PCCNTR.5951323",
+    "valor_contrato": 15693000
+  },
+  {
+    "bpin": 2020760010099,
+    "cod_contrato": "CO1.PCCNTR.5951344",
+    "valor_contrato": 7737000
+  },
+  {
+    "bpin": 2021760010224,
+    "cod_contrato": "CO1.PCCNTR.5951488",
+    "valor_contrato": 17310000
+  },
+  {
+    "bpin": 2020760010768,
+    "cod_contrato": "CO1.PCCNTR.5952731",
+    "valor_contrato": 19497000
+  },
+  {
+    "bpin": 2020760010740,
+    "cod_contrato": "CO1.PCCNTR.5954492",
+    "valor_contrato": 7737000
+  },
+  {
+    "bpin": 2020760010217,
+    "cod_contrato": "CO1.PCCNTR.5955072",
+    "valor_contrato": 18308500
+  },
+  {
+    "bpin": 2021760010276,
+    "cod_contrato": "CO1.PCCNTR.5957137",
+    "valor_contrato": 15693000
+  },
+  {
+    "bpin": 2020760010687,
+    "cod_contrato": "CO1.PCCNTR.5957554",
+    "valor_contrato": 21687000
+  },
+  {
+    "bpin": 2020760010192,
+    "cod_contrato": "CO1.PCCNTR.5964350",
+    "valor_contrato": 21687000
+  },
+  {
+    "bpin": 2020760010635,
+    "cod_contrato": "CO1.PCCNTR.5964752",
+    "valor_contrato": 7737000
+  },
+  {
+    "bpin": 2020760010176,
+    "cod_contrato": "CO1.PCCNTR.5965529",
+    "valor_contrato": 15693000
+  },
+  {
+    "bpin": 2020760010196,
+    "cod_contrato": "CO1.PCCNTR.5965535",
+    "valor_contrato": 15693000
+  },
+  {
+    "bpin": 2020760010175,
+    "cod_contrato": "CO1.PCCNTR.5965637",
+    "valor_contrato": 17310000
+  },
+  {
+    "bpin": 2022760010150,
+    "cod_contrato": "CO1.PCCNTR.5965844",
+    "valor_contrato": 21687000
+  },
+  {
+    "bpin": 2020760010724,
+    "cod_contrato": "CO1.PCCNTR.5965878",
+    "valor_contrato": 7737000
+  },
+  {
+    "bpin": 2020760010074,
+    "cod_contrato": "CO1.PCCNTR.5966083",
+    "valor_contrato": 18308500
+  },
+  {
+    "bpin": 2020760010040,
+    "cod_contrato": "CO1.PCCNTR.5966404",
+    "valor_contrato": 9026500
+  },
+  {
+    "bpin": 2020760010799,
+    "cod_contrato": "CO1.PCCNTR.5966912",
+    "valor_contrato": 15693000
+  },
+  {
+    "bpin": 2020760010075,
+    "cod_contrato": "CO1.PCCNTR.5967030",
+    "valor_contrato": 21687000
+  },
+  {
+    "bpin": 2023760010182,
+    "cod_contrato": "CO1.PCCNTR.5967278",
+    "valor_contrato": 15693000
+  },
+  {
+    "bpin": 2020760010197,
+    "cod_contrato": "CO1.PCCNTR.5967363",
+    "valor_contrato": 15693000
+  },
+  {
+    "bpin": 2020760010193,
+    "cod_contrato": "CO1.PCCNTR.5967431",
+    "valor_contrato": 17310000
+  },
+  {
+    "bpin": 2021760010177,
+    "cod_contrato": "CO1.PCCNTR.5970998",
+    "valor_contrato": 700000000
+  },
+  {
+    "bpin": 2020760010177,
+    "cod_contrato": "CO1.PCCNTR.5977487",
+    "valor_contrato": 15693000
+  },
+  {
+    "bpin": 2020760010658,
+    "cod_contrato": "CO1.PCCNTR.5981326",
+    "valor_contrato": 21687000
+  },
+  {
+    "bpin": 2020760010846,
+    "cod_contrato": "CO1.PCCNTR.5983783",
+    "valor_contrato": 9115000
+  },
+  {
+    "bpin": 2020760010187,
+    "cod_contrato": "CO1.PCCNTR.5985350",
+    "valor_contrato": 13314000
+  },
+  {
+    "bpin": 2023760010172,
+    "cod_contrato": "CO1.PCCNTR.5986125",
+    "valor_contrato": 13314000
+  },
+  {
+    "bpin": 2020760010750,
+    "cod_contrato": "CO1.PCCNTR.5986871",
+    "valor_contrato": 13077500
+  },
+  {
+    "bpin": 2023760010153,
+    "cod_contrato": "CO1.PCCNTR.5987716",
+    "valor_contrato": 300000000
+  },
+  {
+    "bpin": 2020760010014,
+    "cod_contrato": "CO1.PCCNTR.5988027",
+    "valor_contrato": 15693000
+  },
+  {
+    "bpin": 2020760010186,
+    "cod_contrato": "CO1.PCCNTR.5988046",
+    "valor_contrato": 17310000
+  },
+  {
+    "bpin": 2021760010207,
+    "cod_contrato": "CO1.PCCNTR.5988574",
+    "valor_contrato": 13314000
+  },
+  {
+    "bpin": 2021760010223,
+    "cod_contrato": "CO1.PCCNTR.5989100",
+    "valor_contrato": 9840000
+  },
+  {
+    "bpin": 2020760010463,
+    "cod_contrato": "CO1.PCCNTR.5989188",
+    "valor_contrato": 13314000
+  },
+  {
+    "bpin": 2020760010480,
+    "cod_contrato": "CO1.PCCNTR.5989904",
+    "valor_contrato": 15693000
+  },
+  {
+    "bpin": 2020760010100,
+    "cod_contrato": "CO1.PCCNTR.5990031",
+    "valor_contrato": 7737000
+  },
+  {
+    "bpin": 2020760010207,
+    "cod_contrato": "CO1.PCCNTR.5992182",
+    "valor_contrato": 6294000
+  },
+  {
+    "bpin": 2020760010792,
+    "cod_contrato": "CO1.PCCNTR.5996633",
+    "valor_contrato": 152760859
+  },
+  {
+    "bpin": 2021760010481,
+    "cod_contrato": "CO1.PCCNTR.5996874",
+    "valor_contrato": 7737000
+  },
+  {
+    "bpin": 2020760010446,
+    "cod_contrato": "CO1.PCCNTR.5998854",
+    "valor_contrato": 13314000
+  },
+  {
+    "bpin": 2020760010095,
+    "cod_contrato": "CO1.PCCNTR.5999055",
+    "valor_contrato": 7737000
+  },
+  {
+    "bpin": 2021760010171,
+    "cod_contrato": "CO1.PCCNTR.5999417",
+    "valor_contrato": 17310000
+  },
+  {
+    "bpin": 2023760010186,
+    "cod_contrato": "CO1.PCCNTR.5999921",
+    "valor_contrato": 13314000
+  },
+  {
+    "bpin": 2021760010334,
+    "cod_contrato": "CO1.PCCNTR.6000552",
+    "valor_contrato": 13314000
+  },
+  {
+    "bpin": 2020760010587,
+    "cod_contrato": "CO1.PCCNTR.6001801",
+    "valor_contrato": 13314000
+  },
+  {
+    "bpin": 2020760010140,
+    "cod_contrato": "CO1.PCCNTR.6005529",
+    "valor_contrato": 9840000
+  },
+  {
+    "bpin": 2020760010448,
+    "cod_contrato": "CO1.PCCNTR.6005540",
+    "valor_contrato": 10462000
+  },
+  {
+    "bpin": 2020760010793,
+    "cod_contrato": "CO1.PCCNTR.6006645",
+    "valor_contrato": 7292000
+  },
+  {
+    "bpin": 2020760010156,
+    "cod_contrato": "CO1.PCCNTR.6006688",
+    "valor_contrato": 11095000
+  },
+  {
+    "bpin": 2020760010135,
+    "cod_contrato": "CO1.PCCNTR.6007245",
+    "valor_contrato": 15693000
+  },
+  {
+    "bpin": 2020760010112,
+    "cod_contrato": "CO1.PCCNTR.6009380",
+    "valor_contrato": 13077500
+  },
+  {
+    "bpin": 2020760010109,
+    "cod_contrato": "CO1.PCCNTR.6009563",
+    "valor_contrato": 13077500
+  },
+  {
+    "bpin": 2020760010110,
+    "cod_contrato": "CO1.PCCNTR.6009722",
+    "valor_contrato": 13077500
+  },
+  {
+    "bpin": 2020760010591,
+    "cod_contrato": "CO1.PCCNTR.6014818",
+    "valor_contrato": 9840000
+  },
+  {
+    "bpin": 2021760010222,
+    "cod_contrato": "CO1.PCCNTR.6016489",
+    "valor_contrato": 15693000
+  },
+  {
+    "bpin": 2020760010128,
+    "cod_contrato": "CO1.PCCNTR.6017013",
+    "valor_contrato": 13314000
+  },
+  {
+    "bpin": 2020760010494,
+    "cod_contrato": "CO1.PCCNTR.6019387",
+    "valor_contrato": 5366000
+  },
+  {
+    "bpin": 2020760010211,
+    "cod_contrato": "CO1.PCCNTR.6024031",
+    "valor_contrato": 9840000
+  },
+  {
+    "bpin": 2020760010798,
+    "cod_contrato": "CO1.PCCNTR.6024265",
+    "valor_contrato": 10462000
+  },
+  {
+    "bpin": 2020760010736,
+    "cod_contrato": "CO1.PCCNTR.6024372",
+    "valor_contrato": 10938000
+  },
+  {
+    "bpin": 2020760010789,
+    "cod_contrato": "CO1.PCCNTR.6024748",
+    "valor_contrato": 15693000
+  },
+  {
+    "bpin": 2023760010183,
+    "cod_contrato": "CO1.PCCNTR.6026204",
+    "valor_contrato": 12366324782
+  },
+  {
+    "bpin": 2020760010649,
+    "cod_contrato": "CO1.PCCNTR.6028067",
+    "valor_contrato": 9115000
+  },
+  {
+    "bpin": 2020760010497,
+    "cod_contrato": "CO1.PCCNTR.6028550",
+    "valor_contrato": 10938000
+  },
+  {
+    "bpin": 2020760010856,
+    "cod_contrato": "CO1.PCCNTR.6028590",
+    "valor_contrato": 15693000
+  },
+  {
+    "bpin": 2020760010159,
+    "cod_contrato": "CO1.PCCNTR.6029081",
+    "valor_contrato": 13314000
+  },
+  {
+    "bpin": 2020760010304,
+    "cod_contrato": "CO1.PCCNTR.6029266",
+    "valor_contrato": 13314000
+  },
+  {
+    "bpin": 2021760010006,
+    "cod_contrato": "CO1.PCCNTR.6029759",
+    "valor_contrato": 30920032778
+  },
+  {
+    "bpin": 2020760010760,
+    "cod_contrato": "CO1.PCCNTR.6030102",
+    "valor_contrato": 13077500
+  },
+  {
+    "bpin": 2023760010170,
+    "cod_contrato": "CO1.PCCNTR.6030211",
+    "valor_contrato": 13077500
+  },
+  {
+    "bpin": 2020760010576,
+    "cod_contrato": "CO1.PCCNTR.6035470",
+    "valor_contrato": 5366000
+  },
+  {
+    "bpin": 2020760010531,
+    "cod_contrato": "CO1.PCCNTR.6042239",
+    "valor_contrato": 10462000
+  },
+  {
+    "bpin": 2020760010387,
+    "cod_contrato": "CO1.PCCNTR.6052675",
+    "valor_contrato": 11095000
+  },
+  {
+    "bpin": 2020760010015,
+    "cod_contrato": "CO1.PCCNTR.6065410",
+    "valor_contrato": 10462000
+  },
+  {
+    "bpin": 2021760010423,
+    "cod_contrato": "CO1.PCCNTR.6074071",
+    "valor_contrato": 11095000
+  },
+  {
+    "bpin": 2020760010198,
+    "cod_contrato": "CO1.PCCNTR.6087088",
+    "valor_contrato": 7292000
+  },
+  {
+    "bpin": 2020760010203,
+    "cod_contrato": "CO1.PCCNTR.6090042",
+    "valor_contrato": 8876000
+  },
+  {
+    "bpin": 2021760010206,
+    "cod_contrato": "CO1.PCCNTR.6091725",
+    "valor_contrato": 10462000
+  },
+  {
+    "bpin": 2020760010146,
+    "cod_contrato": "CO1.PCCNTR.6098818",
+    "valor_contrato": 5158000
+  },
+  {
+    "bpin": 2021760010069,
+    "cod_contrato": "CO1.PCCNTR.6098895",
+    "valor_contrato": 8876000
+  },
+  {
+    "bpin": 2020760010548,
+    "cod_contrato": "CO1.PCCNTR.6104478",
+    "valor_contrato": 7292000
+  },
+  {
+    "bpin": 2020760010802,
+    "cod_contrato": "CO1.PCCNTR.6119957",
+    "valor_contrato": 8876000
+  },
+  {
+    "bpin": 2020760010542,
+    "cod_contrato": "CO1.PCCNTR.6121227",
+    "valor_contrato": 6560000
+  },
+  {
+    "bpin": 2020760010121,
+    "cod_contrato": "CO1.PCCNTR.6127237",
+    "valor_contrato": 10462000
+  },
+  {
+    "bpin": 2020760010713,
+    "cod_contrato": "CO1.PCCNTR.6135238",
+    "valor_contrato": 6014000
+  },
+  {
+    "bpin": 2021760010484,
+    "cod_contrato": "CO1.PCCNTR.6135356",
+    "valor_contrato": 7292000
+  },
+  {
+    "bpin": 2020760010791,
+    "cod_contrato": "CO1.PCCNTR.6135750",
+    "valor_contrato": 21950000
+  },
+  {
+    "bpin": 2020760010200,
+    "cod_contrato": "CO1.PCCNTR.6141694",
+    "valor_contrato": 1484776739
+  },
+  {
+    "bpin": 2020760010293,
+    "cod_contrato": "CO1.PCCNTR.6141694",
+    "valor_contrato": 1484776739
+  },
+  {
+    "bpin": 2020760010762,
+    "cod_contrato": "CO1.PCCNTR.6141984",
+    "valor_contrato": 300000000
+  },
+  {
+    "bpin": 2020760010485,
+    "cod_contrato": "CO1.PCCNTR.6147281",
+    "valor_contrato": 3123348660
+  },
+  {
+    "bpin": 2020760010476,
+    "cod_contrato": "CO1.PCCNTR.6153463",
+    "valor_contrato": 300000000
+  },
+  {
+    "bpin": 2020760010678,
+    "cod_contrato": "CO1.PCCNTR.6172580",
+    "valor_contrato": 11424000
+  },
+  {
+    "bpin": 2023760010194,
+    "cod_contrato": "CO1.PCCNTR.6190669",
+    "valor_contrato": 3280000
+  },
+  {
+    "bpin": 2020760010305,
+    "cod_contrato": "CO1.PCCNTR.6202672",
+    "valor_contrato": 1668133387
+  },
+  {
+    "bpin": 2020760010162,
+    "cod_contrato": "CO1.PCCNTR.6209448",
+    "valor_contrato": 5231000
+  },
+  {
+    "bpin": 2021760010501,
+    "cod_contrato": "CO1.PCCNTR.6237967",
+    "valor_contrato": 395603248
+  },
+  {
+    "bpin": 2020760010580,
+    "cod_contrato": "CO1.PCCNTR.6280426",
+    "valor_contrato": 38994000
+  },
+  {
+    "bpin": 2020760010493,
+    "cod_contrato": "CO1.PCCNTR.6281769",
+    "valor_contrato": 31386000
+  },
+  {
+    "bpin": 2024760010079,
+    "cod_contrato": "CO1.PCCNTR.6283510",
+    "valor_contrato": 797088145
+  },
+  {
+    "bpin": 2023760010189,
+    "cod_contrato": "CO1.PCCNTR.6288073",
+    "valor_contrato": 19680000
+  },
+  {
+    "bpin": 2022760010174,
+    "cod_contrato": "CO1.PCCNTR.6289139",
+    "valor_contrato": 1050000000
+  },
+  {
+    "bpin": 2020760010853,
+    "cod_contrato": "CO1.PCCNTR.6289880",
+    "valor_contrato": 21876000
+  },
+  {
+    "bpin": 2020760010778,
+    "cod_contrato": "CO1.PCCNTR.6291258",
+    "valor_contrato": 26240000
+  },
+  {
+    "bpin": 2020760010517,
+    "cod_contrato": "CO1.PCCNTR.6294282",
+    "valor_contrato": 31386000
+  },
+  {
+    "bpin": 2020760010065,
+    "cod_contrato": "CO1.PCCNTR.6307074",
+    "valor_contrato": 21876000
+  },
+  {
+    "bpin": 2020760010045,
+    "cod_contrato": "CO1.PCCNTR.6307127",
+    "valor_contrato": 1445362144
+  },
+  {
+    "bpin": 2020760010044,
+    "cod_contrato": "CO1.PCCNTR.6307127",
+    "valor_contrato": 1445362144
+  },
+  {
+    "bpin": 2020760010212,
+    "cod_contrato": "CO1.PCCNTR.6318727",
+    "valor_contrato": 46160000
+  },
+  {
+    "bpin": 2020760010191,
+    "cod_contrato": "CO1.PCCNTR.6320315",
+    "valor_contrato": 46160000
+  },
+  {
+    "bpin": 2020760010199,
+    "cod_contrato": "CO1.PCCNTR.6320318",
+    "valor_contrato": 57832000
+  },
+  {
+    "bpin": 2020760010111,
+    "cod_contrato": "CO1.PCCNTR.6326307",
+    "valor_contrato": 31386000
+  },
+  {
+    "bpin": 2020760010632,
+    "cod_contrato": "CO1.PCCNTR.6330830",
+    "valor_contrato": 16784000
+  },
+  {
+    "bpin": 2021760010220,
+    "cod_contrato": "CO1.PCCNTR.6332035",
+    "valor_contrato": 57492000
+  },
+  {
+    "bpin": 2020760010289,
+    "cod_contrato": "CO1.PCCNTR.6343708",
+    "valor_contrato": 41848000
+  },
+  {
+    "bpin": 2020760010163,
+    "cod_contrato": "CO1.PCCNTR.6343935",
+    "valor_contrato": 26240000
+  },
+  {
+    "bpin": 2020760010078,
+    "cod_contrato": "CO1.PCCNTR.6348188",
+    "valor_contrato": 19680000
+  },
+  {
+    "bpin": 2020760010684,
+    "cod_contrato": "CO1.PCCNTR.6352942",
+    "valor_contrato": 342177796
+  },
+  {
+    "bpin": 2020760010141,
+    "cod_contrato": "CO1.PCCNTR.6355677",
+    "valor_contrato": 26240000
+  },
+  {
+    "bpin": 2020760010634,
+    "cod_contrato": "CO1.PCCNTR.6357146",
+    "valor_contrato": 46160000
+  },
+  {
+    "bpin": 2023760010058,
+    "cod_contrato": "CO1.PCCNTR.6362210",
+    "valor_contrato": 342309302
+  },
+  {
+    "bpin": 2023760010057,
+    "cod_contrato": "CO1.PCCNTR.6362210",
+    "valor_contrato": 342309302
+  },
+  {
+    "bpin": 2023760010198,
+    "cod_contrato": "CO1.PCCNTR.6363479",
+    "valor_contrato": 20632000
+  },
+  {
+    "bpin": 2020760010131,
+    "cod_contrato": "CO1.PCCNTR.6365563",
+    "valor_contrato": 26240000
+  },
+  {
+    "bpin": 2020760010297,
+    "cod_contrato": "CO1.PCCNTR.6365861",
+    "valor_contrato": 26240000
+  },
+  {
+    "bpin": 2020760010130,
+    "cod_contrato": "CO1.PCCNTR.6367034",
+    "valor_contrato": 57832000
+  },
+  {
+    "bpin": 2020760010674,
+    "cod_contrato": "CO1.PCCNTR.6371930",
+    "valor_contrato": 33285000
+  },
+  {
+    "bpin": 2023760010130,
+    "cod_contrato": "CO1.PCCNTR.6372771",
+    "valor_contrato": 1680839810
+  },
+  {
+    "bpin": 2023760010111,
+    "cod_contrato": "CO1.PCCNTR.6372771",
+    "valor_contrato": 1680839810
+  },
+  {
+    "bpin": 2023760010023,
+    "cod_contrato": "CO1.PCCNTR.6377470",
+    "valor_contrato": 74800000
+  },
+  {
+    "bpin": 2020760010308,
+    "cod_contrato": "CO1.PCCNTR.6387350",
+    "valor_contrato": 20122500
+  },
+  {
+    "bpin": 2023760010056,
+    "cod_contrato": "CO1.PCCNTR.6391453",
+    "valor_contrato": 577289590
+  },
+  {
+    "bpin": 2023760010100,
+    "cod_contrato": "CO1.PCCNTR.6391453",
+    "valor_contrato": 577289590
+  },
+  {
+    "bpin": 2023760010095,
+    "cod_contrato": "CO1.PCCNTR.6391718",
+    "valor_contrato": 591370634
+  },
+  {
+    "bpin": 2020760010432,
+    "cod_contrato": "CO1.PCCNTR.6391744",
+    "valor_contrato": 854388679
+  },
+  {
+    "bpin": 2023760010101,
+    "cod_contrato": "CO1.PCCNTR.6391744",
+    "valor_contrato": 854388679
+  },
+  {
+    "bpin": 2023760010102,
+    "cod_contrato": "CO1.PCCNTR.6391744",
+    "valor_contrato": 854388679
+  },
+  {
+    "bpin": 2020760010433,
+    "cod_contrato": "CO1.PCCNTR.6391744",
+    "valor_contrato": 854388679
+  },
+  {
+    "bpin": 2021760010153,
+    "cod_contrato": "CO1.PCCNTR.6391744",
+    "valor_contrato": 854388679
+  },
+  {
+    "bpin": 2021760010315,
+    "cod_contrato": "CO1.PCCNTR.6391744",
+    "valor_contrato": 854388679
+  },
+  {
+    "bpin": 2023760010166,
+    "cod_contrato": "CO1.PCCNTR.6393503",
+    "valor_contrato": 569600000
+  },
+  {
+    "bpin": 2020760010457,
+    "cod_contrato": "CO1.PCCNTR.6393885",
+    "valor_contrato": 115762501
+  },
+  {
+    "bpin": 2020760010390,
+    "cod_contrato": "CO1.PCCNTR.6394385",
+    "valor_contrato": 57832000
+  },
+  {
+    "bpin": 2023760010119,
+    "cod_contrato": "CO1.PCCNTR.6401406",
+    "valor_contrato": 1549630448
+  },
+  {
+    "bpin": 2023760010121,
+    "cod_contrato": "CO1.PCCNTR.6401406",
+    "valor_contrato": 1549630448
+  },
+  {
+    "bpin": 2024760010007,
+    "cod_contrato": "CO1.PCCNTR.6401876",
+    "valor_contrato": 14000000000
+  },
+  {
+    "bpin": 2023760010109,
+    "cod_contrato": "CO1.PCCNTR.6402328",
+    "valor_contrato": 1240649990
+  },
+  {
+    "bpin": 2023760010114,
+    "cod_contrato": "CO1.PCCNTR.6402328",
+    "valor_contrato": 1240649990
+  },
+  {
+    "bpin": 2023760010118,
+    "cod_contrato": "CO1.PCCNTR.6406312",
+    "valor_contrato": 1670026263
+  },
+  {
+    "bpin": 2023760010112,
+    "cod_contrato": "CO1.PCCNTR.6406312",
+    "valor_contrato": 1670026263
+  },
+  {
+    "bpin": 2023760010113,
+    "cod_contrato": "CO1.PCCNTR.6406312",
+    "valor_contrato": 1670026263
+  },
+  {
+    "bpin": 2024760010003,
+    "cod_contrato": "CO1.PCCNTR.6408284",
+    "valor_contrato": 886826080
+  },
+  {
+    "bpin": 2024760010085,
+    "cod_contrato": "CO1.PCCNTR.6408422",
+    "valor_contrato": 10490000
+  },
+  {
+    "bpin": 2023760010098,
+    "cod_contrato": "CO1.PCCNTR.6413022",
+    "valor_contrato": 1011669137
+  },
+  {
+    "bpin": 2021760010107,
+    "cod_contrato": "CO1.PCCNTR.6413022",
+    "valor_contrato": 1011669137
+  },
+  {
+    "bpin": 2024760010006,
+    "cod_contrato": "CO1.PCCNTR.6414355",
+    "valor_contrato": 11571833911
+  },
+  {
+    "bpin": 2024760010005,
+    "cod_contrato": "CO1.PCCNTR.6415424",
+    "valor_contrato": 43374000
+  },
+  {
+    "bpin": 2023760010117,
+    "cod_contrato": "CO1.PCCNTR.6430320",
+    "valor_contrato": 1666598698
+  },
+  {
+    "bpin": 2023760010128,
+    "cod_contrato": "CO1.PCCNTR.6430320",
+    "valor_contrato": 1666598698
+  },
+  {
+    "bpin": 2020760010138,
+    "cod_contrato": "CO1.PCCNTR.6430480",
+    "valor_contrato": 19342500
+  },
+  {
+    "bpin": 2023760010110,
+    "cod_contrato": "CO1.PCCNTR.6433543",
+    "valor_contrato": 1705532121
+  },
+  {
+    "bpin": 2023760010046,
+    "cod_contrato": "CO1.PCCNTR.6433543",
+    "valor_contrato": 1705532121
+  },
+  {
+    "bpin": 2024760010191,
+    "cod_contrato": "CO1.PCCNTR.6436604",
+    "valor_contrato": 36617000
+  },
+  {
+    "bpin": 2020760010841,
+    "cod_contrato": "CO1.PCCNTR.6438569",
+    "valor_contrato": 1783964074
+  },
+  {
+    "bpin": 2021760010140,
+    "cod_contrato": "CO1.PCCNTR.6440031",
+    "valor_contrato": 1880752752
+  },
+  {
+    "bpin": 2023760010096,
+    "cod_contrato": "CO1.PCCNTR.6440031",
+    "valor_contrato": 1880752752
+  },
+  {
+    "bpin": 2024760010037,
+    "cod_contrato": "CO1.PCCNTR.6443740",
+    "valor_contrato": 2388754279
+  },
+  {
+    "bpin": 2020760010147,
+    "cod_contrato": "CO1.PCCNTR.6450037",
+    "valor_contrato": 106586600
+  },
+  {
+    "bpin": 2020760010145,
+    "cod_contrato": "CO1.PCCNTR.6450037",
+    "valor_contrato": 106586600
+  },
+  {
+    "bpin": 2020760010427,
+    "cod_contrato": "CO1.PCCNTR.6453726",
+    "valor_contrato": 510163971
+  },
+  {
+    "bpin": 2020760010488,
+    "cod_contrato": "CO1.PCCNTR.6454630",
+    "valor_contrato": 366000000
+  },
+  {
+    "bpin": 2020760010143,
+    "cod_contrato": "CO1.PCCNTR.6454737",
+    "valor_contrato": 102526347
+  },
+  {
+    "bpin": 2020760010017,
+    "cod_contrato": "CO1.PCCNTR.6455357",
+    "valor_contrato": 3915888537
+  },
+  {
+    "bpin": 2020760010291,
+    "cod_contrato": "CO1.PCCNTR.6455615",
+    "valor_contrato": 22960000
+  },
+  {
+    "bpin": 2023760010129,
+    "cod_contrato": "CO1.PCCNTR.6455671",
+    "valor_contrato": 1725390251
+  },
+  {
+    "bpin": 2023760010116,
+    "cod_contrato": "CO1.PCCNTR.6455671",
+    "valor_contrato": 1725390251
+  },
+  {
+    "bpin": 2023760010120,
+    "cod_contrato": "CO1.PCCNTR.6455671",
+    "valor_contrato": 1725390251
+  },
+  {
+    "bpin": 2020760010689,
+    "cod_contrato": "CO1.PCCNTR.6457312",
+    "valor_contrato": 12588000
+  },
+  {
+    "bpin": 2023760010099,
+    "cod_contrato": "CO1.PCCNTR.6460832",
+    "valor_contrato": 814097404
+  },
+  {
+    "bpin": 2021760010305,
+    "cod_contrato": "CO1.PCCNTR.6460832",
+    "valor_contrato": 814097404
+  },
+  {
+    "bpin": 2023760010062,
+    "cod_contrato": "CO1.PCCNTR.6467215",
+    "valor_contrato": 7466419292
+  },
+  {
+    "bpin": 2023760010066,
+    "cod_contrato": "CO1.PCCNTR.6467215",
+    "valor_contrato": 7466419292
+  },
+  {
+    "bpin": 2023760010068,
+    "cod_contrato": "CO1.PCCNTR.6467215",
+    "valor_contrato": 7466419292
+  },
+  {
+    "bpin": 2023760010071,
+    "cod_contrato": "CO1.PCCNTR.6467215",
+    "valor_contrato": 7466419292
+  },
+  {
+    "bpin": 2023760010073,
+    "cod_contrato": "CO1.PCCNTR.6467215",
+    "valor_contrato": 7466419292
+  },
+  {
+    "bpin": 2023760010078,
+    "cod_contrato": "CO1.PCCNTR.6467215",
+    "valor_contrato": 7466419292
+  },
+  {
+    "bpin": 2023760010079,
+    "cod_contrato": "CO1.PCCNTR.6467215",
+    "valor_contrato": 7466419292
+  },
+  {
+    "bpin": 2023760010081,
+    "cod_contrato": "CO1.PCCNTR.6467215",
+    "valor_contrato": 7466419292
+  },
+  {
+    "bpin": 2023760010085,
+    "cod_contrato": "CO1.PCCNTR.6467215",
+    "valor_contrato": 7466419292
+  },
+  {
+    "bpin": 2023760010069,
+    "cod_contrato": "CO1.PCCNTR.6467215",
+    "valor_contrato": 7466419292
+  },
+  {
+    "bpin": 2023760010070,
+    "cod_contrato": "CO1.PCCNTR.6467215",
+    "valor_contrato": 7466419292
+  },
+  {
+    "bpin": 2023760010083,
+    "cod_contrato": "CO1.PCCNTR.6467215",
+    "valor_contrato": 7466419292
+  },
+  {
+    "bpin": 2023760010086,
+    "cod_contrato": "CO1.PCCNTR.6467215",
+    "valor_contrato": 7466419292
+  },
+  {
+    "bpin": 2023760010060,
+    "cod_contrato": "CO1.PCCNTR.6467215",
+    "valor_contrato": 7466419292
+  },
+  {
+    "bpin": 2023760010063,
+    "cod_contrato": "CO1.PCCNTR.6467215",
+    "valor_contrato": 7466419292
+  },
+  {
+    "bpin": 2023760010067,
+    "cod_contrato": "CO1.PCCNTR.6467215",
+    "valor_contrato": 7466419292
+  },
+  {
+    "bpin": 2021760010345,
+    "cod_contrato": "CO1.PCCNTR.6467215",
+    "valor_contrato": 7466419292
+  },
+  {
+    "bpin": 2023760010072,
+    "cod_contrato": "CO1.PCCNTR.6467215",
+    "valor_contrato": 7466419292
+  },
+  {
+    "bpin": 2023760010074,
+    "cod_contrato": "CO1.PCCNTR.6467215",
+    "valor_contrato": 7466419292
+  },
+  {
+    "bpin": 2023760010077,
+    "cod_contrato": "CO1.PCCNTR.6467215",
+    "valor_contrato": 7466419292
+  },
+  {
+    "bpin": 2023760010059,
+    "cod_contrato": "CO1.PCCNTR.6467215",
+    "valor_contrato": 7466419292
+  },
+  {
+    "bpin": 2023760010065,
+    "cod_contrato": "CO1.PCCNTR.6467215",
+    "valor_contrato": 7466419292
+  },
+  {
+    "bpin": 2023760010087,
+    "cod_contrato": "CO1.PCCNTR.6467215",
+    "valor_contrato": 7466419292
+  },
+  {
+    "bpin": 2023760010088,
+    "cod_contrato": "CO1.PCCNTR.6467215",
+    "valor_contrato": 7466419292
+  },
+  {
+    "bpin": 2023760010075,
+    "cod_contrato": "CO1.PCCNTR.6467215",
+    "valor_contrato": 7466419292
+  },
+  {
+    "bpin": 2023760010082,
+    "cod_contrato": "CO1.PCCNTR.6467215",
+    "valor_contrato": 7466419292
+  },
+  {
+    "bpin": 2020760010134,
+    "cod_contrato": "CO1.PCCNTR.6467900",
+    "valor_contrato": 207902063
+  },
+  {
+    "bpin": 2023760010122,
+    "cod_contrato": "CO1.PCCNTR.6469193",
+    "valor_contrato": 1692648016
+  },
+  {
+    "bpin": 2023760010125,
+    "cod_contrato": "CO1.PCCNTR.6469193",
+    "valor_contrato": 1692648016
+  },
+  {
+    "bpin": 2023760010115,
+    "cod_contrato": "CO1.PCCNTR.6469193",
+    "valor_contrato": 1692648016
+  },
+  {
+    "bpin": 2020760010691,
+    "cod_contrato": "CO1.PCCNTR.6469259",
+    "valor_contrato": 350000000
+  },
+  {
+    "bpin": 2023760010154,
+    "cod_contrato": "CO1.PCCNTR.6469869",
+    "valor_contrato": 330000000
+  },
+  {
+    "bpin": 2020760010773,
+    "cod_contrato": "CO1.PCCNTR.6471292",
+    "valor_contrato": 490421202
+  },
+  {
+    "bpin": 2023760010043,
+    "cod_contrato": "CO1.PCCNTR.6474293",
+    "valor_contrato": 1166938656
+  },
+  {
+    "bpin": 2023760010031,
+    "cod_contrato": "CO1.PCCNTR.6474293",
+    "valor_contrato": 1166938656
+  },
+  {
+    "bpin": 2023760010032,
+    "cod_contrato": "CO1.PCCNTR.6474462",
+    "valor_contrato": 983453834
+  },
+  {
+    "bpin": 2023760010035,
+    "cod_contrato": "CO1.PCCNTR.6474462",
+    "valor_contrato": 983453834
+  },
+  {
+    "bpin": 2023760010039,
+    "cod_contrato": "CO1.PCCNTR.6474462",
+    "valor_contrato": 983453834
+  },
+  {
+    "bpin": 2021760010154,
+    "cod_contrato": "CO1.PCCNTR.6474544",
+    "valor_contrato": 123446107
+  },
+  {
+    "bpin": 2022760010062,
+    "cod_contrato": "CO1.PCCNTR.6475007",
+    "valor_contrato": 558707380
+  },
+  {
+    "bpin": 2020760010472,
+    "cod_contrato": "CO1.PCCNTR.6478173",
+    "valor_contrato": 71349352
+  },
+  {
+    "bpin": 2020760010612,
+    "cod_contrato": "CO1.PCCNTR.6478240",
+    "valor_contrato": 34001500
+  },
+  {
+    "bpin": 2021760010485,
+    "cod_contrato": "CO1.PCCNTR.6478749",
+    "valor_contrato": 645222557
+  },
+  {
+    "bpin": 2021760010316,
+    "cod_contrato": "CO1.PCCNTR.6480041",
+    "valor_contrato": 296398450
+  },
+  {
+    "bpin": 2023760010020,
+    "cod_contrato": "CO1.PCCNTR.6480543",
+    "valor_contrato": 26155000
+  },
+  {
+    "bpin": 2020760010019,
+    "cod_contrato": "CO1.PCCNTR.6482612",
+    "valor_contrato": 14584000
+  },
+  {
+    "bpin": 2020760010677,
+    "cod_contrato": "CO1.PCCNTR.6483450",
+    "valor_contrato": 19971000
+  },
+  {
+    "bpin": 2021760010109,
+    "cod_contrato": "CO1.PCCNTR.6488216",
+    "valor_contrato": 282566121
+  },
+  {
+    "bpin": 2023760010044,
+    "cod_contrato": "CO1.PCCNTR.6495000",
+    "valor_contrato": 681900000
+  },
+  {
+    "bpin": 2023760010053,
+    "cod_contrato": "CO1.PCCNTR.6495000",
+    "valor_contrato": 681900000
+  },
+  {
+    "bpin": 2023760010054,
+    "cod_contrato": "CO1.PCCNTR.6495000",
+    "valor_contrato": 681900000
+  },
+  {
+    "bpin": 2023760010163,
+    "cod_contrato": "CO1.PCCNTR.6498220",
+    "valor_contrato": 1267062818
+  },
+  {
+    "bpin": 2022760010116,
+    "cod_contrato": "CO1.PCCNTR.6498705",
+    "valor_contrato": 4728444977
+  },
+  {
+    "bpin": 2022760010111,
+    "cod_contrato": "CO1.PCCNTR.6498705",
+    "valor_contrato": 4728444977
+  },
+  {
+    "bpin": 2022760010112,
+    "cod_contrato": "CO1.PCCNTR.6498705",
+    "valor_contrato": 4728444977
+  },
+  {
+    "bpin": 2022760010113,
+    "cod_contrato": "CO1.PCCNTR.6498705",
+    "valor_contrato": 4728444977
+  },
+  {
+    "bpin": 2020760010422,
+    "cod_contrato": "CO1.PCCNTR.6498705",
+    "valor_contrato": 4728444977
+  },
+  {
+    "bpin": 2023760010137,
+    "cod_contrato": "CO1.PCCNTR.6498705",
+    "valor_contrato": 4728444977
+  },
+  {
+    "bpin": 2023760010139,
+    "cod_contrato": "CO1.PCCNTR.6498705",
+    "valor_contrato": 4728444977
+  },
+  {
+    "bpin": 2023760010140,
+    "cod_contrato": "CO1.PCCNTR.6499826",
+    "valor_contrato": 614523473
+  },
+  {
+    "bpin": 2024760010036,
+    "cod_contrato": "CO1.PCCNTR.6511179",
+    "valor_contrato": 2568147574
+  },
+  {
+    "bpin": 2024760010035,
+    "cod_contrato": "CO1.PCCNTR.6511179",
+    "valor_contrato": 2568147574
+  },
+  {
+    "bpin": 2024760010065,
+    "cod_contrato": "CO1.PCCNTR.6513312",
+    "valor_contrato": 8731175
+  },
+  {
+    "bpin": 2021760010269,
+    "cod_contrato": "CO1.PCCNTR.6518998",
+    "valor_contrato": 1910183733
+  },
+  {
+    "bpin": 2021760010263,
+    "cod_contrato": "CO1.PCCNTR.6518998",
+    "valor_contrato": 1910183733
+  },
+  {
+    "bpin": 2021760010259,
+    "cod_contrato": "CO1.PCCNTR.6519625",
+    "valor_contrato": 1582906518
+  },
+  {
+    "bpin": 2021760010260,
+    "cod_contrato": "CO1.PCCNTR.6519625",
+    "valor_contrato": 1582906518
+  },
+  {
+    "bpin": 2021760010262,
+    "cod_contrato": "CO1.PCCNTR.6519625",
+    "valor_contrato": 1582906518
+  },
+  {
+    "bpin": 2024760010012,
+    "cod_contrato": "CO1.PCCNTR.6524462",
+    "valor_contrato": 89793950
+  },
+  {
+    "bpin": 2024760010027,
+    "cod_contrato": "CO1.PCCNTR.6546951",
+    "valor_contrato": 42955311
+  },
+  {
+    "bpin": 2023760010052,
+    "cod_contrato": "CO1.PCCNTR.6554199",
+    "valor_contrato": 116994500
+  },
+  {
+    "bpin": 2023760010124,
+    "cod_contrato": "CO1.PCCNTR.6555433",
+    "valor_contrato": 1814517356
+  },
+  {
+    "bpin": 2023760010123,
+    "cod_contrato": "CO1.PCCNTR.6555433",
+    "valor_contrato": 1814517356
+  },
+  {
+    "bpin": 2023760010126,
+    "cod_contrato": "CO1.PCCNTR.6555433",
+    "valor_contrato": 1814517356
+  },
+  {
+    "bpin": 2023760010127,
+    "cod_contrato": "CO1.PCCNTR.6555433",
+    "valor_contrato": 1814517356
+  },
+  {
+    "bpin": 2021760010271,
+    "cod_contrato": "CO1.PCCNTR.6559661",
+    "valor_contrato": 149115379
+  },
+  {
+    "bpin": 2023760010036,
+    "cod_contrato": "CO1.PCCNTR.6562811",
+    "valor_contrato": 30499268
+  },
+  {
+    "bpin": 2023760010034,
+    "cod_contrato": "CO1.PCCNTR.6562811",
+    "valor_contrato": 30499268
+  },
+  {
+    "bpin": 2020760010568,
+    "cod_contrato": "CO1.PCCNTR.6563364",
+    "valor_contrato": 885619717
+  },
+  {
+    "bpin": 2020760010144,
+    "cod_contrato": "CO1.PCCNTR.6603408",
+    "valor_contrato": 170899962
+  },
+  {
+    "bpin": 2021760010014,
+    "cod_contrato": "CO1.PCCNTR.6615428",
+    "valor_contrato": 215100000
+  },
+  {
+    "bpin": 2021760010240,
+    "cod_contrato": "CO1.PCCNTR.6630697",
+    "valor_contrato": 920973851
+  },
+  {
+    "bpin": 2020760010725,
+    "cod_contrato": "CO1.PCCNTR.6630697",
+    "valor_contrato": 920973851
+  },
+  {
+    "bpin": 2021760010247,
+    "cod_contrato": "CO1.PCCNTR.6630697",
+    "valor_contrato": 920973851
+  },
+  {
+    "bpin": 2021760010248,
+    "cod_contrato": "CO1.PCCNTR.6630698",
+    "valor_contrato": 796417293
+  },
+  {
+    "bpin": 2021760010237,
+    "cod_contrato": "CO1.PCCNTR.6630698",
+    "valor_contrato": 796417293
+  },
+  {
+    "bpin": 2021760010252,
+    "cod_contrato": "CO1.PCCNTR.6630698",
+    "valor_contrato": 796417293
+  },
+  {
+    "bpin": 2021760010239,
+    "cod_contrato": "CO1.PCCNTR.6630700",
+    "valor_contrato": 717619939
+  },
+  {
+    "bpin": 2021760010238,
+    "cod_contrato": "CO1.PCCNTR.6630700",
+    "valor_contrato": 717619939
+  },
+  {
+    "bpin": 2021760010242,
+    "cod_contrato": "CO1.PCCNTR.6630819",
+    "valor_contrato": 1060821451
+  },
+  {
+    "bpin": 2021760010243,
+    "cod_contrato": "CO1.PCCNTR.6630819",
+    "valor_contrato": 1060821451
+  },
+  {
+    "bpin": 2023760010146,
+    "cod_contrato": "CO1.PCCNTR.6654755",
+    "valor_contrato": 692366487
+  },
+  {
+    "bpin": 2020760010788,
+    "cod_contrato": "CO1.PCCNTR.6664590",
+    "valor_contrato": 258912934
+  },
+  {
+    "bpin": 2020760010516,
+    "cod_contrato": "CO1.PCCNTR.6690243",
+    "valor_contrato": 1933173611
+  },
+  {
+    "bpin": 2020760010578,
+    "cod_contrato": "CO1.PCCNTR.6716466",
+    "valor_contrato": 2908387340
+  },
+  {
+    "bpin": 2023760010047,
+    "cod_contrato": "CO1.PCCNTR.6751779",
+    "valor_contrato": 181969564
+  },
+  {
+    "bpin": 2024760010108,
+    "cod_contrato": "CO1.PCCNTR.6754586",
+    "valor_contrato": 14458000
+  },
+  {
+    "bpin": 2024760010071,
+    "cod_contrato": "CO1.PCCNTR.6762578",
+    "valor_contrato": 19164000
+  },
+  {
+    "bpin": 2023760010048,
+    "cod_contrato": "CO1.PCCNTR.6764124",
+    "valor_contrato": 410198300
+  },
+  {
+    "bpin": 2024760010042,
+    "cod_contrato": "CO1.PCCNTR.6766095",
+    "valor_contrato": 12998000
+  },
+  {
+    "bpin": 2024760010043,
+    "cod_contrato": "CO1.PCCNTR.6766157",
+    "valor_contrato": 20924000
+  },
+  {
+    "bpin": 2024760010093,
+    "cod_contrato": "CO1.PCCNTR.6767589",
+    "valor_contrato": 8876000
+  },
+  {
+    "bpin": 2024760010154,
+    "cod_contrato": "CO1.PCCNTR.6769584",
+    "valor_contrato": 6560000
+  },
+  {
+    "bpin": 2024760010140,
+    "cod_contrato": "CO1.PCCNTR.6769724",
+    "valor_contrato": 10462000
+  },
+  {
+    "bpin": 2024760010136,
+    "cod_contrato": "CO1.PCCNTR.6770117",
+    "valor_contrato": 8876000
+  },
+  {
+    "bpin": 2024760010137,
+    "cod_contrato": "CO1.PCCNTR.6771891",
+    "valor_contrato": 10462000
+  },
+  {
+    "bpin": 2024760010101,
+    "cod_contrato": "CO1.PCCNTR.6772690",
+    "valor_contrato": 4438000
+  },
+  {
+    "bpin": 2024760010100,
+    "cod_contrato": "CO1.PCCNTR.6772693",
+    "valor_contrato": 3280000
+  },
+  {
+    "bpin": 2024760010122,
+    "cod_contrato": "CO1.PCCNTR.6772792",
+    "valor_contrato": 18230000
+  },
+  {
+    "bpin": 2024760010142,
+    "cod_contrato": "CO1.PCCNTR.6772880",
+    "valor_contrato": 32495000
+  },
+  {
+    "bpin": 2024760010145,
+    "cod_contrato": "CO1.PCCNTR.6772996",
+    "valor_contrato": 16400000
+  },
+  {
+    "bpin": 2024760010146,
+    "cod_contrato": "CO1.PCCNTR.6773093",
+    "valor_contrato": 32495000
+  },
+  {
+    "bpin": 2024760010117,
+    "cod_contrato": "CO1.PCCNTR.6773099",
+    "valor_contrato": 26155000
+  },
+  {
+    "bpin": 2024760010121,
+    "cod_contrato": "CO1.PCCNTR.6773111",
+    "valor_contrato": 36145000
+  },
+  {
+    "bpin": 2024760010143,
+    "cod_contrato": "CO1.PCCNTR.6773221",
+    "valor_contrato": 28850000
+  },
+  {
+    "bpin": 2024760010118,
+    "cod_contrato": "CO1.PCCNTR.6773224",
+    "valor_contrato": 32495000
+  },
+  {
+    "bpin": 2024760010115,
+    "cod_contrato": "CO1.PCCNTR.6773228",
+    "valor_contrato": 32495000
+  },
+  {
+    "bpin": 2024760010097,
+    "cod_contrato": "CO1.PCCNTR.6773231",
+    "valor_contrato": 5231000
+  },
+  {
+    "bpin": 2024760010120,
+    "cod_contrato": "CO1.PCCNTR.6773315",
+    "valor_contrato": 12895000
+  },
+  {
+    "bpin": 2024760010096,
+    "cod_contrato": "CO1.PCCNTR.6773328",
+    "valor_contrato": 10462000
+  },
+  {
+    "bpin": 2024760010098,
+    "cod_contrato": "CO1.PCCNTR.6773525",
+    "valor_contrato": 10462000
+  },
+  {
+    "bpin": 2024760010119,
+    "cod_contrato": "CO1.PCCNTR.6773529",
+    "valor_contrato": 32495000
+  },
+  {
+    "bpin": 2024760010116,
+    "cod_contrato": "CO1.PCCNTR.6773708",
+    "valor_contrato": 26155000
+  },
+  {
+    "bpin": 2024760010069,
+    "cod_contrato": "CO1.PCCNTR.6773842",
+    "valor_contrato": 13120000
+  },
+  {
+    "bpin": 2024760010058,
+    "cod_contrato": "CO1.PCCNTR.6774402",
+    "valor_contrato": 14584000
+  },
+  {
+    "bpin": 2024760010066,
+    "cod_contrato": "CO1.PCCNTR.6774404",
+    "valor_contrato": 20924000
+  },
+  {
+    "bpin": 2024760010073,
+    "cod_contrato": "CO1.PCCNTR.6775210",
+    "valor_contrato": 25996000
+  },
+  {
+    "bpin": 2024760010088,
+    "cod_contrato": "CO1.PCCNTR.6775217",
+    "valor_contrato": 17752000
+  },
+  {
+    "bpin": 2024760010124,
+    "cod_contrato": "CO1.PCCNTR.6775889",
+    "valor_contrato": 10316000
+  },
+  {
+    "bpin": 2024760010123,
+    "cod_contrato": "CO1.PCCNTR.6775995",
+    "valor_contrato": 14584000
+  },
+  {
+    "bpin": 2024760010026,
+    "cod_contrato": "CO1.PCCNTR.6776500",
+    "valor_contrato": 23080000
+  },
+  {
+    "bpin": 2024760010025,
+    "cod_contrato": "CO1.PCCNTR.6776591",
+    "valor_contrato": 17752000
+  },
+  {
+    "bpin": 2024760010028,
+    "cod_contrato": "CO1.PCCNTR.6776777",
+    "valor_contrato": 20924000
+  },
+  {
+    "bpin": 2024760010033,
+    "cod_contrato": "CO1.PCCNTR.6777110",
+    "valor_contrato": 17752000
+  },
+  {
+    "bpin": 2024760010029,
+    "cod_contrato": "CO1.PCCNTR.6778095",
+    "valor_contrato": 13120000
+  },
+  {
+    "bpin": 2024760010032,
+    "cod_contrato": "CO1.PCCNTR.6778488",
+    "valor_contrato": 23080000
+  },
+  {
+    "bpin": 2024760010031,
+    "cod_contrato": "CO1.PCCNTR.6779566",
+    "valor_contrato": 23080000
+  },
+  {
+    "bpin": 2024760010099,
+    "cod_contrato": "CO1.PCCNTR.6779862",
+    "valor_contrato": 8876000
+  },
+  {
+    "bpin": 2024760010103,
+    "cod_contrato": "CO1.PCCNTR.6780521",
+    "valor_contrato": 10462000
+  },
+  {
+    "bpin": 2024760010053,
+    "cod_contrato": "CO1.PCCNTR.6780751",
+    "valor_contrato": 11480000
+  },
+  {
+    "bpin": 2024760010061,
+    "cod_contrato": "CO1.PCCNTR.6780875",
+    "valor_contrato": 17752000
+  },
+  {
+    "bpin": 2024760010072,
+    "cod_contrato": "CO1.PCCNTR.6781516",
+    "valor_contrato": 10316000
+  },
+  {
+    "bpin": 2024760010062,
+    "cod_contrato": "CO1.PCCNTR.6782143",
+    "valor_contrato": 90256290
+  },
+  {
+    "bpin": 2024760010092,
+    "cod_contrato": "CO1.PCCNTR.6782634",
+    "valor_contrato": 4920000
+  },
+  {
+    "bpin": 2024760010054,
+    "cod_contrato": "CO1.PCCNTR.6782864",
+    "valor_contrato": 9026500
+  },
+  {
+    "bpin": 2024760010067,
+    "cod_contrato": "CO1.PCCNTR.6785073",
+    "valor_contrato": 13120000
+  },
+  {
+    "bpin": 2024760010074,
+    "cod_contrato": "CO1.PCCNTR.6789189",
+    "valor_contrato": 10316000
+  },
+  {
+    "bpin": 2024760010138,
+    "cod_contrato": "CO1.PCCNTR.6790251",
+    "valor_contrato": 305965823
+  },
+  {
+    "bpin": 2024760010157,
+    "cod_contrato": "CO1.PCCNTR.6790962",
+    "valor_contrato": 20924000
+  },
+  {
+    "bpin": 2024760010153,
+    "cod_contrato": "CO1.PCCNTR.6791037",
+    "valor_contrato": 20924000
+  },
+  {
+    "bpin": 2024760010152,
+    "cod_contrato": "CO1.PCCNTR.6791119",
+    "valor_contrato": 14584000
+  },
+  {
+    "bpin": 2024760010135,
+    "cod_contrato": "CO1.PCCNTR.6794294",
+    "valor_contrato": 25996000
+  },
+  {
+    "bpin": 2024760010147,
+    "cod_contrato": "CO1.PCCNTR.6796633",
+    "valor_contrato": 10462000
+  },
+  {
+    "bpin": 2024760010155,
+    "cod_contrato": "CO1.PCCNTR.6798118",
+    "valor_contrato": 7292000
+  },
+  {
+    "bpin": 2024760010087,
+    "cod_contrato": "CO1.PCCNTR.6798721",
+    "valor_contrato": 669500008
+  },
+  {
+    "bpin": 2024760010046,
+    "cod_contrato": "CO1.PCCNTR.6799120",
+    "valor_contrato": 17752000
+  },
+  {
+    "bpin": 2024760010161,
+    "cod_contrato": "CO1.PCCNTR.6799293",
+    "valor_contrato": 28916000
+  },
+  {
+    "bpin": 2024760010070,
+    "cod_contrato": "CO1.PCCNTR.6799657",
+    "valor_contrato": 204800100
+  },
+  {
+    "bpin": 2024760010023,
+    "cod_contrato": "CO1.PCCNTR.6800889",
+    "valor_contrato": 15693000
+  },
+  {
+    "bpin": 2024760010162,
+    "cod_contrato": "CO1.PCCNTR.6801120",
+    "valor_contrato": 25996000
+  },
+  {
+    "bpin": 2024760010064,
+    "cod_contrato": "CO1.PCCNTR.6801409",
+    "valor_contrato": 13120000
+  },
+  {
+    "bpin": 2024760010125,
+    "cod_contrato": "CO1.PCCNTR.6801797",
+    "valor_contrato": 15693000
+  },
+  {
+    "bpin": 2024760010014,
+    "cod_contrato": "CO1.PCCNTR.6803257",
+    "valor_contrato": 20924000
+  },
+  {
+    "bpin": 2024760010151,
+    "cod_contrato": "CO1.PCCNTR.6803280",
+    "valor_contrato": 20924000
+  },
+  {
+    "bpin": 2024760010134,
+    "cod_contrato": "CO1.PCCNTR.6803401",
+    "valor_contrato": 9840000
+  },
+  {
+    "bpin": 2024760010047,
+    "cod_contrato": "CO1.PCCNTR.6803630",
+    "valor_contrato": 10316000
+  },
+  {
+    "bpin": 2024760010015,
+    "cod_contrato": "CO1.PCCNTR.6804733",
+    "valor_contrato": 17752000
+  },
+  {
+    "bpin": 2024760010060,
+    "cod_contrato": "CO1.PCCNTR.6806154",
+    "valor_contrato": 20924000
+  },
+  {
+    "bpin": 2024760010082,
+    "cod_contrato": "CO1.PCCNTR.6810282",
+    "valor_contrato": 17752000
+  },
+  {
+    "bpin": 2024760010171,
+    "cod_contrato": "CO1.PCCNTR.6814695",
+    "valor_contrato": 20924000
+  },
+  {
+    "bpin": 2024760010111,
+    "cod_contrato": "CO1.PCCNTR.6814897",
+    "valor_contrato": 17752000
+  },
+  {
+    "bpin": 2024760010129,
+    "cod_contrato": "CO1.PCCNTR.6817178",
+    "valor_contrato": 8655000
+  },
+  {
+    "bpin": 2024760010091,
+    "cod_contrato": "CO1.PCCNTR.6818972",
+    "valor_contrato": 38328000
+  },
+  {
+    "bpin": 2024760010059,
+    "cod_contrato": "CO1.PCCNTR.6819743",
+    "valor_contrato": 23080000
+  },
+  {
+    "bpin": 2024760010209,
+    "cod_contrato": "CO1.PCCNTR.6821787",
+    "valor_contrato": 14584000
+  },
+  {
+    "bpin": 2024760010214,
+    "cod_contrato": "CO1.PCCNTR.6821858",
+    "valor_contrato": 5158000
+  },
+  {
+    "bpin": 2024760010207,
+    "cod_contrato": "CO1.PCCNTR.6822182",
+    "valor_contrato": 10316000
+  },
+  {
+    "bpin": 2024760010215,
+    "cod_contrato": "CO1.PCCNTR.6822518",
+    "valor_contrato": 4196000
+  },
+  {
+    "bpin": 2024760010172,
+    "cod_contrato": "CO1.PCCNTR.6822695",
+    "valor_contrato": 28916000
+  },
+  {
+    "bpin": 2024760010220,
+    "cod_contrato": "CO1.PCCNTR.6823946",
+    "valor_contrato": 12998000
+  },
+  {
+    "bpin": 2024760010192,
+    "cod_contrato": "CO1.PCCNTR.6826032",
+    "valor_contrato": 18308500
+  },
+  {
+    "bpin": 2024760010196,
+    "cod_contrato": "CO1.PCCNTR.6826066",
+    "valor_contrato": 28916000
+  },
+  {
+    "bpin": 2024760010185,
+    "cod_contrato": "CO1.PCCNTR.6826159",
+    "valor_contrato": 11480000
+  },
+  {
+    "bpin": 2024760010180,
+    "cod_contrato": "CO1.PCCNTR.6826812",
+    "valor_contrato": 28916000
+  },
+  {
+    "bpin": 2024760010075,
+    "cod_contrato": "CO1.PCCNTR.6828988",
+    "valor_contrato": 1100000000
+  },
+  {
+    "bpin": 2024760010178,
+    "cod_contrato": "CO1.PCCNTR.6830368",
+    "valor_contrato": 11480000
+  },
+  {
+    "bpin": 2024760010133,
+    "cod_contrato": "CO1.PCCNTR.6830408",
+    "valor_contrato": 21687000
+  },
+  {
+    "bpin": 2024760010195,
+    "cod_contrato": "CO1.PCCNTR.6831302",
+    "valor_contrato": 14425000
+  },
+  {
+    "bpin": 2024760010223,
+    "cod_contrato": "CO1.PCCNTR.6831853",
+    "valor_contrato": 3868500
+  },
+  {
+    "bpin": 2024760010190,
+    "cod_contrato": "CO1.PCCNTR.6831905",
+    "valor_contrato": 18308500
+  },
+  {
+    "bpin": 2024760010173,
+    "cod_contrato": "CO1.PCCNTR.6831962",
+    "valor_contrato": 13120000
+  },
+  {
+    "bpin": 2024760010210,
+    "cod_contrato": "CO1.PCCNTR.6832044",
+    "valor_contrato": 22922000
+  },
+  {
+    "bpin": 2024760010183,
+    "cod_contrato": "CO1.PCCNTR.6832942",
+    "valor_contrato": 15533000
+  },
+  {
+    "bpin": 2024760010149,
+    "cod_contrato": "CO1.PCCNTR.6835842",
+    "valor_contrato": 124276344
+  },
+  {
+    "bpin": 2024760010048,
+    "cod_contrato": "CO1.PCCNTR.6836187",
+    "valor_contrato": 7737000
+  },
+  {
+    "bpin": 2024760010187,
+    "cod_contrato": "CO1.PCCNTR.6837554",
+    "valor_contrato": 10938000
+  },
+  {
+    "bpin": 2024760010194,
+    "cod_contrato": "CO1.PCCNTR.6838303",
+    "valor_contrato": 13077500
+  },
+  {
+    "bpin": 2024760010219,
+    "cod_contrato": "CO1.PCCNTR.6845421",
+    "valor_contrato": 343774429
+  },
+  {
+    "bpin": 2024760010170,
+    "cod_contrato": "CO1.PCCNTR.6850040",
+    "valor_contrato": 7737000
+  },
+  {
+    "bpin": 2024760010193,
+    "cod_contrato": "CO1.PCCNTR.6850218",
+    "valor_contrato": 17310000
+  },
+  {
+    "bpin": 2024760010189,
+    "cod_contrato": "CO1.PCCNTR.6852059",
+    "valor_contrato": 9840000
+  },
+  {
+    "bpin": 2024760010222,
+    "cod_contrato": "CO1.PCCNTR.6853517",
+    "valor_contrato": 2549827320
+  },
+  {
+    "bpin": 2024760010083,
+    "cod_contrato": "CO1.PCCNTR.6856997",
+    "valor_contrato": 19497000
+  },
+  {
+    "bpin": 2024760010204,
+    "cod_contrato": "CO1.PCCNTR.6857312",
+    "valor_contrato": 4101820877
+  },
+  {
+    "bpin": 2024760010090,
+    "cod_contrato": "CO1.PCCNTR.6858552",
+    "valor_contrato": 6294000
+  },
+  {
+    "bpin": 2024760010084,
+    "cod_contrato": "CO1.PCCNTR.6858552",
+    "valor_contrato": 6294000
+  },
+  {
+    "bpin": 2024760010174,
+    "cod_contrato": "CO1.PCCNTR.6858555",
+    "valor_contrato": 3108504163
+  },
+  {
+    "bpin": 2024760010077,
+    "cod_contrato": "CO1.PCCNTR.6858747",
+    "valor_contrato": 13314000
+  },
+  {
+    "bpin": 2024760010080,
+    "cod_contrato": "CO1.PCCNTR.6863187",
+    "valor_contrato": 15693000
+  },
+  {
+    "bpin": 2024760010150,
+    "cod_contrato": "CO1.PCCNTR.6875488",
+    "valor_contrato": 9840000
+  },
+  {
+    "bpin": 2024760010076,
+    "cod_contrato": "CO1.PCCNTR.6886000",
+    "valor_contrato": 567378623
+  },
+  {
+    "bpin": 2024760010063,
+    "cod_contrato": "CO1.PCCNTR.6886013",
+    "valor_contrato": 19497000
+  },
+  {
+    "bpin": 2024760010199,
+    "cod_contrato": "CO1.PCCNTR.6887702",
+    "valor_contrato": 600000000
+  },
+  {
+    "bpin": 2024760010184,
+    "cod_contrato": "CO1.PCCNTR.6888132",
+    "valor_contrato": 129084333
+  },
+  {
+    "bpin": 2024760010106,
+    "cod_contrato": "CO1.PCCNTR.6890110",
+    "valor_contrato": 10938000
+  },
+  {
+    "bpin": 2024760010228,
+    "cod_contrato": "CO1.PCCNTR.6891501",
+    "valor_contrato": 9840000
+  },
+  {
+    "bpin": 2024760010203,
+    "cod_contrato": "CO1.PCCNTR.6892691",
+    "valor_contrato": 21687000
+  },
+  {
+    "bpin": 2024760010068,
+    "cod_contrato": "CO1.PCCNTR.6894360",
+    "valor_contrato": 7737000
+  },
+  {
+    "bpin": 2024760010165,
+    "cod_contrato": "CO1.PCCNTR.6894448",
+    "valor_contrato": 21687000
+  },
+  {
+    "bpin": 2024760010188,
+    "cod_contrato": "CO1.PCCNTR.6895156",
+    "valor_contrato": 15693000
+  },
+  {
+    "bpin": 2024760010201,
+    "cod_contrato": "CO1.PCCNTR.6896824",
+    "valor_contrato": 15693000
+  },
+  {
+    "bpin": 2024760010197,
+    "cod_contrato": "CO1.PCCNTR.6899603",
+    "valor_contrato": 15693000
+  },
+  {
+    "bpin": 2024760010198,
+    "cod_contrato": "CO1.PCCNTR.6899705",
+    "valor_contrato": 19497000
+  },
+  {
+    "bpin": 2024760010200,
+    "cod_contrato": "CO1.PCCNTR.6903420",
+    "valor_contrato": 13314000
+  },
+  {
+    "bpin": 2024760010206,
+    "cod_contrato": "CO1.PCCNTR.6904752",
+    "valor_contrato": 15693000
+  },
+  {
+    "bpin": 2024760010179,
+    "cod_contrato": "CO1.PCCNTR.6906493",
+    "valor_contrato": 13314000
+  },
+  {
+    "bpin": 2024760010056,
+    "cod_contrato": "CO1.PCCNTR.6911797",
+    "valor_contrato": 5040460667
+  },
+  {
+    "bpin": 2024760010110,
+    "cod_contrato": "CO1.PCCNTR.6913349",
+    "valor_contrato": 859637394
+  },
+  {
+    "bpin": 2024760010163,
+    "cod_contrato": "CO1.PCCNTR.6913349",
+    "valor_contrato": 859637394
+  },
+  {
+    "bpin": 2024760010159,
+    "cod_contrato": "CO1.PCCNTR.6913349",
+    "valor_contrato": 859637394
+  },
+  {
+    "bpin": 2024760010232,
+    "cod_contrato": "CO1.PCCNTR.6918286",
+    "valor_contrato": 28916000
+  },
+  {
+    "bpin": 2024760010217,
+    "cod_contrato": "CO1.PCCNTR.6918462",
+    "valor_contrato": 28916000
+  },
+  {
+    "bpin": 2024760010202,
+    "cod_contrato": "CO1.PCCNTR.6921363",
+    "valor_contrato": 15693000
+  },
+  {
+    "bpin": 2024760010208,
+    "cod_contrato": "CO1.PCCNTR.6924063",
+    "valor_contrato": 15693000
+  },
+  {
+    "bpin": 2024760010030,
+    "cod_contrato": "CO1.PCCNTR.6929183",
+    "valor_contrato": 21687000
+  },
+  {
+    "bpin": 2024760010169,
+    "cod_contrato": "CO1.PCCNTR.6929926",
+    "valor_contrato": 10938000
+  },
+  {
+    "bpin": 2024760010168,
+    "cod_contrato": "CO1.PCCNTR.6932241",
+    "valor_contrato": 10938000
+  },
+  {
+    "bpin": 2024760010127,
+    "cod_contrato": "CO1.PCCNTR.6940132",
+    "valor_contrato": 40885856
+  },
+  {
+    "bpin": 2024760010038,
+    "cod_contrato": "CO1.PCCNTR.6947728",
+    "valor_contrato": 1138148276
+  },
+  {
+    "bpin": 2024760010186,
+    "cod_contrato": "CO1.PCCNTR.6948155",
+    "valor_contrato": 340350000
+  },
+  {
+    "bpin": 2024760010022,
+    "cod_contrato": "CO1.PCCNTR.6950814",
+    "valor_contrato": 500000000
+  },
+  {
+    "bpin": 2024760010212,
+    "cod_contrato": "CO1.PCCNTR.6951195",
+    "valor_contrato": 862411954
+  },
+  {
+    "bpin": 2024760010211,
+    "cod_contrato": "CO1.PCCNTR.6952428",
+    "valor_contrato": 21687000
+  },
+  {
+    "bpin": 2021760010127,
+    "cod_contrato": "CO1.PCCNTR.6953542",
+    "valor_contrato": 1189505999
+  },
+  {
+    "bpin": 2021760010130,
+    "cod_contrato": "CO1.PCCNTR.6953542",
+    "valor_contrato": 1189505999
+  },
+  {
+    "bpin": 2020760010657,
+    "cod_contrato": "CO1.PCCNTR.6953542",
+    "valor_contrato": 1189505999
+  },
+  {
+    "bpin": 2023760010055,
+    "cod_contrato": "CO1.PCCNTR.6953542",
+    "valor_contrato": 1189505999
+  },
+  {
+    "bpin": 2020760010447,
+    "cod_contrato": "CO1.PCCNTR.6953542",
+    "valor_contrato": 1189505999
+  },
+  {
+    "bpin": 2024760010177,
+    "cod_contrato": "CO1.PCCNTR.6955443",
+    "valor_contrato": 7737000
+  },
+  {
+    "bpin": 2024760010102,
+    "cod_contrato": "CO1.PCCNTR.6971045",
+    "valor_contrato": 330256412
+  },
+  {
+    "bpin": 2024760010167,
+    "cod_contrato": "CO1.PCCNTR.6976323",
+    "valor_contrato": 8876000
+  },
+  {
+    "bpin": 2024760010176,
+    "cod_contrato": "CO1.PCCNTR.6976501",
+    "valor_contrato": 999786527
+  },
+  {
+    "bpin": 2024760010230,
+    "cod_contrato": "CO1.PCCNTR.6977365",
+    "valor_contrato": 75141034
+  },
+  {
+    "bpin": 2024760010107,
+    "cod_contrato": "CO1.PCCNTR.6984285",
+    "valor_contrato": 117000000
+  },
+  {
+    "bpin": 2024760010166,
+    "cod_contrato": "CO1.PCCNTR.6984880",
+    "valor_contrato": 14458000
+  },
+  {
+    "bpin": 2024760010130,
+    "cod_contrato": "CO1.PCCNTR.6986116",
+    "valor_contrato": 6560000
+  },
+  {
+    "bpin": 2024760010235,
+    "cod_contrato": "CO1.PCCNTR.6989849",
+    "valor_contrato": 212807700
+  },
+  {
+    "bpin": 2021760010187,
+    "cod_contrato": "CO1.PCCNTR.6994158",
+    "valor_contrato": 1378814000
+  },
+  {
+    "bpin": 2024760010020,
+    "cod_contrato": "CO1.PCCNTR.6994331",
+    "valor_contrato": 10462000
+  },
+  {
+    "bpin": 2024760010019,
+    "cod_contrato": "CO1.PCCNTR.6995645",
+    "valor_contrato": 14458000
+  },
+  {
+    "bpin": 2024760010021,
+    "cod_contrato": "CO1.PCCNTR.7005622",
+    "valor_contrato": 6560000
+  },
+  {
+    "bpin": 2024760010128,
+    "cod_contrato": "CO1.PCCNTR.7006784",
+    "valor_contrato": 10462000
+  },
+  {
+    "bpin": 2024760010112,
+    "cod_contrato": "CO1.PCCNTR.7013617",
+    "valor_contrato": 4920000
+  },
+  {
+    "bpin": 2020760010823,
+    "cod_contrato": "CO1.PCCNTR.7014321",
+    "valor_contrato": 14458000
+  },
+  {
+    "bpin": 2024760010182,
+    "cod_contrato": "CO1.PCCNTR.7014738",
+    "valor_contrato": 385104200
+  },
+  {
+    "bpin": 2024760010144,
+    "cod_contrato": "CO1.PCCNTR.7015175",
+    "valor_contrato": 74662980
+  },
+  {
+    "bpin": 2024760010018,
+    "cod_contrato": "CO1.PCCNTR.7021831",
+    "valor_contrato": 14458000
+  },
+  {
+    "bpin": 2024760010205,
+    "cod_contrato": "CO1.PCCNTR.7027719",
+    "valor_contrato": 12998000
+  },
+  {
+    "bpin": 2024760010175,
+    "cod_contrato": "CO1.PCCNTR.7029265",
+    "valor_contrato": 10462000
+  },
+  {
+    "bpin": 2024760010040,
+    "cod_contrato": "CO1.PCCNTR.7030574",
+    "valor_contrato": 8876000
+  },
+  {
+    "bpin": 2024760010114,
+    "cod_contrato": "CO1.PCCNTR.7032422",
+    "valor_contrato": 10462000
+  },
+  {
+    "bpin": 2024760010034,
+    "cod_contrato": "CO1.PCCNTR.7034422",
+    "valor_contrato": 10462000
+  },
+  {
+    "bpin": 2024760010131,
+    "cod_contrato": "CO1.PCCNTR.7039109",
+    "valor_contrato": 6560000
+  },
+  {
+    "bpin": 2024760010049,
+    "cod_contrato": "CO1.PCCNTR.7040247",
+    "valor_contrato": 5158000
+  },
+  {
+    "bpin": 2024760010113,
+    "cod_contrato": "CO1.PCCNTR.7045177",
+    "valor_contrato": 10462000
+  },
+  {
+    "bpin": 2024760010024,
+    "cod_contrato": "CO1.PCCNTR.7057442",
+    "valor_contrato": 6014000
+  },
+  {
+    "bpin": 2024760010181,
+    "cod_contrato": "CO1.PCCNTR.7057807",
+    "valor_contrato": 23127048
+  },
+  {
+    "bpin": 2024760010126,
+    "cod_contrato": "CO1.PCCNTR.7085533",
+    "valor_contrato": 4920000
+  },
+  {
+    "bpin": 2024760010229,
+    "cod_contrato": "CO1.PCCNTR.7085583",
+    "valor_contrato": 1007860314
+  },
+  {
+    "bpin": 2024760010325,
+    "cod_contrato": "CO1.PCCNTR.7220065",
+    "valor_contrato": 90300000
+  },
+  {
+    "bpin": 2024760010324,
+    "cod_contrato": "CO1.PCCNTR.7223138",
+    "valor_contrato": 21480000
+  },
+  {
+    "bpin": 2024760010323,
+    "cod_contrato": "CO1.PCCNTR.7224717",
+    "valor_contrato": 36960000
+  },
+  {
+    "bpin": 2024760010333,
+    "cod_contrato": "CO1.PCCNTR.7225377",
+    "valor_contrato": 40590000
+  },
+  {
+    "bpin": 2024760010318,
+    "cod_contrato": "CO1.PCCNTR.7235594",
+    "valor_contrato": 7525000
+  },
+  {
+    "bpin": 2024760010218,
+    "cod_contrato": "CO1.PCCNTR.7253776",
+    "valor_contrato": 32670000
+  },
+  {
+    "bpin": 2024760010335,
+    "cod_contrato": "CO1.PCCNTR.7255900",
+    "valor_contrato": 5445000
+  },
+  {
+    "bpin": 2024760010231,
+    "cod_contrato": "CO1.PCCNTR.7261264",
+    "valor_contrato": 32670000
+  },
+  {
+    "bpin": 2024760010328,
+    "cod_contrato": "CO1.PCCNTR.7267929",
+    "valor_contrato": 29947500
+  },
+  {
+    "bpin": 2024760010050,
+    "cod_contrato": "CO1.PCCNTR.7273111",
+    "valor_contrato": 21780000
+  },
+  {
+    "bpin": 2024760010315,
+    "cod_contrato": "CO1.PCCNTR.7275762",
+    "valor_contrato": 24028000
+  },
+  {
+    "bpin": 2024760010327,
+    "cod_contrato": "CO1.PCCNTR.7275846",
+    "valor_contrato": 90300000
+  },
+  {
+    "bpin": 2024760010089,
+    "cod_contrato": "CO1.PCCNTR.7276456",
+    "valor_contrato": 18480000
+  },
+  {
+    "bpin": 2024760010086,
+    "cod_contrato": "CO1.PCCNTR.7276689",
+    "valor_contrato": 8736000
+  },
+  {
+    "bpin": 2024760010016,
+    "cod_contrato": "CO1.PCCNTR.7276908",
+    "valor_contrato": 21780000
+  },
+  {
+    "bpin": 2024760010226,
+    "cod_contrato": "CO1.PCCNTR.7278580",
+    "valor_contrato": 11172000
+  },
+  {
+    "bpin": 2024760010339,
+    "cod_contrato": "CO1.PCCNTR.7279770",
+    "valor_contrato": 12168000
+  },
+  {
+    "bpin": 2024760010233,
+    "cod_contrato": "CO1.PCCNTR.7289632",
+    "valor_contrato": 27312000
+  },
+  {
+    "bpin": 2024760010338,
+    "cod_contrato": "CO1.PCCNTR.7290870",
+    "valor_contrato": 25410000
+  },
+  {
+    "bpin": 2024760010247,
+    "cod_contrato": "CO1.PCCNTR.7298557",
+    "valor_contrato": 13656000
+  },
+  {
+    "bpin": 2024760010246,
+    "cod_contrato": "CO1.PCCNTR.7299769",
+    "valor_contrato": 43560000
+  },
+  {
+    "bpin": 2024760010336,
+    "cod_contrato": "CO1.PCCNTR.7302682",
+    "valor_contrato": 32670000
+  },
+  {
+    "bpin": 2024760010234,
+    "cod_contrato": "CO1.PCCNTR.7322860",
+    "valor_contrato": 19057500
+  },
+  {
+    "bpin": 2024760010109,
+    "cod_contrato": "CO1.PCCNTR.7351173",
+    "valor_contrato": 20484000
+  },
+  {
+    "bpin": 2024760010227,
+    "cod_contrato": "CO1.PCCNTR.7354093",
+    "valor_contrato": 20872500
+  }
+]

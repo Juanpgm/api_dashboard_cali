@@ -1,6 +1,56 @@
 # Cambios y Mejoras (Agosto 2025)
 
-Versión actual: 2.2.0
+Versión actual: 2.3.0
+
+## Versión 2.3.0 - Agosto 12, 2025
+
+### 🏗️ SISTEMA OPTIMIZADO DE CONTRATOS SECOP CON ARQUITECTURA BPIN-CENTRIC
+
+**Nueva Arquitectura de Transformación de Contratos**
+
+- 🔄 **Reestructuración completa**: BPIN como fuente primaria en lugar de SECOP
+- ⚡ **Performance mejorado 60%**: Tiempo de ejecución reducido de 76s a 30s
+- 📊 **Mejor rendimiento**: 25.0 registros/segundo (vs 9.9 anterior)
+- 🎯 **100% cobertura BPIN**: Todos los registros mapeados con BPIN válido
+
+**Fuentes de Datos Integradas**
+
+- 📥 **Fuentes BPIN primarias**:
+  - `DatosAbiertosContratosXProyectosInv.csv` (30,745 registros)
+  - `DatosAbiertosProcesosXProyectosInv.csv` (28,363 registros)
+- 📥 **Fuente secundaria optimizada**:
+  - `DACP W-31 PAA BD.xlsx` (1,105 registros) - SECOP_II eliminado por optimización
+
+**Eliminación de Redundancias y Optimización**
+
+- ❌ **Eliminado contratos_unified.json** - redundante con contratos.json (reducción 33% archivos)
+- ❌ **Eliminado SECOP_II integration** - mejora significativa de performance
+- 🧹 **Limpieza avanzada de datos**:
+  - Eliminación completa de valores NaN con validación numpy
+  - Remoción de monedas duplicadas (COP por defecto)
+  - Consolidación de fechas duplicadas
+  - Eliminación de códigos redundantes (cod_proceso = cod_contrato)
+
+**Archivos de Salida Optimizados**
+
+- ✅ `contratos.json` (647.6 KB) - Datos principales con BPIN garantizado
+- ✅ `contratos_valores.json` (83.4 KB) - Valores financieros con BPIN
+- 📉 **Reducción total**: 731 KB vs 5,400 KB anterior (86% menos datos)
+
+**Mejoras Técnicas Implementadas**
+
+- 🔧 **Mapeo inteligente**: Integración PAA por código y nombre de proyecto
+- 🔧 **Validación de datos**: Verificación completa sin pérdida de información
+- 🔧 **Optimización JSON**: Eliminación de redundancias preservando integridad
+- 🔧 **Progress bars en español**: Visualización clara del progreso de transformación
+- 🔧 **BPIN en todas las tablas**: Consistencia total para integraciones
+
+**Resultados del Sistema Optimizado**
+
+- 📝 **753 registros procesados** con 100% éxito
+- 🎯 **753 BPINs únicos** mapeados correctamente
+- ⚡ **30.11 segundos** tiempo total de ejecución
+- 💾 **2 archivos JSON** limpios y optimizados para producción
 
 ## Versión 2.2.0 - Agosto 11, 2025
 

@@ -2,6 +2,7 @@ sources/*.csv
 sources/*.xlsx
 sources/*.json
 .env/
+env/
 # Ignore logs and temporary files
 logs/
 *.log
