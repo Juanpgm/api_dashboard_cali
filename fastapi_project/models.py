@@ -291,83 +291,6 @@ class Supervisor(Base):
     n_documento_supervisor = Column(String(50))
     nombre_supervisor = Column(String(255))
 
-class Contrato(Base):
-    __tablename__ = "contratos"
-    
-    cod_contrato = Column(String(100), primary_key=True)
-    bpin = Column(String(50), ForeignKey("proyectos.bpin"))
-    cod_centro_gestor = Column(String(50), ForeignKey("centros_gestores.cod_centro_gestor"))
-    cod_proceso_de_compra = Column(String(100), unique=True)
-    duracion_contrato = Column(Integer)
-    dias_adicionados = Column(Integer)
-    estado_contrato = Column(String(50))
-    objeto_contrato = Column(Text)
-    tipo_contrato = Column(String(100))
-    descripcion_proceso = Column(Text)
-    modalidad_contratacion = Column(String(100))
-    justificacion_modalidad_contratacion = Column(Text)
-    condiciones_entrega = Column(Text)
-    origen_recursos = Column(String(100))
-    destino_gasto = Column(String(100))
-    estado_bpin = Column(String(50))
-    nombre_banco = Column(String(100))
-    tipo_cuenta = Column(String(50))
-    nombre_ordenador_gasto = Column(String(255))
-    nombre_supervisor = Column(String(255))
-    anno_bpin = Column(SmallInteger)
-    es_pyme = Column(Boolean)
-    habilita_pago_adelantado = Column(Boolean)
-    liquidacion = Column(Boolean)
-    obligacion_ambiental = Column(Boolean)
-    obligaciones_postconsumo = Column(Boolean)
-    reversion = Column(Boolean)
-    espostconflicto = Column(Boolean)
-    contrato_puede_ser_prorrogado = Column(Boolean)
-    urlproceso = Column(Text)
-    
-    # Relaciones (comentadas temporalmente)
-    # proyecto = relationship("Proyecto", back_populates="contratos")
-    centro_gestor = relationship("CentroGestor")
-    valores = relationship("ContratoValor", back_populates="contrato", uselist=False)
-    fechas = relationship("ContratoFecha", back_populates="contrato", uselist=False)
-
-class ContratoValor(Base):
-    __tablename__ = "contrato_valores"
-    
-    cod_contrato = Column(String(100), ForeignKey("contratos.cod_contrato"), primary_key=True)
-    valor_contrato = Column(DECIMAL(18, 2))
-    valor_pago_adelantado = Column(DECIMAL(18, 2))
-    valor_facturado = Column(DECIMAL(18, 2))
-    valor_pendiente_pago = Column(DECIMAL(18, 2))
-    valor_pagado = Column(DECIMAL(18, 2))
-    valor_amortizado = Column(DECIMAL(18, 2))
-    valor_pendiente_amortizacion = Column(DECIMAL(18, 2))
-    valor_pendiente_ejecucion = Column(DECIMAL(18, 2))
-    saldo_cdp = Column(DECIMAL(18, 2))
-    saldo_vigencia = Column(DECIMAL(18, 2))
-    presupuesto_general_nacion_pgn = Column(DECIMAL(18, 2))
-    sistema_general_participaciones = Column(DECIMAL(18, 2))
-    sistema_general_regalias = Column(DECIMAL(18, 2))
-    recursos_propios_alcaldia = Column(DECIMAL(18, 2))
-    recursos_credito = Column(DECIMAL(18, 2))
-    recursos_propios = Column(DECIMAL(18, 2))
-    
-    # Relaciones
-    contrato = relationship("Contrato", back_populates="valores")
-
-class ContratoFecha(Base):
-    __tablename__ = "contrato_fechas"
-    
-    cod_contrato = Column(String(100), ForeignKey("contratos.cod_contrato"), primary_key=True)
-    fecha_firma_contrato = Column(Date)
-    fecha_inicio_contrato = Column(Date)
-    fecha_fin_contrato = Column(Date)
-    fecha_notificacion_prorrogacion = Column(Date)
-    ultima_actualizacion = Column(TIMESTAMP(timezone=True))
-    
-    # Relaciones
-    contrato = relationship("Contrato", back_populates="fechas")
-
 # =============================================================================
 # Clase: CARTOGRAFIA_BASE
 # =============================================================================
@@ -468,3 +391,27 @@ class ProjectExecution(Base):
     total_acumulado_cdp = Column(Float)
     total_acumulado_rpc = Column(Float)
     vigencia = Column(Integer)
+
+# =============================================================================
+# CONTRATOS SECOP - Sistema optimizado con arquitectura BPIN-centric
+# =============================================================================
+
+class Contrato(Base):
+    __tablename__ = "contratos"
+
+    bpin = Column(BigInteger, primary_key=True, index=True, doc="Código BPIN del proyecto")
+    cod_contrato = Column(String(100), primary_key=True, index=True, doc="Código único del contrato")
+    nombre_proyecto = Column(Text, nullable=True, doc="Nombre completo del proyecto")
+    descripcion_contrato = Column(Text, nullable=True, doc="Descripción del objeto contractual")
+    estado_contrato = Column(String(50), nullable=True, doc="Estado actual del contrato")
+    codigo_proveedor = Column(String(50), nullable=True, doc="Código de identificación del proveedor")
+    proveedor = Column(Text, nullable=True, doc="Nombre completo del proveedor/contratista")
+    url_contrato = Column(Text, nullable=True, doc="URL del contrato en el sistema SECOP")
+    fecha_actualizacion = Column(Date, nullable=True, doc="Fecha de última actualización de datos")
+
+class ContratoValor(Base):
+    __tablename__ = "contratos_valores"
+
+    bpin = Column(BigInteger, primary_key=True, index=True, doc="Código BPIN del proyecto")
+    cod_contrato = Column(String(100), primary_key=True, index=True, doc="Código único del contrato")
+    valor_contrato = Column(DECIMAL(15, 2), nullable=True, doc="Valor total del contrato en pesos colombianos")

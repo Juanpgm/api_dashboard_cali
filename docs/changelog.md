@@ -1,6 +1,49 @@
 # Cambios y Mejoras (Agosto 2025)
 
-Versión actual: 2.3.0
+Versión actual: 2.4.0
+
+## Versión 2.4.0 - Agosto 12, 2025
+
+### 🚀 OPTIMIZACIÓN COMPLETA DE ENDPOINTS Y DOCUMENTACIÓN API
+
+**Endpoints de Contratos Optimizados**
+
+- ⚡ **Endpoint `/contratos/simple` mejorado**: Ahora incluye valores de contratos mediante JOIN optimizado
+- ⚡ **Endpoint `/contratos` optimizado**: Eliminados JOINs problemáticos con tabla proyectos
+- ⚡ **Response model unificado**: Ambos endpoints GET usan `ContratoCompleto` con valores incluidos
+- 🔧 **JOIN simplificado**: Solo con `contratos_valores` para evitar conflictos de tipos de datos
+- 📊 **Datos completos**: Todos los endpoints GET de contratos muestran `valor_contrato`
+
+**Reorganización de Documentación API**
+
+- 📚 **Endpoints ADMIN reorganizados**: Movidos al final del archivo para aparecer últimos en Swagger
+- 🏷️ **Tags simplificados**: Cambiados de "ZZADMIN" a "ADMIN" manteniendo orden correcto
+- 📋 **Estructura mejorada**:
+  1. Endpoints de negocio (PROYECTO, CONTRATO, etc.)
+  2. Endpoints administrativos (ADMIN) al final
+- 🎯 **Documentación clara**: Separación lógica entre funcionalidades de negocio y administrativas
+
+**Endpoints ADMIN Consolidados**
+
+- ✅ `/health` - Verificación estado base de datos
+- ✅ `/database_status` - Estadísticas detalladas de todas las tablas
+- ✅ `/tables_info` - Información de esquemas y columnas
+- ✅ `/clear_all_data` - Eliminación masiva (funciones críticas al final)
+
+**Mejoras de Rendimiento**
+
+- 🚀 **Consultas optimizadas**: Eliminación de JOINs innecesarios y problemáticos
+- 💾 **Eficiencia de memoria**: Queries más simples y directas
+- ⚡ **Tiempo de respuesta**: Mejora significativa en endpoints de contratos
+- 🎯 **Compatibilidad de tipos**: Resolución de conflictos BIGINT vs VARCHAR
+
+**Funcionalidad Verificada**
+
+- ✅ **753 contratos** con valores completos en ambos endpoints GET
+- ✅ **Carga masiva** funcional con `/load_all_contratos`
+- ✅ **Filtros avanzados** por BPIN, estado, proveedor en endpoint principal
+- ✅ **Paginación eficiente** en ambos endpoints optimizados
+- ✅ **Documentación Swagger** con orden lógico de endpoints
 
 ## Versión 2.3.0 - Agosto 12, 2025
 

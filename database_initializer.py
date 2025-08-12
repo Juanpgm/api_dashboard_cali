@@ -149,7 +149,15 @@ class DatabaseInitializer:
             "CREATE INDEX IF NOT EXISTS idx_seguimiento_productos_pa_cod2 ON seguimiento_productos_pa(cod_pd_lvl_2)",
             "CREATE INDEX IF NOT EXISTS idx_seguimiento_actividades_pa_cod1 ON seguimiento_actividades_pa(cod_pd_lvl_1)",
             "CREATE INDEX IF NOT EXISTS idx_seguimiento_actividades_pa_cod2 ON seguimiento_actividades_pa(cod_pd_lvl_2)",
-            "CREATE INDEX IF NOT EXISTS idx_seguimiento_actividades_pa_cod3 ON seguimiento_actividades_pa(cod_pd_lvl_3)"
+            "CREATE INDEX IF NOT EXISTS idx_seguimiento_actividades_pa_cod3 ON seguimiento_actividades_pa(cod_pd_lvl_3)",
+            
+            # ✅ Índices para contratos SECOP
+            "CREATE INDEX IF NOT EXISTS idx_contratos_bpin ON contratos(bpin)",
+            "CREATE INDEX IF NOT EXISTS idx_contratos_cod_contrato ON contratos(cod_contrato)",
+            "CREATE INDEX IF NOT EXISTS idx_contratos_estado ON contratos(estado_contrato)",
+            "CREATE INDEX IF NOT EXISTS idx_contratos_proveedor ON contratos(codigo_proveedor)",
+            "CREATE INDEX IF NOT EXISTS idx_contratos_valores_bpin ON contratos_valores(bpin)",
+            "CREATE INDEX IF NOT EXISTS idx_contratos_valores_cod_contrato ON contratos_valores(cod_contrato)"
         ]
         
         try:
@@ -258,7 +266,8 @@ class DatabaseInitializer:
             'propositos', 'retos', 'movimientos_presupuestales', 
             'ejecucion_presupuestal', 'unidades_proyecto_infraestructura_equipamientos',
             'unidades_proyecto_infraestructura_vial', 'seguimiento_pa',
-            'seguimiento_productos_pa', 'seguimiento_actividades_pa'
+            'seguimiento_productos_pa', 'seguimiento_actividades_pa',
+            'contratos', 'contratos_valores'  # ✅ Nuevas tablas de contratos SECOP
         ]
         
         try:
@@ -280,9 +289,9 @@ class DatabaseInitializer:
                                      'unidades_proyecto_infraestructura_equipamientos',
                                      'unidades_proyecto_infraestructura_vial',
                                      'seguimiento_pa', 'seguimiento_productos_pa', 
-                                     'seguimiento_actividades_pa')
+                                     'seguimiento_actividades_pa', 'contratos', 'contratos_valores')
                     AND column_name IN ('bpin', 'periodo_corte', 'identificador', 'id_seguimiento_pa',
-                                      'cod_pd_lvl_1', 'cod_pd_lvl_2', 'cod_pd_lvl_3')
+                                      'cod_pd_lvl_1', 'cod_pd_lvl_2', 'cod_pd_lvl_3', 'cod_contrato')
                     ORDER BY table_name, column_name;
                 """)
                 
@@ -301,6 +310,9 @@ class DatabaseInitializer:
                         schema_ok = False
                     elif column_name == 'identificador' and data_type != 'character varying':
                         logger.error(f"❌ {table_name}.identificador debería ser varchar, es {data_type}")
+                        schema_ok = False
+                    elif column_name == 'cod_contrato' and data_type != 'character varying':
+                        logger.error(f"❌ {table_name}.cod_contrato debería ser varchar, es {data_type}")
                         schema_ok = False
                 
                 if schema_ok:

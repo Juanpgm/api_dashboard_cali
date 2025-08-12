@@ -1639,6 +1639,423 @@ def update_unidad_proyecto_vial(
         logger.error(f"Error al actualizar infraestructura vial BPIN {bpin}: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Error al actualizar registro: {str(e)}")
 
+# =============================================================================
+# CONTRATOS SECOP - Sistema optimizado con arquitectura BPIN-centric
+# =============================================================================
+
+def load_contratos_json_file(filename: str):
+    """Cargar archivo JSON desde el directorio de salida de contratos SECOP"""
+    file_path = f"transformation_app/app_outputs/contratos_secop_output/{filename}"
+    if not os.path.exists(file_path):
+        raise FileNotFoundError(f"Archivo {filename} no encontrado en {file_path}")
+    
+    with open(file_path, 'r', encoding='utf-8') as f:
+        return json.load(f)
+
+def load_and_validate_contratos_data(filename: str, schema_class, db: Session, model_class, primary_key) -> List:
+    """
+    Función para cargar, validar y guardar datos de contratos SECOP.
+    Implementa upsert inteligente con barra de progreso en español.
+    """
+    try:
+        # Cargar datos del archivo JSON
+        raw_data = load_contratos_json_file(filename)
+        
+        if not raw_data:
+            logger.warning(f"Archivo {filename} está vacío")
+            return []
+        
+        # Importar tqdm para barra de progreso
+        try:
+            from tqdm import tqdm
+        except ImportError:
+            # Fallback si tqdm no está disponible
+            def tqdm(iterable, **kwargs):
+                return iterable
+        
+        # Validar datos con barra de progreso
+        validated_data = []
+        validation_errors = []
+        
+        print(f"🔍 Validando datos de {filename}...")
+        for i, item in tqdm(enumerate(raw_data), total=len(raw_data), desc="📋 Validando registros", unit="registro"):
+            try:
+                validated_item = schema_class(**item)
+                validated_data.append(validated_item)
+            except Exception as ve:
+                validation_errors.append(f"Error en registro {i}: {str(ve)}")
+        
+        if validation_errors:
+            logger.warning(f"Se encontraron {len(validation_errors)} errores de validación en {filename}")
+            for error in validation_errors[:5]:  # Mostrar solo los primeros 5 errores
+                logger.warning(error)
+        
+        if not validated_data:
+            logger.warning(f"No hay datos válidos para cargar desde {filename}")
+            return []
+        
+        # Realizar upsert masivo con barra de progreso
+        print(f"💾 Guardando {len(validated_data)} registros en base de datos...")
+        
+        # Convertir datos de Pydantic a diccionario
+        data_dicts = [item.model_dump() for item in validated_data]
+        bulk_upsert_data(db, model_class, data_dicts, primary_key)
+        
+        logger.info(f"✅ {filename}: {len(validated_data)} registros procesados exitosamente")
+        return validated_data
+        
+    except FileNotFoundError as e:
+        logger.error(f"❌ Archivo no encontrado: {str(e)}")
+        raise HTTPException(status_code=404, detail=str(e))
+    except Exception as e:
+        logger.error(f"❌ Error procesando {filename}: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Error procesando {filename}: {str(e)}")
+
+# Mapeo de archivos de contratos
+CONTRATOS_MAPPING = {
+    "contratos.json": {
+        "schema": schemas.Contrato,
+        "model": models.Contrato,
+        "primary_key": ["bpin", "cod_contrato"]
+    },
+    "contratos_valores.json": {
+        "schema": schemas.ContratoValor,
+        "model": models.ContratoValor,
+        "primary_key": ["bpin", "cod_contrato"]
+    }
+}
+
+@app.post('/contratos', tags=["CONTRATO"], response_model=List[schemas.Contrato])
+def cargar_contratos(db: Session = Depends(get_db)):
+    """
+    Carga datos principales de contratos SECOP desde contratos.json.
+    Implementa upsert con barra de progreso para alta eficiencia.
+    """
+    try:
+        with get_db_transaction() as db_trans:
+            return load_and_validate_contratos_data(
+                "contratos.json",
+                schemas.Contrato,
+                db_trans,
+                models.Contrato,
+                ["bpin", "cod_contrato"]
+            )
+    except Exception as e:
+        logger.error(f"Error cargando contratos: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Error cargando contratos: {str(e)}")
+
+@app.post('/contratos_valores', tags=["CONTRATO"], response_model=List[schemas.ContratoValor])
+def cargar_contratos_valores(db: Session = Depends(get_db)):
+    """
+    Carga datos de valores de contratos SECOP desde contratos_valores.json.
+    Implementa upsert con barra de progreso para alta eficiencia.
+    """
+    try:
+        with get_db_transaction() as db_trans:
+            return load_and_validate_contratos_data(
+                "contratos_valores.json",
+                schemas.ContratoValor,
+                db_trans,
+                models.ContratoValor,
+                ["bpin", "cod_contrato"]
+            )
+    except Exception as e:
+        logger.error(f"Error cargando valores de contratos: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Error cargando valores de contratos: {str(e)}")
+
+@app.post('/load_all_contratos', tags=["CONTRATO"])
+def cargar_todos_contratos(db: Session = Depends(get_db)):
+    """
+    Carga todos los datos de contratos SECOP de manera masiva y optimizada.
+    - Carga contratos principales y valores en una sola operación
+    - Implementa barras de progreso para seguimiento visual
+    - Manejo robusto de errores y tolerante a fallos
+    """
+    results = {}
+    successful_loads = 0
+    failed_loads = 0
+    
+    try:
+        print("🚀 Iniciando carga masiva de contratos SECOP...")
+        
+        with get_db_transaction() as db_trans:
+            for filename, mapping in CONTRATOS_MAPPING.items():
+                try:
+                    logger.info(f"🔄 Procesando {filename}...")
+                    start_time = time.time()
+                    
+                    # Verificar si el archivo existe
+                    file_path = f"transformation_app/app_outputs/contratos_secop_output/{filename}"
+                    if not os.path.exists(file_path):
+                        logger.warning(f"⚠️ Archivo {filename} no encontrado, omitiendo...")
+                        results[filename] = {
+                            "status": "omitido",
+                            "message": "Archivo no encontrado",
+                            "records_loaded": 0
+                        }
+                        continue
+                    
+                    # Cargar y validar datos
+                    loaded_data = load_and_validate_contratos_data(
+                        filename,
+                        mapping["schema"],
+                        db_trans,
+                        mapping["model"],
+                        mapping["primary_key"]
+                    )
+                    
+                    execution_time = time.time() - start_time
+                    
+                    results[filename] = {
+                        "status": "exitoso",
+                        "records_loaded": len(loaded_data),
+                        "execution_time_seconds": round(execution_time, 2)
+                    }
+                    
+                    successful_loads += 1
+                    logger.info(f"✅ {filename} cargado: {len(loaded_data)} registros en {execution_time:.2f}s")
+                    
+                except Exception as e:
+                    failed_loads += 1
+                    error_msg = str(e)
+                    logger.error(f"❌ Error cargando {filename}: {error_msg}")
+                    
+                    results[filename] = {
+                        "status": "error",
+                        "message": error_msg,
+                        "records_loaded": 0
+                    }
+        
+        # Resumen final
+        total_records = sum(r.get("records_loaded", 0) for r in results.values())
+        
+        print(f"\n🎉 ¡Carga masiva de contratos completada!")
+        print(f"📊 Resumen: {successful_loads} exitosos, {failed_loads} fallidos")
+        print(f"📝 Total de registros cargados: {total_records}")
+        
+        return {
+            "status": "completed",
+            "summary": {
+                "successful_loads": successful_loads,
+                "failed_loads": failed_loads,
+                "total_records_loaded": total_records
+            },
+            "details": results,
+            "timestamp": time.time()
+        }
+        
+    except Exception as e:
+        logger.error(f"❌ Error crítico en carga masiva de contratos: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Error crítico en carga masiva: {str(e)}")
+
+@app.get('/contratos', tags=["CONTRATO"], response_model=List[schemas.ContratoCompleto])
+def obtener_contratos(
+    bpin: Optional[int] = Query(None, description="Filtrar por BPIN específico"),
+    cod_contrato: Optional[str] = Query(None, description="Filtrar por código de contrato"),
+    estado_contrato: Optional[str] = Query(None, description="Filtrar por estado del contrato"),
+    proveedor: Optional[str] = Query(None, description="Filtrar por proveedor (búsqueda parcial)"),
+    limit: int = Query(100, description="Número máximo de registros"),
+    offset: int = Query(0, description="Número de registros a omitir"),
+    db: Session = Depends(get_db)
+):
+    """
+    Obtiene contratos SECOP con información completa optimizada.
+    Soporta filtros múltiples y paginación para consultas eficientes.
+    """
+    try:
+        # Query optimizada sin JOIN con tablas problemáticas
+        query = db.query(
+            models.Contrato.bpin,
+            models.Contrato.cod_contrato,
+            models.Contrato.nombre_proyecto,
+            models.Contrato.descripcion_contrato,
+            models.Contrato.estado_contrato,
+            models.Contrato.codigo_proveedor,
+            models.Contrato.proveedor,
+            models.Contrato.url_contrato,
+            models.Contrato.fecha_actualizacion,
+            models.ContratoValor.valor_contrato
+        ).outerjoin(
+            models.ContratoValor,
+            (models.Contrato.bpin == models.ContratoValor.bpin) & 
+            (models.Contrato.cod_contrato == models.ContratoValor.cod_contrato)
+        )
+        
+        # Aplicar filtros
+        if bpin is not None:
+            query = query.filter(models.Contrato.bpin == bpin)
+        
+        if cod_contrato:
+            query = query.filter(models.Contrato.cod_contrato == cod_contrato)
+            
+        if estado_contrato:
+            query = query.filter(models.Contrato.estado_contrato.ilike(f"%{estado_contrato}%"))
+            
+        if proveedor:
+            query = query.filter(models.Contrato.proveedor.ilike(f"%{proveedor}%"))
+        
+        # Aplicar paginación
+        query = query.offset(offset).limit(limit)
+        
+        # Ejecutar query
+        results = query.all()
+        
+        # Convertir a lista de diccionarios para el schema
+        contratos_completos = []
+        for row in results:
+            contrato_completo = {
+                "bpin": row.bpin,
+                "cod_contrato": row.cod_contrato,
+                "nombre_proyecto": row.nombre_proyecto,
+                "descripcion_contrato": row.descripcion_contrato,
+                "estado_contrato": row.estado_contrato,
+                "codigo_proveedor": row.codigo_proveedor,
+                "proveedor": row.proveedor,
+                "url_contrato": row.url_contrato,
+                "fecha_actualizacion": row.fecha_actualizacion,
+                "valor_contrato": row.valor_contrato,
+                "cod_centro_gestor": None,  # Simplificado para evitar JOIN problemático
+                "nombre_centro_gestor": None  # Simplificado para evitar JOIN problemático
+            }
+            contratos_completos.append(contrato_completo)
+        
+        logger.info(f"✅ Consulta de contratos: {len(contratos_completos)} registros encontrados")
+        return contratos_completos
+        
+    except Exception as e:
+        logger.error(f"❌ Error consultando contratos: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Error consultando contratos: {str(e)}")
+
+@app.get('/contratos/simple', tags=["CONTRATO"], response_model=List[schemas.ContratoCompleto])
+def obtener_contratos_simple(
+    limit: int = Query(100, description="Número máximo de registros"),
+    offset: int = Query(0, description="Número de registros a omitir"),
+    db: Session = Depends(get_db)
+):
+    """
+    Obtiene contratos SECOP con valores incluidos - optimizado para rendimiento.
+    """
+    try:
+        # Query con JOIN para incluir valores
+        query = db.query(
+            models.Contrato.bpin,
+            models.Contrato.cod_contrato,
+            models.Contrato.nombre_proyecto,
+            models.Contrato.descripcion_contrato,
+            models.Contrato.estado_contrato,
+            models.Contrato.codigo_proveedor,
+            models.Contrato.proveedor,
+            models.Contrato.url_contrato,
+            models.Contrato.fecha_actualizacion,
+            models.ContratoValor.valor_contrato
+        ).outerjoin(
+            models.ContratoValor,
+            (models.Contrato.bpin == models.ContratoValor.bpin) & 
+            (models.Contrato.cod_contrato == models.ContratoValor.cod_contrato)
+        ).offset(offset).limit(limit)
+        
+        results = query.all()
+        
+        # Convertir a lista de diccionarios para el schema
+        contratos_completos = []
+        for row in results:
+            contrato_completo = {
+                "bpin": row.bpin,
+                "cod_contrato": row.cod_contrato,
+                "nombre_proyecto": row.nombre_proyecto,
+                "descripcion_contrato": row.descripcion_contrato,
+                "estado_contrato": row.estado_contrato,
+                "codigo_proveedor": row.codigo_proveedor,
+                "proveedor": row.proveedor,
+                "url_contrato": row.url_contrato,
+                "fecha_actualizacion": row.fecha_actualizacion,
+                "valor_contrato": row.valor_contrato,
+                "cod_centro_gestor": None,  # Simplificado para rendimiento
+                "nombre_centro_gestor": None  # Simplificado para rendimiento
+            }
+            contratos_completos.append(contrato_completo)
+        
+        logger.info(f"✅ Consulta simple de contratos: {len(contratos_completos)} registros encontrados")
+        return contratos_completos
+        
+    except Exception as e:
+        logger.error(f"❌ Error consultando contratos simples: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Error consultando contratos: {str(e)}")
+
+@app.get('/contratos/count', tags=["CONTRATO"])
+def contar_contratos(
+    bpin: Optional[int] = Query(None, description="Filtrar por BPIN específico"),
+    estado_contrato: Optional[str] = Query(None, description="Filtrar por estado del contrato"),
+    proveedor: Optional[str] = Query(None, description="Filtrar por proveedor"),
+    db: Session = Depends(get_db)
+):
+    """
+    Cuenta el número total de contratos con filtros opcionales.
+    Útil para paginación y estadísticas.
+    """
+    try:
+        query = db.query(models.Contrato)
+        
+        # Aplicar los mismos filtros que en la consulta principal
+        if bpin is not None:
+            query = query.filter(models.Contrato.bpin == bpin)
+            
+        if estado_contrato:
+            query = query.filter(models.Contrato.estado_contrato.ilike(f"%{estado_contrato}%"))
+            
+        if proveedor:
+            query = query.filter(models.Contrato.proveedor.ilike(f"%{proveedor}%"))
+        
+        count = query.count()
+        
+        return {
+            "total_contratos": count,
+            "filters_applied": {
+                "bpin": bpin,
+                "estado_contrato": estado_contrato,
+                "proveedor": proveedor
+            }
+        }
+        
+    except Exception as e:
+        logger.error(f"❌ Error contando contratos: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Error contando contratos: {str(e)}")
+
+@app.delete('/clear_all_data', tags=["ADMIN"])
+def clear_all_data(db: Session = Depends(get_db)):
+    """
+    CUIDADO: Elimina todos los datos de todas las tablas de la base de datos.
+    """
+    try:
+        with get_db_transaction() as db_trans:
+            # Obtener todas las tablas dinámicamente desde information_schema
+            query = text("""
+                SELECT table_name
+                FROM information_schema.tables
+                WHERE table_schema = 'public'
+            """)
+            result = db_trans.execute(query)
+            table_names = [row[0] for row in result]
+
+            deleted_counts = {}
+
+            # Eliminar datos en cada tabla
+            for table_name in table_names:
+                count_before = db_trans.execute(text(f"SELECT COUNT(*) FROM {table_name}")).scalar()
+                db_trans.execute(text(f"DELETE FROM {table_name}"))
+                deleted_counts[table_name] = count_before
+
+        return {
+            "status": "success",
+            "message": "Todos los datos eliminados exitosamente",
+            "deleted_records": deleted_counts,
+            "timestamp": time.time()
+        }
+
+    except Exception as e:
+        logger.error(f"Error al limpiar datos: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Error al limpiar datos: {str(e)}")
+
 # ================================================================================================================
 # ENDPOINTS DE ADMINISTRACIÓN Y DIAGNÓSTICO
 # ================================================================================================================
@@ -1736,38 +2153,3 @@ def tables_info(db: Session = Depends(get_db)):
     except Exception as e:
         logger.error(f"Error al obtener información de tablas: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Error al consultar información de tablas: {str(e)}")
-
-@app.delete('/clear_all_data', tags=["ADMIN"])
-def clear_all_data(db: Session = Depends(get_db)):
-    """
-    CUIDADO: Elimina todos los datos de todas las tablas de la base de datos.
-    """
-    try:
-        with get_db_transaction() as db_trans:
-            # Obtener todas las tablas dinámicamente desde information_schema
-            query = text("""
-                SELECT table_name
-                FROM information_schema.tables
-                WHERE table_schema = 'public'
-            """)
-            result = db_trans.execute(query)
-            table_names = [row[0] for row in result]
-
-            deleted_counts = {}
-
-            # Eliminar datos en cada tabla
-            for table_name in table_names:
-                count_before = db_trans.execute(text(f"SELECT COUNT(*) FROM {table_name}")).scalar()
-                db_trans.execute(text(f"DELETE FROM {table_name}"))
-                deleted_counts[table_name] = count_before
-
-        return {
-            "status": "success",
-            "message": "Todos los datos eliminados exitosamente",
-            "deleted_records": deleted_counts,
-            "timestamp": time.time()
-        }
-
-    except Exception as e:
-        logger.error(f"Error al limpiar datos: {str(e)}")
-        raise HTTPException(status_code=500, detail=f"Error al limpiar datos: {str(e)}")

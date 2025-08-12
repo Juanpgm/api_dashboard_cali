@@ -182,3 +182,47 @@ class UnidadProyectoInfraestructuraVial(BaseModel):
     class Config:
         from_attributes = True
 
+# =============================================================================
+# Esquemas para Contratos SECOP - Sistema optimizado BPIN-centric
+# =============================================================================
+
+class Contrato(BaseModel):
+    bpin: int
+    cod_contrato: str
+    nombre_proyecto: Optional[str] = None
+    descripcion_contrato: Optional[str] = None
+    estado_contrato: Optional[str] = None
+    codigo_proveedor: Optional[str] = None
+    proveedor: Optional[str] = None
+    url_contrato: Optional[str] = None
+    fecha_actualizacion: Optional[date] = None
+    
+    class Config:
+        from_attributes = True
+
+class ContratoValor(BaseModel):
+    bpin: int
+    cod_contrato: str
+    valor_contrato: Optional[Decimal] = None
+    
+    class Config:
+        from_attributes = True
+
+class ContratoCompleto(BaseModel):
+    """Esquema para respuesta GET con información de centro gestor"""
+    bpin: int
+    cod_contrato: str
+    nombre_proyecto: Optional[str] = None
+    descripcion_contrato: Optional[str] = None
+    estado_contrato: Optional[str] = None
+    codigo_proveedor: Optional[str] = None
+    proveedor: Optional[str] = None
+    url_contrato: Optional[str] = None
+    fecha_actualizacion: Optional[date] = None
+    valor_contrato: Optional[Decimal] = None
+    cod_centro_gestor: Optional[int] = None
+    nombre_centro_gestor: Optional[str] = None
+    
+    class Config:
+        from_attributes = True
+

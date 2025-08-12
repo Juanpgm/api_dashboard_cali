@@ -130,6 +130,7 @@ python production_deployment.py --force --optimize
 ### Tablas Principales
 
 #### Catálogos Base
+
 - **centros_gestores**: Centros gestores de la alcaldía
 - **programas**: Programas presupuestales
 - **areas_funcionales**: Áreas funcionales organizacionales
@@ -137,17 +138,20 @@ python production_deployment.py --force --optimize
 - **retos**: Retos estratégicos
 
 #### Datos Operacionales
+
 - **movimientos_presupuestales**: Movimientos presupuestales por proyecto (clave: bpin + periodo)
 - **ejecucion_presupuestal**: Ejecución presupuestal detallada (clave: bpin + periodo)
 - **contratos**: Contratos SECOP con información completa (clave: bpin + cod_contrato)
 - **contratos_valores**: Valores financieros de contratos (clave: bpin + cod_contrato)
 
 #### Seguimiento de Proyectos
+
 - **seguimiento_pa**: Resumen de seguimiento del Plan de Acción (PK auto-increment)
 - **seguimiento_productos_pa**: Productos del Plan de Acción (clave: cod_pd_lvl_1 + cod_pd_lvl_2)
 - **seguimiento_actividades_pa**: Actividades detalladas (clave: cod_pd_lvl_1 + cod_pd_lvl_2 + cod_pd_lvl_3)
 
 #### Infraestructura
+
 - **unidades_proyecto_infraestructura_equipamientos**: Equipamientos por proyecto
 - **unidades_proyecto_infraestructura_vial**: Infraestructura vial por proyecto
 
@@ -210,42 +214,51 @@ Una vez que el servidor esté ejecutándose, la documentación interactiva estar
 ### Categorías de Endpoints
 
 #### 1. Gestión de Catálogos
+
 - Centros gestores, programas, áreas funcionales, propósitos, retos
 - Operaciones: GET, POST para consulta y carga de datos
 
 #### 2. Datos Presupuestales
+
 - Movimientos y ejecución presupuestal
 - Operaciones: GET (con filtros), POST (carga individual), POST (carga masiva)
 
 #### 3. Contratos SECOP
+
 - Gestión completa de contratos y valores
 - Operaciones: GET (con filtros avanzados), POST (carga masiva optimizada)
 
 #### 4. Seguimiento de Proyectos
+
 - Plan de Acción: resumen, productos, actividades
 - Operaciones: GET (con filtros múltiples), POST (carga masiva)
 
 #### 5. Infraestructura
+
 - Equipamientos e infraestructura vial
 - Operaciones: GET, POST, PUT, con soporte GeoJSON
 
 #### 6. Administración
+
 - Health checks, estadísticas, información de esquemas
 - Operaciones administrativas y de mantenimiento
 
 ### Ejemplos de Uso
 
 #### Consultar Contratos con Filtros
+
 ```bash
 curl "http://localhost:8000/contratos?bpin=2024760010156&limit=10"
 ```
 
 #### Carga Masiva de Datos
+
 ```bash
 curl -X POST "http://localhost:8000/load_all_contratos"
 ```
 
 #### Obtener Estadísticas del Sistema
+
 ```bash
 curl "http://localhost:8000/database_status"
 ```
@@ -255,16 +268,19 @@ curl "http://localhost:8000/database_status"
 ### Configuraciones Recomendadas
 
 #### Desarrollo Local
+
 ```bash
 uvicorn fastapi_project.main:app --reload --port 8000
 ```
 
 #### Producción Básica
+
 ```bash
 uvicorn fastapi_project.main:app --host 0.0.0.0 --port 8000 --workers 4
 ```
 
 #### Producción con Gunicorn (Recomendado)
+
 ```bash
 pip install gunicorn
 gunicorn fastapi_project.main:app \
@@ -278,6 +294,7 @@ gunicorn fastapi_project.main:app \
 ### Scripts de Mantenimiento
 
 #### Mantenimiento Preventivo
+
 ```bash
 # Verificaciones básicas
 python production_maintenance.py
@@ -290,6 +307,7 @@ python production_maintenance.py --backup --optimize
 ```
 
 #### Monitoreo del Sistema
+
 ```bash
 # Estado general del sistema
 curl http://localhost:8000/health
@@ -370,6 +388,7 @@ logs/
 ### Problemas Comunes y Soluciones
 
 #### Error de Conexión a PostgreSQL
+
 ```bash
 # Verificar configuración
 python database_initializer.py
@@ -382,6 +401,7 @@ psql -h localhost -U api_user -d api_dashboard_cali
 ```
 
 #### Datos Inconsistentes
+
 ```bash
 # Verificar integridad del esquema
 curl http://localhost:8000/tables_info
@@ -394,6 +414,7 @@ python production_maintenance.py --optimize
 ```
 
 #### Problemas de Rendimiento
+
 ```bash
 # Verificar estadísticas
 curl http://localhost:8000/database_status
@@ -406,6 +427,7 @@ tail -f logs/maintenance_*.log
 ```
 
 #### Errores en Transformación de Datos
+
 ```bash
 # Verificar formato de archivos Excel
 # Revisar estructura de directorios app_inputs/
