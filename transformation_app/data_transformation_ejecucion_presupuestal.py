@@ -244,7 +244,7 @@ def add_operational_data(dfs: Dict[str, pd.DataFrame]) -> Dict[str, pd.DataFrame
 
 
 def create_period_column(df: pd.DataFrame) -> pd.DataFrame:
-    """Crea columna de período en formato ISO 8601"""
+    """Crea columna de período_corte en formato ISO 8601"""
     
     def obtener_fecha_fin_mes_desde_dataframe_origen_iso(df_origen, anio):
         """Extrae el mes y crea fecha del último día del mes en formato ISO 8601"""
@@ -272,7 +272,7 @@ def create_period_column(df: pd.DataFrame) -> pd.DataFrame:
     
     if 'anio' in df.columns:
         df['anio'] = pd.to_numeric(df['anio'], errors='coerce').astype('Int64')
-        df['periodo'] = df.apply(
+        df['periodo_corte'] = df.apply(
             lambda row: obtener_fecha_fin_mes_desde_dataframe_origen_iso(row['dataframe_origen'], row['anio']),
             axis=1
         )
@@ -322,7 +322,7 @@ def consolidate_dataframes(dfs: Dict[str, pd.DataFrame]) -> pd.DataFrame:
     # Mostrar columnas finales
     print(f"Columnas en DataFrame consolcdidado: {df_consolidado.columns.tolist()}")
     
-    # Crear columna de período
+    # Crear columna de período_corte
     df_consolidado = create_period_column(df_consolidado)
     
     # Limpiar filas con más del 80% de valores nulos
@@ -384,7 +384,7 @@ def create_master_data(df: pd.DataFrame) -> pd.DataFrame:
             'ppto_inicial', 'reducciones', 'adiciones', 'contracreditos', 'creditos',
             'aplazamiento', 'desaplazamiento', 'ppto_modificado', 'total_acumulado_cdp',
             'total_acumulado_rpc', 'total_acumul_obligac', 'pagos', 'ejecucion',
-            'saldos_cdp', 'ppto_disponible', 'periodo', 'dataframe_origen', 'archivo_origen'
+            'saldos_cdp', 'ppto_disponible', 'periodo_corte', 'dataframe_origen', 'archivo_origen'
         ]
         available_columns = [col for col in df.columns if col not in exclude_columns]
     
@@ -409,7 +409,7 @@ def create_movimientos_presupuestales(df: pd.DataFrame) -> pd.DataFrame:
     print(f"Columnas disponibles en DataFrame: {df.columns.tolist()}")
     
     # Columnas de movimientos presupuestales EXACTAS (sin ppto_disponible)
-    base_columns = ['bpin', 'periodo']
+    base_columns = ['bpin', 'periodo_corte']
     monetary_columns = [
         'ppto_inicial', 'reducciones', 'adiciones', 'contracreditos', 'creditos',
         'aplazamiento', 'desaplazamiento', 'ppto_modificado'
@@ -455,7 +455,7 @@ def create_movimientos_presupuestales(df: pd.DataFrame) -> pd.DataFrame:
     key_column = 'bpin' if 'bpin' in df.columns else df.columns[0]
     
     print(f"Filtrando registros válidos por {key_column}...")
-    movimientos_df = df[available_columns].dropna(subset=[key_column, 'periodo']).reset_index(drop=True)
+    movimientos_df = df[available_columns].dropna(subset=[key_column, 'periodo_corte']).reset_index(drop=True)
     
     # Identificar columnas realmente monetarias para filtro
     actual_monetary = [col for col in found_monetary if col in movimientos_df.columns]
@@ -467,9 +467,9 @@ def create_movimientos_presupuestales(df: pd.DataFrame) -> pd.DataFrame:
         movimientos_df = movimientos_df[monetary_mask].reset_index(drop=True)
         print(f"Registros después del filtro monetario: {len(movimientos_df)}")
     
-    # Agrupar por BPIN y período, sumando los valores monetarios
-    print("Agrupando datos por BPIN y período...")
-    group_columns = ['bpin', 'periodo']
+    # Agrupar por BPIN y período_corte, sumando los valores monetarios
+    print("Agrupando datos por BPIN y período_corte...")
+    group_columns = ['bpin', 'periodo_corte']
     
     # Columnas de información (tomar el primer valor no nulo)
     info_cols_available = [col for col in info_columns if col in movimientos_df.columns]
@@ -496,14 +496,14 @@ def create_movimientos_presupuestales(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def create_ejecucion_presupuestal(df: pd.DataFrame) -> pd.DataFrame:
-    """Crea el DataFrame de ejecución presupuestal agrupado por BPIN y período"""
+    """Crea el DataFrame de ejecución presupuestal agrupado por BPIN y período_corte"""
     print("Creando ejecución presupuestal...")
     
     # Verificar columnas disponibles
     print(f"Columnas disponibles en DataFrame: {df.columns.tolist()}")
     
     # Columnas base
-    base_columns = ['bpin', 'periodo']
+    base_columns = ['bpin', 'periodo_corte']
     
     # Buscar SOLO columnas de ejecución (incluir ppto_disponible aquí)
     execution_keywords = [
@@ -550,7 +550,7 @@ def create_ejecucion_presupuestal(df: pd.DataFrame) -> pd.DataFrame:
     key_column = 'bpin' if 'bpin' in df.columns else df.columns[0]
     
     print(f"Filtrando registros válidos por {key_column}...")
-    ejecucion_df = df[available_columns].dropna(subset=[key_column, 'periodo']).reset_index(drop=True)
+    ejecucion_df = df[available_columns].dropna(subset=[key_column, 'periodo_corte']).reset_index(drop=True)
     
     # Identificar columnas realmente de ejecución para filtro
     actual_execution = [col for col in found_execution if col in ejecucion_df.columns]
@@ -562,9 +562,9 @@ def create_ejecucion_presupuestal(df: pd.DataFrame) -> pd.DataFrame:
         ejecucion_df = ejecucion_df[execution_mask].reset_index(drop=True)
         print(f"Registros después del filtro de ejecución: {len(ejecucion_df)}")
     
-    # Agrupar por BPIN y período, sumando los valores de ejecución
-    print("Agrupando datos por BPIN y período...")
-    group_columns = ['bpin', 'periodo']
+    # Agrupar por BPIN y período_corte, sumando los valores de ejecución
+    print("Agrupando datos por BPIN y período_corte...")
+    group_columns = ['bpin', 'periodo_corte']
     
     # Columnas de información (tomar el primer valor no nulo)
     info_cols_available = [col for col in info_columns if col in ejecucion_df.columns]
@@ -688,6 +688,13 @@ def main():
     except Exception as e:
         print(f"Error durante la transformación: {e}")
         raise
+
+
+if __name__ == "__main__":
+    main()
+
+
+
 
 
 if __name__ == "__main__":

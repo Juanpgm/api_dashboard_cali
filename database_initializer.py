@@ -75,7 +75,8 @@ class DatabaseInitializer:
         important_tables = [
             'centros_gestores', 'programas', 'areas_funcionales', 
             'propositos', 'retos', 'movimientos_presupuestales', 
-            'ejecucion_presupuestal', 'unidades_proyecto_infraestructura_equipamientos',
+            'ejecucion_presupuestal', 'datos_caracteristicos_proyectos',  # Nueva tabla
+            'unidades_proyecto_infraestructura_equipamientos',
             'unidades_proyecto_infraestructura_vial', 'seguimiento_pa',
             'seguimiento_productos_pa', 'seguimiento_actividades_pa'
         ]
@@ -264,7 +265,8 @@ class DatabaseInitializer:
         expected_tables = [
             'centros_gestores', 'programas', 'areas_funcionales',
             'propositos', 'retos', 'movimientos_presupuestales', 
-            'ejecucion_presupuestal', 'unidades_proyecto_infraestructura_equipamientos',
+            'ejecucion_presupuestal', 'datos_caracteristicos_proyectos',  # Nueva tabla
+            'unidades_proyecto_infraestructura_equipamientos',
             'unidades_proyecto_infraestructura_vial', 'seguimiento_pa',
             'seguimiento_productos_pa', 'seguimiento_actividades_pa',
             'contratos', 'contratos_valores'  # ✅ Nuevas tablas de contratos SECOP

@@ -118,40 +118,20 @@ UNIDADES_PROYECTO_JSON_PATHS = glob.glob(os.path.join(UNIDADES_PROYECTO_DIR, "*.
 
 # Mapeo de archivos JSON a modelos y esquemas
 DATA_MAPPING = {
-    "centros_gestores.json": {
-        "model": models.CentroGestor,
-        "schema": schemas.CentroGestor,
-        "primary_key": "cod_centro_gestor"
-    },
-    "programas.json": {
-        "model": models.Programa,
-        "schema": schemas.Programa,
-        "primary_key": "cod_programa"
-    },
-    "areas_funcionales.json": {
-        "model": models.AreaFuncional,
-        "schema": schemas.AreaFuncional,
-        "primary_key": "cod_area_funcional"
-    },
-    "propositos.json": {
-        "model": models.Proposito,
-        "schema": schemas.Proposito,
-        "primary_key": "cod_proposito"
-    },
-    "retos.json": {
-        "model": models.Reto,
-        "schema": schemas.Reto,
-        "primary_key": "cod_reto"
+    "datos_caracteristicos_proyectos.json": {
+        "model": models.DatosCaracteristicosProyecto,
+        "schema": schemas.DatosCaracteristicosProyecto,
+        "primary_key": "bpin"
     },
     "movimientos_presupuestales.json": {
         "model": models.MovimientoPresupuestal,
         "schema": schemas.MovimientoPresupuestal,
-        "primary_key": ["bpin", "periodo_corte"]  # Clave compuesta
+        "primary_key": ["bpin", "periodo"]  # Clave compuesta
     },
     "ejecucion_presupuestal.json": {
         "model": models.EjecucionPresupuestal,
         "schema": schemas.EjecucionPresupuestal,
-        "primary_key": ["bpin", "periodo_corte"]  # Clave compuesta
+        "primary_key": ["bpin", "periodo"]  # Clave compuesta
     }
 }
 
@@ -490,70 +470,14 @@ def load_and_validate_unidades_proyecto_data(filename: str, schema_class, db: Se
 # MÉTODOS POST - REFACTORIZADOS PARA EFICIENCIA Y CONEXIÓN A POSTGRESQL
 # ================================================================================================================
 
-@app.post('/centros_gestores', tags=["PROYECTO: ATRIBUTOS"], response_model=List[schemas.CentroGestor])
-def load_centros_gestores(db: Session = Depends(get_db)):
-    """Carga centros gestores desde JSON a PostgreSQL con validación y upsert eficiente"""
-    mapping = DATA_MAPPING["centros_gestores.json"]
+@app.post('/datos_caracteristicos_proyectos', tags=["PROYECTO: EJECUCIÓN PRESUPUESTAL"], response_model=List[schemas.DatosCaracteristicosProyecto])
+def load_datos_caracteristicos_proyectos(db: Session = Depends(get_db)):
+    """Carga datos característicos de proyectos desde JSON a PostgreSQL con validación y upsert eficiente"""
+    mapping = DATA_MAPPING["datos_caracteristicos_proyectos.json"]
     
     with get_db_transaction() as db_trans:
         return load_and_validate_data(
-            "centros_gestores.json",
-            mapping["schema"],
-            db_trans,
-            mapping["model"],
-            mapping["primary_key"]
-        )
-
-@app.post('/programas', tags=["PROYECTO: ATRIBUTOS"], response_model=List[schemas.Programa])
-def load_programas(db: Session = Depends(get_db)):
-    """Carga programas desde JSON a PostgreSQL con validación y upsert eficiente"""
-    mapping = DATA_MAPPING["programas.json"]
-    
-    with get_db_transaction() as db_trans:
-        return load_and_validate_data(
-            "programas.json",
-            mapping["schema"],
-            db_trans,
-            mapping["model"],
-            mapping["primary_key"]
-        )
-
-@app.post('/areas_funcionales', tags=["PROYECTO: ATRIBUTOS"], response_model=List[schemas.AreaFuncional])
-def load_areas_funcionales(db: Session = Depends(get_db)):
-    """Carga áreas funcionales desde JSON a PostgreSQL con validación y upsert eficiente"""
-    mapping = DATA_MAPPING["areas_funcionales.json"]
-    
-    with get_db_transaction() as db_trans:
-        return load_and_validate_data(
-            "areas_funcionales.json",
-            mapping["schema"],
-            db_trans,
-            mapping["model"],
-            mapping["primary_key"]
-        )
-
-@app.post('/propositos', tags=["PROYECTO: ATRIBUTOS"], response_model=List[schemas.Proposito])
-def load_propositos(db: Session = Depends(get_db)):
-    """Carga propósitos desde JSON a PostgreSQL con validación y upsert eficiente"""
-    mapping = DATA_MAPPING["propositos.json"]
-    
-    with get_db_transaction() as db_trans:
-        return load_and_validate_data(
-            "propositos.json",
-            mapping["schema"],
-            db_trans,
-            mapping["model"],
-            mapping["primary_key"]
-        )
-
-@app.post('/retos', tags=["PROYECTO: ATRIBUTOS"], response_model=List[schemas.Reto])
-def load_retos(db: Session = Depends(get_db)):
-    """Carga retos desde JSON a PostgreSQL con validación y upsert eficiente"""
-    mapping = DATA_MAPPING["retos.json"]
-    
-    with get_db_transaction() as db_trans:
-        return load_and_validate_data(
-            "retos.json",
+            "datos_caracteristicos_proyectos.json",
             mapping["schema"],
             db_trans,
             mapping["model"],
@@ -915,60 +839,65 @@ def load_unidades_proyecto_vial(db: Session = Depends(get_db)):
 # MÉTODOS GET - ENDPOINTS PARA CONSULTAR DATOS DESDE POSTGRESQL
 # ================================================================================================================
 
-@app.get('/centros_gestores', tags=["PROYECTO: ATRIBUTOS"], response_model=List[schemas.CentroGestor])
-def get_centros_gestores(db: Session = Depends(get_db)):
-    """Obtiene todos los centros gestores desde PostgreSQL"""
+@app.get('/datos_caracteristicos_proyectos', tags=["PROYECTO: EJECUCIÓN PRESUPUESTAL"], response_model=List[schemas.DatosCaracteristicosProyecto])
+def get_datos_caracteristicos_proyectos(
+    bpin: Optional[int] = Query(None, description="Filtrar por BPIN específico"),
+    nombre_proyecto: Optional[str] = Query(None, description="Filtrar por nombre de proyecto (búsqueda parcial)"),
+    nombre_centro_gestor: Optional[str] = Query(None, description="Filtrar por centro gestor (búsqueda parcial)"),
+    tipo_gasto: Optional[str] = Query(None, description="Filtrar por tipo de gasto"),
+    anio: Optional[int] = Query(None, description="Filtrar por año"),
+    limit: int = Query(100, ge=1, le=10000, description="Límite de registros a devolver"),
+    offset: int = Query(0, ge=0, description="Número de registros a omitir"),
+    db: Session = Depends(get_db)
+):
+    """
+    Obtiene datos característicos de proyectos desde PostgreSQL con filtros y paginación optimizada
+    
+    - **bpin**: Filtrar por BPIN específico
+    - **nombre_proyecto**: Filtrar por nombre de proyecto (búsqueda parcial)
+    - **nombre_centro_gestor**: Filtrar por centro gestor (búsqueda parcial)
+    - **tipo_gasto**: Filtrar por tipo de gasto
+    - **anio**: Filtrar por año
+    - **limit**: Máximo número de registros a devolver (default: 100, max: 10000)
+    - **offset**: Número de registros a omitir para paginación (default: 0)
+    """
     try:
-        centros = db.query(models.CentroGestor).all()
-        return centros
+        # Construir la query base
+        query = db.query(models.DatosCaracteristicosProyecto)
+        
+        # Aplicar filtros si se proporcionan
+        if bpin:
+            query = query.filter(models.DatosCaracteristicosProyecto.bpin == bpin)
+        
+        if nombre_proyecto:
+            query = query.filter(models.DatosCaracteristicosProyecto.nombre_proyecto.ilike(f"%{nombre_proyecto}%"))
+        
+        if nombre_centro_gestor:
+            query = query.filter(models.DatosCaracteristicosProyecto.nombre_centro_gestor.ilike(f"%{nombre_centro_gestor}%"))
+        
+        if tipo_gasto:
+            query = query.filter(models.DatosCaracteristicosProyecto.tipo_gasto.ilike(f"%{tipo_gasto}%"))
+        
+        if anio:
+            query = query.filter(models.DatosCaracteristicosProyecto.anio == anio)
+        
+        # Aplicar paginación y ordenamiento para consistencia
+        datos = query.order_by(models.DatosCaracteristicosProyecto.bpin)\
+                     .offset(offset)\
+                     .limit(limit)\
+                     .all()
+        
+        logger.info(f"Consulta de datos característicos: {len(datos)} registros devueltos")
+        return datos
+        
     except Exception as e:
-        logger.error(f"Error al consultar centros gestores: {str(e)}")
-        raise HTTPException(status_code=500, detail=f"Error al consultar datos: {str(e)}")
-
-@app.get('/programas', tags=["PROYECTO: ATRIBUTOS"], response_model=List[schemas.Programa])
-def get_programas(db: Session = Depends(get_db)):
-    """Obtiene todos los programas desde PostgreSQL"""
-    try:
-        programas = db.query(models.Programa).all()
-        return programas
-    except Exception as e:
-        logger.error(f"Error al consultar programas: {str(e)}")
-        raise HTTPException(status_code=500, detail=f"Error al consultar datos: {str(e)}")
-
-@app.get('/areas_funcionales', tags=["PROYECTO: ATRIBUTOS"], response_model=List[schemas.AreaFuncional])
-def get_areas_funcionales(db: Session = Depends(get_db)):
-    """Obtiene todas las áreas funcionales desde PostgreSQL"""
-    try:
-        areas = db.query(models.AreaFuncional).all()
-        return areas
-    except Exception as e:
-        logger.error(f"Error al consultar áreas funcionales: {str(e)}")
-        raise HTTPException(status_code=500, detail=f"Error al consultar datos: {str(e)}")
-
-@app.get('/propositos', tags=["PROYECTO: ATRIBUTOS"], response_model=List[schemas.Proposito])
-def get_propositos(db: Session = Depends(get_db)):
-    """Obtiene todos los propósitos desde PostgreSQL"""
-    try:
-        propositos = db.query(models.Proposito).all()
-        return propositos
-    except Exception as e:
-        logger.error(f"Error al consultar propósitos: {str(e)}")
-        raise HTTPException(status_code=500, detail=f"Error al consultar datos: {str(e)}")
-
-@app.get('/retos', tags=["PROYECTO: ATRIBUTOS"], response_model=List[schemas.Reto])
-def get_retos(db: Session = Depends(get_db)):
-    """Obtiene todos los retos desde PostgreSQL"""
-    try:
-        retos = db.query(models.Reto).all()
-        return retos
-    except Exception as e:
-        logger.error(f"Error al consultar retos: {str(e)}")
+        logger.error(f"Error al consultar datos característicos: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Error al consultar datos: {str(e)}")
 
 @app.get('/movimientos_presupuestales', tags=["PROYECTO: EJECUCIÓN PRESUPUESTAL"], response_model=List[schemas.MovimientoPresupuestal])
 def get_movimientos_presupuestales(
-    bpin: Optional[str] = Query(None, description="Filtrar por BPIN específico"),
-    periodo_corte: Optional[str] = Query(None, description="Filtrar por período de corte (ej: '2024-01' o '2024')"),
+    bpin: Optional[int] = Query(None, description="Filtrar por BPIN específico"),
+    periodo: Optional[str] = Query(None, description="Filtrar por período (ej: '2024-01' o '2024')"),
     limit: int = Query(100, ge=1, le=10000, description="Límite de registros a devolver"),
     offset: int = Query(0, ge=0, description="Número de registros a omitir"),
     db: Session = Depends(get_db)
@@ -977,7 +906,7 @@ def get_movimientos_presupuestales(
     Obtiene movimientos presupuestales desde PostgreSQL con filtros y paginación optimizada
     
     - **bpin**: Filtrar por BPIN específico
-    - **periodo_corte**: Filtrar por período de corte (puede ser año '2024' o año-mes '2024-01')
+    - **periodo**: Filtrar por período (puede ser año '2024' o año-mes '2024-01')
     - **limit**: Máximo número de registros a devolver (default: 100, max: 10000)
     - **offset**: Número de registros a omitir para paginación (default: 0)
     """
@@ -989,15 +918,15 @@ def get_movimientos_presupuestales(
         if bpin:
             query = query.filter(models.MovimientoPresupuestal.bpin == bpin)
         
-        if periodo_corte:
+        if periodo:
             # Si contiene guión, buscar exacto, si no, buscar que comience con el año
-            if '-' in periodo_corte:
-                query = query.filter(models.MovimientoPresupuestal.periodo_corte == periodo_corte)
+            if '-' in periodo:
+                query = query.filter(models.MovimientoPresupuestal.periodo == periodo)
             else:
-                query = query.filter(models.MovimientoPresupuestal.periodo_corte.like(f"{periodo_corte}%"))
+                query = query.filter(models.MovimientoPresupuestal.periodo.like(f"{periodo}%"))
         
         # Aplicar paginación y ordenamiento para consistencia
-        movimientos = query.order_by(models.MovimientoPresupuestal.bpin, models.MovimientoPresupuestal.periodo_corte)\
+        movimientos = query.order_by(models.MovimientoPresupuestal.bpin, models.MovimientoPresupuestal.periodo)\
                           .offset(offset)\
                           .limit(limit)\
                           .all()
@@ -1011,8 +940,8 @@ def get_movimientos_presupuestales(
 
 @app.get('/ejecucion_presupuestal', tags=["PROYECTO: EJECUCIÓN PRESUPUESTAL"], response_model=List[schemas.EjecucionPresupuestal])
 def get_ejecucion_presupuestal(
-    bpin: Optional[str] = Query(None, description="Filtrar por BPIN específico"),
-    periodo_corte: Optional[str] = Query(None, description="Filtrar por período de corte (ej: '2024-01' o '2024')"),
+    bpin: Optional[int] = Query(None, description="Filtrar por BPIN específico"),
+    periodo: Optional[str] = Query(None, description="Filtrar por período (ej: '2024-01' o '2024')"),
     limit: int = Query(100, ge=1, le=10000, description="Límite de registros a devolver"),
     offset: int = Query(0, ge=0, description="Número de registros a omitir"),
     db: Session = Depends(get_db)
@@ -1021,7 +950,7 @@ def get_ejecucion_presupuestal(
     Obtiene ejecución presupuestal desde PostgreSQL con filtros y paginación optimizada
     
     - **bpin**: Filtrar por BPIN específico
-    - **periodo_corte**: Filtrar por período de corte (puede ser año '2024' o año-mes '2024-01')
+    - **periodo**: Filtrar por período (puede ser año '2024' o año-mes '2024-01')
     - **limit**: Máximo número de registros a devolver (default: 100, max: 10000)
     - **offset**: Número de registros a omitir para paginación (default: 0)
     """
@@ -1033,15 +962,15 @@ def get_ejecucion_presupuestal(
         if bpin:
             query = query.filter(models.EjecucionPresupuestal.bpin == bpin)
         
-        if periodo_corte:
+        if periodo:
             # Si contiene guión, buscar exacto, si no, buscar que comience con el año
-            if '-' in periodo_corte:
-                query = query.filter(models.EjecucionPresupuestal.periodo_corte == periodo_corte)
+            if '-' in periodo:
+                query = query.filter(models.EjecucionPresupuestal.periodo == periodo)
             else:
-                query = query.filter(models.EjecucionPresupuestal.periodo_corte.like(f"{periodo_corte}%"))
+                query = query.filter(models.EjecucionPresupuestal.periodo.like(f"{periodo}%"))
         
         # Aplicar paginación y ordenamiento para consistencia
-        ejecucion = query.order_by(models.EjecucionPresupuestal.bpin, models.EjecucionPresupuestal.periodo_corte)\
+        ejecucion = query.order_by(models.EjecucionPresupuestal.bpin, models.EjecucionPresupuestal.periodo)\
                         .offset(offset)\
                         .limit(limit)\
                         .all()
@@ -1312,10 +1241,45 @@ def get_seguimiento_pa_count(
         logger.error(f"Error al contar resumen seguimiento PA: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Error al consultar conteo: {str(e)}")
 
-@app.get('/movimientos_presupuestales/count', tags=["PROYECTO"])
+@app.get('/datos_caracteristicos_proyectos/count', tags=["PROYECTO: EJECUCIÓN PRESUPUESTAL"])
+def get_datos_caracteristicos_count(
+    bpin: Optional[int] = Query(None, description="Filtrar por BPIN específico"),
+    nombre_proyecto: Optional[str] = Query(None, description="Filtrar por nombre de proyecto"),
+    nombre_centro_gestor: Optional[str] = Query(None, description="Filtrar por centro gestor"),
+    tipo_gasto: Optional[str] = Query(None, description="Filtrar por tipo de gasto"),
+    anio: Optional[int] = Query(None, description="Filtrar por año"),
+    db: Session = Depends(get_db)
+):
+    """Obtiene el conteo de datos característicos con filtros opcionales"""
+    try:
+        query = db.query(models.DatosCaracteristicosProyecto)
+        
+        if bpin:
+            query = query.filter(models.DatosCaracteristicosProyecto.bpin == bpin)
+        
+        if nombre_proyecto:
+            query = query.filter(models.DatosCaracteristicosProyecto.nombre_proyecto.ilike(f"%{nombre_proyecto}%"))
+        
+        if nombre_centro_gestor:
+            query = query.filter(models.DatosCaracteristicosProyecto.nombre_centro_gestor.ilike(f"%{nombre_centro_gestor}%"))
+        
+        if tipo_gasto:
+            query = query.filter(models.DatosCaracteristicosProyecto.tipo_gasto.ilike(f"%{tipo_gasto}%"))
+        
+        if anio:
+            query = query.filter(models.DatosCaracteristicosProyecto.anio == anio)
+        
+        count = query.count()
+        return {"total_registros": count, "filtros": {"bpin": bpin, "nombre_proyecto": nombre_proyecto, "nombre_centro_gestor": nombre_centro_gestor, "tipo_gasto": tipo_gasto, "anio": anio}}
+        
+    except Exception as e:
+        logger.error(f"Error al contar datos característicos: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Error al consultar conteo: {str(e)}")
+
+@app.get('/movimientos_presupuestales/count', tags=["PROYECTO: EJECUCIÓN PRESUPUESTAL"])
 def get_movimientos_count(
-    bpin: Optional[str] = Query(None, description="Filtrar por BPIN específico"),
-    periodo_corte: Optional[str] = Query(None, description="Filtrar por período de corte"),
+    bpin: Optional[int] = Query(None, description="Filtrar por BPIN específico"),
+    periodo: Optional[str] = Query(None, description="Filtrar por período"),
     db: Session = Depends(get_db)
 ):
     """Obtiene el conteo de movimientos presupuestales con filtros opcionales"""
@@ -1325,23 +1289,23 @@ def get_movimientos_count(
         if bpin:
             query = query.filter(models.MovimientoPresupuestal.bpin == bpin)
         
-        if periodo_corte:
-            if '-' in periodo_corte:
-                query = query.filter(models.MovimientoPresupuestal.periodo_corte == periodo_corte)
+        if periodo:
+            if '-' in periodo:
+                query = query.filter(models.MovimientoPresupuestal.periodo == periodo)
             else:
-                query = query.filter(models.MovimientoPresupuestal.periodo_corte.like(f"{periodo_corte}%"))
+                query = query.filter(models.MovimientoPresupuestal.periodo.like(f"{periodo}%"))
         
         count = query.count()
-        return {"total_registros": count, "filtros": {"bpin": bpin, "periodo_corte": periodo_corte}}
+        return {"total_registros": count, "filtros": {"bpin": bpin, "periodo": periodo}}
         
     except Exception as e:
         logger.error(f"Error al contar movimientos presupuestales: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Error al consultar datos: {str(e)}")
 
-@app.get('/ejecucion_presupuestal/count', tags=["PROYECTO"])
+@app.get('/ejecucion_presupuestal/count', tags=["PROYECTO: EJECUCIÓN PRESUPUESTAL"])
 def get_ejecucion_count(
-    bpin: Optional[str] = Query(None, description="Filtrar por BPIN específico"),
-    periodo_corte: Optional[str] = Query(None, description="Filtrar por período de corte"),
+    bpin: Optional[int] = Query(None, description="Filtrar por BPIN específico"),
+    periodo: Optional[str] = Query(None, description="Filtrar por período"),
     db: Session = Depends(get_db)
 ):
     """Obtiene el conteo de ejecución presupuestal con filtros opcionales"""
@@ -1351,14 +1315,14 @@ def get_ejecucion_count(
         if bpin:
             query = query.filter(models.EjecucionPresupuestal.bpin == bpin)
         
-        if periodo_corte:
-            if '-' in periodo_corte:
-                query = query.filter(models.EjecucionPresupuestal.periodo_corte == periodo_corte)
+        if periodo:
+            if '-' in periodo:
+                query = query.filter(models.EjecucionPresupuestal.periodo == periodo)
             else:
-                query = query.filter(models.EjecucionPresupuestal.periodo_corte.like(f"{periodo_corte}%"))
+                query = query.filter(models.EjecucionPresupuestal.periodo.like(f"{periodo}%"))
         
         count = query.count()
-        return {"total_registros": count, "filtros": {"bpin": bpin, "periodo_corte": periodo_corte}}
+        return {"total_registros": count, "filtros": {"bpin": bpin, "periodo": periodo}}
         
     except Exception as e:
         logger.error(f"Error al contar ejecución presupuestal: {str(e)}")

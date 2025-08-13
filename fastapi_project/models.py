@@ -49,23 +49,56 @@ class MovimientoPresupuestal(Base):
     __tablename__ = "movimientos_presupuestales"
 
     bpin = Column(BigInteger, primary_key=True, index=True)
-    periodo_corte = Column(String, primary_key=True, nullable=False)
-    ppto_inicial = Column(Float, nullable=False)
-    adiciones = Column(Float, nullable=False)
-    reducciones = Column(Float, nullable=False)
-    ppto_modificado = Column(Float, nullable=False)
+    periodo = Column(String, primary_key=True, nullable=False)  # Cambiado de periodo_corte a periodo
+    adiciones = Column(BigInteger, nullable=False, default=0)
+    aplazamiento = Column(BigInteger, nullable=False, default=0)
+    contracreditos = Column(BigInteger, nullable=False, default=0)
+    creditos = Column(BigInteger, nullable=False, default=0)
+    desaplazamiento = Column(BigInteger, nullable=False, default=0)
+    ppto_inicial = Column(BigInteger, nullable=False, default=0)
+    ppto_modificado = Column(BigInteger, nullable=False, default=0)
+    reducciones = Column(BigInteger, nullable=False, default=0)
+    dataframe_origen = Column(String, nullable=True)
+    archivo_origen = Column(String, nullable=True)
 
 class EjecucionPresupuestal(Base):
     __tablename__ = "ejecucion_presupuestal"
 
     bpin = Column(BigInteger, primary_key=True, index=True)
-    periodo_corte = Column(String, primary_key=True, nullable=False)
-    ejecucion = Column(Float, nullable=False)
-    pagos = Column(Float, nullable=False)
-    saldos_cdp = Column(Float, nullable=False)
-    total_acumul_obligac = Column(Float, nullable=False)
-    total_acumulado_cdp = Column(Float, nullable=False)
-    total_acumulado_rpc = Column(Float, nullable=False)
+    periodo = Column(String, primary_key=True, nullable=False)  # Cambiado de periodo_corte a periodo
+    ejecucion = Column(BigInteger, nullable=False, default=0)
+    pagos = Column(BigInteger, nullable=False, default=0)
+    ppto_disponible = Column(BigInteger, nullable=False, default=0)  # Ahora incluido en ejecución
+    saldos_cdp = Column(BigInteger, nullable=False, default=0)
+    total_acumul_obligac = Column(BigInteger, nullable=False, default=0)
+    total_acumulado_cdp = Column(BigInteger, nullable=False, default=0)
+    total_acumulado_rpc = Column(BigInteger, nullable=False, default=0)
+    dataframe_origen = Column(String, nullable=True)
+    archivo_origen = Column(String, nullable=True)
+
+# Nueva tabla para datos característicos de proyectos
+class DatosCaracteristicosProyecto(Base):
+    __tablename__ = "datos_caracteristicos_proyectos"
+
+    bpin = Column(BigInteger, primary_key=True, index=True)
+    bp = Column(BigInteger, nullable=True)
+    nombre_proyecto = Column(Text, nullable=True)
+    nombre_actividad = Column(Text, nullable=True)
+    programa_presupuestal = Column(String, nullable=True)
+    nombre_centro_gestor = Column(Text, nullable=True)
+    nombre_area_funcional = Column(Text, nullable=True)
+    nombre_fondo = Column(Text, nullable=True)
+    clasificacion_fondo = Column(Text, nullable=True)
+    nombre_pospre = Column(Text, nullable=True)
+    nombre_dimension = Column(Text, nullable=True)
+    nombre_linea_estrategica = Column(Text, nullable=True)
+    nombre_programa = Column(Text, nullable=True)
+    origen = Column(String, nullable=True)
+    anio = Column(Integer, nullable=True)
+    tipo_gasto = Column(String, nullable=True)
+    cod_sector = Column(Integer, nullable=True)  # Actualizado
+    cod_producto = Column(Integer, nullable=True)  # Actualizado
+    validador_cuipo = Column(String, nullable=True)
  
 # =============================================================================
 # Clase: PROYECTO
@@ -344,53 +377,6 @@ class Via(Base):
 # =============================================================================
 # Mantener el modelo original para compatibilidad hacia atrás
 # =============================================================================
-
-class ProjectExecution(Base):
-    __tablename__ = "project_execution"
-
-    id = Column(Integer, primary_key=True, index=True)
-    bpin = Column(String, index=True)
-    adiciones = Column(Float)
-    anio = Column(Integer)
-    aplazamiento = Column(Float)
-    area_funcional = Column(String)
-    bp = Column(String)
-    centro_gestor = Column(String)
-    clasificacion_fondo = Column(String)
-    comuna = Column(String)
-    contracreditos = Column(Float)
-    creditos = Column(Float)
-    dataframe_origen = Column(String)
-    desaplazamiento = Column(Float)
-    dimension = Column(String)
-    ejecucion = Column(Float)
-    fondo = Column(String)
-    linea_estrategica = Column(String)
-    nombre_actividad = Column(String)
-    nombre_area_funcional = Column(String)
-    nombre_centro_gestor = Column(String)
-    nombre_dimension = Column(String)
-    nombre_fondo = Column(String)
-    nombre_linea_estrategica = Column(String)
-    nombre_pospre = Column(String)
-    nombre_programa = Column(String)
-    nombre_proyecto = Column(String)
-    organismo = Column(String)
-    origen = Column(String)
-    pagos = Column(Float)
-    periodo = Column(Date)
-    pospre = Column(String)
-    ppto_disponible = Column(Float)
-    ppto_inicial = Column(Float)
-    ppto_modificado = Column(Float)
-    programa_presupuestal = Column(String)
-    reducciones = Column(Float)
-    saldos_cdp = Column(Float)
-    tipo_gasto = Column(String)
-    total_acumul_obligac = Column(Float)
-    total_acumulado_cdp = Column(Float)
-    total_acumulado_rpc = Column(Float)
-    vigencia = Column(Integer)
 
 # =============================================================================
 # CONTRATOS SECOP - Sistema optimizado con arquitectura BPIN-centric

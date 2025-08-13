@@ -34,22 +34,62 @@ class Reto(BaseModel):
     nombre_reto: str
     
 class MovimientoPresupuestal(BaseModel):
-    bpin:int
-    ppto_inicial:float
-    adiciones:float
-    reducciones:float
-    ppto_modificado:float
-    periodo_corte:str
+    bpin: int
+    periodo: str  # Cambiado de periodo_corte a periodo
+    adiciones: int
+    aplazamiento: int
+    contracreditos: int
+    creditos: int
+    desaplazamiento: int
+    ppto_inicial: int
+    ppto_modificado: int
+    reducciones: int
+    dataframe_origen: Optional[str] = None
+    archivo_origen: Optional[str] = None
+    
+    class Config:
+        from_attributes = True
     
 class EjecucionPresupuestal(BaseModel):
-    bpin:int
-    ejecucion:float
-    pagos:float
-    saldos_cdp:float
-    total_acumul_obligac:float
-    total_acumulado_cdp:float
-    total_acumulado_rpc:float
-    periodo_corte:str
+    bpin: int
+    periodo: str  # Cambiado de periodo_corte a periodo
+    ejecucion: int
+    pagos: int
+    ppto_disponible: int  # Ahora incluido en ejecución
+    saldos_cdp: int
+    total_acumul_obligac: int
+    total_acumulado_cdp: int
+    total_acumulado_rpc: int
+    dataframe_origen: Optional[str] = None
+    archivo_origen: Optional[str] = None
+    
+    class Config:
+        from_attributes = True
+
+# Nuevo esquema para datos característicos de proyectos
+class DatosCaracteristicosProyecto(BaseModel):
+    bpin: int
+    bp: Optional[int] = None
+    nombre_proyecto: Optional[str] = None
+    nombre_actividad: Optional[str] = None
+    programa_presupuestal: Optional[str] = None
+    nombre_centro_gestor: Optional[str] = None
+    nombre_area_funcional: Optional[str] = None
+    nombre_fondo: Optional[str] = None
+    clasificacion_fondo: Optional[str] = None
+    nombre_pospre: Optional[str] = None
+    nombre_dimension: Optional[str] = None
+    nombre_linea_estrategica: Optional[str] = None
+    nombre_programa: Optional[str] = None
+    origen: Optional[str] = None
+    anio: Optional[int] = None
+    tipo_gasto: Optional[str] = None
+    cod_sector: Optional[int] = None  # Actualizado
+    cod_producto: Optional[int] = None  # Actualizado
+    validador_cuipo: Optional[str] = None
+    
+    class Config:
+        from_attributes = True
 
 # =============================================================================
 # PROYECTO: SEGUIMIENTO AL PLAN DE ACCIÓN - Esquemas Pydantic
