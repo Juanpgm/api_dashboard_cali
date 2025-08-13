@@ -126,12 +126,12 @@ DATA_MAPPING = {
     "movimientos_presupuestales.json": {
         "model": models.MovimientoPresupuestal,
         "schema": schemas.MovimientoPresupuestal,
-        "primary_key": ["bpin", "periodo"]  # Clave compuesta
+        "primary_key": ["bpin", "periodo_corte"]  # Clave compuesta
     },
     "ejecucion_presupuestal.json": {
         "model": models.EjecucionPresupuestal,
         "schema": schemas.EjecucionPresupuestal,
-        "primary_key": ["bpin", "periodo"]  # Clave compuesta
+        "primary_key": ["bpin", "periodo_corte"]  # Clave compuesta
     }
 }
 
@@ -921,12 +921,12 @@ def get_movimientos_presupuestales(
         if periodo:
             # Si contiene guión, buscar exacto, si no, buscar que comience con el año
             if '-' in periodo:
-                query = query.filter(models.MovimientoPresupuestal.periodo == periodo)
+                query = query.filter(models.MovimientoPresupuestal.periodo_corte == periodo)
             else:
-                query = query.filter(models.MovimientoPresupuestal.periodo.like(f"{periodo}%"))
+                query = query.filter(models.MovimientoPresupuestal.periodo_corte.like(f"{periodo}%"))
         
         # Aplicar paginación y ordenamiento para consistencia
-        movimientos = query.order_by(models.MovimientoPresupuestal.bpin, models.MovimientoPresupuestal.periodo)\
+        movimientos = query.order_by(models.MovimientoPresupuestal.bpin, models.MovimientoPresupuestal.periodo_corte)\
                           .offset(offset)\
                           .limit(limit)\
                           .all()
@@ -965,12 +965,12 @@ def get_ejecucion_presupuestal(
         if periodo:
             # Si contiene guión, buscar exacto, si no, buscar que comience con el año
             if '-' in periodo:
-                query = query.filter(models.EjecucionPresupuestal.periodo == periodo)
+                query = query.filter(models.EjecucionPresupuestal.periodo_corte == periodo)
             else:
-                query = query.filter(models.EjecucionPresupuestal.periodo.like(f"{periodo}%"))
+                query = query.filter(models.EjecucionPresupuestal.periodo_corte.like(f"{periodo}%"))
         
         # Aplicar paginación y ordenamiento para consistencia
-        ejecucion = query.order_by(models.EjecucionPresupuestal.bpin, models.EjecucionPresupuestal.periodo)\
+        ejecucion = query.order_by(models.EjecucionPresupuestal.bpin, models.EjecucionPresupuestal.periodo_corte)\
                         .offset(offset)\
                         .limit(limit)\
                         .all()
@@ -1291,9 +1291,9 @@ def get_movimientos_count(
         
         if periodo:
             if '-' in periodo:
-                query = query.filter(models.MovimientoPresupuestal.periodo == periodo)
+                query = query.filter(models.MovimientoPresupuestal.periodo_corte == periodo)
             else:
-                query = query.filter(models.MovimientoPresupuestal.periodo.like(f"{periodo}%"))
+                query = query.filter(models.MovimientoPresupuestal.periodo_corte.like(f"{periodo}%"))
         
         count = query.count()
         return {"total_registros": count, "filtros": {"bpin": bpin, "periodo": periodo}}

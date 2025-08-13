@@ -1,6 +1,6 @@
 # Modelos (SQLAlchemy) y Esquemas (Pydantic)
 
-## Modelos Principales (Resumen)
+## Modelos Principales (Resumen) - Versión 2.6.0
 
 ### Catálogos Base
 
@@ -14,6 +14,11 @@
 
 - `MovimientoPresupuestal`(bpin:bigint, periodo_corte:varchar, ppto_inicial, adiciones, reducciones, ppto_modificado)
 - `EjecucionPresupuestal`(bpin:bigint, periodo*corte:varchar, ejecucion, pagos, saldos_cdp, total*\*)
+
+### Contratos SECOP - Arquitectura BPIN-Centric
+
+- `Contrato`(bpin:bigint, cod_contrato:varchar, nombre_contrato, estado_contrato, proveedor_contrato, fecha_inicio, fecha_fin_estimada)
+- `ContratoValor`(bpin:bigint, cod_contrato:varchar, valor_contrato:decimal, moneda, fecha_registro)
 
 ### Unidades de Proyecto
 
@@ -49,9 +54,16 @@
 - Descriptivo: `observaciones_actividad` (text)
 - Relacionales: `bpin` (bigint), `periodo_corte` (varchar(7))
 
-## Esquemas Pydantic
+## Esquemas Pydantic - Optimizados v2.6.0
 
-Los esquemas Pydantic son equivalentes a los atributos expuestos por los endpoints POST/PUT/GET, con las siguientes consideraciones:
+Los esquemas Pydantic están perfectamente alineados con los modelos SQLAlchemy, garantizando consistencia completa entre la API y la base de datos.
+
+### Características de Alineación v2.6.0
+
+- ✅ **Campos nullable sincronizados**: Todos los campos opcionales/requeridos coinciden exactamente
+- ✅ **Nombres de campos unificados**: `periodo_corte` consistente en todos los esquemas
+- ✅ **Tipos de datos validados**: Correspondencia exacta entre Pydantic y SQLAlchemy
+- ✅ **from_attributes=True**: Configuración correcta para serialización desde ORM
 
 ### Tipos de Datos en Schemas
 
@@ -60,13 +72,22 @@ Los esquemas Pydantic son equivalentes a los atributos expuestos por los endpoin
 - Fechas: date o str (ISO format)
 - Códigos: int
 - Textos: str con Optional para campos nullable
+- `periodo_corte`: str (formato YYYY-MM o YYYY-MM-DD según tabla)
 
-### Validaciones Especiales Seguimiento PA
+### Validaciones Específicas
+
+#### Contratos SECOP
+
+- `bpin` y `cod_contrato` requeridos (clave compuesta)
+- `valor_contrato` como Decimal para precisión financiera
+- Fechas en formato ISO con validación automática
+
+#### Seguimiento PA
 
 - Códigos de nivel requeridos según jerarquía
 - Fechas en formato ISO (YYYY-MM-DD)
 - Valores monetarios con precisión decimal
-- Campos nullable según estructura JSON original
+- Campos nullable según estructura de datos original
 
 ## Notas Técnicas
 

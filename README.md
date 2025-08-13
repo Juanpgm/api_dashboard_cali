@@ -1,6 +1,16 @@
-# 🏛️ API Dashboard Alcaldía de Santiago de Cali
+# 🏛️ API Dashboard Alcaldía de Santiago de Cali - v2.6.0
 
 Sistema integral de gestión de datos presupuestales, proyectos y contratos para la Alcaldía de Santiago de Cali. Proporciona una API robusta y eficiente para el manejo de información gubernamental con capacidades avanzadas de transformación y análisis de datos.
+
+## 🎯 Novedades Versión 2.6.0
+
+### ✅ Optimización Completa de la API
+
+- **Modelos y Esquemas Alineados**: Consistencia perfecta entre SQLAlchemy models, Pydantic schemas y estructura PostgreSQL
+- **Campos Nullable Corregidos**: Todos los campos críticos con `nullable=False` para garantizar integridad
+- **Nombres Unificados**: `periodo_corte` consistente en todas las tablas y endpoints
+- **Endpoints Verificados**: Funcionamiento 100% comprobado de todos los endpoints principales
+- **Contratos Optimizados**: JOIN simplificado con `contratos_valores` para mejor rendimiento
 
 ## 📋 Descripción del Proyecto
 
@@ -36,13 +46,13 @@ api-dashboard-db/
 └── requirements.txt        # Dependencias del proyecto
 ```
 
-### Stack Tecnológico
+### Stack Tecnológico - Actualizado v2.6.0
 
-- **Backend**: FastAPI (Python 3.8+)
-- **Base de Datos**: PostgreSQL 12+
-- **ORM**: SQLAlchemy
-- **Validación**: Pydantic
-- **Documentación**: Swagger UI automático
+- **Backend**: FastAPI (Python 3.8+) con schemas Pydantic optimizados
+- **Base de Datos**: PostgreSQL 12+ con modelos SQLAlchemy alineados
+- **ORM**: SQLAlchemy con configuración nullable corregida
+- **Validación**: Pydantic con from_attributes=True para serialización ORM
+- **Documentación**: Swagger UI automático con endpoints reorganizados
 - **Procesamiento**: Pandas, OpenPyXL para archivos Excel
 
 ## 🛠️ Configuración e Instalación
@@ -130,6 +140,7 @@ python production_deployment.py --force --optimize
 ### Tablas Principales
 
 #### Catálogos Base
+
 - **centros_gestores**: Centros gestores de la alcaldía
 - **programas**: Programas presupuestales
 - **areas_funcionales**: Áreas funcionales organizacionales
@@ -137,28 +148,32 @@ python production_deployment.py --force --optimize
 - **retos**: Retos estratégicos
 
 #### Datos Operacionales
+
 - **movimientos_presupuestales**: Movimientos presupuestales por proyecto (clave: bpin + periodo)
 - **ejecucion_presupuestal**: Ejecución presupuestal detallada (clave: bpin + periodo)
 - **contratos**: Contratos SECOP con información completa (clave: bpin + cod_contrato)
 - **contratos_valores**: Valores financieros de contratos (clave: bpin + cod_contrato)
 
 #### Seguimiento de Proyectos
+
 - **seguimiento_pa**: Resumen de seguimiento del Plan de Acción (PK auto-increment)
 - **seguimiento_productos_pa**: Productos del Plan de Acción (clave: cod_pd_lvl_1 + cod_pd_lvl_2)
 - **seguimiento_actividades_pa**: Actividades detalladas (clave: cod_pd_lvl_1 + cod_pd_lvl_2 + cod_pd_lvl_3)
 
 #### Infraestructura
+
 - **unidades_proyecto_infraestructura_equipamientos**: Equipamientos por proyecto
 - **unidades_proyecto_infraestructura_vial**: Infraestructura vial por proyecto
 
-### Tipos de Datos Estandarizados
+### Tipos de Datos Estandarizados - v2.6.0
 
 - **BPIN**: `BIGINT` - Códigos de proyectos de inversión
-- **Períodos**: `VARCHAR(7)` - Formato YYYY-MM
+- **Períodos**: `VARCHAR(50)` para movimientos/ejecución, `VARCHAR(7)` para seguimiento - Formato YYYY-MM
 - **Valores monetarios**: `DECIMAL(15,2)` - Presupuestos y pagos
 - **Porcentajes**: `DECIMAL(5,2)` - Avances y porcentajes de ejecución
 - **Fechas**: `DATE` - Formato ISO (YYYY-MM-DD)
 - **Textos**: `TEXT` - Nombres y descripciones sin límite
+- **Campos críticos**: `nullable=False` para garantizar integridad de datos
 
 ## 🔄 Sistema de Transformación de Datos
 
@@ -207,47 +222,71 @@ Una vez que el servidor esté ejecutándose, la documentación interactiva estar
 - **ReDoc**: `http://localhost:8000/redoc`
 - **OpenAPI JSON**: `http://localhost:8000/openapi.json`
 
-### Categorías de Endpoints
+### Categorías de Endpoints - Actualizadas v2.6.0
 
 #### 1. Gestión de Catálogos
+
 - Centros gestores, programas, áreas funcionales, propósitos, retos
 - Operaciones: GET, POST para consulta y carga de datos
 
-#### 2. Datos Presupuestales
-- Movimientos y ejecución presupuestal
-- Operaciones: GET (con filtros), POST (carga individual), POST (carga masiva)
+#### 2. Datos Presupuestales (✅ Optimizados v2.6.0)
 
-#### 3. Contratos SECOP
-- Gestión completa de contratos y valores
+- Movimientos y ejecución presupuestal con filtros corregidos
+- Operaciones: GET (con `periodo_corte`), POST (carga individual), POST (carga masiva)
+- **Mejora**: Campos y filtros unificados para consistencia total
+
+#### 3. Contratos SECOP (✅ Arquitectura BPIN-Centric v2.6.0)
+
+- Gestión completa de contratos y valores con JOIN optimizado
 - Operaciones: GET (con filtros avanzados), POST (carga masiva optimizada)
+- **Mejora**: Response unificado `ContratoCompleto` con valores incluidos
 
 #### 4. Seguimiento de Proyectos
+
 - Plan de Acción: resumen, productos, actividades
 - Operaciones: GET (con filtros múltiples), POST (carga masiva)
 
 #### 5. Infraestructura
+
 - Equipamientos e infraestructura vial
 - Operaciones: GET, POST, PUT, con soporte GeoJSON
 
-#### 6. Administración
+#### 6. Administración (✅ Reorganizados v2.6.0)
+
 - Health checks, estadísticas, información de esquemas
 - Operaciones administrativas y de mantenimiento
+- **Mejora**: Aparecen al final en Swagger UI para mejor organización
 
-### Ejemplos de Uso
+### Ejemplos de Uso - Actualizados v2.6.0
 
-#### Consultar Contratos con Filtros
+#### Consultar Movimientos Presupuestales con Filtros Corregidos
+
+```bash
+curl "http://localhost:8000/movimientos_presupuestales?periodo_corte=2024-01&limit=10"
+```
+
+#### Consultar Contratos con JOIN Optimizado
+
 ```bash
 curl "http://localhost:8000/contratos?bpin=2024760010156&limit=10"
 ```
 
-#### Carga Masiva de Datos
+#### Carga Masiva de Contratos (Recomendado)
+
 ```bash
 curl -X POST "http://localhost:8000/load_all_contratos"
 ```
 
 #### Obtener Estadísticas del Sistema
+
 ```bash
 curl "http://localhost:8000/database_status"
+```
+
+#### Verificar Estado de la API
+
+```bash
+curl "http://localhost:8000/health"
 ```
 
 ## 🚀 Despliegue en Producción
@@ -255,16 +294,19 @@ curl "http://localhost:8000/database_status"
 ### Configuraciones Recomendadas
 
 #### Desarrollo Local
+
 ```bash
 uvicorn fastapi_project.main:app --reload --port 8000
 ```
 
 #### Producción Básica
+
 ```bash
 uvicorn fastapi_project.main:app --host 0.0.0.0 --port 8000 --workers 4
 ```
 
 #### Producción con Gunicorn (Recomendado)
+
 ```bash
 pip install gunicorn
 gunicorn fastapi_project.main:app \
@@ -278,6 +320,7 @@ gunicorn fastapi_project.main:app \
 ### Scripts de Mantenimiento
 
 #### Mantenimiento Preventivo
+
 ```bash
 # Verificaciones básicas
 python production_maintenance.py
@@ -290,6 +333,7 @@ python production_maintenance.py --backup --optimize
 ```
 
 #### Monitoreo del Sistema
+
 ```bash
 # Estado general del sistema
 curl http://localhost:8000/health
@@ -303,20 +347,24 @@ curl http://localhost:8000/tables_info
 
 ## 📈 Rendimiento y Optimizaciones
 
-### Capacidades del Sistema
+### Capacidades del Sistema - v2.6.0
 
 - **Carga de datos**: Hasta 97,000 registros en menos de 35 segundos
 - **Consultas**: Pool de conexiones optimizado para alta concurrencia
 - **Transformación**: Procesamiento de archivos Excel con millones de registros
 - **Almacenamiento**: Diseñado para manejar años de datos históricos
+- **Integridad**: Validación completa entre models, schemas y base de datos
+- **Consistencia**: Nombres de campos unificados en toda la aplicación
 
-### Optimizaciones Implementadas
+### Optimizaciones Implementadas - v2.6.0
 
 - **Índices de base de datos**: En campos críticos (BPIN, períodos, códigos)
 - **Bulk operations**: Inserción y actualización masiva eficiente
 - **Pool de conexiones**: Manejo optimizado de conexiones PostgreSQL
-- **Validación en capas**: Pydantic + SQLAlchemy para integridad de datos
+- **Validación en capas**: Pydantic + SQLAlchemy alineados para integridad de datos
 - **Arquitectura BPIN-centric**: Optimización específica para contratos SECOP
+- **Schemas optimizados**: from_attributes=True para mejor serialización ORM
+- **JOIN simplificados**: Eliminación de JOINs problemáticos para mejor rendimiento
 
 ## 🔍 Monitoreo y Logs
 
@@ -370,6 +418,7 @@ logs/
 ### Problemas Comunes y Soluciones
 
 #### Error de Conexión a PostgreSQL
+
 ```bash
 # Verificar configuración
 python database_initializer.py
@@ -381,19 +430,21 @@ cat .env
 psql -h localhost -U api_user -d api_dashboard_cali
 ```
 
-#### Datos Inconsistentes
+#### Datos Inconsistentes - v2.6.0
+
 ```bash
-# Verificar integridad del esquema
+# Verificar integridad del esquema y alineación models/schemas
 curl http://localhost:8000/tables_info
 
-# Reinicializar si es necesario
+# Reinicializar si es necesario (ahora con validación completa)
 python database_initializer.py
 
-# Verificar tipos de datos
+# Verificar tipos de datos y campos nullable
 python production_maintenance.py --optimize
 ```
 
 #### Problemas de Rendimiento
+
 ```bash
 # Verificar estadísticas
 curl http://localhost:8000/database_status
@@ -406,6 +457,7 @@ tail -f logs/maintenance_*.log
 ```
 
 #### Errores en Transformación de Datos
+
 ```bash
 # Verificar formato de archivos Excel
 # Revisar estructura de directorios app_inputs/
@@ -432,4 +484,5 @@ tail -f transformation_app/transformation_*.log
 ---
 
 **Desarrollado para la Alcaldía de Santiago de Cali**  
-**Sistema integral de gestión de datos gubernamentales**
+**Sistema integral de gestión de datos gubernamentales v2.6.0**  
+**Optimizado con modelos, esquemas y API completamente alineados**

@@ -1,6 +1,52 @@
 # Cambios y Mejoras (Agosto 2025)
 
-Versión actual: 2.5.0
+Versión actual: 2.6.0
+
+## Versión 2.6.0 - Agosto 13, 2025
+
+### 🔧 OPTIMIZACIÓN COMPLETA DE MODELOS, ESQUEMAS Y API
+
+**Corrección y Alineación de Base de Datos**
+
+- ✅ **Campos nullable corregidos**: Todos los campos críticos ahora son `nullable=False` para garantizar integridad de datos
+- ✅ **Consistencia campo-esquema**: Alineación completa entre `models.py`, `schemas.py` y estructura real de PostgreSQL
+- ✅ **Nombres de campos unificados**: `periodo_corte` consistente en todas las tablas (vs `periodo` anterior)
+- ✅ **Tipos de datos validados**: Correspondencia exacta entre SQLAlchemy models y esquema de base de datos
+
+**Optimización de Esquemas Pydantic**
+
+- 🔧 **Esquemas de respuesta unificados**: Todos los esquemas alineados con modelos SQLAlchemy
+- 🔧 **Validación mejorada**: Esquemas Pydantic actualizados para reflejar campos reales
+- 🔧 **Consistencia de tipos**: Eliminación de discrepancias entre models y schemas
+- 🔧 **from_attributes habilitado**: Configuración correcta para serialización desde modelos ORM
+
+**Endpoints API Corregidos y Verificados**
+
+- ⚡ **Endpoints de movimientos presupuestales**: Funcionando correctamente con filtros actualizados
+- ⚡ **Endpoints de ejecución presupuestal**: Consultas optimizadas y respuestas consistentes
+- ⚡ **Endpoints de contratos**: Datos completos con valores financieros incluidos
+- ⚡ **Filtros corregidos**: Parámetros de consulta alineados con nombres reales de campos
+
+**Validación Funcional Completa**
+
+- ✅ **Pruebas de endpoints**: Todos los endpoints principales verificados y funcionando
+- ✅ **Datos de respuesta**: Formato JSON consistente y completo
+- ✅ **Filtros y paginación**: Funcionamiento correcto de parámetros de consulta
+- ✅ **Integridad referencial**: Mantenida en todas las operaciones
+
+**Limpieza de Código**
+
+- 🧹 **Eliminación de código redundante**: Limpieza de imports y funciones no utilizadas
+- 🧹 **Consistencia de naming**: Nombres de variables y funciones estandarizados
+- 🧹 **Documentación de código**: Comentarios actualizados para reflejar cambios
+- 🧹 **Optimización de imports**: Solo imports necesarios en cada módulo
+
+**Resultado del Sistema Optimizado**
+
+- 📊 **100% funcionalidad verificada**: Todos los endpoints probados y operativos
+- 📊 **Consistencia total**: Models, schemas y base de datos perfectamente alineados
+- 📊 **Performance mejorado**: Consultas más eficientes sin conflictos de tipos
+- 📊 **Código limpio**: Base de código optimizada y mantenible
 
 ## Versión 2.5.0 - Agosto 13, 2025
 

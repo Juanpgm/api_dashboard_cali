@@ -49,12 +49,10 @@ class MovimientoPresupuestal(Base):
     __tablename__ = "movimientos_presupuestales"
 
     bpin = Column(BigInteger, primary_key=True, index=True)
-    periodo = Column(String, primary_key=True, nullable=False)  # Cambiado de periodo_corte a periodo
+    periodo_corte = Column(String(50), primary_key=True, nullable=False)  # Manteniendo nombre correcto de BD
     adiciones = Column(BigInteger, nullable=False, default=0)
-    aplazamiento = Column(BigInteger, nullable=False, default=0)
     contracreditos = Column(BigInteger, nullable=False, default=0)
     creditos = Column(BigInteger, nullable=False, default=0)
-    desaplazamiento = Column(BigInteger, nullable=False, default=0)
     ppto_inicial = Column(BigInteger, nullable=False, default=0)
     ppto_modificado = Column(BigInteger, nullable=False, default=0)
     reducciones = Column(BigInteger, nullable=False, default=0)
@@ -65,10 +63,10 @@ class EjecucionPresupuestal(Base):
     __tablename__ = "ejecucion_presupuestal"
 
     bpin = Column(BigInteger, primary_key=True, index=True)
-    periodo = Column(String, primary_key=True, nullable=False)  # Cambiado de periodo_corte a periodo
+    periodo_corte = Column(String(50), primary_key=True, nullable=False)  # Manteniendo nombre correcto de BD
     ejecucion = Column(BigInteger, nullable=False, default=0)
     pagos = Column(BigInteger, nullable=False, default=0)
-    ppto_disponible = Column(BigInteger, nullable=False, default=0)  # Ahora incluido en ejecución
+    ppto_disponible = Column(BigInteger, nullable=False, default=0)
     saldos_cdp = Column(BigInteger, nullable=False, default=0)
     total_acumul_obligac = Column(BigInteger, nullable=False, default=0)
     total_acumulado_cdp = Column(BigInteger, nullable=False, default=0)

@@ -35,15 +35,13 @@ class Reto(BaseModel):
     
 class MovimientoPresupuestal(BaseModel):
     bpin: int
-    periodo: str  # Cambiado de periodo_corte a periodo
-    adiciones: int
-    aplazamiento: int
-    contracreditos: int
-    creditos: int
-    desaplazamiento: int
-    ppto_inicial: int
-    ppto_modificado: int
-    reducciones: int
+    periodo_corte: str  # Corregido para coincidir con el modelo
+    adiciones: int = 0
+    contracreditos: int = 0
+    creditos: int = 0
+    ppto_inicial: int = 0
+    ppto_modificado: int = 0
+    reducciones: int = 0
     dataframe_origen: Optional[str] = None
     archivo_origen: Optional[str] = None
     
@@ -52,14 +50,14 @@ class MovimientoPresupuestal(BaseModel):
     
 class EjecucionPresupuestal(BaseModel):
     bpin: int
-    periodo: str  # Cambiado de periodo_corte a periodo
-    ejecucion: int
-    pagos: int
-    ppto_disponible: int  # Ahora incluido en ejecución
-    saldos_cdp: int
-    total_acumul_obligac: int
-    total_acumulado_cdp: int
-    total_acumulado_rpc: int
+    periodo_corte: str  # Corregido para coincidir con el modelo
+    ejecucion: int = 0
+    pagos: int = 0
+    ppto_disponible: int = 0
+    saldos_cdp: int = 0
+    total_acumul_obligac: int = 0
+    total_acumulado_cdp: int = 0
+    total_acumulado_rpc: int = 0
     dataframe_origen: Optional[str] = None
     archivo_origen: Optional[str] = None
     
