@@ -1,14 +1,71 @@
 # 📊 Resumen de Mejoras y Optimizaciones - Transformation App
 
-## 🎯 Versión 2.3.0 - Agosto 12, 2025
+## 🎯 Versión 2.5.0 - Agosto 13, 2025
 
-### 🚀 **Sistema de Contratos SECOP - Arquitectura BPIN-Centric (NUEVO)**
+### � **Sistema de Ejecución Presupuestal - Optimización Completa (ACTUALIZADO)**
 
-**Optimizaciones Implementadas:**
+**Correcciones Críticas Implementadas:**
 
-#### **1. Reestructuración Arquitectónica Completa**
+#### **1. Integridad de Datos Financieros Preservada**
+
+- ✅ **Valores numéricos puros**: Eliminación de decimales, puntos y símbolos "$"
+- ✅ **Preservación completa**: Todos los dígitos originales mantenidos
+- ✅ **Función clean_monetary_value renovada**: Solo elimina separadores, preserva valores
+- ✅ **Validación robusta**: Sin pérdida de información financiera
+
+#### **2. Columnas Monetarias Completas Incluidas**
+
+- ✅ **movimientos_presupuestales.json**: Incluye todas las columnas requeridas
+  - `ppto_inicial`, `adiciones`, `reducciones`, `contracreditos`, `creditos`
+  - `aplazamiento`, `desaplazamiento`, `ppto_modificado`, `ppto_disponible`
+- ✅ **ejecucion_presupuestal.json**: Incluye todas las columnas de ejecución
+  - `total_acumulado_cdp`, `total_acumulado_rpc`, `total_acumul_obligac`
+  - `pagos`, `ejecucion`, `saldos_cdp`, `ppto_disponible`
+
+#### **3. Agrupación Inteligente por BPIN-Período**
+
+- ⚡ **Movimientos**: 88,043 → 11,880 registros agrupados (86% reducción)
+- ⚡ **Ejecución**: 80,286 → 11,742 registros agrupados (85% reducción)
+- 🎯 **Agrupación por clave única**: BPIN + período de corte
+- 📊 **Suma de valores**: Agregación correcta por proyecto y fecha
+
+#### **4. Detección Automática de Columnas**
+
+- 🔧 **Búsqueda inteligente**: Identificación automática de columnas monetarias y de ejecución
+- 🔧 **Palabras clave optimizadas**: Detección por contenido ('ppto', 'cdp', 'pagos', etc.)
+- 🔧 **Flexibilidad**: Adaptación automática a diferentes estructuras de CSV
+- 🔧 **Logs informativos**: Depuración completa de columnas detectadas
+
+#### **5. Archivos de Salida Corregidos**
+
+- ✅ **movimientos_presupuestales.json** (4.4 MB) - Datos financieros completos
+- ✅ **ejecucion_presupuestal.json** (4.1 MB) - Ejecución presupuestal completa
+- ✅ **datos_caracteristicos_proyectos.json** (1.3 MB) - Datos maestros únicos
+
+#### **6. Performance Optimizado**
+
+- ⚡ **Tiempo de ejecución**: 9.99 segundos para 96,664 filas procesadas
+- 💾 **Eficiencia de memoria**: 255.05 MB durante procesamiento
+- 📈 **Reducción inteligente**: Hasta 85% menos registros manteniendo integridad
+- 🎯 **Progress bars mejoradas**: Visualización detallada en todas las funciones
+
+#### **7. Limpieza de Archivos Obsoletos**
+
+- 🗑️ **Eliminado**: `data_transformation_ejecucion_presupuestal_backup.py`
+- 📁 **Estructura optimizada**: Solo archivos necesarios en production
+
+---
+
+### 🚀 **Sistema de Contratos SECOP - Arquitectura BPIN-Centric (v2.3.0)**
+
+**Estado**: Completamente optimizado y estable
+
+#### **Optimizaciones Implementadas**
 
 - ✅ **BPIN como fuente primaria** en lugar de SECOP tradicional
+- ✅ **60% mejor performance**: 30.11s vs 76.44s anteriores
+- ✅ **753 registros únicos** con BPINs válidos garantizados
+- ✅ **86% reducción tamaño**: 731 KB vs 5,400 KB anteriores
 - ✅ **Arquitectura optimizada** con fuentes BPIN + enriquecimiento PAA
 - ✅ **100% cobertura BPIN** en todos los registros procesados
 - ✅ **753 registros únicos** con BPINs válidos garantizados

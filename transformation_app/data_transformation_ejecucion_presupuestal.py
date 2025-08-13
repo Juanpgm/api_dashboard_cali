@@ -1,1184 +1,694 @@
 # -*- coding: utf-8 -*-
 """
-Data transformation module for budget execution data processing.
-Simple concatenation of all CSV files from downloaded_data directory.
+Transformación optimizada de datos de ejecución presupuestal
+Basado en el patrón del integrador_ejecucion_presupuestal.py
+Procesa múltiples archivos CSV y genera 3 archivos JSON optimizados:
+1. Datos característicos de proyectos (master data)
+2. Movimientos presupuestales 
+3. Ejecución presupuestal
 """
 
 import os
 import pandas as pd
-from typing import Optional
+import numpy as np
+import re
+import unicodedata
+import time
+import psutil
+from tqdm import tqdm
+from typing import Dict, List, Optional, Tuple, Union
+from datetime import datetime
+from dateutil.relativedelta import relativedelta
 
 
-def normalize_column_names(columns):
-    """Normalize column names by converting to lowercase and removing special characters."""
-    return [col.lower().strip().replace(' ', '_').replace('.', '_').replace('(', '').replace(')', '') for col in columns]
+def normalize_column_names(columns: List[str]) -> List[str]:
+    """Normaliza nombres de columnas eliminando espacios, acentos y conectores"""
+    normalized_cols = []
+    for col in columns:
+        # Convert to lowercase
+        col = col.lower()
+        # Replace spaces with underscores
+        col = col.replace(' ', '_')
+        # Remove leading/trailing underscores
+        col = col.strip('_')
+        # Remove accents (tildes)
+        col = unicodedata.normalize('NFD', col).encode('ascii', 'ignore').decode('utf-8')
+        # Replace 'ñ' with 'n'
+        col = col.replace('ñ', 'n')
+        normalized_cols.append(col)
+    return normalized_cols
 
 
-def ejecucion_presupuestal_transformer(data_directory: str = "transformation_app/app_inputs/ejecucion_presupuestal_input") -> pd.DataFrame:
-    """
-    Creates a unified dataframe by combining all CSV files from the downloaded_data directory.
-    Simply concatenates all tables vertically without losing any data.
+def clean_monetary_value(value: Union[str, float, int]) -> int:
+    """Limpia valores monetarios removiendo caracteres no numéricos y devuelve entero puro"""
+    if pd.isna(value) or value == '':
+        return 0
     
-    Args:
-        data_directory (str): Path to the directory containing CSV files. Defaults to "downloaded_data".
-        
-    Returns:
-        pd.DataFrame: Consolidated dataframe with all budget execution data.
-    """
+    if isinstance(value, (int, float)):
+        # Si ya es numérico, convertir a entero
+        return int(value) if not pd.isna(value) and not np.isinf(value) else 0
     
-    # Define standardized column names according to your requirements
-    standard_columns = [
-        'bpin', 'bp', 'cod_area_funcional', 'nombre_area_funcional', 'cod_centro_gestor', 'nombre_centro_gestor', 'cod_comuna', 
-        'cod_dimension', 'nombre_dimension', 'cod_linea_estrategica', 'nombre_linea_estrategica', 'cod_actividad', 'cod_sector', 
-        'cod_proposito', 'nombre_proposito', 'cod_reto', 'nombre_reto', 'cod_pospre', 'cod_programa', 'nombre_programa',
-        'cod_fuente_financiamiento', 'cod_categoria_alcalde', 'nombre_proyecto_bpin', 
-        'nombre_bp', 'tipo_proyecto', 'anio_inicio', 'periodo_corte', 'ppto_inicial', 
-        'adiciones', 'reducciones', 'ppto_modificado', 'ejecucion', 'pagos', 
-        'saldos_cdp', 'total_acumul_obligac', 'total_acumulado_cdp', 'total_acumulado_rpc'
-    ]
+    if isinstance(value, str):
+        # Remover TODOS los caracteres que no sean dígitos
+        # Esto preserva todos los números y elimina puntos, comas, espacios, símbolos, etc.
+        cleaned = re.sub(r'[^\d]', '', str(value).strip())
+        
+        try:
+            return int(cleaned) if cleaned else 0
+        except ValueError:
+            return 0
     
-    # Comprehensive mapping from various source column names to standard names
-    column_mapping = {
-        # Project identifiers
-        'bpin': 'bpin',
-        'bp': 'bp',
-        'codigo_bpin': 'bpin',
-        'codigo_bp': 'bp',
-        'cod_bpin': 'bpin',
-        'cod_bp': 'bp',
-        
-        # Functional codes
-        'cod_area_funcional': 'cod_area_funcional',
-        'codigo_area_funcional': 'cod_area_funcional',
-        'area_funcional': 'cod_area_funcional',
-        
-        # Add mapping for nombre_area_funcional
-        'nombre_area_funcional': 'nombre_area_funcional',
-        'nombre_de_area_funcional': 'nombre_area_funcional',
-        'nom_area_funcional': 'nombre_area_funcional',
-        'area_funcional_nombre': 'nombre_area_funcional',
-        'nombre_del_area_funcional': 'nombre_area_funcional',
-        
-        'cod_centro_gestor': 'cod_centro_gestor',
-        'codigo_centro_gestor': 'cod_centro_gestor',
-        'centro_gestor': 'cod_centro_gestor',
-        
-        # Add mapping for nombre_centro_gestor
-        'nombre_centro_gestor': 'nombre_centro_gestor',
-        'nombre_del_centro_gestor': 'nombre_centro_gestor',
-        'nom_centro_gestor': 'nombre_centro_gestor',
-        'centro_gestor_nombre': 'nombre_centro_gestor',
-        
-        'cod_comuna': 'cod_comuna',
-        'codigo_comuna': 'cod_comuna',
-        'comuna': 'cod_comuna',
-        
-        'cod_dimension': 'cod_dimension',
-        'codigo_dimension': 'cod_dimension',
-        'dimension': 'cod_dimension',
-        
-        # Add mapping for nombre_dimension
-        'nombre_dimension': 'nombre_dimension',
-        'nombre_de_dimension': 'nombre_dimension',
-        'nom_dimension': 'nombre_dimension',
-        'dimension_nombre': 'nombre_dimension',
-        'nombre_de_la_dimension': 'nombre_dimension',
-        
-        'cod_linea_estrategica': 'cod_linea_estrategica',
-        'codigo_linea_estrategica': 'cod_linea_estrategica',
-        'linea_estrategica': 'cod_linea_estrategica',
-        
-        # Add mapping for nombre_linea_estrategica
-        'nombre_linea_estrategica': 'nombre_linea_estrategica',
-        'nombre_de_linea_estrategica': 'nombre_linea_estrategica',
-        'nom_linea_estrategica': 'nombre_linea_estrategica',
-        'linea_estrategica_nombre': 'nombre_linea_estrategica',
-        'nombre_de_la_linea_estrategica': 'nombre_linea_estrategica',
-        
-        'cod_actividad': 'cod_actividad',
-        'codigo_actividad': 'cod_actividad',
-        'actividad': 'cod_actividad',
-        
-        'cod_sector': 'cod_sector',
-        'codigo_sector': 'cod_sector',
-        'sector': 'cod_sector',
-        
-        'cod_proposito': 'cod_proposito',
-        'codigo_proposito': 'cod_proposito',
-        'proposito': 'cod_proposito',
-        'propósito': 'cod_proposito',  # Added for Spanish accent
-        
-        # Add mapping for nombre_proposito with various formats
-        'nombre_proposito': 'nombre_proposito',
-        'nombre_del_proposito': 'nombre_proposito',
-        'nom_proposito': 'nombre_proposito',
-        'proposito_nombre': 'nombre_proposito',
-        'nombre_de_proposito': 'nombre_proposito',
-        'nombre_propósito': 'nombre_proposito',  # Added for Spanish accent
-        'nombre propósito': 'nombre_proposito',  # Added for space and accent
-        
-        'cod_reto': 'cod_reto',
-        'codigo_reto': 'cod_reto',
-        'reto': 'cod_reto',
-        
-        # Add mapping for nombre_reto
-        'nombre_reto': 'nombre_reto',
-        'nombre_del_reto': 'nombre_reto',
-        'nom_reto': 'nombre_reto',
-        'reto_nombre': 'nombre_reto',
-        'nombre_de_reto': 'nombre_reto',
-        
-        'cod_pospre': 'cod_pospre',
-        'codigo_pospre': 'cod_pospre',
-        'pospre': 'cod_pospre',
-        
-        'cod_programa': 'cod_programa',
-        'codigo_programa': 'cod_programa',
-        'programa': 'cod_programa',
-        
-        # Add mapping for nombre_programa
-        'nombre_programa': 'nombre_programa',
-        'nombre_del_programa': 'nombre_programa',
-        'nom_programa': 'nombre_programa',
-        'programa_nombre': 'nombre_programa',
-        'nombre_de_programa': 'nombre_programa',
-        
-        'cod_fuente_financiamiento': 'cod_fuente_financiamiento',
-        'codigo_fuente_financiamiento': 'cod_fuente_financiamiento',
-        'fuente_financiamiento': 'cod_fuente_financiamiento',
-        
-        'cod_categoria_alcalde': 'cod_categoria_alcalde',
-        'codigo_categoria_alcalde': 'cod_categoria_alcalde',
-        'categoria_alcalde': 'cod_categoria_alcalde',
-        
-        # Project names and types
-        'nombre_proyecto_bpin': 'nombre_proyecto_bpin',
-        'nombre_proyecto': 'nombre_proyecto_bpin',
-        'proyecto_bpin': 'nombre_proyecto_bpin',
-        'nombre_del_proyecto': 'nombre_proyecto_bpin',
-        
-        'nombre_bp': 'nombre_bp',
-        'nombre_proyecto_bp': 'nombre_bp',
-        'proyecto_bp': 'nombre_bp',
-        'nompre_bp': 'nombre_bp',
-        
-        'tipo_proyecto': 'tipo_proyecto',
-        'tipo': 'tipo_proyecto',
-        
-        'anio_inicio': 'anio_inicio',
-        'año_inicio': 'anio_inicio',
-        'año': 'anio_inicio',
-        
-        # Time period
-        'periodo_corte': 'periodo_corte',
-        'periodo': 'periodo_corte',
-        'corte': 'periodo_corte',
-        
-        # Budget amounts
-        'ppto_inicial': 'ppto_inicial',
-        'presupuesto_inicial': 'ppto_inicial',
-        'ppuesto_inicial': 'ppto_inicial',
-        
-        'adiciones': 'adiciones',
-        'adicion': 'adiciones',
-        
-        'reducciones': 'reducciones',
-        'reduccion': 'reducciones',
-        
-        'ppto_modificado': 'ppto_modificado',
-        'presupuesto_modificado': 'ppto_modificado',
-        'ppuesto_modificado': 'ppto_modificado',
-        'ppto__modificado': 'ppto_modificado',
-        
-        # Execution amounts
-        'ejecucion': 'ejecucion',
-        'ejecutado': 'ejecucion',
-        
-        'pagos': 'pagos',
-        'pago': 'pagos',
-        
-        'saldos_cdp': 'saldos_cdp',
-        'saldo_cdp': 'saldos_cdp',
-        
-        'total_acumul_obligac': 'total_acumul_obligac',
-        'total_acumulado_obligaciones': 'total_acumul_obligac',
-        'acumulado_obligaciones': 'total_acumul_obligac',
-        
-        'total_acumulado_cdp': 'total_acumulado_cdp',
-        'acumulado_cdp': 'total_acumulado_cdp',
-        
-        'total_acumulado_rpc': 'total_acumulado_rpc',
-        'acumulado_rpc': 'total_acumulado_rpc'
-    }
+    return 0
+
+
+def is_program_column(column: pd.Series) -> bool:
+    """Verifica si una columna contiene códigos de programa (valor inicial 4599)"""
+    first_value = column.dropna().iloc[0] if not column.dropna().empty else None
+    return first_value is not None and (str(first_value) == '4599' or (isinstance(first_value, (int, float)) and first_value == 4599))
+
+
+def load_csv_files(input_dir: str) -> Dict[str, pd.DataFrame]:
+    """Carga todos los archivos CSV del directorio de entrada"""
+    print(f"Cargando archivos CSV desde {input_dir}")
     
-    # Get the absolute path to the data directory
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-    parent_dir = os.path.dirname(current_dir)
-    directory_path = os.path.join(parent_dir, data_directory)
-    
-    if not os.path.exists(directory_path):
-        raise FileNotFoundError(f"Directory not found: {directory_path}")
-    
-    # List all files in the directory
-    files = os.listdir(directory_path)
-    
-    # Filter for CSV files
-    csv_files = [f for f in files if f.endswith('.csv')]
-    
-    if not csv_files:
-        raise ValueError(f"No CSV files found in {directory_path}")
-    
-    # Dictionary to store all dataframes
+    files = [f for f in os.listdir(input_dir) if f.endswith('.csv')]
     dfs = {}
     
-    # Load all CSV files
-    print(f"Loading {len(csv_files)} CSV files from {directory_path}")
-    
-    for file_name in csv_files:
-        file_path = os.path.join(directory_path, file_name)
+    for file_name in tqdm(files, desc="Cargando archivos CSV"):
+        file_path = os.path.join(input_dir, file_name)
         try:
-            # Read CSV with semicolon delimiter and skip bad lines
-            df = pd.read_csv(file_path, sep=';', on_bad_lines='skip', encoding='utf-8', low_memory=False)
+            # Try different separators and encodings
+            df = None
+            separators = [',', ';', '\t']
+            encodings = ['utf-8', 'latin-1', 'cp1252']
             
-            print(f"\nOriginal columns in '{file_name}': {list(df.columns)}")
+            for encoding in encodings:
+                for sep in separators:
+                    try:
+                        df = pd.read_csv(file_path, sep=sep, encoding=encoding, on_bad_lines='skip')
+                        if df.shape[1] > 1:  # Check if we have multiple columns
+                            break
+                    except:
+                        continue
+                if df is not None and df.shape[1] > 1:
+                    break
+            
+            if df is None or df.shape[1] == 1:
+                # Last resort: try automatic detection
+                df = pd.read_csv(file_path, sep=None, engine='python', encoding='utf-8', on_bad_lines='skip')
             
             df_name = os.path.splitext(file_name)[0]
             dfs[df_name] = df
-            
-            print(f"Successfully loaded '{file_name}' with shape {df.shape}")
+            print(f"Cargado exitosamente '{file_name}' con forma {df.shape}")
+            print(f"Columnas originales en '{file_name}': {df.columns.tolist()[:10]}...")  # Show first 10 columns
             
         except Exception as e:
-            print(f"Error loading '{file_name}': {e}")
-            continue
+            print(f"Error cargando '{file_name}': {e}")
     
-    if not dfs:
-        raise ValueError("No CSV files could be loaded successfully")
+    return dfs
+
+
+def preprocess_dataframes(dfs: Dict[str, pd.DataFrame]) -> Dict[str, pd.DataFrame]:
+    """Preprocesa los DataFrames eliminando columnas innecesarias"""
+    print("Preprocesando DataFrames...")
     
-    # Standardize all dataframes
-    standardized_dfs = []
+    # Eliminar columna RUBRO donde corresponda
+    for df_name in tqdm(dfs.keys(), desc="Eliminando columnas innecesarias"):
+        df = dfs[df_name]
+        if 'RUBRO' in df.columns:
+            dfs[df_name] = df.drop(columns=['RUBRO'])
+            print(f"Columna 'RUBRO' eliminada de '{df_name}'")
     
-    for df_name, df in dfs.items():
-        # 1. Make a copy to avoid SettingWithCopyWarning
-        df = df.copy()
-        
-        # 2. Normalize column names
+    return dfs
+
+
+def normalize_dataframes(dfs: Dict[str, pd.DataFrame]) -> Dict[str, pd.DataFrame]:
+    """Normaliza nombres de columnas y aplica transformaciones específicas"""
+    print("Normalizando nombres de columnas...")
+    
+    for df_name, df in tqdm(dfs.items(), desc="Normalizando DataFrames"):
+        # Normalizar nombres de columnas
         df.columns = normalize_column_names(df.columns)
         
-        # Debug: Print column names to see what we have
-        print(f"\nDataFrame {df_name} columns after normalization: {list(df.columns)}")
+        # Renombrar columnas específicas con códigos de programa
+        columns_to_rename = {}
+        for col in df.columns:
+            if 'programa' in col.lower().replace(" ", "") and is_program_column(df[col]):
+                columns_to_rename[col] = 'cod_programa'
         
-        # 3. Rename columns using the comprehensive map
-        df.rename(columns=column_mapping, inplace=True)
+        if columns_to_rename:
+            df = df.rename(columns=columns_to_rename)
         
-        # 4. Handle potential duplicate columns after renaming
-        df = df.loc[:,~df.columns.duplicated()]
+        dfs[df_name] = df
+    
+    return dfs
+
+
+def apply_column_mappings(dfs: Dict[str, pd.DataFrame]) -> Dict[str, pd.DataFrame]:
+    """Aplica mapeos específicos de columnas"""
+    print("Aplicando mapeos de columnas...")
+    
+    # Definir mapeos de columnas
+    column_mappings = {
+        'programa': 'programa_presupuestal',
+        'nombre_de_la_actividad': 'nombre_actividad',
+        'nombre_de_fondo': 'nombre_fondo',
+        'nombre_del_area_funcional': 'nombre_area_funcional',
+        'nombre_de_linea_estrategica': 'nombre_linea_estrategica',
+        'nombre_del_proyecto': 'nombre_proyecto',
+        'tipo_de_gasto': 'tipo_gasto',
+        'clasificacion_del_fondo': 'clasificacion_fondo',
+        'ppto._disponible': 'ppto_disponible',
+        'ppto._modificado': 'ppto_modificado',
+        'fondo_1': 'fondo',
+        'clasificacion_del_fondo_1': 'clasificacion_fondo',
+        'pospre_1': 'pospre',
+        'pospre_1.1': 'nombre_pospre',
+        'nombre_de_dimension': 'nombre_dimension',
+        'nombre_bp': 'nombre_proyecto',
+        'nompre_bp': 'nombre_proyecto',
+        'nombre_de_programa': 'nombre_programa',
+        'sector': 'cod_sector',
+        'producto': 'cod_producto'
+    }
+    
+    for df_name, df in tqdm(dfs.items(), desc="Aplicando mapeos"):
+        # Aplicar renombramientos
+        for old_name, new_name in column_mappings.items():
+            if old_name in df.columns:
+                df = df.rename(columns={old_name: new_name})
         
-        # 5. Remove any 'rubro' related columns
-        columns_to_remove = ['rubro', 'cod_rubro', 'codigo_rubro']
-        df = df.drop(columns=[col for col in columns_to_remove if col in df.columns], errors='ignore')
+        dfs[df_name] = df
+    
+    return dfs
+
+
+def remove_unnecessary_columns(dfs: Dict[str, pd.DataFrame]) -> Dict[str, pd.DataFrame]:
+    """Elimina columnas innecesarias"""
+    print("Eliminando columnas innecesarias...")
+    
+    columns_to_drop = [
+        'producto_1', 'programa.1', 'cod_programa', 
+        'validador_cuipo', 'producto_cuipo', 'producto_mga', 'nombre_reto', 
+        'proposito', 'nombre_proposito', 'reto', 'nombre_producto_mga', 
+        'codigo_producto_mga'
+    ]
+    
+    for df_name in tqdm(dfs.keys(), desc="Eliminando columnas específicas"):
+        df = dfs[df_name]
+        for col in columns_to_drop:
+            if col in df.columns:
+                dfs[df_name] = df.drop(columns=[col])
+    
+    return dfs
+
+
+def fill_missing_columns_with_reference(dfs: Dict[str, pd.DataFrame]) -> Dict[str, pd.DataFrame]:
+    """Completa columnas faltantes usando DataFrames de referencia"""
+    print("Completando columnas faltantes...")
+    
+    # Simplificado: no completar columnas faltantes automáticamente
+    # Solo normalizar las existentes
+    print("Saltando completado automático de columnas para evitar errores")
+    
+    return dfs
+
+
+def add_operational_data(dfs: Dict[str, pd.DataFrame]) -> Dict[str, pd.DataFrame]:
+    """Añade datos operacionales (año, origen, período)"""
+    print("Añadiendo datos operacionales...")
+    
+    # Mapear años basado en el nombre del archivo
+    year_mapping = {
+        'EJECUCION_ENERO_2024': 2024, 'EJECUCION_FEBRERO_2024': 2024, 'EJECUCION_MARZO_2024': 2024,
+        'EJECUCION_ABRIL_2024': 2024, 'EJECUCION_MAYO_2024': 2024, 'EJECUCION_JUNIO_2024': 2024,
+        'EJECUCION_JULIO_2024': 2024, 'EJECUCION_AGOSTO_2024': 2024, 'EJECUCION_SEPTIEMBRE_2024': 2024,
+        'EJECUCION_OCTUBRE_2024': 2024, 'EJECUCION_NOVIEMBRE_2024': 2024, 'EJECUCION_DICIEMBRE_2024': 2024,
+        'EJECUCION_ENERO_2025': 2025, 'EJECUCION_FEBRERO_2025': 2025, 'EJECUCION_MARZO_2025': 2025,
+        'EJECUCION_ABRIL_2025': 2025, 'EJECUCION_MAYO_2025': 2025, 'EJECUCION_JUNIO_2025': 2025
+    }
+    
+    for df_name in tqdm(dfs.keys(), desc="Añadiendo datos operacionales"):
+        df = dfs[df_name]
+        # Añadir año
+        if df_name in year_mapping:
+            df['anio'] = year_mapping[df_name]
         
-        # 6. Add year and origin metadata
-        year = df_name.split('_')[-1]
-        if year.isdigit():
-            df['anio'] = int(year)
-        elif '2024' in df_name:
-            df['anio'] = 2024
-        elif '2025' in df_name:
-            df['anio'] = 2025
-        else:
-            df['anio'] = None
-            
+        # Añadir dataframe_origen
         df['dataframe_origen'] = df_name
         df['archivo_origen'] = f"{df_name}.csv"
         
-        # 7. Create a new DataFrame with only the standard columns
-        new_df = pd.DataFrame()
-        
-        # Add all standard columns to the new dataframe
-        for col in standard_columns:
-            if col in df.columns:
-                new_df[col] = df[col]
-            else:
-                new_df[col] = None
-        
-        # Convert cod_centro_gestor to integer
-        if 'cod_centro_gestor' in new_df.columns:
-            try:
-                # Convert to numeric, replacing non-numeric values with NaN
-                new_df['cod_centro_gestor'] = pd.to_numeric(new_df['cod_centro_gestor'], errors='coerce')
-                # Convert to integer, keeping NaN as NaN
-                new_df['cod_centro_gestor'] = new_df['cod_centro_gestor'].astype('Int64')  # nullable integer
-                print(f"Converted cod_centro_gestor to integer for {df_name}")
-            except Exception as e:
-                print(f"Warning: Could not convert cod_centro_gestor to integer for {df_name}: {e}")
-        
-        # Convert cod_area_funcional to integer
-        if 'cod_area_funcional' in new_df.columns:
-            try:
-                # Convert to numeric, replacing non-numeric values with NaN
-                new_df['cod_area_funcional'] = pd.to_numeric(new_df['cod_area_funcional'], errors='coerce')
-                # Convert to integer, keeping NaN as NaN
-                new_df['cod_area_funcional'] = new_df['cod_area_funcional'].astype('Int64')  # nullable integer
-                print(f"Converted cod_area_funcional to integer for {df_name}")
-            except Exception as e:
-                print(f"Warning: Could not convert cod_area_funcional to integer for {df_name}: {e}")
-        
-        # Convert cod_programa to integer
-        if 'cod_programa' in new_df.columns:
-            try:
-                # Convert to numeric, replacing non-numeric values with NaN
-                new_df['cod_programa'] = pd.to_numeric(new_df['cod_programa'], errors='coerce')
-                # Convert to integer, keeping NaN as NaN
-                new_df['cod_programa'] = new_df['cod_programa'].astype('Int64')  # nullable integer
-                print(f"Converted cod_programa to integer for {df_name}")
-            except Exception as e:
-                print(f"Warning: Could not convert cod_programa to integer for {df_name}: {e}")
-        
-        # Convert cod_linea_estrategica to integer
-        if 'cod_linea_estrategica' in new_df.columns:
-            try:
-                # Convert to numeric, replacing non-numeric values with NaN
-                new_df['cod_linea_estrategica'] = pd.to_numeric(new_df['cod_linea_estrategica'], errors='coerce')
-                # Convert to integer, keeping NaN as NaN
-                new_df['cod_linea_estrategica'] = new_df['cod_linea_estrategica'].astype('Int64')  # nullable integer
-                print(f"Converted cod_linea_estrategica to integer for {df_name}")
-            except Exception as e:
-                print(f"Warning: Could not convert cod_linea_estrategica to integer for {df_name}: {e}")
-        
-        # Convert cod_dimension to integer
-        if 'cod_dimension' in new_df.columns:
-            try:
-                # Convert to numeric, replacing non-numeric values with NaN
-                new_df['cod_dimension'] = pd.to_numeric(new_df['cod_dimension'], errors='coerce')
-                # Convert to integer, keeping NaN as NaN
-                new_df['cod_dimension'] = new_df['cod_dimension'].astype('Int64')  # nullable integer
-                print(f"Converted cod_dimension to integer for {df_name}")
-            except Exception as e:
-                print(f"Warning: Could not convert cod_dimension to integer for {df_name}: {e}")
-        
-        # Convert cod_proposito to integer
-        if 'cod_proposito' in new_df.columns:
-            try:
-                # Convert to numeric, replacing non-numeric values with NaN
-                new_df['cod_proposito'] = pd.to_numeric(new_df['cod_proposito'], errors='coerce')
-                # Convert to integer, keeping NaN as NaN
-                new_df['cod_proposito'] = new_df['cod_proposito'].astype('Int64')  # nullable integer
-                print(f"Converted cod_proposito to integer for {df_name}")
-            except Exception as e:
-                print(f"Warning: Could not convert cod_proposito to integer for {df_name}: {e}")
-                
-        # Convert cod_reto to integer
-        if 'cod_reto' in new_df.columns:
-            try:
-                # Convert to numeric, replacing non-numeric values with NaN
-                new_df['cod_reto'] = pd.to_numeric(new_df['cod_reto'], errors='coerce')
-                # Convert to integer, keeping NaN as NaN
-                new_df['cod_reto'] = new_df['cod_reto'].astype('Int64')  # nullable integer
-                print(f"Converted cod_reto to integer for {df_name}")
-            except Exception as e:
-                print(f"Warning: Could not convert cod_reto to integer for {df_name}: {e}")
-                
-        # Add metadata columns
-        new_df['anio'] = df['anio']
-        new_df['dataframe_origen'] = df['dataframe_origen']
-        new_df['archivo_origen'] = df['archivo_origen']
-        
-        standardized_dfs.append(new_df)
-        print(f"Standardized DataFrame {df_name} with shape {new_df.shape}")
+        dfs[df_name] = df
     
-    # Concatenate all standardized dataframes
-    print("\nConcatenating all standardized dataframes...")
+    return dfs
+
+
+def create_period_column(df: pd.DataFrame) -> pd.DataFrame:
+    """Crea columna de período en formato ISO 8601"""
     
-    try:
-        df_consolidado = pd.concat(standardized_dfs, ignore_index=True, sort=False)
-        print("Concatenation successful!")
-    except Exception as e:
-        print(f"Concatenation failed with error: {e}")
+    def obtener_fecha_fin_mes_desde_dataframe_origen_iso(df_origen, anio):
+        """Extrae el mes y crea fecha del último día del mes en formato ISO 8601"""
+        if pd.isna(df_origen) or pd.isna(anio):
+            return None
+
+        partes = df_origen.split('_')
+        if len(partes) > 1:
+            mes_str = partes[1]
+            mes_map = {
+                'ENERO': 1, 'FEBRERO': 2, 'MARZO': 3, 'ABRIL': 4,
+                'MAYO': 5, 'JUNIO': 6, 'JULIO': 7, 'AGOSTO': 8,
+                'SEPTIEMBRE': 9, 'OCTUBRE': 10, 'NOVIEMBRE': 11, 'DICIEMBRE': 12
+            }
+            mes = mes_map.get(mes_str.upper())
+
+            if mes is not None:
+                try:
+                    first_day_of_month = datetime(int(anio), mes, 1)
+                    last_day_of_month = first_day_of_month + relativedelta(months=1) - relativedelta(days=1)
+                    return last_day_of_month.strftime('%Y-%m-%d')
+                except ValueError:
+                    return None
         return None
     
-    print(f"\nSuccessfully created consolidated dataframe!")
-    print(f"Shape: {df_consolidado.shape} (Rows: {df_consolidado.shape[0]}, Columns: {df_consolidado.shape[1]})")
-    print(f"\nAll column names ({len(df_consolidado.columns)}):")
-    for i, col in enumerate(df_consolidado.columns):
-        print(f"{i+1:2d}. {col}")
+    if 'anio' in df.columns:
+        df['anio'] = pd.to_numeric(df['anio'], errors='coerce').astype('Int64')
+        df['periodo'] = df.apply(
+            lambda row: obtener_fecha_fin_mes_desde_dataframe_origen_iso(row['dataframe_origen'], row['anio']),
+            axis=1
+        )
     
-    # Show head of the dataframe
-    print(f"\nDataframe head():")
-    print(df_consolidado.head())
-    
-    print(f"\nDataframe info:")
-    print(f"Non-null counts by column:")
-    for col in df_consolidado.columns:
-        non_null_count = df_consolidado[col].notna().sum()
-        print(f"  {col}: {non_null_count}/{len(df_consolidado)} ({non_null_count/len(df_consolidado)*100:.1f}%)")
-    
-    return df_consolidado  # Only return the consolidated dataframe
+    return df
 
 
-# Example usage function for testing
-def main():
-    """Main function for testing the transformer."""
-    try:
-        df_consolidado = ejecucion_presupuestal_transformer()
-        print(f"\n" + "="*60)
-        print(f"FINAL CONSOLIDATED DATAFRAME SUMMARY:")
-        print(f"="*60)
-        print(f"Rows: {df_consolidado.shape[0]:,}")
-        print(f"Columns: {df_consolidado.shape[1]}")
-        print(f"Memory usage: {df_consolidado.memory_usage(deep=True).sum() / 1024**2:.2f} MB")
+def consolidate_dataframes(dfs: Dict[str, pd.DataFrame]) -> pd.DataFrame:
+    """Consolida todos los DataFrames en uno solo"""
+    print("Consolidando DataFrames...")
+    
+    # Identificar columnas principales
+    numeric_cols = ['bp', 'bpin']
+    proyecto_col = 'nombre_proyecto'
+    
+    # Obtener todas las columnas únicas (sin duplicados)
+    all_columns = set()
+    for df in dfs.values():
+        all_columns.update(df.columns)
+    
+    print(f"Columnas disponibles en total: {len(all_columns)}")
+    print(f"Muestra de columnas: {sorted(list(all_columns))[:20]}")
+    
+    other_cols_order = sorted([col for col in all_columns if col not in numeric_cols + [proyecto_col]])
+    
+    # Preparar DataFrames para concatenación
+    all_dfs_list = []
+    for df_name, df in tqdm(dfs.items(), desc="Preparando DataFrames"):
+        # Eliminar columnas duplicadas si existen
+        df = df.loc[:, ~df.columns.duplicated()]
         
-        # Print all columns in df
-        print(f"\n" + "="*60)
-        print(f"ALL COLUMNS IN DF:")
-        print(f"="*60)
-        print(f"df.columns = {list(df_consolidado.columns)}")
-        print(f"\nColumns numbered:")
-        for i, col in enumerate(df_consolidado.columns):
-            print(f"{i+1:2d}. '{col}'")
+        # Asegurar que todas las columnas necesarias existen
+        required_cols = [col for col in numeric_cols + [proyecto_col] + other_cols_order if col not in df.columns]
         
-        # Create centros_gestores dataframe with unique values
-        print(f"\n" + "="*60)
-        print(f"CREATING CENTROS_GESTORES DATAFRAME:")
-        print(f"="*60)
+        for col in required_cols:
+            df[col] = None
         
-        # Check if the required columns exist
-        if 'cod_centro_gestor' in df_consolidado.columns:
-            print(f"Found 'cod_centro_gestor' column in dataframe")
-            
-            # Check for nombre_centro_gestor column
-            nombre_centro_gestor_cols = [col for col in df_consolidado.columns if 'nombre' in col.lower() and 'centro' in col.lower() and 'gestor' in col.lower()]
-            print(f"Available nombre_centro_gestor related columns: {nombre_centro_gestor_cols}")
-            
-            # Create the dataframe with unique combinations
-            if nombre_centro_gestor_cols:
-                # Use the first found nombre_centro_gestor column
-                nombre_col = nombre_centro_gestor_cols[0]
-                centros_gestores = df_consolidado[['cod_centro_gestor', nombre_col]].copy()
-                centros_gestores.columns = ['cod_centro_gestor', 'nombre_centro_gestor']
-                print(f"Using column '{nombre_col}' as nombre_centro_gestor")
-            else:
-                # Create dataframe with only cod_centro_gestor and set nombre to None
-                centros_gestores = df_consolidado[['cod_centro_gestor']].copy()
-                centros_gestores['nombre_centro_gestor'] = None
-                print("Warning: No 'nombre_centro_gestor' column found, setting to None")
-            
-            # Remove rows where cod_centro_gestor is null
-            initial_rows = len(centros_gestores)
-            centros_gestores = centros_gestores.dropna(subset=['cod_centro_gestor'])
-            after_dropna = len(centros_gestores)
-            print(f"Removed {initial_rows - after_dropna} rows with null cod_centro_gestor")
-            
-            # Remove duplicates based on cod_centro_gestor
-            before_dedup = len(centros_gestores)
-            centros_gestores = centros_gestores.drop_duplicates(subset=['cod_centro_gestor']).reset_index(drop=True)
-            after_dedup = len(centros_gestores)
-            print(f"Removed {before_dedup - after_dedup} duplicate rows")
-            
-            # Show results
-            print(f"\nCentros Gestores DataFrame:")
-            print(f"Shape: {centros_gestores.shape} (Rows: {centros_gestores.shape[0]}, Columns: {centros_gestores.shape[1]})")
-            print(f"Columns: {list(centros_gestores.columns)}")
-            
-            print(f"\nFirst 10 rows:")
-            print(centros_gestores.head(10))
-            
-            print(f"\nData types:")
-            print(centros_gestores.dtypes)
-            
-            print(f"\nSummary statistics:")
-            print(f"  Total unique cod_centro_gestor: {centros_gestores['cod_centro_gestor'].nunique()}")
-            print(f"  Total rows: {len(centros_gestores)}")
-            
-            # Check for non-null nombres
-            if centros_gestores['nombre_centro_gestor'].notna().any():
-                non_null_nombres = centros_gestores['nombre_centro_gestor'].notna().sum()
-                print(f"  Rows with nombre_centro_gestor: {non_null_nombres} ({non_null_nombres/len(centros_gestores)*100:.1f}%)")
-            
-            # Show sample values
-            print(f"\nSample cod_centro_gestor values:")
-            sample_size = min(10, len(centros_gestores))
-            for i in range(sample_size):
-                cod = centros_gestores.iloc[i]['cod_centro_gestor']
-                nombre = centros_gestores.iloc[i]['nombre_centro_gestor']
-                print(f"  {i+1:2d}. {cod} -> {nombre}")
-                
-        else:
-            print("Error: 'cod_centro_gestor' column not found in the consolidated dataframe")
-            print(f"Available columns: {list(df_consolidado.columns)}")
-            centros_gestores = None
+        # Reordenar columnas disponibles solamente
+        available_cols = [col for col in numeric_cols + [proyecto_col] + other_cols_order if col in df.columns]
+        df = df[available_cols]
         
-        # Create programas dataframe with unique values
-        print(f"\n" + "="*60)
-        print(f"CREATING PROGRAMAS DATAFRAME:")
-        print(f"="*60)
-        
-        # Check if the required columns exist
-        if 'cod_programa' in df_consolidado.columns:
-            print(f"Found 'cod_programa' column in dataframe")
-            
-            # Check if nombre_programa exists
-            if 'nombre_programa' in df_consolidado.columns:
-                print(f"Found 'nombre_programa' column in dataframe")
-                programas = df_consolidado[['cod_programa', 'nombre_programa']].copy()
-            else:
-                print("Warning: 'nombre_programa' column not found, setting to None")
-                programas = df_consolidado[['cod_programa']].copy()
-                programas['nombre_programa'] = None
-            
-            # Convert cod_programa to integer if not already
-            if programas['cod_programa'].dtype != 'Int64':
-                try:
-                    programas['cod_programa'] = pd.to_numeric(programas['cod_programa'], errors='coerce').astype('Int64')
-                    print("Converted cod_programa to integer in programas")
-                except Exception as e:
-                    print(f"Warning: Could not convert cod_programa to integer: {e}")
-            
-            # Remove rows where cod_programa is null
-            initial_rows = len(programas)
-            programas = programas.dropna(subset=['cod_programa'])
-            after_dropna = len(programas)
-            print(f"Removed {initial_rows - after_dropna} rows with null cod_programa")
-            
-            # Remove duplicates based on cod_programa
-            before_dedup = len(programas)
-            programas = programas.drop_duplicates(subset=['cod_programa']).reset_index(drop=True)
-            after_dedup = len(programas)
-            print(f"Removed {before_dedup - after_dedup} duplicate rows")
-            
-            # Show results
-            print(f"\nProgramas DataFrame:")
-            print(f"Shape: {programas.shape} (Rows: {programas.shape[0]}, Columns: {programas.shape[1]})")
-            print(f"Columns: {list(programas.columns)}")
-            
-            print(f"\nFirst 10 rows:")
-            print(programas.head(10))
-            
-            print(f"\nData types:")
-            print(programas.dtypes)
-            
-            print(f"\nSummary statistics:")
-            print(f"  Total unique cod_programa: {programas['cod_programa'].nunique()}")
-            print(f"  Total rows: {len(programas)}")
-            
-            # Check for non-null nombres
-            if programas['nombre_programa'].notna().any():
-                non_null_nombres = programas['nombre_programa'].notna().sum()
-                print(f"  Rows with nombre_programa: {non_null_nombres} ({non_null_nombres/len(programas)*100:.1f}%)")
-            
-            # Show sample values
-            print(f"\nSample cod_programa values:")
-            sample_size = min(10, len(programas))
-            for i in range(sample_size):
-                cod = programas.iloc[i]['cod_programa']
-                nombre = programas.iloc[i]['nombre_programa']
-                print(f"  {i+1:2d}. {cod} -> {nombre}")
-                
-        else:
-            print("Error: 'cod_programa' column not found in the consolidated dataframe")
-            print(f"Available columns: {list(df_consolidado.columns)}")
-            programas = None
-        
-        # Create areas_funcionales dataframe with unique values
-        print(f"\n" + "="*60)
-        print(f"CREATING AREAS_FUNCIONALES DATAFRAME:")
-        print(f"="*60)
-        
-        # Check if the required columns exist
-        if 'cod_area_funcional' in df_consolidado.columns:
-            print(f"Found 'cod_area_funcional' column in dataframe")
-            
-            # Check if nombre_area_funcional exists
-            if 'nombre_area_funcional' in df_consolidado.columns:
-                print(f"Found 'nombre_area_funcional' column in dataframe")
-                areas_funcionales = df_consolidado[['cod_area_funcional', 'nombre_area_funcional']].copy()
-            else:
-                print("Warning: 'nombre_area_funcional' column not found, setting to None")
-                areas_funcionales = df_consolidado[['cod_area_funcional']].copy()
-                areas_funcionales['nombre_area_funcional'] = None
-            
-            # Convert cod_area_funcional to integer if not already
-            if areas_funcionales['cod_area_funcional'].dtype != 'Int64':
-                try:
-                    areas_funcionales['cod_area_funcional'] = pd.to_numeric(areas_funcionales['cod_area_funcional'], errors='coerce').astype('Int64')
-                    print("Converted cod_area_funcional to integer in areas_funcionales")
-                except Exception as e:
-                    print(f"Warning: Could not convert cod_area_funcional to integer: {e}")
-            
-            # Remove rows where cod_area_funcional is null
-            initial_rows = len(areas_funcionales)
-            areas_funcionales = areas_funcionales.dropna(subset=['cod_area_funcional'])
-            after_dropna = len(areas_funcionales)
-            print(f"Removed {initial_rows - after_dropna} rows with null cod_area_funcional")
-            
-            # Remove duplicates based on cod_area_funcional
-            before_dedup = len(areas_funcionales)
-            areas_funcionales = areas_funcionales.drop_duplicates(subset=['cod_area_funcional']).reset_index(drop=True)
-            after_dedup = len(areas_funcionales)
-            print(f"Removed {before_dedup - after_dedup} duplicate rows")
-            
-            # Show results
-            print(f"\nAreas Funcionales DataFrame:")
-            print(f"Shape: {areas_funcionales.shape} (Rows: {areas_funcionales.shape[0]}, Columns: {areas_funcionales.shape[1]})")
-            print(f"Columns: {list(areas_funcionales.columns)}")
-            
-            print(f"\nFirst 10 rows:")
-            print(areas_funcionales.head(10))
-            
-            print(f"\nData types:")
-            print(areas_funcionales.dtypes)
-            
-            print(f"\nSummary statistics:")
-            print(f"  Total unique cod_area_funcional: {areas_funcionales['cod_area_funcional'].nunique()}")
-            print(f"  Total rows: {len(areas_funcionales)}")
-            
-            # Check for non-null nombres
-            if areas_funcionales['nombre_area_funcional'].notna().any():
-                non_null_nombres = areas_funcionales['nombre_area_funcional'].notna().sum()
-                print(f"  Rows with nombre_area_funcional: {non_null_nombres} ({non_null_nombres/len(areas_funcionales)*100:.1f}%)")
-            
-            # Show sample values
-            print(f"\nSample cod_area_funcional values:")
-            sample_size = min(10, len(areas_funcionales))
-            for i in range(sample_size):
-                cod = areas_funcionales.iloc[i]['cod_area_funcional']
-                nombre = areas_funcionales.iloc[i]['nombre_area_funcional']
-                print(f"  {i+1:2d}. {cod} -> {nombre}")
-                
-        else:
-            print("Error: 'cod_area_funcional' column not found in the consolidated dataframe")
-            print(f"Available columns: {list(df_consolidado.columns)}")
-            areas_funcionales = None
-        
-        # Create retos dataframe with unique values
-        print(f"\n" + "="*60)
-        print(f"CREATING RETOS DATAFRAME:")
-        print(f"="*60)
-        
-        # Check if the required columns exist
-        if 'cod_reto' in df_consolidado.columns:
-            print(f"Found 'cod_reto' column in dataframe")
-            
-            # Check if nombre_reto exists
-            if 'nombre_reto' in df_consolidado.columns:
-                print(f"Found 'nombre_reto' column in dataframe")
-                retos = df_consolidado[['cod_reto', 'nombre_reto']].copy()
-            else:
-                print("Warning: 'nombre_reto' column not found, setting to None")
-                retos = df_consolidado[['cod_reto']].copy()
-                retos['nombre_reto'] = None
-            
-            # Convert cod_reto to integer if not already
-            if retos['cod_reto'].dtype != 'Int64':
-                try:
-                    retos['cod_reto'] = pd.to_numeric(retos['cod_reto'], errors='coerce').astype('Int64')
-                    print("Converted cod_reto to integer in retos")
-                except Exception as e:
-                    print(f"Warning: Could not convert cod_reto to integer: {e}")
-            
-            # Remove rows where cod_reto is null
-            initial_rows = len(retos)
-            retos = retos.dropna(subset=['cod_reto'])
-            after_dropna = len(retos)
-            print(f"Removed {initial_rows - after_dropna} rows with null cod_reto")
-            
-            # Remove duplicates based on cod_reto
-            before_dedup = len(retos)
-            retos = retos.drop_duplicates(subset=['cod_reto']).reset_index(drop=True)
-            after_dedup = len(retos)
-            print(f"Removed {before_dedup - after_dedup} duplicate rows")
-            
-            # Show results
-            print(f"\nRetos DataFrame:")
-            print(f"Shape: {retos.shape} (Rows: {retos.shape[0]}, Columns: {retos.shape[1]})")
-            print(f"Columns: {list(retos.columns)}")
-            
-            print(f"\nFirst 10 rows:")
-            print(retos.head(10))
-            
-            print(f"\nData types:")
-            print(retos.dtypes)
-            
-            print(f"\nSummary statistics:")
-            print(f"  Total unique cod_reto: {retos['cod_reto'].nunique()}")
-            print(f"  Total rows: {len(retos)}")
-            
-            # Check for non-null nombres
-            if retos['nombre_reto'].notna().any():
-                non_null_nombres = retos['nombre_reto'].notna().sum()
-                print(f"  Rows with nombre_reto: {non_null_nombres} ({non_null_nombres/len(retos)*100:.1f}%)")
-            
-            # Show sample values
-            print(f"\nSample cod_reto values:")
-            sample_size = min(10, len(retos))
-            for i in range(sample_size):
-                cod = retos.iloc[i]['cod_reto']
-                nombre = retos.iloc[i]['nombre_reto']
-                print(f"  {i+1:2d}. {cod} -> {nombre}")
-                
-        else:
-            print("Error: 'cod_reto' column not found in the consolidated dataframe")
-            print(f"Available columns: {list(df_consolidado.columns)}")
-            retos = None
-        
-        # Create propositos dataframe with unique values
-        print(f"\n" + "="*60)
-        print(f"CREATING PROPOSITOS DATAFRAME:")
-        print(f"="*60)
-        
-        # Check if the required columns exist
-        if 'cod_proposito' in df_consolidado.columns:
-            print(f"Found 'cod_proposito' column in dataframe")
-            
-            # Check if nombre_proposito exists
-            if 'nombre_proposito' in df_consolidado.columns:
-                print(f"Found 'nombre_proposito' column in dataframe")
-                propositos = df_consolidado[['cod_proposito', 'nombre_proposito']].copy()
-            else:
-                print("Warning: 'nombre_proposito' column not found, setting to None")
-                propositos = df_consolidado[['cod_proposito']].copy()
-                propositos['nombre_proposito'] = None
-            
-            # Convert cod_proposito to integer if not already
-            if propositos['cod_proposito'].dtype != 'Int64':
-                try:
-                    propositos['cod_proposito'] = pd.to_numeric(propositos['cod_proposito'], errors='coerce').astype('Int64')
-                    print("Converted cod_proposito to integer in propositos")
-                except Exception as e:
-                    print(f"Warning: Could not convert cod_proposito to integer: {e}")
-            
-            # Remove rows where cod_proposito is null
-            initial_rows = len(propositos)
-            propositos = propositos.dropna(subset=['cod_proposito'])
-            after_dropna = len(propositos)
-            print(f"Removed {initial_rows - after_dropna} rows with null cod_proposito")
-            
-            # Remove duplicates based on cod_proposito
-            before_dedup = len(propositos)
-            propositos = propositos.drop_duplicates(subset=['cod_proposito']).reset_index(drop=True)
-            after_dedup = len(propositos)
-            print(f"Removed {before_dedup - after_dedup} duplicate rows")
-            
-            # Show results
-            print(f"\nPropositos DataFrame:")
-            print(f"Shape: {propositos.shape} (Rows: {propositos.shape[0]}, Columns: {propositos.shape[1]})")
-            print(f"Columns: {list(propositos.columns)}")
-            
-            print(f"\nFirst 10 rows:")
-            print(propositos.head(10))
-            
-            print(f"\nData types:")
-            print(propositos.dtypes)
-            
-            print(f"\nSummary statistics:")
-            print(f"  Total unique cod_proposito: {propositos['cod_proposito'].nunique()}")
-            print(f"  Total rows: {len(propositos)}")
-            
-            # Check for non-null nombres
-            if propositos['nombre_proposito'].notna().any():
-                non_null_nombres = propositos['nombre_proposito'].notna().sum()
-                print(f"  Rows with nombre_proposito: {non_null_nombres} ({non_null_nombres/len(propositos)*100:.1f}%)")
-            
-            # Show sample values
-            print(f"\nSample cod_proposito values:")
-            sample_size = min(10, len(propositos))
-            for i in range(sample_size):
-                cod = propositos.iloc[i]['cod_proposito']
-                nombre = propositos.iloc[i]['nombre_proposito']
-                print(f"  {i+1:2d}. {cod} -> {nombre}")
-                
-        else:
-            print("Error: 'cod_proposito' column not found in the consolidated dataframe")
-            print(f"Available columns: {list(df.columns)}")
-            propositos = None
-        
-        # Create movimientos_presupuestales dataframe
-        print(f"\n" + "="*60)
-        print(f"CREATING MOVIMIENTOS_PRESUPUESTALES DATAFRAME:")
-        print(f"="*60)
-        
-        # Check if the required columns exist
-        required_cols = ['bpin', 'ppto_inicial', 'adiciones', 'reducciones', 'ppto_modificado']
-        missing_cols = [col for col in required_cols if col not in df_consolidado.columns]
-        
-        if not missing_cols:
-            print(f"Found all required columns for movimientos_presupuestales")
-            
-            # Start with a copy of the required columns
-            movimientos_presupuestales = df_consolidado[['bpin', 'ppto_inicial', 'adiciones', 'reducciones', 'ppto_modificado', 'anio', 'dataframe_origen']].copy()
-            
-            # Function to clean monetary values
-            def clean_monetary_value(value):
-                """Clean monetary values by removing currency symbols and thousands separators, keep as float"""
-                if pd.isna(value):
-                    return 0.00
-                
-                # Convert to string first
-                str_value = str(value).strip()
-                
-                # Handle special cases
-                if str_value == '-' or str_value == '' or str_value.lower() == 'nan':
-                    return 0.00
-                
-                # Remove currency symbols and spaces
-                cleaned = str_value.replace('$', '').replace(' ', '').strip()
-                
-                # Handle the case where cleaned string is just "-" after cleaning
-                if cleaned == '-' or cleaned == '':
-                    return 0.00
-                
-                try:
-                    # Handle different decimal formats
-                    # Case 1: European format with dots as thousands separators (155.521.600)
-                    if '.' in cleaned and ',' not in cleaned:
-                        # Check if it's likely thousands separators (multiple dots or number after last dot > 2 digits)
-                        parts = cleaned.split('.')
-                        if len(parts) > 2 or (len(parts) == 2 and len(parts[1]) > 2):
-                            # Treat as thousands separators, remove all dots
-                            cleaned = cleaned.replace('.', '')
-                        # If single dot with 1-2 digits after, treat as decimal separator
-                        # Keep as is for now
-                    
-                    # Case 2: Mixed format with commas and dots ($224,436,000.00)
-                    elif ',' in cleaned and '.' in cleaned:
-                        # Assume comma is thousands separator, dot is decimal
-                        cleaned = cleaned.replace(',', '')
-                    
-                    # Case 3: Only commas (could be thousands or decimal)
-                    elif ',' in cleaned and '.' not in cleaned:
-                        # Check position of comma
-                        comma_pos = cleaned.rfind(',')
-                        if len(cleaned) - comma_pos - 1 <= 2:
-                            # Last comma has 1-2 digits after, likely decimal
-                            cleaned = cleaned.replace(',', '.')
-                        else:
-                            # Remove commas (thousands separators)
-                            cleaned = cleaned.replace(',', '')
-                    
-                    # Case 4: European format - if we have only dots, remove them (thousands separators)
-                    if '.' in cleaned and ',' not in cleaned:
-                        # For values like "155.521.600", remove all dots
-                        dot_parts = cleaned.split('.')
-                        if len(dot_parts) > 2:  # Multiple dots = thousands separators
-                            cleaned = cleaned.replace('.', '')
-                        elif len(dot_parts) == 2 and len(dot_parts[1]) > 2:  # Single dot with >2 digits after
-                            cleaned = cleaned.replace('.', '')
-                    
-                    # Convert to float
-                    result = float(cleaned)
-                    return result
-                    
-                except (ValueError, TypeError) as e:
-                    print(f"    Error cleaning '{str_value}': {e} - Setting to 0.00")
-                    return 0.00
-            
-            # Clean monetary columns
-            monetary_cols = ['ppto_inicial', 'adiciones', 'reducciones', 'ppto_modificado']
-            for col in monetary_cols:
-                print(f"Cleaning monetary values in column '{col}'...")
-                movimientos_presupuestales[col] = movimientos_presupuestales[col].apply(clean_monetary_value)
-                # Ensure exactly 2 decimal places
-                movimientos_presupuestales[col] = movimientos_presupuestales[col].round(2)
-                print(f"  Cleaned {col} and rounded to 2 decimal places")
-            
-            # Convert bpin to integer
-            print("Converting bpin to integer...")
-            try:
-                movimientos_presupuestales['bpin'] = pd.to_numeric(movimientos_presupuestales['bpin'], errors='coerce').astype('Int64')
-                print("  Converted bpin to integer")
-            except Exception as e:
-                print(f"  Warning: Could not convert bpin to integer: {e}")
-            
-            # Create periodo_corte from anio and dataframe_origen
-            print("Creating periodo_corte from anio and dataframe_origen...")
-            def extract_periodo_corte(row):
-                """Extract period from year and dataframe_origen"""
-                anio = row['anio']
-                dataframe_origen = str(row['dataframe_origen']).lower()
-                
-                # Default to year if we can't extract month
-                if pd.isna(anio):
-                    return None
-                
-                # Try to extract month from dataframe_origen
-                month_mapping = {
-                    'enero': '01', 'jan': '01', 'january': '01',
-                    'febrero': '02', 'feb': '02', 'february': '02',
-                    'marzo': '03', 'mar': '03', 'march': '03',
-                    'abril': '04', 'abr': '04', 'apr': '04', 'april': '04',
-                    'mayo': '05', 'may': '05',
-                    'junio': '06', 'jun': '06', 'june': '06',
-                    'julio': '07', 'jul': '07', 'july': '07',
-                    'agosto': '08', 'ago': '08', 'aug': '08', 'august': '08',
-                    'septiembre': '09', 'sep': '09', 'september': '09',
-                    'octubre': '10', 'oct': '10', 'october': '10',
-                    'noviembre': '11', 'nov': '11', 'november': '11',
-                    'diciembre': '12', 'dic': '12', 'dec': '12', 'december': '12'
-                }
-                
-                # Look for month in dataframe_origen
-                month = '12'  # Default to December if no month found
-                for month_name, month_num in month_mapping.items():
-                    if month_name in dataframe_origen:
-                        month = month_num
-                        break
-                
-                # Return as YYYY-MM format
-                return f"{int(anio)}-{month}"
-            
-            movimientos_presupuestales['periodo_corte'] = movimientos_presupuestales.apply(extract_periodo_corte, axis=1)
-            print("  Created periodo_corte")
-            
-            # Drop auxiliary columns
-            movimientos_presupuestales = movimientos_presupuestales.drop(columns=['anio', 'dataframe_origen'])
-            
-            # Remove rows where bpin is null
-            initial_rows = len(movimientos_presupuestales)
-            movimientos_presupuestales = movimientos_presupuestales.dropna(subset=['bpin'])
-            after_dropna = len(movimientos_presupuestales)
-            print(f"Removed {initial_rows - after_dropna} rows with null bpin")
-            
-            # Reset index
-            movimientos_presupuestales = movimientos_presupuestales.reset_index(drop=True)
-            
-            # Show results
-            print(f"\nMovimientos Presupuestales DataFrame:")
-            print(f"Shape: {movimientos_presupuestales.shape} (Rows: {movimientos_presupuestales.shape[0]}, Columns: {movimientos_presupuestales.shape[1]})")
-            print(f"Columns: {list(movimientos_presupuestales.columns)}")
-            
-            print(f"\nFirst 10 rows:")
-            print(movimientos_presupuestales.head(10))
-            
-            print(f"\nData types:")
-            print(movimientos_presupuestales.dtypes)
-            
-            print(f"\nSummary statistics:")
-            print(f"  Total rows: {len(movimientos_presupuestales)}")
-            print(f"  Unique BPIN count: {movimientos_presupuestales['bpin'].nunique()}")
-            print(f"  Unique periods: {movimientos_presupuestales['periodo_corte'].nunique()}")
-            print(f"  Period range: {movimientos_presupuestales['periodo_corte'].min()} to {movimientos_presupuestales['periodo_corte'].max()}")
-            
-            # Show monetary statistics
-            for col in monetary_cols:
-                non_null_count = movimientos_presupuestales[col].notna().sum()
-                print(f"  {col}: {non_null_count}/{len(movimientos_presupuestales)} non-null ({non_null_count/len(movimientos_presupuestales)*100:.1f}%)")
-                if non_null_count > 0:
-                    print(f"    Min: {movimientos_presupuestales[col].min():.2f}")
-                    print(f"    Max: {movimientos_presupuestales[col].max():.2f}")
-                    print(f"    Mean: {movimientos_presupuestales[col].mean():.2f}")
-            
-            # Show sample values with exact format
-            print(f"\nSample movimientos_presupuestales values:")
-            sample_size = min(10, len(movimientos_presupuestales))
-            for i in range(sample_size):
-                row = movimientos_presupuestales.iloc[i]
-                bpin = row['bpin']
-                periodo = row['periodo_corte']
-                inicial = row['ppto_inicial']
-                adiciones = row['adiciones']
-                reducciones = row['reducciones']
-                modificado = row['ppto_modificado']
-                print(f"  {i+1:2d}. BPIN: {bpin} | Period: {periodo} | Inicial: {inicial:.2f} | Adiciones: {adiciones:.2f} | Reducciones: {reducciones:.2f} | Modificado: {modificado:.2f}")
-                
-            # Create ejecucion_presupuestal dataframe
-            print(f"\n" + "="*60)
-            print(f"CREATING EJECUCION_PRESUPUESTAL DATAFRAME:")
-            print(f"="*60)
-            
-            # Check if the required columns exist
-            required_cols_ejecucion = ['bpin', 'ejecucion', 'pagos', 'saldos_cdp', 'total_acumul_obligac', 'total_acumulado_cdp', 'total_acumulado_rpc']
-            missing_cols_ejecucion = [col for col in required_cols_ejecucion if col not in df_consolidado.columns]
-            
-            if not missing_cols_ejecucion:
-                print(f"Found all required columns for ejecucion_presupuestal")
-                
-                # Start with a copy of the required columns
-                ejecucion_presupuestal = df_consolidado[['bpin', 'ejecucion', 'pagos', 'saldos_cdp', 'total_acumul_obligac', 'total_acumulado_cdp', 'total_acumulado_rpc', 'anio', 'dataframe_origen']].copy()
-                
-                # Clean monetary columns using the same function
-                monetary_cols_ejecucion = ['ejecucion', 'pagos', 'saldos_cdp', 'total_acumul_obligac', 'total_acumulado_cdp', 'total_acumulado_rpc']
-                for col in monetary_cols_ejecucion:
-                    print(f"Cleaning monetary values in column '{col}'...")
-                    ejecucion_presupuestal[col] = ejecucion_presupuestal[col].apply(clean_monetary_value)
-                    # Ensure exactly 2 decimal places
-                    ejecucion_presupuestal[col] = ejecucion_presupuestal[col].round(2)
-                    print(f"  Cleaned {col} and rounded to 2 decimal places")
-                
-                # Convert bpin to integer
-                print("Converting bpin to integer...")
-                try:
-                    ejecucion_presupuestal['bpin'] = pd.to_numeric(ejecucion_presupuestal['bpin'], errors='coerce').astype('Int64')
-                    print("  Converted bpin to integer")
-                except Exception as e:
-                    print(f"  Warning: Could not convert bpin to integer: {e}")
-                
-                # Create periodo_corte from anio and dataframe_origen (reuse the same function)
-                print("Creating periodo_corte from anio and dataframe_origen...")
-                ejecucion_presupuestal['periodo_corte'] = ejecucion_presupuestal.apply(extract_periodo_corte, axis=1)
-                print("  Created periodo_corte")
-                
-                # Drop auxiliary columns
-                ejecucion_presupuestal = ejecucion_presupuestal.drop(columns=['anio', 'dataframe_origen'])
-                
-                # Remove rows where bpin is null
-                initial_rows_ejecucion = len(ejecucion_presupuestal)
-                ejecucion_presupuestal = ejecucion_presupuestal.dropna(subset=['bpin'])
-                after_dropna_ejecucion = len(ejecucion_presupuestal)
-                print(f"Removed {initial_rows_ejecucion - after_dropna_ejecucion} rows with null bpin")
-                
-                # Reset index
-                ejecucion_presupuestal = ejecucion_presupuestal.reset_index(drop=True)
-                
-                # Show results
-                print(f"\nEjecucion Presupuestal DataFrame:")
-                print(f"Shape: {ejecucion_presupuestal.shape} (Rows: {ejecucion_presupuestal.shape[0]}, Columns: {ejecucion_presupuestal.shape[1]})")
-                print(f"Columns: {list(ejecucion_presupuestal.columns)}")
-                
-                print(f"\nFirst 10 rows:")
-                print(ejecucion_presupuestal.head(10))
-                
-                print(f"\nData types:")
-                print(ejecucion_presupuestal.dtypes)
-                
-                print(f"\nSummary statistics:")
-                print(f"  Total rows: {len(ejecucion_presupuestal)}")
-                print(f"  Unique BPIN count: {ejecucion_presupuestal['bpin'].nunique()}")
-                print(f"  Unique periods: {ejecucion_presupuestal['periodo_corte'].nunique()}")
-                print(f"  Period range: {ejecucion_presupuestal['periodo_corte'].min()} to {ejecucion_presupuestal['periodo_corte'].max()}")
-                
-                # Show monetary statistics
-                for col in monetary_cols_ejecucion:
-                    non_null_count = ejecucion_presupuestal[col].notna().sum()
-                    print(f"  {col}: {non_null_count}/{len(ejecucion_presupuestal)} non-null ({non_null_count/len(ejecucion_presupuestal)*100:.1f}%)")
-                    if non_null_count > 0:
-                        print(f"    Min: {ejecucion_presupuestal[col].min():.2f}")
-                        print(f"    Max: {ejecucion_presupuestal[col].max():.2f}")
-                        print(f"    Mean: {ejecucion_presupuestal[col].mean():.2f}")
-                
-                # Show sample values with exact format
-                print(f"\nSample ejecucion_presupuestal values:")
-                sample_size = min(10, len(ejecucion_presupuestal))
-                for i in range(sample_size):
-                    row = ejecucion_presupuestal.iloc[i]
-                    bpin = row['bpin']
-                    periodo = row['periodo_corte']
-                    ejecucion_val = row['ejecucion']
-                    pagos_val = row['pagos']
-                    saldos_val = row['saldos_cdp']
-                    obligac_val = row['total_acumul_obligac']
-                    cdp_val = row['total_acumulado_cdp']
-                    rpc_val = row['total_acumulado_rpc']
-                    print(f"  {i+1:2d}. BPIN: {bpin} | Period: {periodo}")
-                    print(f"      Ejecución: {ejecucion_val:.2f} | Pagos: {pagos_val:.2f} | Saldos CDP: {saldos_val:.2f}")
-                    print(f"      Acum Obligac: {obligac_val:.2f} | Acum CDP: {cdp_val:.2f} | Acum RPC: {rpc_val:.2f}")
-                    print()
-                
-            else:
-                print(f"Error: Missing required columns for ejecucion_presupuestal: {missing_cols_ejecucion}")
-                print(f"Available columns: {list(df_consolidado.columns)}")
-                ejecucion_presupuestal = None
-                
-        else:
-            print(f"Error: Missing required columns for movimientos_presupuestales: {missing_cols}")
-            print(f"Available columns: {list(df_consolidado.columns)}")
-            movimientos_presupuestales = None
-            ejecucion_presupuestal = None
-        
-        # Save all dataframes to JSON files
-        print(f"\n" + "="*60)
-        print(f"SAVING DATAFRAMES TO JSON FILES:")
-        print(f"="*60)
-        
-        # Define output directory
-        current_dir = os.path.dirname(os.path.abspath(__file__))
-        output_dir = os.path.join(current_dir, "app_outputs", "ejecucion_presupuestal_outputs")
-        
-        # Create output directory if it doesn't exist
-        os.makedirs(output_dir, exist_ok=True)
-        print(f"Output directory: {output_dir}")
-        
-        # List of dataframes to save
-        dataframes_to_save = [
-            ("df_consolidado", df_consolidado),
-            ("centros_gestores", centros_gestores),
-            ("programas", programas),
-            ("areas_funcionales", areas_funcionales),
-            ("retos", retos),
-            ("propositos", propositos),
-            ("movimientos_presupuestales", movimientos_presupuestales),
-            ("ejecucion_presupuestal", ejecucion_presupuestal)
+        all_dfs_list.append(df)
+    
+    # Concatenar todos los DataFrames
+    df_consolidado = pd.concat(all_dfs_list, ignore_index=True, sort=False)
+    
+    # Mostrar columnas finales
+    print(f"Columnas en DataFrame consolcdidado: {df_consolidado.columns.tolist()}")
+    
+    # Crear columna de período
+    df_consolidado = create_period_column(df_consolidado)
+    
+    # Limpiar filas con más del 80% de valores nulos
+    null_percentage_per_row = df_consolidado.isnull().sum(axis=1) / df_consolidado.shape[1]
+    rows_to_drop_mask = null_percentage_per_row > 0.8
+    df_consolidado = df_consolidado[~rows_to_drop_mask].copy()
+    
+    print(f"Se eliminaron {rows_to_drop_mask.sum()} filas con más del 80% de valores nulos")
+    
+    return df_consolidado
+
+
+def convert_data_types(df: pd.DataFrame) -> pd.DataFrame:
+    """Convierte tipos de datos apropiados"""
+    print("Convirtiendo tipos de datos...")
+    
+    # Columnas de códigos que deben ser enteros
+    codigo_columns = [col for col in df.columns if col.startswith('cod_') or col in ['bp', 'bpin']]
+    
+    for col in tqdm(codigo_columns, desc="Convirtiendo códigos a enteros"):
+        if col in df.columns:
+            df[col] = pd.to_numeric(df[col], errors='coerce').astype('Int64')
+    
+    # Columnas monetarias - convertir a enteros puros
+    monetary_columns = [
+        'ppto_inicial', 'reducciones', 'adiciones', 'contracreditos', 'creditos',
+        'aplazamiento', 'desaplazamiento', 'ppto_modificado', 'total_acumulado_cdp',
+        'total_acumulado_rpc', 'total_acumul_obligac', 'pagos', 'ejecucion',
+        'saldos_cdp', 'ppto_disponible'
+    ]
+    
+    for col in tqdm(monetary_columns, desc="Convirtiendo valores monetarios"):
+        if col in df.columns:
+            df[col] = df[col].apply(clean_monetary_value)
+    
+    return df
+
+
+def create_master_data(df: pd.DataFrame) -> pd.DataFrame:
+    """Crea el DataFrame de datos maestros (características de proyectos)"""
+    print("Creando datos maestros de proyectos...")
+    
+    # Columnas características de proyectos (datos que no cambian frecuentemente)
+    master_columns = [
+        'bpin', 'bp', 'nombre_proyecto', 'nombre_actividad', 'programa_presupuestal',
+        'cod_centro_gestor', 'nombre_centro_gestor', 'cod_area_funcional', 'nombre_area_funcional',
+        'cod_fondo', 'nombre_fondo', 'clasificacion_fondo', 'cod_pospre', 'nombre_pospre',
+        'cod_dimension', 'nombre_dimension', 'cod_linea_estrategica', 'nombre_linea_estrategica',
+        'cod_programa', 'nombre_programa', 'cod_comuna', 'origen', 'anio', 'tipo_gasto',
+        'cod_sector', 'cod_producto', 'validador_cuipo'  # Cambiado sector y producto por cod_sector y cod_producto
+    ]
+    
+    # Filtrar columnas que existen en el DataFrame
+    available_columns = [col for col in master_columns if col in df.columns]
+    
+    # Si no hay suficientes columnas, usar todas las columnas disponibles excepto las de movimientos/ejecución
+    if len(available_columns) < 5:
+        exclude_columns = [
+            'ppto_inicial', 'reducciones', 'adiciones', 'contracreditos', 'creditos',
+            'aplazamiento', 'desaplazamiento', 'ppto_modificado', 'total_acumulado_cdp',
+            'total_acumulado_rpc', 'total_acumul_obligac', 'pagos', 'ejecucion',
+            'saldos_cdp', 'ppto_disponible', 'periodo', 'dataframe_origen', 'archivo_origen'
         ]
+        available_columns = [col for col in df.columns if col not in exclude_columns]
+    
+    # Crear DataFrame de datos maestros eliminando duplicados por bpin
+    if 'bpin' in available_columns:
+        print("Eliminando duplicados por BPIN...")
+        master_df = df[available_columns].drop_duplicates(subset=['bpin']).reset_index(drop=True)
+    else:
+        print("Eliminando duplicados generales...")
+        master_df = df[available_columns].drop_duplicates().reset_index(drop=True)
+    
+    print(f"Datos maestros creados con {len(master_df)} registros únicos")
+    print(f"Columnas incluidas: {available_columns}")
+    return master_df
+
+
+def create_movimientos_presupuestales(df: pd.DataFrame) -> pd.DataFrame:
+    """Crea el DataFrame de movimientos presupuestales agrupados por BPIN y período"""
+    print("Creando movimientos presupuestales...")
+    
+    # Verificar columnas disponibles
+    print(f"Columnas disponibles en DataFrame: {df.columns.tolist()}")
+    
+    # Columnas de movimientos presupuestales EXACTAS (sin ppto_disponible)
+    base_columns = ['bpin', 'periodo']
+    monetary_columns = [
+        'ppto_inicial', 'reducciones', 'adiciones', 'contracreditos', 'creditos',
+        'aplazamiento', 'desaplazamiento', 'ppto_modificado'
+    ]
+    info_columns = ['dataframe_origen', 'archivo_origen']
+    
+    # Buscar solo columnas específicas de movimientos (EXCLUIR ppto_disponible y columnas de ejecución)
+    excluded_keywords = ['disponible', 'cdp', 'rpc', 'obligac', 'pagos', 'ejecucion', 'saldos', 'acumulado', 'total']
+    found_monetary = []
+    for col in df.columns:
+        col_lower = col.lower()
+        # Solo incluir si contiene palabras de movimientos Y NO contiene palabras de ejecución
+        is_movement = any(keyword in col_lower for keyword in ['ppto', 'presupuesto', 'inicial', 'modificado', 'adicion', 'reduccion', 'credito', 'aplazamiento'])
+        is_execution = any(keyword in col_lower for keyword in excluded_keywords)
         
-        saved_files = []
-        failed_files = []
+        if is_movement and not is_execution:
+            found_monetary.append(col)
+    
+    print(f"Columnas monetarias encontradas: {found_monetary}")
+    
+    # Construir lista de columnas disponibles
+    available_columns = []
+    
+    # Añadir columnas base
+    for col in base_columns:
+        if col in df.columns:
+            available_columns.append(col)
+    
+    # Añadir columnas monetarias encontradas
+    available_columns.extend(found_monetary)
+    
+    # Añadir columnas de información
+    for col in info_columns:
+        if col in df.columns:
+            available_columns.append(col)
+    
+    # Eliminar duplicados manteniendo orden
+    available_columns = list(dict.fromkeys(available_columns))
+    
+    print(f"Columnas seleccionadas para movimientos: {available_columns}")
+    
+    # Si no tenemos BPIN, usar una clave alternativa
+    key_column = 'bpin' if 'bpin' in df.columns else df.columns[0]
+    
+    print(f"Filtrando registros válidos por {key_column}...")
+    movimientos_df = df[available_columns].dropna(subset=[key_column, 'periodo']).reset_index(drop=True)
+    
+    # Identificar columnas realmente monetarias para filtro
+    actual_monetary = [col for col in found_monetary if col in movimientos_df.columns]
+    
+    if actual_monetary:
+        print(f"Filtrando registros con valores monetarios significativos en: {actual_monetary}")
+        # Mantener filas que tienen al menos un valor monetario > 0
+        monetary_mask = (movimientos_df[actual_monetary] != 0).any(axis=1)
+        movimientos_df = movimientos_df[monetary_mask].reset_index(drop=True)
+        print(f"Registros después del filtro monetario: {len(movimientos_df)}")
+    
+    # Agrupar por BPIN y período, sumando los valores monetarios
+    print("Agrupando datos por BPIN y período...")
+    group_columns = ['bpin', 'periodo']
+    
+    # Columnas de información (tomar el primer valor no nulo)
+    info_cols_available = [col for col in info_columns if col in movimientos_df.columns]
+    
+    # Realizar la agrupación
+    agg_dict = {}
+    
+    # Sumar valores monetarios
+    for col in actual_monetary:
+        agg_dict[col] = 'sum'
+    
+    # Tomar primer valor para columnas informativas
+    for col in info_cols_available:
+        agg_dict[col] = 'first'
+    
+    print(f"Configuración de agregación: {agg_dict}")
+    
+    movimientos_df_grouped = movimientos_df.groupby(group_columns, as_index=False).agg(agg_dict)
+    
+    print(f"Movimientos presupuestales creados con {len(movimientos_df_grouped)} registros agrupados")
+    print(f"Registros originales: {len(movimientos_df)} -> Registros agrupados: {len(movimientos_df_grouped)}")
+    print(f"Columnas finales: {movimientos_df_grouped.columns.tolist()}")
+    return movimientos_df_grouped
+
+
+def create_ejecucion_presupuestal(df: pd.DataFrame) -> pd.DataFrame:
+    """Crea el DataFrame de ejecución presupuestal agrupado por BPIN y período"""
+    print("Creando ejecución presupuestal...")
+    
+    # Verificar columnas disponibles
+    print(f"Columnas disponibles en DataFrame: {df.columns.tolist()}")
+    
+    # Columnas base
+    base_columns = ['bpin', 'periodo']
+    
+    # Buscar SOLO columnas de ejecución (incluir ppto_disponible aquí)
+    execution_keywords = [
+        'cdp', 'rpc', 'obligac', 'pagos', 'ejecucion', 'saldos', 'disponible',
+        'acumulado', 'total'
+    ]
+    
+    found_execution = []
+    for col in df.columns:
+        col_lower = col.lower()
+        if any(keyword in col_lower for keyword in execution_keywords):
+            found_execution.append(col)
+    
+    # Asegurar que ppto_disponible esté incluido si existe
+    if 'ppto_disponible' in df.columns and 'ppto_disponible' not in found_execution:
+        found_execution.append('ppto_disponible')
+    
+    print(f"Columnas de ejecución encontradas: {found_execution}")
+    
+    info_columns = ['dataframe_origen', 'archivo_origen']
+    
+    # Construir lista de columnas disponibles
+    available_columns = []
+    
+    # Añadir columnas base
+    for col in base_columns:
+        if col in df.columns:
+            available_columns.append(col)
+    
+    # Añadir columnas de ejecución encontradas
+    available_columns.extend(found_execution)
+    
+    # Añadir columnas de información
+    for col in info_columns:
+        if col in df.columns:
+            available_columns.append(col)
+    
+    # Eliminar duplicados manteniendo orden
+    available_columns = list(dict.fromkeys(available_columns))
+    
+    print(f"Columnas seleccionadas para ejecución: {available_columns}")
+    
+    # Si no tenemos BPIN, usar una clave alternativa
+    key_column = 'bpin' if 'bpin' in df.columns else df.columns[0]
+    
+    print(f"Filtrando registros válidos por {key_column}...")
+    ejecucion_df = df[available_columns].dropna(subset=[key_column, 'periodo']).reset_index(drop=True)
+    
+    # Identificar columnas realmente de ejecución para filtro
+    actual_execution = [col for col in found_execution if col in ejecucion_df.columns]
+    
+    if actual_execution:
+        print(f"Filtrando registros con valores de ejecución significativos en: {actual_execution}")
+        # Mantener filas que tienen al menos un valor de ejecución > 0
+        execution_mask = (ejecucion_df[actual_execution] != 0).any(axis=1)
+        ejecucion_df = ejecucion_df[execution_mask].reset_index(drop=True)
+        print(f"Registros después del filtro de ejecución: {len(ejecucion_df)}")
+    
+    # Agrupar por BPIN y período, sumando los valores de ejecución
+    print("Agrupando datos por BPIN y período...")
+    group_columns = ['bpin', 'periodo']
+    
+    # Columnas de información (tomar el primer valor no nulo)
+    info_cols_available = [col for col in info_columns if col in ejecucion_df.columns]
+    
+    # Realizar la agrupación
+    agg_dict = {}
+    
+    # Sumar valores de ejecución
+    for col in actual_execution:
+        agg_dict[col] = 'sum'
+    
+    # Tomar primer valor para columnas informativas
+    for col in info_cols_available:
+        agg_dict[col] = 'first'
+    
+    print(f"Configuración de agregación: {agg_dict}")
+    
+    ejecucion_df_grouped = ejecucion_df.groupby(group_columns, as_index=False).agg(agg_dict)
+    
+    print(f"Ejecución presupuestal creada con {len(ejecucion_df_grouped)} registros agrupados")
+    print(f"Registros originales: {len(ejecucion_df)} -> Registros agrupados: {len(ejecucion_df_grouped)}")
+    print(f"Columnas finales: {ejecucion_df_grouped.columns.tolist()}")
+    return ejecucion_df_grouped
+
+
+def save_json_files(master_df: pd.DataFrame, movimientos_df: pd.DataFrame, 
+                   ejecucion_df: pd.DataFrame, output_dir: str) -> None:
+    """Guarda los DataFrames en archivos JSON"""
+    print("Guardando archivos JSON...")
+    
+    os.makedirs(output_dir, exist_ok=True)
+    
+    # Guardar archivos JSON con barra de progreso
+    files_to_save = [
+        (master_df, 'datos_caracteristicos_proyectos.json'),
+        (movimientos_df, 'movimientos_presupuestales.json'),
+        (ejecucion_df, 'ejecucion_presupuestal.json')
+    ]
+    
+    for df, filename in tqdm(files_to_save, desc="Guardando archivos JSON"):
+        file_path = os.path.join(output_dir, filename)
+        df.to_json(file_path, orient='records', indent=2, force_ascii=False)
+        file_size_mb = os.path.getsize(file_path) / (1024 * 1024)
+        print(f"✓ Guardado {filename}: {len(df)} filas, {file_size_mb:.1f} MB")
+
+
+def print_performance_metrics(start_time: float, df_consolidado: pd.DataFrame) -> None:
+    """Imprime métricas de desempeño"""
+    end_time = time.time()
+    execution_time = end_time - start_time
+    
+    process = psutil.Process()
+    memory_usage = process.memory_info().rss / (1024 * 1024)  # MB
+    
+    print("\n" + "="*60)
+    print("MÉTRICAS DE DESEMPEÑO:")
+    print("="*60)
+    print(f"Tiempo total de ejecución: {execution_time:.2f} segundos")
+    print(f"Total de filas procesadas: {len(df_consolidado):,}")
+    print(f"Total de columnas: {len(df_consolidado.columns)}")
+    print(f"Memoria utilizada: {memory_usage:.2f} MB")
+    print("="*60)
+
+
+def main():
+    """Función principal"""
+    start_time = time.time()
+    
+    print("Iniciando transformación optimizada de datos de ejecución presupuestal...")
+    
+    # Configurar directorios
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    input_dir = os.path.join(current_dir, "app_inputs", "ejecucion_presupuestal_input")
+    output_dir = os.path.join(current_dir, "app_outputs", "ejecucion_presupuestal_outputs")
+    
+    try:
+        # 1. Cargar archivos CSV
+        dfs = load_csv_files(input_dir)
         
-        for df_name, dataframe in dataframes_to_save:
-            if dataframe is not None:
-                try:
-                    # Convert Int64 columns to regular int for JSON compatibility
-                    df_copy = dataframe.copy()
-                    
-                    # Handle nullable integer columns
-                    for col in df_copy.columns:
-                        if df_copy[col].dtype == 'Int64':
-                            # Convert Int64 to float first (to handle NaN), then to object for JSON
-                            df_copy[col] = df_copy[col].astype('float64').where(df_copy[col].notna(), None)
-                            # Convert non-null values back to int
-                            df_copy[col] = df_copy[col].apply(lambda x: int(x) if pd.notna(x) else None)
-                    
-                    # Save to JSON with proper formatting
-                    json_filename = f"{df_name}.json"
-                    json_filepath = os.path.join(output_dir, json_filename)
-                    
-                    # Convert to JSON with orient='records' for API compatibility
-                    df_copy.to_json(
-                        json_filepath, 
-                        orient='records', 
-                        indent=2,
-                        force_ascii=False,
-                        date_format='iso'
-                    )
-                    
-                    file_size = os.path.getsize(json_filepath) / 1024  # Size in KB
-                    print(f"✓ Saved {df_name}: {json_filename} ({len(dataframe)} rows, {file_size:.1f} KB)")
-                    saved_files.append(json_filename)
-                    
-                except Exception as e:
-                    print(f"✗ Failed to save {df_name}: {e}")
-                    failed_files.append(df_name)
-            else:
-                print(f"⚠ Skipped {df_name}: DataFrame is None")
-                failed_files.append(df_name)
+        # 2. Preprocesar DataFrames
+        dfs = preprocess_dataframes(dfs)
         
-        # Summary
-        print(f"\n" + "="*60)
-        print(f"SAVE SUMMARY:")
-        print(f"="*60)
-        print(f"Successfully saved: {len(saved_files)} files")
-        for filename in saved_files:
-            print(f"  ✓ {filename}")
+        # 3. Normalizar nombres de columnas
+        dfs = normalize_dataframes(dfs)
         
-        if failed_files:
-            print(f"\nFailed to save: {len(failed_files)} files")
-            for df_name in failed_files:
-                print(f"  ✗ {df_name}")
+        # 4. Aplicar mapeos de columnas
+        dfs = apply_column_mappings(dfs)
         
-        print(f"\nOutput directory: {output_dir}")
-        print(f"Total files in directory: {len(os.listdir(output_dir))}")
+        # 5. Eliminar columnas innecesarias
+        dfs = remove_unnecessary_columns(dfs)
         
-        # Show file details
-        print(f"\nFile details:")
-        for filename in os.listdir(output_dir):
-            if filename.endswith('.json'):
-                filepath = os.path.join(output_dir, filename)
-                file_size = os.path.getsize(filepath) / 1024  # Size in KB
-                print(f"  {filename}: {file_size:.1f} KB")
+        # 6. Completar columnas faltantes
+        dfs = fill_missing_columns_with_reference(dfs)
         
-        return df_consolidado, centros_gestores, programas, areas_funcionales, retos, propositos, movimientos_presupuestales, ejecucion_presupuestal
+        # 7. Añadir datos operacionales
+        dfs = add_operational_data(dfs)
+        
+        # 8. Consolidar DataFrames
+        df_consolidado = consolidate_dataframes(dfs)
+        
+        # 9. Convertir tipos de datos
+        df_consolidado = convert_data_types(df_consolidado)
+        
+        # 10. Crear DataFrames especializados
+        master_df = create_master_data(df_consolidado)
+        movimientos_df = create_movimientos_presupuestales(df_consolidado)
+        ejecucion_df = create_ejecucion_presupuestal(df_consolidado)
+        
+        # 11. Guardar archivos JSON
+        save_json_files(master_df, movimientos_df, ejecucion_df, output_dir)
+        
+        # 12. Imprimir métricas
+        print_performance_metrics(start_time, df_consolidado)
+        
+        print(f"\n¡Transformación completada exitosamente!")
+        print(f"Archivos guardados en: {output_dir}")
+        print(f"- Datos característicos: {len(master_df)} registros")
+        print(f"- Movimientos presupuestales: {len(movimientos_df)} registros")
+        print(f"- Ejecución presupuestal: {len(ejecucion_df)} registros")
         
     except Exception as e:
-        print(f"Error in transformation: {e}")
-        return None, None, None, None, None, None, None, None
+        print(f"Error durante la transformación: {e}")
+        raise
 
 
 if __name__ == "__main__":
-    df_consolidado, centros_gestores, programas, areas_funcionales, retos, propositos, movimientos_presupuestales, ejecucion_presupuestal = main()
+    main()
