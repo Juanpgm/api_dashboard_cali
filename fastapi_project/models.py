@@ -51,8 +51,10 @@ class MovimientoPresupuestal(Base):
     bpin = Column(BigInteger, primary_key=True, index=True)
     periodo_corte = Column(String(50), primary_key=True, nullable=False)  # Manteniendo nombre correcto de BD
     adiciones = Column(BigInteger, nullable=False, default=0)
+    aplazamiento = Column(BigInteger, nullable=False, default=0)  # Agregado para coincidir con JSON
     contracreditos = Column(BigInteger, nullable=False, default=0)
     creditos = Column(BigInteger, nullable=False, default=0)
+    desaplazamiento = Column(BigInteger, nullable=False, default=0)  # Agregado para coincidir con JSON
     ppto_inicial = Column(BigInteger, nullable=False, default=0)
     ppto_modificado = Column(BigInteger, nullable=False, default=0)
     reducciones = Column(BigInteger, nullable=False, default=0)
@@ -78,7 +80,7 @@ class EjecucionPresupuestal(Base):
 class DatosCaracteristicosProyecto(Base):
     __tablename__ = "datos_caracteristicos_proyectos"
 
-    bpin = Column(BigInteger, primary_key=True, index=True)
+    bpin = Column(BigInteger, primary_key=True, index=True, nullable=False)  # Asegurar NOT NULL
     bp = Column(BigInteger, nullable=True)
     nombre_proyecto = Column(Text, nullable=True)
     nombre_actividad = Column(Text, nullable=True)
@@ -114,11 +116,11 @@ class Proyecto(Base):
     urlproyecto = Column(Text)
     
     # Foreign Keys - Solo mantener las que tienen clases/tablas definidas
-    cod_programa = Column(String(50), ForeignKey("programas.cod_programa"))
-    cod_proposito = Column(String(50), ForeignKey("propositos.cod_proposito"))
-    cod_reto = Column(String(50), ForeignKey("retos.cod_reto"))
-    cod_area_funcional = Column(String(50), ForeignKey("areas_funcionales.cod_area_funcional"))
-    cod_centro_gestor = Column(String(50), ForeignKey("centros_gestores.cod_centro_gestor"))
+    cod_programa = Column(Integer, ForeignKey("programas.cod_programa"))
+    cod_proposito = Column(Integer, ForeignKey("propositos.cod_proposito"))
+    cod_reto = Column(Integer, ForeignKey("retos.cod_reto"))
+    cod_area_funcional = Column(Integer, ForeignKey("areas_funcionales.cod_area_funcional"))
+    cod_centro_gestor = Column(Integer, ForeignKey("centros_gestores.cod_centro_gestor"))
     
     # Campos que serán simples columnas por ahora (sin FK hasta que se definan las tablas)
     cod_linea_estrategica = Column(String(50))
@@ -246,7 +248,7 @@ class UnidadProyectoInfraestructuraEquipamientos(Base):
     __tablename__ = "unidades_proyecto_infraestructura_equipamientos"
     
     bpin = Column(BigInteger, primary_key=True, index=True)
-    identificador = Column(String(255), nullable=False)
+    identificador = Column(String(255), nullable=False)  # Columna regular, no clave primaria
     cod_fuente_financiamiento = Column(String(50))
     usuarios_beneficiarios = Column(Float)
     dataframe = Column(Text)
@@ -267,15 +269,15 @@ class UnidadProyectoInfraestructuraEquipamientos(Base):
     es_centro_gravedad = Column(Boolean)
     ppto_base = Column(Float)
     pagos_realizados = Column(Float)
-    avance_fisico_obra = Column(Float)
+    avance_físico_obra = Column(Float)  # Agregado para coincidir con JSON
     ejecucion_financiera_obra = Column(Float)
-    # Removido: geom - No se almacena en la tabla de atributos
+    geom = Column(Text)  # Agregado para coincidir con JSON
 
 class UnidadProyectoInfraestructuraVial(Base):
     __tablename__ = "unidades_proyecto_infraestructura_vial"
     
     bpin = Column(BigInteger, primary_key=True, index=True)
-    identificador = Column(String(255), nullable=False)
+    identificador = Column(String(255), nullable=False)  # Columna regular, no clave primaria
     id_via = Column(String(50))
     cod_fuente_financiamiento = Column(String(50))
     usuarios_beneficiarios = Column(Float)
@@ -300,9 +302,9 @@ class UnidadProyectoInfraestructuraVial(Base):
     longitud_ejecutada = Column(Float)
     ppto_base = Column(Float)
     pagos_realizados = Column(Float)
-    avance_fisico_obra = Column(Float)
+    avance_físico_obra = Column(Float)  # Agregado para coincidir con JSON
     ejecucion_financiera_obra = Column(Float)
-    # Removido: geom - No se almacena en la tabla de atributos
+    geom = Column(Text)  # Agregado para coincidir con JSON
 
 # =============================================================================
 # Clase: CONTRATO
