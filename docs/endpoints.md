@@ -1,4 +1,16 @@
-# Endpoints de la API - Versión 2.6.0
+# Endpoints de la API - Versión 2.7.0
+
+## 🗄️ Inicialización de Sistema
+
+### Database Initializer v2.7.0
+
+- **Comando**: `python database_initializer.py`
+- **Función**: Inicialización unificada para Local y Railway
+- **Detecta**: Entorno automáticamente (Local vs Railway)
+- **Crea**: 25 tablas + 26 índices + carga incremental de datos
+- **Genera**: Reporte detallado en `database_initialization_report_*.md`
+
+---
 
 ## Tag: PROYECTO - Datos Básicos y Presupuestales
 
@@ -19,13 +31,20 @@
 
 - POST /movimientos_presupuestales
 - POST /ejecucion_presupuestal
+- POST /datos_caracteristicos_proyectos _(✅ Nuevo v2.7.0)_
 - POST /load_all_data
 - GET /movimientos_presupuestales?bpin&periodo_corte&limit&offset
 - GET /ejecucion_presupuestal?bpin&periodo_corte&limit&offset
+- GET /datos_caracteristicos_proyectos?bpin&limit&offset _(✅ Nuevo v2.7.0)_
 - GET /movimientos_presupuestales/count
 - GET /ejecucion_presupuestal/count
 
-**Nota v2.6.0**: Todos los filtros ahora usan `periodo_corte` (antes `periodo`) para consistencia total.
+**Estado v2.7.0**:
+
+- ✅ **11,880 movimientos presupuestales** cargados
+- ✅ **11,742 registros de ejecución** cargados
+- ✅ **1,252 datos característicos** cargados (1 rechazado por BPIN NULL)
+- ✅ **Filtros unificados**: `periodo_corte` consistente en todas las tablas
 
 ## Tag: PROYECTO: CONTRATOS SECOP (✅ Arquitectura BPIN-Centric)
 
@@ -37,14 +56,15 @@
 - GET /contratos?bpin&estado_contrato&proveedor_contrato&limit&offset
 - GET /contratos/simple?bpin&limit&offset
 
-### Características v2.6.0
+### Estado v2.7.0
 
+- ✅ **744 contratos** cargados con datos completos
+- ✅ **753 registros de valores** financieros asociados
 - ✅ **JOIN optimizado**: Solo con `contratos_valores` para incluir montos
 - ✅ **Response unificado**: Ambos endpoints GET usan `ContratoCompleto`
-- ✅ **Filtros avanzados**: Por BPIN, estado, proveedor
 - ✅ **Performance mejorado**: Eliminación de JOINs problemáticos
 
-## ✨ Tag: PROYECTO: SEGUIMIENTO AL PLAN DE ACCIÓN (NUEVO)
+## ✨ Tag: PROYECTO: SEGUIMIENTO AL PLAN DE ACCIÓN (v2.2.0)
 
 ### Endpoints de Carga (POST)
 
@@ -59,6 +79,13 @@
 - GET /seguimiento_productos_pa?cod_pd_lvl_1&cod_pd_lvl_2&comuna&estado_producto_pa&limit&offset
 - GET /seguimiento_actividades_pa?cod_pd_lvl_1&cod_pd_lvl_2&cod_pd_lvl_3&bpin&limit&offset
 
+### Estado v2.7.0
+
+- ✅ **1,396 registros de seguimiento PA** (resumen por subdirección)
+- ✅ **1,990 registros de productos PA** con métricas de avance
+- ✅ **10,737 registros de actividades PA** con datos presupuestales
+- ✅ **Filtros específicos**: Por período, subdirección, BPIN, estados
+
 ### Filtros Específicos Seguimiento PA
 
 - `periodo_corte`: YYYY-MM (formato corto)
@@ -67,7 +94,9 @@
 - `bpin`: Código BPIN específico
 - `cod_pd_lvl_*`: Códigos de nivel de plan de desarrollo
 
-## Tag: PROYECTO: UNIDADES DE PROYECTO - INFRAESTRUCTURA
+## Tag: PROYECTO: UNIDADES DE PROYECTO - INFRAESTRUCTURA (✅ Corregido v2.7.0)
+
+### Endpoints Disponibles
 
 - POST /unidades_proyecto/equipamientos
 - POST /unidades_proyecto/vial
@@ -80,6 +109,21 @@
 - PUT /unidades_proyecto/equipamientos/{bpin}
 - PUT /unidades_proyecto/vial/{bpin}
 
+### Estado v2.7.0
+
+- ✅ **237 registros de equipamientos** cargados (88 rechazados por BPIN NULL)
+- ✅ **103 registros de infraestructura vial** cargados
+- ✅ **Clave primaria corregida**: BPIN como PK única (vs clave compuesta anterior)
+- ✅ **Filtrado automático**: Registros con BPIN NULL rechazados automáticamente
+- ✅ **UPSERT inteligente**: ON CONFLICT (bpin) DO UPDATE SET para evitar duplicados
+
+### Mejoras v2.7.0
+
+- 🔧 **Primary Key Corregida**: Removido `primary_key=True` de campo `identificador`
+- 🔧 **BPIN como clave única**: Facilita UPSERT y relaciones con otras tablas
+- 🔧 **Manejo automático de duplicados**: Permite múltiples identificadores por BPIN
+- 🔧 **Integridad referencial**: Mejor alineación con esquema general del sistema
+
 ## Tag: ADMIN (✅ Reorganizados v2.6.0)
 
 ### Endpoints Administrativos (Aparecen al final en Swagger UI)
@@ -88,6 +132,13 @@
 - GET /database_status - Estadísticas detalladas de todas las tablas
 - GET /tables_info - Información de esquemas y columnas
 - DELETE /clear_all_data - Eliminación masiva de todas las tablas
+
+### Estado v2.7.0
+
+- ✅ **25 tablas** monitoreadas automáticamente
+- ✅ **Health check** con verificación de conexión PostgreSQL
+- ✅ **Database status** con conteo actualizado de registros
+- ✅ **Tables info** con información de esquemas y tipos de datos
 
 **Nota v2.6.0**: Los endpoints ADMIN ahora aparecen al final en la documentación de Swagger para mejor organización.
 
